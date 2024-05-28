@@ -1474,7 +1474,7 @@ def run():
                         """
 
                         with st.expander("Click here to view data"):
-                            i = 1                 
+                            i = 1              
                             for mask in results[0].masks:
                                 st.write(f"------------ mask{i} ------------")
                                 mymask = mask.data[0].numpy()
