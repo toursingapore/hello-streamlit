@@ -1364,141 +1364,145 @@ def run():
         if button and uploaded_files:
             for uploaded_file in uploaded_files:
                 with st.spinner('Wait for it...'): #Show thanh progress khi xử lý code 
-                    #Case1; Detect objects
-                    # Display uploaded image
-                    image = Image.open(uploaded_file)
-                    st.image(image, caption="Uploaded Image", use_column_width=True)
+                    try:
+                        #Case1; Detect objects
+                        # Display uploaded image
+                        image = Image.open(uploaded_file)
+                        st.image(image, caption="Uploaded Image", use_column_width=True)
 
-                    # Save uploaded image to temp directory
-                    temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
-                    temp_jpg_file.close()
-                    #temp_jpg_path = temp_jpg_file.name
-                    temp_jpg_path = uploaded_file.name  #keep image name               
-                    #st.write(temp_jpg_path)
-                    with open(temp_jpg_path, "wb") as f:
-                        image_bytes = uploaded_file.getvalue() #open file in temp_jpg_path and write image bytes to it
-                        f.write(image_bytes)
-                    #st.image(temp_jpg_path)                
+                        # Save uploaded image to temp directory
+                        temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
+                        temp_jpg_file.close()
+                        #temp_jpg_path = temp_jpg_file.name
+                        temp_jpg_path = uploaded_file.name  #keep image name               
+                        #st.write(temp_jpg_path)
+                        with open(temp_jpg_path, "wb") as f:
+                            image_bytes = uploaded_file.getvalue() #open file in temp_jpg_path and write image bytes to it
+                            f.write(image_bytes)
+                        #st.image(temp_jpg_path)                
 
-                    # Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
-                    url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
-                    hub_ultralytics_api_key = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
-                    headers = {"x-api-key": hub_ultralytics_api_key}
-                    data = {"size": 640, "confidence": 0.25, "iou": 0.45}
-                    image_bytes = uploaded_file.getvalue()
-                    response = requests.post(url, headers=headers, data=data, files={"image": image_bytes})
-                    if response.status_code == 200:
-                        #st.write(json.dumps(response.json(), indent=2))                
-                        # Parse JSON response
-                        json_data = response.json()
-                        #st.write(json_data)
-                        #st.write(json_data["data"])
+                        # Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
+                        url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
+                        hub_ultralytics_api_key = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
+                        headers = {"x-api-key": hub_ultralytics_api_key}
+                        data = {"size": 640, "confidence": 0.25, "iou": 0.45}
+                        image_bytes = uploaded_file.getvalue()
+                        response = requests.post(url, headers=headers, data=data, files={"image": image_bytes})
+                        if response.status_code == 200:
+                            #st.write(json.dumps(response.json(), indent=2))                
+                            # Parse JSON response
+                            json_data = response.json()
+                            #st.write(json_data)
+                            #st.write(json_data["data"])
 
-                        # Draw bounding boxes
-                        draw = ImageDraw.Draw(image)
-                        
-                        # Dictionary to count instances of each class
-                        class_count = defaultdict(int)
-                        # Dictionary to map class names to outline colors
-                        class_color_map = {
-                            "person": "red",
-                            "handbag": "blue",
-                            "cell phone": "green",
-                            # Add more classes and corresponding colors as needed - https://stackoverflow.com/questions/77477793/class-ids-and-their-relevant-class-names-for-yolov8-model
-                        }
-
-                        for bbox_data in json_data["data"]:
-                            xcenter = bbox_data["xcenter"] * image.width
-                            ycenter = bbox_data["ycenter"] * image.height
-                            width = bbox_data["width"] * image.width
-                            height = bbox_data["height"] * image.height
-
-                            # Calculate bounding box coordinates
-                            x1 = xcenter - width / 2
-                            y1 = ycenter - height / 2
-                            x2 = xcenter + width / 2
-                            y2 = ycenter + height / 2
-
-                            # Draw bounding box 1 color only
-                            #draw.rectangle([x1, y1, x2, y2], outline="red", width=2)
+                            # Draw bounding boxes
+                            draw = ImageDraw.Draw(image)
                             
-                            # Increment class count
-                            class_name = bbox_data["name"]
-                            class_count[class_name] += 1
+                            # Dictionary to count instances of each class
+                            class_count = defaultdict(int)
+                            # Dictionary to map class names to outline colors
+                            class_color_map = {
+                                "person": "red",
+                                "handbag": "blue",
+                                "cell phone": "green",
+                                # Add more classes and corresponding colors as needed - https://stackoverflow.com/questions/77477793/class-ids-and-their-relevant-class-names-for-yolov8-model
+                            }
 
-                            # Draw bounding box with class-specific outline color
-                            outline_color = class_color_map.get(class_name, "yellow")  # Default to yellow if class not found
-                            draw.rectangle([x1, y1, x2, y2], outline=outline_color, width=2)
+                            for bbox_data in json_data["data"]:
+                                xcenter = bbox_data["xcenter"] * image.width
+                                ycenter = bbox_data["ycenter"] * image.height
+                                width = bbox_data["width"] * image.width
+                                height = bbox_data["height"] * image.height
 
-                        # Display image with bounding boxes
-                        st.image(image, caption="Objects detected with Bounding Boxes", use_column_width=True)
-                
-                        # Display class counts
-                        st.write("Detected objects:")
-                        for class_name, count in class_count.items():
-                            st.write(f"{class_name}: {count}")
+                                # Calculate bounding box coordinates
+                                x1 = xcenter - width / 2
+                                y1 = ycenter - height / 2
+                                x2 = xcenter + width / 2
+                                y2 = ycenter + height / 2
 
-                        #Case2; Extract masks from image
-                        # https://docs.ultralytics.com/hub/inference-api/#segmentation
-                        temp_dir_path = tempfile.mkdtemp()
-                        #st.write(temp_dir_path) 
+                                # Draw bounding box 1 color only
+                                #draw.rectangle([x1, y1, x2, y2], outline="red", width=2)
+                                
+                                # Increment class count
+                                class_name = bbox_data["name"]
+                                class_count[class_name] += 1
 
-                        # Load a model - https://docs.ultralytics.com/vi/tasks/segment/#export
-                        # inference-arguments - https://docs.ultralytics.com/modes/predict/#inference-arguments
-                        model = YOLO("models/yolov8x-seg.pt")  # load an official model 
-                        #model = YOLO("path/to/best.pt")  # load a custom model
-                        # Predict with the model and named folder is 'image_predicted_folder' and Save annotated frames to the output directory
-                        #results = model(["https://ultralytics.com/images/bus.jpg","https://wallpapercave.com/wp/wp6715217.jpg"], save=True, project=temp_dir_path) # predict on an image
-                        #results = model(["im1.jpg", "im2.jpg"], save=True, project=temp_dir_path, name='image_predicted_folder', stream=True)  # return a generator of Results objects
-                        results = model(temp_jpg_path, save=True, project=temp_dir_path, name='image_predicted_folder') #default tham số image size width 640px -> imgsz=[480, 640]                    
-                        #st.write(results) # results in JSON format
+                                # Draw bounding box with class-specific outline color
+                                outline_color = class_color_map.get(class_name, "yellow")  # Default to yellow if class not found
+                                draw.rectangle([x1, y1, x2, y2], outline=outline_color, width=2)
 
-                        st.write(f"Total mask of objects = {len(results[0].masks)}")
-                        #st.write(results[0].masks) #get all bbox points of masks
-                        #st.write(results[0].boxes) #get all bbox points
-                        #st.write(results[0].save_dir) #get directory where save images
+                            # Display image with bounding boxes
+                            st.image(image, caption="Objects detected with Bounding Boxes", use_column_width=True)
+                    
+                            # Display class counts
+                            st.write("Detected objects:")
+                            for class_name, count in class_count.items():
+                                st.write(f"{class_name}: {count}")
 
-                        _ = """
-                        st.write('Extract second mask in image')
-                        #Extract mask thứ 2 masks[1] trong ảnh
-                        mask = results[0].masks[1].data[0].numpy()
-                        st.image(mask)
+                            #Case2; Extract masks from image
+                            # https://docs.ultralytics.com/hub/inference-api/#segmentation
+                            temp_dir_path = tempfile.mkdtemp()
+                            #st.write(temp_dir_path) 
 
-                        #Draw polygon around mask of object
-                        polygon = results[0].masks[1].xy[0]
-                        #st.write(polygon)                    
-                        img = Image.open(temp_jpg_path)
-                        draw = ImageDraw.Draw(img)
-                        draw.polygon(polygon,outline=(0,255,0), width=3)
-                        st.image(img)
-                        """
+                            # Load a model - https://docs.ultralytics.com/vi/tasks/segment/#export
+                            # inference-arguments - https://docs.ultralytics.com/modes/predict/#inference-arguments
+                            model = YOLO("models/yolov8x-seg.pt")  # load an official model 
+                            #model = YOLO("path/to/best.pt")  # load a custom model
+                            # Predict with the model and named folder is 'image_predicted_folder' and Save annotated frames to the output directory
+                            #results = model(["https://ultralytics.com/images/bus.jpg","https://wallpapercave.com/wp/wp6715217.jpg"], save=True, project=temp_dir_path) # predict on an image
+                            #results = model(["im1.jpg", "im2.jpg"], save=True, project=temp_dir_path, name='image_predicted_folder', stream=True)  # return a generator of Results objects
+                            results = model(temp_jpg_path, save=True, project=temp_dir_path, name='image_predicted_folder') #default tham số image size width 640px -> imgsz=[480, 640]                    
+                            #st.write(results) # results in JSON format
 
-                        with st.expander("Click here to view data"):
-                            i = 1              
-                            for mask in results[0].masks:
-                                st.write(f"------------ mask{i} ------------")
-                                mymask = mask.data[0].numpy()
-                                st.image(mymask)
+                            st.write(f"Total mask of objects = {len(results[0].masks)}")
+                            #st.write(results[0].masks) #get all bbox points of masks
+                            #st.write(results[0].boxes) #get all bbox points
+                            #st.write(results[0].save_dir) #get directory where save images
 
-                                #Draw polygon around mask of object 
-                                polygon = mask.xy[0]
-                                #st.write(polygon)                    
-                                img = Image.open(temp_jpg_path)
-                                draw = ImageDraw.Draw(img)
-                                draw.polygon(polygon, outline=(0,255,0), width=3)
-                                st.image(img)
-                                i += 1
+                            _ = """
+                            st.write('Extract second mask in image')
+                            #Extract mask thứ 2 masks[1] trong ảnh
+                            mask = results[0].masks[1].data[0].numpy()
+                            st.image(mask)
 
-                        
-                        #-- openxlab.org.cn --
-                        #pip install openxlab  
+                            #Draw polygon around mask of object
+                            polygon = results[0].masks[1].xy[0]
+                            #st.write(polygon)                    
+                            img = Image.open(temp_jpg_path)
+                            draw = ImageDraw.Draw(img)
+                            draw.polygon(polygon,outline=(0,255,0), width=3)
+                            st.image(img)
+                            """
 
-                        # Authentication
-                        import openxlab
-                        Access_Key = "baakkly3lx4xyznopvy1"
-                        Secrete_Key = "5r4jzwnlqk3pbx80xzgk4bpojwoed7kmjqz9da6a"
-                        openxlab.login(ak=Access_Key, sk=Secrete_Key)
+                            with st.expander("Click here to view data"):
+                                i = 1              
+                                for mask in results[0].masks:
+                                    st.write(f"------------ mask{i} ------------")
+                                    mymask = mask.data[0].numpy()
+                                    st.image(mymask)
 
+                                    #Draw polygon around mask of object 
+                                    polygon = mask.xy[0]
+                                    #st.write(polygon)                    
+                                    img = Image.open(temp_jpg_path)
+                                    draw = ImageDraw.Draw(img)
+                                    draw.polygon(polygon, outline=(0,255,0), width=3)
+                                    st.image(img)
+                                    i += 1
+
+                            
+                            #-- openxlab.org.cn --
+                            #pip install openxlab  
+
+                            # Authentication
+                            import openxlab
+                            Access_Key = "baakkly3lx4xyznopvy1"
+                            Secrete_Key = "5r4jzwnlqk3pbx80xzgk4bpojwoed7kmjqz9da6a"
+                            openxlab.login(ak=Access_Key, sk=Secrete_Key)
+
+                    except HfHubHTTPError as e:
+                        #hf_raise_for_status(response)
+                        st.write(f"{str(e)} - {str(e.request_id)} - {str(e.server_message)}")
 
     st.divider()
 
