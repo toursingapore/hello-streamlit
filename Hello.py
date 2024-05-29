@@ -1493,20 +1493,7 @@ def run():
                         #-- openxlab.org.cn --
                         #pip install openxlab
 
-                        # Authentication
-                        import openxlab
-                        Access_Key = "baakkly3lx4xyznopvy1"
-                        Secrete_Key = "5r4jzwnlqk3pbx80xzgk4bpojwoed7kmjqz9da6a"
-                        openxlab.login(ak=Access_Key, sk=Secrete_Key)
 
-                        # Invoke Inference Service remotely
-                        from openxlab.model import inference
-                        model_repo = 'Tinsley/Stable-Video-Diffusion'
-                        #input=['./hinh.jpg']
-                        results = inference(model_repo, input=temp_jpg_path)
-                        with open("result.jpg", "wb") as f:
-                            f.write(results)    
-                        st.image('results.jpg')
 
 
     st.divider()
