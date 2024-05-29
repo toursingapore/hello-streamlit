@@ -1493,7 +1493,11 @@ def run():
                         #-- openxlab.org.cn --
                         #pip install openxlab  
 
-
+                        # Authentication
+                        import openxlab
+                        Access_Key = "baakkly3lx4xyznopvy1"
+                        Secrete_Key = "5r4jzwnlqk3pbx80xzgk4bpojwoed7kmjqz9da6a"
+                        openxlab.login(ak=Access_Key, sk=Secrete_Key)
 
 
     st.divider()
