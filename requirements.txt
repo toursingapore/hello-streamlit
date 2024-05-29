@@ -39,3 +39,4 @@ openvoice-cli==0.0.4
 torch
 torchvision
 torchaudio
+openxlab
