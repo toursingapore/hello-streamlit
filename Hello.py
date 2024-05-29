@@ -1443,12 +1443,9 @@ def run():
                         temp_dir_path = tempfile.mkdtemp()
                         #st.write(temp_dir_path)
 
-                        cwd = os.getcwd()
-                        st.write(cwd)
-
                         # Load a model - https://docs.ultralytics.com/vi/tasks/segment/#export
                         # inference-arguments - https://docs.ultralytics.com/modes/predict/#inference-arguments
-                        model = YOLO(f"{cwd}/models/yolov8x-seg.pt")  # load an official model 
+                        model = YOLO("models/yolov8x-seg.pt")  # load an official model 
                         #model = YOLO("path/to/best.pt")  # load a custom model
                         # Predict with the model and named folder is 'image_predicted_folder' and Save annotated frames to the output directory
                         #results = model(["https://ultralytics.com/images/bus.jpg","https://wallpapercave.com/wp/wp6715217.jpg"], save=True, project=temp_dir_path) # predict on an image
