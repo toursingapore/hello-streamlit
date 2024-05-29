@@ -29,7 +29,7 @@ pytube==15.0.0
 SpeechRecognition==3.10.4
 pydub==0.25.1
 youtube-transcript-api==0.6.2
-ultralytics==8.2.18
+ultralytics==8.0.151
 inference-sdk==0.9.15
 leptonai
 openai==1.30.1
