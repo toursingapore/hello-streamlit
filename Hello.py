@@ -1443,6 +1443,9 @@ def run():
                         temp_dir_path = tempfile.mkdtemp()
                         #st.write(temp_dir_path)
 
+                        cwd = os.getcwd()
+                        st.write(cwd)
+
                         # Load a model - https://docs.ultralytics.com/vi/tasks/segment/#export
                         # inference-arguments - https://docs.ultralytics.com/modes/predict/#inference-arguments
                         model = YOLO("models/yolov8x-seg.pt")  # load an official model 
