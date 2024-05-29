@@ -1495,7 +1495,7 @@ def run():
                         try:
                             # Authentication
                             import openxlab
-                            Access_Key = "baakkly3lx4xyznopvy1"
+                            Access_Key = "baakkly3lx4xyznopvy1" 
                             Secrete_Key = "5r4jzwnlqk3pbx80xzgk4bpojwoed7kmjqz9da6a"
                             #cmd = "openxlab login"
                             cmd = "!openxlab dataset info --dataset-repo OpenXDLab/OmniObject3D-New"
