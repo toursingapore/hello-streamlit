@@ -1498,7 +1498,7 @@ def run():
                             Access_Key = "baakkly3lx4xyznopvy1"
                             Secrete_Key = "5r4jzwnlqk3pbx80xzgk4bpojwoed7kmjqz9da6a"
                             #cmd = "openxlab login"
-                            cmd = "openxlab dataset info --dataset-repo OpenXDLab/OmniObject3D-New"
+                            cmd = "!openxlab dataset info --dataset-repo OpenXDLab/OmniObject3D-New"
                             return_command_line = os.popen(cmd).read()
                             st.write(f"response - {return_command_line}")                            
                             #openxlab.login(ak=Access_Key, sk=Secrete_Key)
