@@ -1490,7 +1490,7 @@ def run():
                                 i += 1
 
                         
-                        #-- YOLOV8L Inference API via Ultralytics HUB & Yolov8 segment anything --
+                        #-- openxlab.org.cn --
                         #pip install openxlab
 
                         # Authentication
