@@ -1441,7 +1441,7 @@ def run():
                         #Case2; Extract masks from image
                         # https://docs.ultralytics.com/hub/inference-api/#segmentation
                         temp_dir_path = tempfile.mkdtemp()
-                        #st.write(temp_dir_path)
+                        #st.write(temp_dir_path) 
 
                         # Load a model - https://docs.ultralytics.com/vi/tasks/segment/#export
                         # inference-arguments - https://docs.ultralytics.com/modes/predict/#inference-arguments
