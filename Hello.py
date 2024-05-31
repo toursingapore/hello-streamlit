@@ -1756,17 +1756,23 @@ def run():
                         st.audio(result)
                         """
                         
-                        #Clone voice using OpenVoice
-                        client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
-                        result = client.predict(
-                                "Howdy!",	# str  in 'Text Prompt' Textbox component
-                                "default,default",	# str (Option from: [('default', 'default'), ('whispering', 'whispering'), ('cheerful', 'cheerful'), ('terrified', 'terrified'), ('angry', 'angry'), ('sad', 'sad'), ('friendly', 'friendly')]) in 'Style' Dropdown component
-                                "https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
-                                True,	# bool  in 'Agree' Checkbox component
-                                fn_index=1
-                        )
-                        st.write('Voice cloned with OpenVoice')
-                        st.audio(result)                        
+                        try:
+                            #Clone voice using OpenVoice
+                            client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
+                            result = client.predict(
+                                    "Howdy!",	# str  in 'Text Prompt' Textbox component
+                                    "default,default",	# str (Option from: [('default', 'default'), ('whispering', 'whispering'), ('cheerful', 'cheerful'), ('terrified', 'terrified'), ('angry', 'angry'), ('sad', 'sad'), ('friendly', 'friendly')]) in 'Style' Dropdown component
+                                    "https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
+                                    True,	# bool  in 'Agree' Checkbox component
+                                    fn_index=1
+                            )
+                            st.write('Voice cloned with OpenVoice')
+                            st.audio(result)
+                        except Exception as e:
+                            exc_type, exc_obj, exc_tb = sys.exc_info()
+                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                            #st.write(exc_type, fname, exc_tb.tb_lineno)
+                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")                                             
 
 
                 case "Extract audio from URL of YouTube video":
