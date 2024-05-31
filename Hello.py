@@ -1540,25 +1540,6 @@ def run():
                                             st.image(img)
                                             i += 1
 
-                                    
-                                    #-- openxlab.org.cn - chưa được --
-                                    #pip install openxlab  
-                                    try:
-                                        # Authentication
-                                        import openxlab
-                                        Access_Key = "baakkly3lx4xyznopvy1" 
-                                        Secrete_Key = "5r4jzwnlqk3pbx80xzgk4bpojwoed7kmjqz9da6a"
-                                        #cmd = "openxlab login"
-                                        cmd = "!openxlab dataset info --dataset-repo OpenXDLab/OmniObject3D-New"
-                                        return_command_line = os.popen(cmd).read()
-                                        st.write(f"response - {return_command_line}")                            
-                                        #openxlab.login(ak=Access_Key, sk=Secrete_Key)
-
-                                    except HfHubHTTPError as e:
-                                        #hf_raise_for_status(response)
-                                        st.write(f"{str(e)} - {str(e.request_id)} - {str(e.server_message)}")
-
-
                     case _: #trường hợp còn lại extract masks dùng Huggingface Inference API
                         # Download the image                   
                         for user_input in user_input_arr:
