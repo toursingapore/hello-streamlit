@@ -1777,7 +1777,7 @@ def run():
                             c = Client("https://openvoice.lepton.run", token=api_token)
 
                             mpeg=c.run(
-                                reference_speaker="https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",
+                                reference_speaker="https://www.lepton.ai/playground/openvoice/inputs/speaker_1.mp3",
                                 text="Hi, can you hear me?",
                                 emotion="friendly"
                             )
