@@ -1752,8 +1752,9 @@ def run():
                         st.write('Voice cloned with XTTS-v2')
                         st.audio(result)
 
-
+                        
                         #Clone voice using OpenVoice
+                        from gradio_client import Client, file
                         client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
                         result = client.predict(
                                 "Howdy!",	# str  in 'Text Prompt' Textbox component
