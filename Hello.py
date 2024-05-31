@@ -1757,7 +1757,7 @@ def run():
 
         elif add_radio == "Extract audio from URL of YouTube video":
             user_input = st.text_area("Enter URL of YouTube video", value='https://www.youtube.com/watch?v=cNch6T4H8Hk \nhttps://www.youtube.com/watch?v=v5phuCoTCOM', placeholder='https://path_to_youtubevideo1.jpg \nhttps://path_to_youtubevideo2.jpg', height=200)
-            #Append keywords to array and remove whitespace dư, empty line
+            #Append keywords to array and remove whitespace dư, empty line 
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
         else:
             user_input = st.file_uploader("Upload video mp4", type=["mp4"])
