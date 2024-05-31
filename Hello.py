@@ -1522,7 +1522,7 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt", "Generate image from URL"],
+            ["Generate image from prompt", "Extract masks from from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
