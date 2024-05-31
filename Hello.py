@@ -1742,7 +1742,8 @@ def run():
                     with st.spinner('Wait for it...'):
                         #Clone voice using coqui/XTTS-v2
                         from gradio_client import Client, file
-                        client = Client("tonyassi/voice-clone")
+
+                        client = Client("tonyassi/voice-clone", serialize=False)
                         result = client.predict(
                                 text=user_input,
                                 #audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
@@ -1751,11 +1752,9 @@ def run():
                         )
                         st.write('Voice cloned with XTTS-v2')
                         st.audio(result)
-
-                        
+                    
                         #Clone voice using OpenVoice
-                        from gradio_client import Client, file
-                        client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
+                        client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/", serialize=False)
                         result = client.predict(
                                 "Howdy!",	# str  in 'Text Prompt' Textbox component
                                 "default,default",	# str (Option from: [('default', 'default'), ('whispering', 'whispering'), ('cheerful', 'cheerful'), ('terrified', 'terrified'), ('angry', 'angry'), ('sad', 'sad'), ('friendly', 'friendly')]) in 'Style' Dropdown component
