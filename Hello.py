@@ -1529,7 +1529,7 @@ def run():
         if add_radio == "Generate image from prompt then extract masks":
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
         elif add_radio == "Extract masks from uploaded image":
-            st.write(add_radio)
+            uploaded_files = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
         else:
             user_input = st.text_area("Enter image URL", value='https://cafefcdn.com/203337114487263232/2023/2/2/photo-1-16753281552041758342824.jpg \nhttps://img.baoninhbinh.org.vn/DATA/ARTICLES/2022/7/26/tran-thanh-toi-va-hari-won-khong-ly-di--29220.jpg', placeholder='https://path_to_image1.jpg \nhttps://path_to_image2.jpg', height=200)
             #Append keywords to array and remove whitespace dư, empty line
@@ -1571,7 +1571,7 @@ def run():
                         
                     case "Extract masks from uploaded image":
                         pass
-                        
+
                     case _: #trường hợp còn lại
                         # Download the image                   
                         for user_input in user_input_arr:
