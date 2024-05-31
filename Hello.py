@@ -1753,7 +1753,7 @@ def run():
                 # Convert mp3 to wav file                                                          
                 audio_wav = AudioSegment.from_mp3(temp_reference_mp3_path)
                 audio_wav.export(temp_reference_wav_path, format="wav")
-                st.audio(temp_reference_wav_path, format="audio/wav")              
+                #st.audio(temp_reference_wav_path, format="audio/wav")              
 
         elif add_radio == "Extract audio from URL of YouTube video":
             user_input = st.text_area("Enter URL of YouTube video", value='https://www.youtube.com/watch?v=cNch6T4H8Hk \nhttps://www.youtube.com/watch?v=v5phuCoTCOM', placeholder='https://path_to_youtubevideo1.jpg \nhttps://path_to_youtubevideo2.jpg', height=200)
