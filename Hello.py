@@ -1355,7 +1355,7 @@ def run():
     with st.container(border=True): 
         st.write(
         """ 
-            ## EXTRACT MASKS FROM IMAGE
+            ## IMAGE - EXTRACT MASKS FROM IMAGE
         """
         )
 
