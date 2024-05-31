@@ -1780,7 +1780,7 @@ def run():
                     #tts = gTTS(text=user_input, lang=language, slow=False)
                     # Saving the converted audio in a wav file named sample
                     #tts.save(temp_wav_path) 
-                    #st.write('Convert prompt to WAV audio')                                              
+                    #st.write('Convert prompt to WAV audio')
                     #st.audio(temp_wav_path) # Display the audio in Streamlit 
 
 
@@ -1794,6 +1794,7 @@ def run():
                             audio=file(temp_reference_wav_path),
                             api_name="/predict"
                     )
+                    st.write('Voice cloned')
                     st.audio(result) 
 
                 case "Extract audio from URL of YouTube video":
