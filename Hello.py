@@ -1600,7 +1600,7 @@ def run():
                                 st.write(text)
                                 st.write(text_generation_response)
 
-                                #paraphrase vietnamese only
+                                #Case5; paraphrase vietnamese only
                                 API_URL = "https://api-inference.huggingface.co/models/keepitreal/vietnamese-sbert"
                                 headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
                                 def query(payload):
