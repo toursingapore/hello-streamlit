@@ -47,7 +47,6 @@ from pathlib import Path
 
 from huggingface_hub import InferenceClient
 from huggingface_hub.utils import hf_raise_for_status, HfHubHTTPError
-from gradio_client import Client, file
 import tempfile
 from gtts import gTTS
 from langdetect import detect
@@ -1786,6 +1785,8 @@ def run():
 
 
                     #B2; Clone voice via Gradio API from Huggingface repo
+                    from gradio_client import Client, file
+
                     client = Client("tonyassi/voice-clone")
                     result = client.predict(
                             text=user_input,
