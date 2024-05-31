@@ -1739,11 +1739,21 @@ def run():
                 temp_reference_mp3_path = temp_reference_mp3_file.name
                 #st.write(temp_reference_mp3_path)
 
+                temp_wav_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
+                temp_wav_file.close()
+                temp_wav_path = temp_wav_file.name
+                #st.write(temp_wav_path)
+
                 # save as mp3 file
                 with open(temp_reference_mp3_path, 'wb') as f:
                     audio_bytes_data = audio.getvalue()
                     f.write(audio_bytes_data) #write all audio_bytes_data to file mp3                        
                 st.audio(temp_reference_mp3_path)
+
+                # Convert mp3 to wav file                                                          
+                audio_wav = AudioSegment.from_mp3(temp_reference_mp3_path)
+                audio_wav.export(temp_wav_path, format="wav")
+                st.audio(temp_wav_path, format="audio/wav")              
 
         elif add_radio == "Extract audio from URL of YouTube video":
             user_input = st.text_area("Enter URL of YouTube video", value='https://www.youtube.com/watch?v=cNch6T4H8Hk \nhttps://www.youtube.com/watch?v=v5phuCoTCOM', placeholder='https://path_to_youtubevideo1.jpg \nhttps://path_to_youtubevideo2.jpg', height=200)
@@ -1773,15 +1783,6 @@ def run():
                         tts.save(temp_wav_path) 
                         st.write('Convert prompt to WAV audio')                                              
                         st.audio(temp_wav_path) # Display the audio in Streamlit 
-
-
-                        # files                                                                         
-                        #src = "transcript.mp3"
-                        #dst = "test.wav"
-
-                        # convert wav to mp3                                                            
-                        #sound = AudioSegment.from_mp3(src)
-                        #sound.export(dst, format="wav")
 
                         # Create a BytesIO object to save the audio bytes
                         #from io import BytesIO
