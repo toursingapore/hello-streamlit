@@ -1777,7 +1777,8 @@ def run():
                             c = Client("https://openvoice.lepton.run", token=api_token)
 
                             mpeg=c.run(
-                                reference_speaker="https://www.lepton.ai/playground/openvoice/inputs/speaker_1.mp3",
+                                #reference_speaker="https://www.lepton.ai/playground/openvoice/inputs/speaker_1.mp3",
+                                reference_speaker=file(temp_reference_wav_path),
                                 text="Hi, can you hear me?",
                                 emotion="friendly"
                             )
