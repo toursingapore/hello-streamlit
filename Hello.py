@@ -1756,8 +1756,8 @@ def run():
 
                         
                         #Clone voice using OpenVoice
-                        client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
-                        result = client.predict(
+                        client2 = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
+                        result2 = client2.predict(
                                 "Howdy!",	# str  in 'Text Prompt' Textbox component
                                 "default,default",	# str (Option from: [('default', 'default'), ('whispering', 'whispering'), ('cheerful', 'cheerful'), ('terrified', 'terrified'), ('angry', 'angry'), ('sad', 'sad'), ('friendly', 'friendly')]) in 'Style' Dropdown component
                                 "https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
@@ -1765,7 +1765,7 @@ def run():
                                 fn_index=1
                         )
                         st.write('Voice cloned with OpenVoice')
-                        st.audio(result)                        
+                        st.audio(result2)                        
 
 
                 case "Extract audio from URL of YouTube video":
