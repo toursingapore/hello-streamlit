@@ -1740,34 +1740,35 @@ def run():
 
                     #B2; Clone voice via Gradio API from Huggingface repo
                     with st.spinner('Wait for it...'):
-                        #Clone voice using coqui/XTTS-v2
-                        from gradio_client import Client, file
+                        try:                        
+                            #Clone voice using coqui/XTTS-v2
+                            from gradio_client import Client, file
 
-                        _ = """
-                        #client = Client("abidlabs/my-private-space", hf_token="...") #Dùng cho my private space
-                        client = Client("tonyassi/voice-clone")
-                        result = client.predict(
-                                text=user_input,
-                                #audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
-                                audio=file(temp_reference_wav_path),
-                                api_name="/predict"
-                        )
-                        st.write('Voice cloned with XTTS-v2')
-                        st.audio(result)
-                        """
+                            #client = Client("abidlabs/my-private-space", hf_token="...") #Dùng cho my private space
+                            client = Client("tonyassi/voice-clone")
+                            result = client.predict(
+                                    text=user_input,
+                                    #audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
+                                    audio=file(temp_reference_wav_path),
+                                    api_name="/predict"
+                            )
+                            st.write('Voice cloned with XTTS-v2')
+                            st.audio(result)
                         
-                        try:
+
                             #Clone voice using OpenVoice
                             client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
                             result = client.predict(
                                     "Howdy!",	# str  in 'Text Prompt' Textbox component
                                     "default,default",	# str (Option from: [('default', 'default'), ('whispering', 'whispering'), ('cheerful', 'cheerful'), ('terrified', 'terrified'), ('angry', 'angry'), ('sad', 'sad'), ('friendly', 'friendly')]) in 'Style' Dropdown component
-                                    "https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
+                                    #"https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
+                                    file(temp_reference_wav_path),
                                     True,	# bool  in 'Agree' Checkbox component
                                     fn_index=1
                             )
                             st.write('Voice cloned with OpenVoice')
                             st.audio(result)
+
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
                             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
