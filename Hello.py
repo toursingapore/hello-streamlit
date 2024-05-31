@@ -1795,7 +1795,15 @@ def run():
                                 api_name="/predict"
                         )
                         st.write('Voice cloned')
-                        st.audio(result) 
+                        st.audio(result)
+
+
+                    from transformers import pipeline
+                    pipe = pipeline("text2text-generation", model="eugenesiow/bart-paraphrase")
+                    results = pipe(user_input)
+                    st.write(results)
+
+
 
                 case "Extract audio from URL of YouTube video":
                     for user_input in user_input_arr:
