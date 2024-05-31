@@ -1490,7 +1490,7 @@ def run():
                                 i += 1
 
                         
-                        #-- openxlab.org.cn --
+                        #-- openxlab.org.cn - chưa được --
                         #pip install openxlab  
                         try:
                             # Authentication
@@ -1505,8 +1505,7 @@ def run():
 
                         except HfHubHTTPError as e:
                             #hf_raise_for_status(response)
-                            st.write(f"{str(e)} - {str(e.request_id)} - {str(e.server_message)}")                        
-
+                            st.write(f"{str(e)} - {str(e.request_id)} - {str(e.server_message)}")
 
     st.divider()
 
@@ -1733,18 +1732,18 @@ def run():
             #Append keywords to array and remove whitespace dư, empty line
             #user_input_arr = []
             #user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
-            audio = st.file_uploader("Upload Reference speaker wav file", type=["wav"])
+            audio = st.file_uploader("Upload Reference speaker mp3 file", type=["mp3"])
             if audio is not None:
-                temp_reference_wav_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
-                temp_reference_wav_file.close()
-                temp_reference_wav_path = temp_reference_wav_file.name                            
-                #st.write(temp_reference_wav_path)
+                temp_reference_mp3_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
+                temp_reference_mp3_file.close()
+                temp_reference_mp3_path = temp_reference_mp3_file.name
+                #st.write(temp_reference_mp3_path)
 
                 # save as mp3 file
-                with open(temp_reference_wav_path, 'wb') as f:
+                with open(temp_reference_mp3_path, 'wb') as f:
                     audio_bytes_data = audio.getvalue()
                     f.write(audio_bytes_data) #write all audio_bytes_data to file mp3                        
-                st.audio(temp_reference_wav_path)
+                st.audio(temp_reference_mp3_path)
 
         elif add_radio == "Extract audio from URL of YouTube video":
             user_input = st.text_area("Enter URL of YouTube video", value='https://www.youtube.com/watch?v=cNch6T4H8Hk \nhttps://www.youtube.com/watch?v=v5phuCoTCOM', placeholder='https://path_to_youtubevideo1.jpg \nhttps://path_to_youtubevideo2.jpg', height=200)
@@ -1763,12 +1762,6 @@ def run():
                         temp_wav_path = temp_wav_file.name
                         #st.write(temp_wav_path)
 
-                        temp_audio_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
-                        temp_audio_file.close()
-                        temp_audio_path = temp_audio_file.name                            
-                        #st.write(temp_audio_path)
-
-
                         # Detect the language of the user input
                         #language = 'en'                    
                         language = detect(user_input) #auto detect languague code như; en, de, vi,...
@@ -1780,6 +1773,15 @@ def run():
                         tts.save(temp_wav_path) 
                         st.write('Convert prompt to WAV audio')                                              
                         st.audio(temp_wav_path) # Display the audio in Streamlit 
+
+
+                        # files                                                                         
+                        #src = "transcript.mp3"
+                        #dst = "test.wav"
+
+                        # convert wav to mp3                                                            
+                        #sound = AudioSegment.from_mp3(src)
+                        #sound.export(dst, format="wav")
 
                         # Create a BytesIO object to save the audio bytes
                         #from io import BytesIO

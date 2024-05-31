@@ -40,3 +40,4 @@ torch
 torchvision
 torchaudio
 openxlab>= 0.0.9
+gradio_client==0.17.0
