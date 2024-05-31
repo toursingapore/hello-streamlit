@@ -47,6 +47,7 @@ from pathlib import Path
 
 from huggingface_hub import InferenceClient
 from huggingface_hub.utils import hf_raise_for_status, HfHubHTTPError
+from gradio_client import Client, file
 import tempfile
 from gtts import gTTS
 from langdetect import detect
@@ -1766,42 +1767,33 @@ def run():
         if button and user_input:
             match add_radio:
                 case "Voice Cloning":
-                    try:
-                        temp_wav_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
-                        temp_wav_file.close()
-                        temp_wav_path = temp_wav_file.name
-                        #st.write(temp_wav_path)
+                    #B1; Optional - Convert text to speech                        
+                    #temp_wav_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
+                    #temp_wav_file.close()
+                    #temp_wav_path = temp_wav_file.name
+                    #st.write(temp_wav_path)
 
-                        # Detect the language of the user input
-                        #language = 'en'                    
-                        language = detect(user_input) #auto detect languague code như; en, de, vi,...
-                        #st.write(language) 
+                    # Detect the language of the user input
+                    #language = 'en'                    
+                    #language = detect(user_input) #auto detect languague code như; en, de, vi,...
+                    #st.write(language) 
 
-                        #B1; Convert text to speech
-                        tts = gTTS(text=user_input, lang=language, slow=False)
-                        # Saving the converted audio in a wav file named sample
-                        tts.save(temp_wav_path) 
-                        st.write('Convert prompt to WAV audio')                                              
-                        st.audio(temp_wav_path) # Display the audio in Streamlit 
+                    #tts = gTTS(text=user_input, lang=language, slow=False)
+                    # Saving the converted audio in a wav file named sample
+                    #tts.save(temp_wav_path) 
+                    #st.write('Convert prompt to WAV audio')                                              
+                    #st.audio(temp_wav_path) # Display the audio in Streamlit 
 
 
-                        #B2; Clone voice via openvoice - chưa được
-                        from gradio_client import Client, file
-
-                        client = Client("tonyassi/voice-clone")
-                        result = client.predict(
-                                text=user_input,
-                                #audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
-                                audio=file(temp_reference_wav_path),
-                                api_name="/predict"
-                        )
-                        st.audio(result) 
-
-                    except Exception as e:
-                        exc_type, exc_obj, exc_tb = sys.exc_info()
-                        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                        #st.write(exc_type, fname, exc_tb.tb_lineno)
-                        st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")
+                    #B2; Clone voice via Gradio API from Huggingface repo
+                    client = Client("tonyassi/voice-clone")
+                    result = client.predict(
+                            text=user_input,
+                            #audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
+                            audio=file(temp_reference_wav_path),
+                            api_name="/predict"
+                    )
+                    st.audio(result) 
 
                 case "Extract audio from URL of YouTube video":
                     for user_input in user_input_arr:
