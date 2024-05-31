@@ -1740,6 +1740,7 @@ def run():
 
                     #B2; Clone voice via Gradio API from Huggingface repo
                     with st.spinner('Wait for it...'):
+                        #Clone voice using coqui/XTTS-v2
                         from gradio_client import Client, file
                         client = Client("tonyassi/voice-clone")
                         result = client.predict(
@@ -1748,8 +1749,22 @@ def run():
                                 audio=file(temp_reference_wav_path),
                                 api_name="/predict"
                         )
-                        st.write('Voice cloned')
+                        st.write('Voice cloned with XTTS-v2')
                         st.audio(result)
+
+
+                        #Clone voice using OpenVoice
+                        client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
+                        result = client.predict(
+                                "Howdy!",	# str  in 'Text Prompt' Textbox component
+                                "default,default",	# str (Option from: [('default', 'default'), ('whispering', 'whispering'), ('cheerful', 'cheerful'), ('terrified', 'terrified'), ('angry', 'angry'), ('sad', 'sad'), ('friendly', 'friendly')]) in 'Style' Dropdown component
+                                "https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
+                                True,	# bool  in 'Agree' Checkbox component
+                                fn_index=1
+                        )
+                        st.write('Voice cloned with OpenVoice')
+                        st.audio(result)                        
+
 
                 case "Extract audio from URL of YouTube video":
                     for user_input in user_input_arr:
