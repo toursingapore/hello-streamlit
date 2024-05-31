@@ -1364,11 +1364,11 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt then extract masks", "Extract masks from uploaded image", "Extract masks from image URL"],
+            ["Generate image from prompt", "Extract masks from uploaded image", "Extract masks from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
-        if add_radio == "Generate image from prompt then extract masks":
+        if add_radio == "Generate image from prompt":
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
         elif add_radio == "Extract masks from uploaded image":
             user_input = st.file_uploader("Choose images...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
@@ -1385,7 +1385,7 @@ def run():
                     token=f"{HF_API_TOKEN}"
                 )                
                 match add_radio:
-                    case "Generate image from prompt then extract masks":
+                    case "Generate image from prompt":
                         #st.stop()
                         #List all Hub API Endpoints - https://huggingface.co/docs/hub/api
                         #response = requests.get('https://huggingface.co/api/models?full=True')
@@ -1638,9 +1638,7 @@ def run():
 
                                 time.sleep(5)
 
-
                                 #or paraphrase multiple languagues - https://github.com/RasaHQ/paraphraser
-
 
                                 #Case4; Change hair in image with HairFastGAN model
                                 # https://youtu.be/_Yn4LrTuU64?si=e2QxZy3Jw_6lwO5P ; Xây dựng web đổi kiểu tóc với HairFastGAN, Streamlit và Colab - Mì AI
@@ -1650,17 +1648,6 @@ def run():
                                 # https://huggingface.co/inference-endpoints/dedicated
                                 # Download model AI here - https://modelzoo.co/
 
-
-                                #Case5; text to speech
-                                #Dùng gTTS ok hơn nhiều - https://www.geeksforgeeks.org/convert-text-speech-python/
-                                #st.write("### TEXT TO SPEECH")
-                                #audio_bytes_response = client.text_to_speech(
-                                #    text=f"{user_input}",
-                                    #model="suno/bark", #default model phải upgrade HF PRO mới dùng được
-                                #    model="facebook/mms-tts-eng",
-                                #)
-                                #from io import BytesIO
-                                #st.audio(BytesIO(audio_bytes_response)) 
                             else:
                                 st.write(f"{user_input} - Error: {response.status_code}")
 
