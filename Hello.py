@@ -1536,63 +1536,66 @@ def run():
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
         button = st.button("SUBMIT", type="primary", key="27")
-        if button and user_input:
+        if button and user_input:                   
             try:
                 API_TOKEN = "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"
                 client = InferenceClient(
                     token=f"{API_TOKEN}"
-                )                     
-                if not user_input.startswith("http"):
-                    #st.stop()
-                    #List all Hub API Endpoints - https://huggingface.co/docs/hub/api
-                    #response = requests.get('https://huggingface.co/api/models?full=True')
-                    #json_data = json.loads(response.text)
-                    #st.write(json_data)
+                )                
+                match add_radio:
+                    case "Generate image from prompt then extract masks":
+                        #st.stop()
+                        #List all Hub API Endpoints - https://huggingface.co/docs/hub/api
+                        #response = requests.get('https://huggingface.co/api/models?full=True')
+                        #json_data = json.loads(response.text)
+                        #st.write(json_data)
 
-                    #Case1; text to image - tool online generate prompt from description - https://huggingface.co/spaces/doevent/Stable-Diffusion-prompt-generator 
-                    PIL_image_response = client.text_to_image(
-                        prompt=f"{user_input}, best quality, 8k.",
-                        negative_prompt="low resolution, ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, extra limbs, disfigured, deformed, body out of frame, blurry, bad anatomy, blurred, watermark, grainy, signature, cut off, draft",
-                        num_inference_steps=25,
-                        #model="prompthero/openjourney-v4",
-                        model="stabilityai/stable-diffusion-2-1",                     
-                        #default model="stable-diffusion-v1-4" - https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4                    
-                    )
-                    st.image(PIL_image_response)
-                    #st.code(PIL_image_response)                  
-                    # Save the PIL image to a temporary file
-                    with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
-                        PIL_image_response.save(tmpfile, format="JPEG")
-                        temp_filename_img_path = tmpfile.name             
-                    #st.code(temp_filename_img_path, language="text")
-                    img_path = temp_filename_img_path
-                    img_path_arr.append(img_path)
-                else:
-                    # Download the image                   
-                    for user_input in user_input_arr:
-                        headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
-                        response = requests.get(user_input.strip(), headers=headers)
-                        if response.status_code == 200:
-                            #st.write(user_input)
-                            
-                            # Save the downloaded image to a temporary file
-                            with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
-                                tmpfile.write(response.content)
-                                temp_filename_img_path = tmpfile.name
+                        #Case1; text to image - tool online generate prompt from description - https://huggingface.co/spaces/doevent/Stable-Diffusion-prompt-generator 
+                        PIL_image_response = client.text_to_image(
+                            prompt=f"{user_input}, best quality, 8k.",
+                            negative_prompt="low resolution, ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, extra limbs, disfigured, deformed, body out of frame, blurry, bad anatomy, blurred, watermark, grainy, signature, cut off, draft",
+                            num_inference_steps=25,
+                            #model="prompthero/openjourney-v4",
+                            model="stabilityai/stable-diffusion-2-1",                     
+                            #default model="stable-diffusion-v1-4" - https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4                    
+                        )
+                        st.image(PIL_image_response)
+                        #st.code(PIL_image_response)                  
+                        # Save the PIL image to a temporary file
+                        with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
+                            PIL_image_response.save(tmpfile, format="JPEG")
+                            temp_filename_img_path = tmpfile.name             
+                        #st.code(temp_filename_img_path, language="text")
+                        img_path = temp_filename_img_path
+                        img_path_arr.append(img_path)
+                    case "Extract masks from uploaded image":
+                        # Download the image                   
+                        for user_input in user_input_arr:
+                            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
+                            response = requests.get(user_input.strip(), headers=headers)
+                            if response.status_code == 200:
+                                #st.write(user_input)
+                                
+                                # Save the downloaded image to a temporary file
+                                with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
+                                    tmpfile.write(response.content)
+                                    temp_filename_img_path = tmpfile.name
 
-                            # Load the image using PIL for any further processing if needed
-                            PIL_image_response = Image.open(temp_filename_img_path)
-                            #st.image(PIL_image_response)
-                            #st.code(PIL_image_response)                    
-                            # Save the PIL image to a temporary file again if further processing is needed (optional)
-                            with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
-                                PIL_image_response.save(tmpfile, format="JPEG")
-                                temp_filename_img_path = tmpfile.name 
-                            img_path = temp_filename_img_path
-                            img_path_arr.append(img_path)
-                        else:
-                            st.write(f"{user_input} - Error: {response.status_code}")
-
+                                # Load the image using PIL for any further processing if needed
+                                PIL_image_response = Image.open(temp_filename_img_path)
+                                #st.image(PIL_image_response)
+                                #st.code(PIL_image_response)                    
+                                # Save the PIL image to a temporary file again if further processing is needed (optional)
+                                with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
+                                    PIL_image_response.save(tmpfile, format="JPEG")
+                                    temp_filename_img_path = tmpfile.name 
+                                img_path = temp_filename_img_path
+                                img_path_arr.append(img_path)
+                            else:
+                                st.write(f"{user_input} - Error: {response.status_code}")
+                    case _: #trường hợp còn lại
+                        pass  
+                 
 
                 #for loop all images saved in img_path_arr
                 for img_path in img_path_arr:
