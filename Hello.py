@@ -1791,7 +1791,8 @@ def run():
                         client = Client("tonyassi/voice-clone")
                         result = client.predict(
                                 text=user_input,
-                                audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
+                                #audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
+                                audio=file(temp_reference_wav_path),
                                 api_name="/predict"
                         )
                         st.audio(result)
