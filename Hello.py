@@ -1785,17 +1785,17 @@ def run():
 
 
                     #B2; Clone voice via Gradio API from Huggingface repo
-                    from gradio_client import Client, file
-
-                    client = Client("tonyassi/voice-clone")
-                    result = client.predict(
-                            text=user_input,
-                            #audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
-                            audio=file(temp_reference_wav_path),
-                            api_name="/predict"
-                    )
-                    st.write('Voice cloned')
-                    st.audio(result) 
+                    with st.spinner('Wait for it...'):
+                        from gradio_client import Client, file
+                        client = Client("tonyassi/voice-clone")
+                        result = client.predict(
+                                text=user_input,
+                                #audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
+                                audio=file(temp_reference_wav_path),
+                                api_name="/predict"
+                        )
+                        st.write('Voice cloned')
+                        st.audio(result) 
 
                 case "Extract audio from URL of YouTube video":
                     for user_input in user_input_arr:
