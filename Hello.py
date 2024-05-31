@@ -1522,12 +1522,14 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt", "Extract masks from from image URL"],
+            ["Generate image from prompt", "Extract masks from uploaded image", "Extract masks from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
         if add_radio == "Generate image from prompt":
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
+        elif add_radio == "Extract masks from uploaded image":
+            st.write(add_radio)
         else:
             user_input = st.text_area("Enter image URL", value='https://cafefcdn.com/203337114487263232/2023/2/2/photo-1-16753281552041758342824.jpg \nhttps://img.baoninhbinh.org.vn/DATA/ARTICLES/2022/7/26/tran-thanh-toi-va-hari-won-khong-ly-di--29220.jpg', placeholder='https://path_to_image1.jpg \nhttps://path_to_image2.jpg', height=200)
             #Append keywords to array and remove whitespace dư, empty line
