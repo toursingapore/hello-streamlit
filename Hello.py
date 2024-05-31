@@ -1719,14 +1719,14 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Voice Cloning", "Extract audio from URL of YouTube video", "Extract audio from uploaded video"],
+            ["Voice Cloning (English only)", "Extract audio from URL of YouTube video", "Extract audio from uploaded video"],
             index=0,
         )
         #st.write("You selected:", add_radio)
 
         user_input_arr = []
 
-        if add_radio == "Voice Cloning":
+        if add_radio == "Voice Cloning (English only)":
             default_value = 'The average domestic airfare during the peak summer season between June and August has decreased with carriers rolling out discounts on night flights on popular routes.'
             user_input = st.text_area("Enter your text", value=default_value, height=200)
             #Append keywords to array and remove whitespace dư, empty line
@@ -1765,7 +1765,7 @@ def run():
         button = st.button("SUBMIT", type="primary", key="28")
         if button and user_input:
             match add_radio:
-                case "Voice Cloning":
+                case "Voice Cloning (English only)":
                     #B1; Optional - Convert text to speech                        
                     #temp_wav_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
                     #temp_wav_file.close()
