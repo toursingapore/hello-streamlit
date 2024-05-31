@@ -1732,7 +1732,7 @@ def run():
             #Append keywords to array and remove whitespace dư, empty line
             #user_input_arr = []
             #user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
-            audio = st.file_uploader("Upload Reference speaker (mp3 file)", type=["mp3"])
+            audio = st.file_uploader("Upload Reference Speaker (mp3 file)", type=["mp3"])
             if audio is not None:
                 temp_reference_mp3_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
                 temp_reference_mp3_file.close()
