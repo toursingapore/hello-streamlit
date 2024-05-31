@@ -1719,14 +1719,14 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Enter your prompt", "Extract audio from URL of YouTube video", "Extract audio from uploaded video"],
+            ["Voice Cloning", "Extract audio from URL of YouTube video", "Extract audio from uploaded video"],
             index=0,
         )
         #st.write("You selected:", add_radio)
 
         user_input_arr = []
 
-        if add_radio == "Enter your prompt":
+        if add_radio == "Voice Cloning":
             default_value = 'The average domestic airfare during the peak summer season between June and August has decreased with carriers rolling out discounts on night flights on popular routes.'
             user_input = st.text_area("Enter your text", value=default_value, height=200)
             #Append keywords to array and remove whitespace dư, empty line
@@ -1765,7 +1765,7 @@ def run():
         button = st.button("SUBMIT", type="primary", key="28")
         if button and user_input:
             match add_radio:
-                case "Enter your prompt":
+                case "Voice Cloning":
                     try:
                         temp_wav_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
                         temp_wav_file.close()
@@ -1795,25 +1795,7 @@ def run():
                                 audio=file(temp_reference_wav_path),
                                 api_name="/predict"
                         )
-                        st.audio(result)
-
-
-
-                        #from openvoice_cli import tune_one
-
-                        # Set parameters for single file processing
-                        #input_file = 'path_to_input.wav'
-                        #ref_file = 'path_to_reference.wav'
-                        #output_file = 'path_to_output.wav'
-                        
-                        #input_file = temp_wav_path
-                        #ref_file = temp_reference_wav_path
-                        #output_file = temp_audio_path                       
-                        #device = 'cpu'  # or 'cuda:0' for GPU processing
-
-                        # Convert the tone color of a single audio file
-                        #output = tune_one(input_file=input_file, ref_file=ref_file, output_file=output_file, device=device)
-                        #st.write(output)   
+                        st.audio(result) 
 
                     except Exception as e:
                         exc_type, exc_obj, exc_tb = sys.exc_info()
