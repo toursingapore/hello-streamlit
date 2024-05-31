@@ -1778,7 +1778,7 @@ def run():
 
                             mpeg=c.run(
                                 #reference_speaker="https://www.lepton.ai/playground/openvoice/inputs/speaker_1.mp3",
-                                reference_speaker=file(temp_reference_wav_path),
+                                reference_speaker=temp_reference_mp3_path,
                                 text="Hi, can you hear me?",
                                 emotion="friendly"
                             )
