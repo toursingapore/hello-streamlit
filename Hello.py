@@ -1352,6 +1352,7 @@ def run():
     st.divider()
 
     #B9:-- INFERENCE MODEL VIA HUGGINGFACE API --
+    HF_API_TOKEN = "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"
     with st.container(border=True): 
         st.write(
         """ 
@@ -1380,7 +1381,6 @@ def run():
         button = st.button("SUBMIT", type="primary", key="27")
         if button and user_input:                   
             try:
-                HF_API_TOKEN = "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"
                 client = InferenceClient(
                     token=f"{HF_API_TOKEN}"
                 )                
@@ -1757,7 +1757,7 @@ def run():
                         
 
                             #Clone voice using OpenVoice Version2 - https://huggingface.co/spaces/myshell-ai/OpenVoiceV2
-                            client = Client("https://myshell-ai-openvoicev2.hf.space/--replicas/nx4jp/")
+                            client = Client("myshell-ai/OpenVoiceV2", hf_token=HF_API_TOKEN)
                             result = client.predict(
                                     "Howdy!",	# str  in 'Text Prompt' Textbox component
                                     "en_default,en_default",	# str (Option from: [('en_default', 'en_default'), ('en_us', 'en_us'), ('en_br', 'en_br'), ('en_au', 'en_au'), ('en_in', 'en_in'), ('es_default', 'es_default'), ('fr_default', 'fr_default'), ('jp_default', 'jp_default'), ('zh_default', 'zh_default'), ('kr_default', 'kr_default')]) in 'Style' Dropdown component
