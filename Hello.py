@@ -1513,11 +1513,7 @@ def run():
     with st.container(border=True): 
         st.write(
         """ 
-            ## GENERATE IMAGE FROM PROMPT
-            Doing tasks below that using Inference model via Huggingface API
-            + Generate image from prompt
-            + Image Classification
-            + Image Segmentation
+            ## EXTRACT MASKS FROM IMAGE
         """
         )
 
@@ -1796,14 +1792,6 @@ def run():
                         )
                         st.write('Voice cloned')
                         st.audio(result)
-
-
-                    from transformers import pipeline
-                    pipe = pipeline("text2text-generation", model="eugenesiow/bart-paraphrase")
-                    results = pipe(user_input)
-                    st.write(results)
-
-
 
                 case "Extract audio from URL of YouTube video":
                     for user_input in user_input_arr:
