@@ -1352,6 +1352,7 @@ def run():
 
     st.divider()    
 
+    _ = """
     #B8:-- YOLOV8L Inference API via Ultralytics HUB & Yolov8 segment anything --
     with st.container(border=True): 
         st.write(
@@ -1458,7 +1459,7 @@ def run():
                         #st.write(results[0].boxes) #get all bbox points
                         #st.write(results[0].save_dir) #get directory where save images
 
-                        _ = """
+
                         st.write('Extract second mask in image')
                         #Extract mask thứ 2 masks[1] trong ảnh
                         mask = results[0].masks[1].data[0].numpy()
@@ -1471,7 +1472,7 @@ def run():
                         draw = ImageDraw.Draw(img)
                         draw.polygon(polygon,outline=(0,255,0), width=3)
                         st.image(img)
-                        """
+
 
                         with st.expander("Click here to view data"):
                             i = 1              
@@ -1506,7 +1507,7 @@ def run():
                         except HfHubHTTPError as e:
                             #hf_raise_for_status(response)
                             st.write(f"{str(e)} - {str(e.request_id)} - {str(e.server_message)}")
-
+    """
     st.divider()
 
     #B9:-- INFERENCE MODEL VIA HUGGINGFACE API --
