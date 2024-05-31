@@ -1568,7 +1568,11 @@ def run():
                         #st.code(temp_filename_img_path, language="text")
                         img_path = temp_filename_img_path
                         img_path_arr.append(img_path)
+                        
                     case "Extract masks from uploaded image":
+                        pass
+                        
+                    case _: #trường hợp còn lại
                         # Download the image                   
                         for user_input in user_input_arr:
                             headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
@@ -1593,8 +1597,6 @@ def run():
                                 img_path_arr.append(img_path)
                             else:
                                 st.write(f"{user_input} - Error: {response.status_code}")
-                    case _: #trường hợp còn lại
-                        pass  
                  
 
                 #for loop all images saved in img_path_arr
