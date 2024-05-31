@@ -1739,10 +1739,10 @@ def run():
                 temp_reference_mp3_path = temp_reference_mp3_file.name
                 #st.write(temp_reference_mp3_path)
 
-                temp_wav_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
-                temp_wav_file.close()
-                temp_wav_path = temp_wav_file.name
-                #st.write(temp_wav_path)
+                temp_reference_wav_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
+                temp_reference_wav_file.close()
+                temp_reference_wav_path = temp_reference_wav_file.name
+                #st.write(temp_reference_wav_path)
 
                 # save as mp3 file
                 with open(temp_reference_mp3_path, 'wb') as f:
@@ -1752,8 +1752,8 @@ def run():
 
                 # Convert mp3 to wav file                                                          
                 audio_wav = AudioSegment.from_mp3(temp_reference_mp3_path)
-                audio_wav.export(temp_wav_path, format="wav")
-                st.audio(temp_wav_path, format="audio/wav")              
+                audio_wav.export(temp_reference_wav_path, format="wav")
+                st.audio(temp_reference_wav_path, format="audio/wav")              
 
         elif add_radio == "Extract audio from URL of YouTube video":
             user_input = st.text_area("Enter URL of YouTube video", value='https://www.youtube.com/watch?v=cNch6T4H8Hk \nhttps://www.youtube.com/watch?v=v5phuCoTCOM', placeholder='https://path_to_youtubevideo1.jpg \nhttps://path_to_youtubevideo2.jpg', height=200)
@@ -1784,15 +1784,20 @@ def run():
                         st.write('Convert prompt to WAV audio')                                              
                         st.audio(temp_wav_path) # Display the audio in Streamlit 
 
-                        # Create a BytesIO object to save the audio bytes
-                        #from io import BytesIO
-                        #mp3_fp_bytes = BytesIO()
-                        #tts.write_to_fp(mp3_fp_bytes)
-                        #mp3_fp_bytes.seek(0)  # Move the file pointer to the beginning
-
-
 
                         #B2; Clone voice via openvoice - chưa được
+                        from gradio_client import Client, file
+
+                        client = Client("tonyassi/voice-clone")
+                        result = client.predict(
+                                text="Hello!!",
+                                audio=file('https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav'),
+                                api_name="/predict"
+                        )
+                        st.audio(result)
+
+
+
                         #from openvoice_cli import tune_one
 
                         # Set parameters for single file processing
