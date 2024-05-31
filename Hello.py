@@ -1412,7 +1412,7 @@ def run():
                         img_path = temp_filename_img_path
                         img_path_arr.append(img_path)
                         
-                    case "Extract masks from uploaded image":
+                    case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
                             with st.spinner('Wait for it...'): #Show thanh progress khi xử lý code 
                                 #Case1; Detect objects
@@ -1559,7 +1559,7 @@ def run():
                                         st.write(f"{str(e)} - {str(e.request_id)} - {str(e.server_message)}")
 
 
-                    case _: #trường hợp còn lại
+                    case _: #trường hợp còn lại extract masks dùng Huggingface Inference API
                         # Download the image                   
                         for user_input in user_input_arr:
                             headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
@@ -1581,113 +1581,108 @@ def run():
                                     PIL_image_response.save(tmpfile, format="JPEG")
                                     temp_filename_img_path = tmpfile.name 
                                 img_path = temp_filename_img_path
-                                img_path_arr.append(img_path)
+                                PIL_image_response = Image.open(img_path)
+                                st.image(PIL_image_response)
+
+                                #Case2; Image Classification
+                                st.write("### IMAGE CLASSIFICATION")
+                                image_classification_response = client.image_classification(
+                                    image=img_path,
+                                    model="microsoft/resnet-50", #default model
+                                )
+                                with st.expander("Click here to view data"):
+                                    st.write(image_classification_response) #response json chuẩn
+
+                                time.sleep(5)
+
+                                #Case3; Image Segmentation
+                                st.write("### MASKS IN IMAGE")
+                                image_segmentation_response = client.image_segmentation(
+                                    image=img_path,
+                                    model="facebook/detr-resnet-50-panoptic", #default model
+                                )
+                                #st.write(image_segmentation_response)
+                                #st.write(image_segmentation_response[0]["mask"])
+                                with st.expander("Click here to view data"):
+                                    for mask_image_segmentation in image_segmentation_response:
+                                        st.write(mask_image_segmentation["mask"])                                 
+
+                                time.sleep(5)
+
+                                #Case4; paraphrase english only
+                                st.write("### PARAPHRASE")
+                                text = "I saw a puppy a cat and a raccoon during my bike ride in the park"
+                                text_generation_response = client.text_generation(
+                                    prompt=text,
+                                    model="tuner007/pegasus_paraphrase", #default model
+                                )
+                                st.write(text)
+                                st.write(text_generation_response)
+
+                                #paraphrase vietnamese only
+                                API_URL = "https://api-inference.huggingface.co/models/keepitreal/vietnamese-sbert"
+                                headers = {"Authorization": f"Bearer {API_TOKEN}"}
+                                def query(payload):
+                                    response = requests.post(API_URL, headers=headers, json=payload)
+                                    return response.json()                       
+                                output = query({
+                                    "inputs": {
+                                        "source_sentence": "That is a happy person",
+                                        "sentences": [
+                                            "That is a happy dog",
+                                            "That is a very happy person",
+                                            "Today is a sunny day"
+                                        ]
+                                    },
+                                    "options": {
+                                        "wait_for_model": True,
+                                    },                        
+                                })                  
+                                st.write(output)
+
+
+                                API_URL = "https://api-inference.huggingface.co/models/hetpandya/t5-small-tapaco"
+                                headers = {"Authorization": f"Bearer {API_TOKEN}"}
+
+                                def query(payload):
+                                    response = requests.post(API_URL, headers=headers, json=payload)
+                                    return response.json()
+                                    
+                                output = query({
+                                    "inputs": "chào bạn rất vui làm quen",
+                                    "options": {
+                                        "wait_for_model": True,
+                                    },                          
+                                })
+                                st.write(output)
+
+                                time.sleep(5)
+
+
+                                #or paraphrase multiple languagues - https://github.com/RasaHQ/paraphraser
+
+
+                                #Case4; Change hair in image with HairFastGAN model
+                                # https://youtu.be/_Yn4LrTuU64?si=e2QxZy3Jw_6lwO5P ; Xây dựng web đổi kiểu tóc với HairFastGAN, Streamlit và Colab - Mì AI
+                                # https://github.com/AIRI-Institute/HairFastGAN/
+                                # HD code here - https://blog.paperspace.com/face-verification-with-keras/ 
+                                # keras-vggface - https://github.com/rcmalli/keras-vggface
+                                # https://huggingface.co/inference-endpoints/dedicated
+                                # Download model AI here - https://modelzoo.co/
+
+
+                                #Case5; text to speech
+                                #Dùng gTTS ok hơn nhiều - https://www.geeksforgeeks.org/convert-text-speech-python/
+                                #st.write("### TEXT TO SPEECH")
+                                #audio_bytes_response = client.text_to_speech(
+                                #    text=f"{user_input}",
+                                    #model="suno/bark", #default model phải upgrade HF PRO mới dùng được
+                                #    model="facebook/mms-tts-eng",
+                                #)
+                                #from io import BytesIO
+                                #st.audio(BytesIO(audio_bytes_response)) 
                             else:
                                 st.write(f"{user_input} - Error: {response.status_code}")
-                 
-
-                #for loop all images saved in img_path_arr
-                for img_path in img_path_arr:
-                    PIL_image_response = Image.open(img_path)
-                    st.image(PIL_image_response)
-
-                    #Case2; Image Classification
-                    st.write("### IMAGE CLASSIFICATION")
-                    image_classification_response = client.image_classification(
-                        image=img_path,
-                        model="microsoft/resnet-50", #default model
-                    )
-                    with st.expander("Click here to view data"):
-                        st.write(image_classification_response) #response json chuẩn
-
-                    time.sleep(5)
-
-                    #Case3; Image Segmentation
-                    st.write("### MASKS IN IMAGE")
-                    image_segmentation_response = client.image_segmentation(
-                        image=img_path,
-                        model="facebook/detr-resnet-50-panoptic", #default model
-                    )
-                    #st.write(image_segmentation_response)
-                    #st.write(image_segmentation_response[0]["mask"])
-                    with st.expander("Click here to view data"):
-                        for mask_image_segmentation in image_segmentation_response:
-                            st.write(mask_image_segmentation["mask"])                                 
-
-                    time.sleep(5)
-
-                    #Case4; paraphrase english only
-                    st.write("### PARAPHRASE")
-                    text = "I saw a puppy a cat and a raccoon during my bike ride in the park"
-                    text_generation_response = client.text_generation(
-                        prompt=text,
-                        model="tuner007/pegasus_paraphrase", #default model
-                    )
-                    st.write(text)
-                    st.write(text_generation_response)
-
-                    #paraphrase vietnamese only
-                    API_URL = "https://api-inference.huggingface.co/models/keepitreal/vietnamese-sbert"
-                    headers = {"Authorization": f"Bearer {API_TOKEN}"}
-                    def query(payload):
-                        response = requests.post(API_URL, headers=headers, json=payload)
-                        return response.json()                       
-                    output = query({
-                        "inputs": {
-                            "source_sentence": "That is a happy person",
-                            "sentences": [
-                                "That is a happy dog",
-                                "That is a very happy person",
-                                "Today is a sunny day"
-                            ]
-                        },
-                        "options": {
-                            "wait_for_model": True,
-                        },                        
-                    })                  
-                    st.write(output)
-
-
-                    API_URL = "https://api-inference.huggingface.co/models/hetpandya/t5-small-tapaco"
-                    headers = {"Authorization": f"Bearer {API_TOKEN}"}
-
-                    def query(payload):
-                        response = requests.post(API_URL, headers=headers, json=payload)
-                        return response.json()
-                        
-                    output = query({
-                        "inputs": "chào bạn rất vui làm quen",
-                        "options": {
-                            "wait_for_model": True,
-                        },                          
-                    })
-                    st.write(output)
-
-                    time.sleep(5)
-
-
-                    #or paraphrase multiple languagues - https://github.com/RasaHQ/paraphraser
-
-
-                    #Case4; Change hair in image with HairFastGAN model
-                    # https://youtu.be/_Yn4LrTuU64?si=e2QxZy3Jw_6lwO5P ; Xây dựng web đổi kiểu tóc với HairFastGAN, Streamlit và Colab - Mì AI
-                    # https://github.com/AIRI-Institute/HairFastGAN/
-                    # HD code here - https://blog.paperspace.com/face-verification-with-keras/ 
-                    # keras-vggface - https://github.com/rcmalli/keras-vggface
-                    # https://huggingface.co/inference-endpoints/dedicated
-                    # Download model AI here - https://modelzoo.co/
-
-
-                    #Case5; text to speech
-                    #Dùng gTTS ok hơn nhiều - https://www.geeksforgeeks.org/convert-text-speech-python/
-                    #st.write("### TEXT TO SPEECH")
-                    #audio_bytes_response = client.text_to_speech(
-                    #    text=f"{user_input}",
-                        #model="suno/bark", #default model phải upgrade HF PRO mới dùng được
-                    #    model="facebook/mms-tts-eng",
-                    #)
-                    #from io import BytesIO
-                    #st.audio(BytesIO(audio_bytes_response)) 
 
             except HfHubHTTPError as e:
                 #hf_raise_for_status(response)
