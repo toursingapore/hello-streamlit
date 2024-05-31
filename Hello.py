@@ -62,6 +62,8 @@ import httpx
 
 LOGGER = get_logger(__name__)
 
+LEPTON_API_TOKEN = "Idts8YzDtSJSFXrpOlwbxJr7Y1Gx60Os"
+HF_API_TOKEN = "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"
 
 # Function to authorize credentials
 def authorize_credentials(API_Path):
@@ -1279,8 +1281,6 @@ def run():
         )
         #st.write("You selected:", add_radio)
 
-        LEPTON_API_TOKEN = "Idts8YzDtSJSFXrpOlwbxJr7Y1Gx60Os"
-
         # User input
         user_input = st.text_area("You:", placeholder="What is your name and version", key="24", height=200)
         if user_input:
@@ -1352,7 +1352,6 @@ def run():
     st.divider()
 
     #B9:-- INFERENCE MODEL VIA HUGGINGFACE API --
-    HF_API_TOKEN = "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"
     with st.container(border=True): 
         st.write(
         """ 
@@ -1755,7 +1754,7 @@ def run():
                             st.write('Voice cloned with XTTS-v2')
                             st.audio(result)
                         
-
+                            _ = """
                             #Clone voice using OpenVoice Version2 - https://huggingface.co/spaces/myshell-ai/OpenVoiceV2
                             client = Client("myshell-ai/OpenVoiceV2", hf_token=HF_API_TOKEN)
                             result = client.predict(
@@ -1768,6 +1767,26 @@ def run():
                             )
                             st.write('Voice cloned with OpenVoice')
                             st.audio(result)
+                            """
+
+
+                            #import os
+                            from leptonai.client import Client
+
+                            api_token = LEPTON_API_TOKEN
+                            c = Client("https://openvoice.lepton.run", token=api_token)
+
+                            mpeg=c.run(
+                                reference_speaker="https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",
+                                text="Hi, can you hear me?",
+                                emotion="friendly"
+                            )
+
+                            # save as mp3 file
+                            with open('output.mp3', 'wb') as f:
+                                f.write(mpeg)
+
+
                             
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
