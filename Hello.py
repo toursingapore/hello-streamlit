@@ -1672,7 +1672,7 @@ def run():
         )
 
         add_radio = st.radio(
-            "Image type",
+            "Video type",
             ["Voice Cloning (English only)", "Extract audio from URL of YouTube video", "Extract audio from uploaded video"],
             index=0,
         )
