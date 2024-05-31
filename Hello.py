@@ -1743,6 +1743,7 @@ def run():
                         #Clone voice using coqui/XTTS-v2
                         from gradio_client import Client, file
 
+                        _ = """
                         #client = Client("abidlabs/my-private-space", hf_token="...") #Dùng cho my private space
                         client = Client("tonyassi/voice-clone")
                         result = client.predict(
@@ -1753,11 +1754,11 @@ def run():
                         )
                         st.write('Voice cloned with XTTS-v2')
                         st.audio(result)
-
+                        """
                         
                         #Clone voice using OpenVoice
-                        client2 = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
-                        result2 = client2.predict(
+                        client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
+                        result = client.predict(
                                 "Howdy!",	# str  in 'Text Prompt' Textbox component
                                 "default,default",	# str (Option from: [('default', 'default'), ('whispering', 'whispering'), ('cheerful', 'cheerful'), ('terrified', 'terrified'), ('angry', 'angry'), ('sad', 'sad'), ('friendly', 'friendly')]) in 'Style' Dropdown component
                                 "https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
@@ -1765,7 +1766,7 @@ def run():
                                 fn_index=1
                         )
                         st.write('Voice cloned with OpenVoice')
-                        st.audio(result2)                        
+                        st.audio(result)                        
 
 
                 case "Extract audio from URL of YouTube video":
