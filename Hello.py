@@ -1756,7 +1756,7 @@ def run():
                             st.audio(result)
                         
 
-                            #Clone voice using OpenVoice
+                            #Clone voice using OpenVoice Version2 - https://huggingface.co/spaces/myshell-ai/OpenVoiceV2
                             client = Client("https://myshell-ai-openvoice.hf.space/--replicas/7wg9u/")
                             result = client.predict(
                                     "Howdy!",	# str  in 'Text Prompt' Textbox component
