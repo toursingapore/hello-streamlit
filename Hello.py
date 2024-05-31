@@ -1785,7 +1785,8 @@ def run():
                             # save as mp3 file
                             with open('output.mp3', 'wb') as f:
                                 f.write(mpeg)
-
+                            st.write('Voice cloned with OpenVoice')
+                            st.audio('output.mp3')
 
                             
                         except Exception as e:
