@@ -156,7 +156,7 @@ def run():
         st.markdown(f"<a href='#auto-post-wordpress-sites'>AUTO POST WORDPRESS SITES</a>", unsafe_allow_html=True)    
         st.markdown(f"<a href='#ask-bot'>ASK BOT</a>", unsafe_allow_html=True)            
         st.markdown(f"<a href='#image-extract-masks-from-image'>IMAGE - EXTRACT MASKS FROM IMAGE</a>", unsafe_allow_html=True)    
-        st.markdown(f"<a href='#text-to-speech-and-speech-to-text'>TEXT TO SPEECH & VICE VERSA</a>", unsafe_allow_html=True)        
+        st.markdown(f"<a href='#text-to-speech-vice-versa'>TEXT TO SPEECH & VICE VERSA</a>", unsafe_allow_html=True)        
         st.markdown(f"<a href='#visual-analysis-for-csv-file'>VISUAL ANALYSIS FOR CSV FILE</a>", unsafe_allow_html=True)       
 
     st.markdown(
