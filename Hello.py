@@ -1564,7 +1564,7 @@ def run():
                     with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
                         PIL_image_response.save(tmpfile, format="JPEG")
                         temp_filename_img_path = tmpfile.name             
-                    st.code(temp_filename_img_path, language="text")
+                    #st.code(temp_filename_img_path, language="text")
                     img_path = temp_filename_img_path
                     img_path_arr.append(img_path)
                 else:
@@ -1593,6 +1593,8 @@ def run():
                         else:
                             st.write(f"{user_input} - Error: {response.status_code}")
 
+
+                #for loop all images saved in img_path_arr
                 for img_path in img_path_arr:
                     PIL_image_response = Image.open(img_path)
                     st.image(PIL_image_response)
