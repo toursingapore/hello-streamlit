@@ -1522,11 +1522,11 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt", "Extract masks from uploaded image", "Extract masks from image URL"],
+            ["Generate image from prompt then extract masks", "Extract masks from uploaded image", "Extract masks from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
-        if add_radio == "Generate image from prompt":
+        if add_radio == "Generate image from prompt then extract masks":
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
         elif add_radio == "Extract masks from uploaded image":
             st.write(add_radio)
