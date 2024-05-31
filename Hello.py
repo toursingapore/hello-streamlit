@@ -1381,9 +1381,9 @@ def run():
         button = st.button("SUBMIT", type="primary", key="27")
         if button and user_input:                   
             try:
-                API_TOKEN = "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"
+                HF_API_TOKEN = "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"
                 client = InferenceClient(
-                    token=f"{API_TOKEN}"
+                    token=f"{HF_API_TOKEN}"
                 )                
                 match add_radio:
                     case "Generate image from prompt then extract masks":
@@ -1621,7 +1621,7 @@ def run():
 
                                 #paraphrase vietnamese only
                                 API_URL = "https://api-inference.huggingface.co/models/keepitreal/vietnamese-sbert"
-                                headers = {"Authorization": f"Bearer {API_TOKEN}"}
+                                headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
                                 def query(payload):
                                     response = requests.post(API_URL, headers=headers, json=payload)
                                     return response.json()                       
@@ -1642,7 +1642,7 @@ def run():
 
 
                                 API_URL = "https://api-inference.huggingface.co/models/hetpandya/t5-small-tapaco"
-                                headers = {"Authorization": f"Bearer {API_TOKEN}"}
+                                headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
 
                                 def query(payload):
                                     response = requests.post(API_URL, headers=headers, json=payload)
