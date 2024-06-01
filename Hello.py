@@ -1754,25 +1754,11 @@ def run():
                             st.write('Voice cloned with XTTS-v2')
                             st.audio(result)
                         
-                            _ = """
                             #Clone voice using OpenVoice Version2 - https://huggingface.co/spaces/myshell-ai/OpenVoiceV2
-                            client = Client("myshell-ai/OpenVoiceV2", hf_token=HF_API_TOKEN)
-                            result = client.predict(
-                                    "Howdy!",	# str  in 'Text Prompt' Textbox component
-                                    "en_default,en_default",	# str (Option from: [('en_default', 'en_default'), ('en_us', 'en_us'), ('en_br', 'en_br'), ('en_au', 'en_au'), ('en_in', 'en_in'), ('es_default', 'es_default'), ('fr_default', 'fr_default'), ('jp_default', 'jp_default'), ('zh_default', 'zh_default'), ('kr_default', 'kr_default')]) in 'Style' Dropdown component
-                                    "https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
-                                    #file(temp_reference_wav_path),
-                                    True,	# bool  in 'Agree' Checkbox component
-                                    fn_index=1
-                            )
-                            st.write('Voice cloned with OpenVoice')
-                            st.audio(result)
-                            """
-
-                            #Phải upload mp3 english or supported languagues mới được
                             client = Client("https://myshell-ai-openvoicev2.hf.space/--replicas/nx4jp/")
                             result = client.predict(
-                                    "Hello, nice to meet you!",	# str  in 'Text Prompt' Textbox component
+                                    #"Hello, nice to meet you!",	# str  in 'Text Prompt' Textbox component
+                                    user_input,
                                     "en_default",	# str (Option from: ["en_default", "en_us", "en_br", "en_au", "en_in", "es_default", "fr_default", "jp_default", "zh_default", "kr_default"]) in 'Style' Dropdown component
                                     #"https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
                                     temp_reference_mp3_path,
