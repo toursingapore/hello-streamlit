@@ -1419,14 +1419,16 @@ def run():
                         st.write(user_input)
                         st.write(user_input_garment)
 
-                        from gradio_client import Client
+                        from gradio_client import Client, file
 
+                        model = 'https://images2.thanhnien.vn/528068263637045248/2023/7/6/tom-cruise-the-uk-premiere-of-mission-impossible-dead-reckoning-part-one-2-16886333643941441581231.jpg'
+                        garment = 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/454485/sub/goods_454485_sub14.jpg'
                         client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
                         result = client.predict(
                                 #"https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",	# filepath  in 'Model' Image component
-                                user_input,
                                 #"https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",	# filepath  in 'Garment' Image component
-                                user_input_garment,
+                                model,
+                                garment,
                                 "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
                                 1,	# float (numeric value between 1 and 4) in 'Images' Slider component
                                 20,	# float (numeric value between 20 and 40) in 'Steps' Slider component
