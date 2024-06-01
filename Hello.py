@@ -1417,10 +1417,10 @@ def run():
 
                     case "Change clothes from reference image":
                         model = Image.open(user_input)
-                        st.image(image, caption="Model Image", use_column_width=True)
+                        st.image(model, caption="Model Image", use_column_width=True)
 
                         garment = Image.open(user_input_garment)
-                        st.image(image, caption="Garment Image", use_column_width=True)
+                        st.image(garment, caption="Garment Image", use_column_width=True)
 
                         from gradio_client import Client, file
 
