@@ -1440,7 +1440,7 @@ def run():
                                 "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
                                 1,	# float (numeric value between 1 and 4) in 'Images' Slider component
                                 20,	# float (numeric value between 20 and 40) in 'Steps' Slider component
-                                1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
+                                3,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
                                 -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
                                 api_name="/process_dc"
                         )
