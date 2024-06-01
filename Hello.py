@@ -1419,15 +1419,16 @@ def run():
                         temp_dir_model = tempfile.mkdtemp()
                         path_model = os.path.join(temp_dir_model, user_input.name)
                         with open(path_model, "wb") as f:
-                                f.write(user_input.getvalue())
+                            f.write(user_input.getvalue())
                         st.image(path_model)
 
                         temp_dir_garment = tempfile.mkdtemp()
                         path_garment = os.path.join(temp_dir_garment, user_input_garment.name)
                         with open(path_garment, "wb") as f:
-                                f.write(user_input_garment.getvalue())
+                            f.write(user_input_garment.getvalue())
                         st.image(path_garment)
 
+                        #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                         from gradio_client import Client, file
 
                         client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
