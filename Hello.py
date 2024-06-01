@@ -62,8 +62,9 @@ import httpx
 
 LOGGER = get_logger(__name__)
 
-LEPTON_API_TOKEN = "Idts8YzDtSJSFXrpOlwbxJr7Y1Gx60Os"
 HF_API_TOKEN = "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"
+HUB_ULTRALYTICS_API_KEY = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
+LEPTON_API_TOKEN = "Idts8YzDtSJSFXrpOlwbxJr7Y1Gx60Os"
 ROBOFLOW_API_KEY = 'Fh4GjyJACeJLvWa4r2vN'
 
 # Function to authorize credentials
@@ -1365,12 +1366,15 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt", "Extract masks from uploaded image", "Extract masks from image URL"],
+            ["Generate image from prompt", "Change clothes from reference image", "Extract masks from uploaded image", "Extract masks from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
         if add_radio == "Generate image from prompt":
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
+        elif add_radio == "Change clothes from reference image":
+            user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
+            user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])            
         elif add_radio == "Extract masks from uploaded image":
             user_input = st.file_uploader("Choose images...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
         else:
@@ -1410,7 +1414,11 @@ def run():
                         #st.code(temp_filename_img_path, language="text")
                         img_path = temp_filename_img_path
                         img_path_arr.append(img_path)
-                        
+
+                    case "Change clothes from reference image":
+                        st.write(user_input)
+                        st.write(user_input_garment)
+
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
                             with st.spinner('Wait for it...'): #Show thanh progress khi xử lý code 
@@ -1432,8 +1440,7 @@ def run():
 
                                 # Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
                                 url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
-                                hub_ultralytics_api_key = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
-                                headers = {"x-api-key": hub_ultralytics_api_key}
+                                headers = {"x-api-key": HUB_ULTRALYTICS_API_KEY}
                                 data = {"size": 640, "confidence": 0.25, "iou": 0.45}
                                 image_bytes = uploaded_file.getvalue()
                                 response = requests.post(url, headers=headers, data=data, files={"image": image_bytes})
@@ -1538,6 +1545,8 @@ def run():
                                             draw.polygon(polygon, outline=(0,255,0), width=3)
                                             st.image(img)
                                             i += 1
+
+                                    #Case3; Change clothes
 
                     case _: #trường hợp còn lại extract masks dùng Huggingface Inference API
                         # Download the image                   
