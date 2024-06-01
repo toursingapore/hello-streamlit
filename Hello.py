@@ -1771,6 +1771,13 @@ def run():
                             #st.write(Synthesised_audio)
                             st.audio(Synthesised_audio)
 
+                            #Default volume nhỏ, nên dùng cái này tăng volume
+                            audio_mp3 = AudioSegment.from_mp3(Synthesised_audio)
+                            # boost volume by 6dB
+                            louder_Synthesised_audio = audio_mp3 + 6  
+                            st.audio(louder_Synthesised_audio)                          
+
+
                             
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
