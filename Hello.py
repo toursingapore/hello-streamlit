@@ -64,6 +64,7 @@ LOGGER = get_logger(__name__)
 
 LEPTON_API_TOKEN = "Idts8YzDtSJSFXrpOlwbxJr7Y1Gx60Os"
 HF_API_TOKEN = "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"
+ROBOFLOW_API_KEY = 'Fh4GjyJACeJLvWa4r2vN'
 
 # Function to authorize credentials
 def authorize_credentials(API_Path):
@@ -1648,15 +1649,14 @@ def run():
                                 # Download model AI here - https://modelzoo.co/
 
 
-                                #Case6; Change hair in image with HairFastGAN model
+                                #Case6; Dùng ROBOFLOW.com API
                                 from inference_sdk import InferenceHTTPClient
 
-                                ROBOFLOW_API_KEY = 'Fh4GjyJACeJLvWa4r2vN'
+                                #TEST predict API this pretrained model - https://universe.roboflow.com/myname-pfkdq/test-gp37s/model/3
                                 CLIENT = InferenceHTTPClient(
                                     api_url="https://outline.roboflow.com",
                                     api_key=ROBOFLOW_API_KEY
                                 )
-
                                 result = CLIENT.infer(temp_filename_img_path, model_id="test-gp37s/3")
                                 st.write(result)
 
