@@ -1740,7 +1740,7 @@ def run():
                     #B2; Clone voice via Gradio API from Huggingface repo
                     with st.spinner('Wait for it...'):
                         try:                        
-                            #Clone voice using coqui/XTTS-v2
+                            #Case1; Clone voice using coqui/XTTS-v2
                             from gradio_client import Client, file
 
                             #client = Client("abidlabs/my-private-space", hf_token="...") #Dùng cho my private space
@@ -1754,7 +1754,7 @@ def run():
                             st.write('Voice cloned with XTTS-v2')
                             st.audio(result)
                         
-                            #Clone voice using OpenVoice Version2 - https://huggingface.co/spaces/myshell-ai/OpenVoiceV2
+                            #Case2; Clone voice using OpenVoice Version2 - https://huggingface.co/spaces/myshell-ai/OpenVoiceV2
                             client = Client("https://myshell-ai-openvoicev2.hf.space/--replicas/nx4jp/")
                             result = client.predict(
                                     #"Hello, nice to meet you!",	# str  in 'Text Prompt' Textbox component
@@ -1765,21 +1765,23 @@ def run():
                                     True,	# bool  in 'Agree' Checkbox component
                                     fn_index=1
                             )
-                            st.write('Voice cloned with OpenVoice')
+                            st.write('Voice cloned with OpenVoice - only supported languagues "en_us", "en_br", "en_au", "en_in", "es_default", "fr_default", "jp_default", "zh_default", "kr_default"')
                             #st.write(result)
                             Synthesised_audio = result[1]
                             #st.write(Synthesised_audio)
-                            st.audio(Synthesised_audio)
+                            #Default volume nhỏ
+                            #st.audio(Synthesised_audio)
 
-                            #Default volume nhỏ, nên dùng cái này tăng volume
+                            #Dùng cái này boost tăng volume
                             audio = AudioSegment.from_file(Synthesised_audio)
-                            # boost volume by 6dB
                             louder_Synthesised_audio = audio + 6  
-                            #save louder song 
-                            louder_Synthesised_audio.export("louder_song.wav", format='wav')                   
-                            st.audio("louder_song.wav")                          
-
-
+                            #save louder audio 
+                            temp_audio_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
+                            temp_audio_file.close()
+                            temp_audio_path = temp_audio_file.name                            
+                            #st.write(temp_audio_path)                            
+                            louder_Synthesised_audio.export(temp_audio_path, format='wav')                   
+                            st.audio(temp_audio_path)
                             
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
