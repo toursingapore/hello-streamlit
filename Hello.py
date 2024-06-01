@@ -1428,8 +1428,8 @@ def run():
                         result = client.predict(
                                 #"https://images2.thanhnien.vn/528068263637045248/2023/7/6/tom-cruise-the-uk-premiere-of-mission-impossible-dead-reckoning-part-one-2-16886333643941441581231.jpg",	# filepath  in 'Model' Image component
                                 #"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/454485/sub/goods_454485_sub14.jpg",	# filepath  in 'Garment' Image component
-                                model,
-                                garment,
+                                file(model),
+                                file(garment),
                                 "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
                                 1,	# float (numeric value between 1 and 4) in 'Images' Slider component
                                 20,	# float (numeric value between 20 and 40) in 'Steps' Slider component
@@ -1439,7 +1439,7 @@ def run():
                         )
                         st.write(result)
                         response_image = result[0]["image"]
-                        st.image(response_image)
+                        st.image(response_image, caption="Response Image", use_column_width=True)
 
 
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
