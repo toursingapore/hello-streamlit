@@ -1435,12 +1435,12 @@ def run():
                         result = client.predict(
                                 #"https://images2.thanhnien.vn/528068263637045248/2023/7/6/tom-cruise-the-uk-premiere-of-mission-impossible-dead-reckoning-part-one-2-16886333643941441581231.jpg",	# filepath  in 'Model' Image component
                                 path_model,
-                                "https://img.sonofatailor.com/images/customizer/product/White_O_Crew_Regular_NoPocket-bc4d0212-c148-4523-b49c-284e948e0e07.jpg",	# filepath  in 'Garment' Image component
-                                #path_garment,
+                                #"https://img.sonofatailor.com/images/customizer/product/White_O_Crew_Regular_NoPocket-bc4d0212-c148-4523-b49c-284e948e0e07.jpg",	# filepath  in 'Garment' Image component
+                                path_garment,
                                 "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
                                 1,	# float (numeric value between 1 and 4) in 'Images' Slider component
-                                20,	# float (numeric value between 20 and 40) in 'Steps' Slider component
-                                3,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
+                                40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
+                                1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
                                 -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
                                 api_name="/process_dc"
                         )
