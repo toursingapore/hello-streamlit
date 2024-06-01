@@ -1374,9 +1374,10 @@ def run():
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
         elif add_radio == "Change clothes from reference image":
             user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
-            user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
             model = Image.open(user_input)
             st.image(model, caption="Model Image", use_column_width=True)
+
+            user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
             garment = Image.open(user_input_garment) 
             st.image(garment, caption="Garment Image", use_column_width=True)                     
         elif add_radio == "Extract masks from uploaded image":
