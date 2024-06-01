@@ -1433,10 +1433,10 @@ def run():
 
                         client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
                         result = client.predict(
-                                #"https://images2.thanhnien.vn/528068263637045248/2023/7/6/tom-cruise-the-uk-premiere-of-mission-impossible-dead-reckoning-part-one-2-16886333643941441581231.jpg",	# filepath  in 'Model' Image component
-                                path_model,
-                                #"https://img.sonofatailor.com/images/customizer/product/White_O_Crew_Regular_NoPocket-bc4d0212-c148-4523-b49c-284e948e0e07.jpg",	# filepath  in 'Garment' Image component
-                                path_garment,
+                                "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
+                                #path_model,
+                                "https://product.hstatic.net/200000456445/product/o_nam_louis_vuitton_monogram_gradient_cotton_t-shirt__vert__1abix6__1__0f8ed9eac7ac479f9ee7a9baff260272_master.png",	# filepath  in 'Garment' Image component
+                                #path_garment,
                                 "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
                                 1,	# float (numeric value between 1 and 4) in 'Images' Slider component
                                 40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
