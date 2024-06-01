@@ -1416,13 +1416,14 @@ def run():
                         img_path_arr.append(img_path)
 
                     case "Change clothes from reference image":
-                        st.write(user_input)
-                        st.write(user_input_garment)
+                        model = Image.open(user_input)
+                        st.image(image, caption="Model Image", use_column_width=True)
+
+                        garment = Image.open(user_input_garment)
+                        st.image(image, caption="Garment Image", use_column_width=True)
 
                         from gradio_client import Client, file
 
-                        model = 'https://images2.thanhnien.vn/528068263637045248/2023/7/6/tom-cruise-the-uk-premiere-of-mission-impossible-dead-reckoning-part-one-2-16886333643941441581231.jpg'
-                        garment = 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/454485/sub/goods_454485_sub14.jpg'
                         client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
                         result = client.predict(
                                 #"https://images2.thanhnien.vn/528068263637045248/2023/7/6/tom-cruise-the-uk-premiere-of-mission-impossible-dead-reckoning-part-one-2-16886333643941441581231.jpg",	# filepath  in 'Model' Image component
