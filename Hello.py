@@ -1781,8 +1781,7 @@ def run():
                             )
                             st.write('Voice cloned with OpenVoice')
                             st.write(result)
-                            split_file_path = result.split('/')
-                            st.write(split_file_path[-1])
+                            st.write(result[1])
 
                             st.audio(result, format="audio/mpeg")
                             st.audio(result, format="audio/wav")
