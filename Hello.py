@@ -1772,7 +1772,7 @@ def run():
                             st.audio(Synthesised_audio)
 
                             #Default volume nhỏ, nên dùng cái này tăng volume
-                            audio_mp3 = AudioSegment.from_wav(Synthesised_audio)
+                            audio_mp3 = AudioSegment.from_file(Synthesised_audio)
                             # boost volume by 6dB
                             louder_Synthesised_audio = audio_mp3 + 6  
                             st.audio(louder_Synthesised_audio)                          
