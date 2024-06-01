@@ -1768,7 +1768,7 @@ def run():
                             st.write('Voice cloned with OpenVoice')
                             #st.write(result)
                             Synthesised_audio = result[1]
-                            st.write(Synthesised_audio)
+                            #st.write(Synthesised_audio)
                             st.audio(Synthesised_audio)
 
                             #Default volume nhỏ, nên dùng cái này tăng volume
