@@ -1419,6 +1419,21 @@ def run():
                         st.write(user_input)
                         st.write(user_input_garment)
 
+                        from gradio_client import Client
+
+                        client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
+                        result = client.predict(
+                                "https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",	# filepath  in 'Model' Image component
+                                "https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",	# filepath  in 'Garment' Image component
+                                "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
+                                1,	# float (numeric value between 1 and 4) in 'Images' Slider component
+                                20,	# float (numeric value between 20 and 40) in 'Steps' Slider component
+                                1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
+                                -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
+                                api_name="/process_dc"
+                        )
+                        st.write(result)                        
+
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
                             with st.spinner('Wait for it...'): #Show thanh progress khi xử lý code 
