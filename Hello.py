@@ -1445,7 +1445,7 @@ def run():
                         )
                         st.write(result)
                         response_image = result[0]["image"]
-                        st.image(response_image, caption="Response Image", use_column_width=True)
+                        st.image(response_image)
 
 
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
