@@ -1425,8 +1425,8 @@ def run():
                         garment = 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/454485/sub/goods_454485_sub14.jpg'
                         client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
                         result = client.predict(
-                                #"https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",	# filepath  in 'Model' Image component
-                                #"https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",	# filepath  in 'Garment' Image component
+                                #"https://images2.thanhnien.vn/528068263637045248/2023/7/6/tom-cruise-the-uk-premiere-of-mission-impossible-dead-reckoning-part-one-2-16886333643941441581231.jpg",	# filepath  in 'Model' Image component
+                                #"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/454485/sub/goods_454485_sub14.jpg",	# filepath  in 'Garment' Image component
                                 model,
                                 garment,
                                 "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
@@ -1436,7 +1436,10 @@ def run():
                                 -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
                                 api_name="/process_dc"
                         )
-                        st.write(result)                        
+                        st.write(result)
+                        response_image = result[0][image]
+                        st.image(response_image)
+
 
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
