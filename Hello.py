@@ -1421,14 +1421,26 @@ def run():
                         img_path_arr.append(img_path)
 
                     case "Change clothes from reference image":
+                        temp_dir_model = tempfile.mkdtemp()
+                        path_model = os.path.join(temp_dir_model, user_input.name)
+                        with open(path_model, "wb") as f:
+                                f.write(user_input.getvalue())
+                        st.image(path_model)
+
+                        temp_dir_garment = tempfile.mkdtemp()
+                        path_garment = os.path.join(temp_dir_garment, user_input_garment.name)
+                        with open(path_garment, "wb") as f:
+                                f.write(user_input_garment.getvalue())
+                        st.image(path_garment)
+
                         from gradio_client import Client, file
 
                         client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
                         result = client.predict(
                                 #"https://images2.thanhnien.vn/528068263637045248/2023/7/6/tom-cruise-the-uk-premiere-of-mission-impossible-dead-reckoning-part-one-2-16886333643941441581231.jpg",	# filepath  in 'Model' Image component
                                 #"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/454485/sub/goods_454485_sub14.jpg",	# filepath  in 'Garment' Image component
-                                model,
-                                garment,
+                                path_model,
+                                path_garment,
                                 "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
                                 1,	# float (numeric value between 1 and 4) in 'Images' Slider component
                                 20,	# float (numeric value between 20 and 40) in 'Steps' Slider component
