@@ -1780,7 +1780,7 @@ def run():
                                     fn_index=1
                             )
                             st.write('Voice cloned with OpenVoice')
-                            #st.write(result)
+                            st.write(result)
                             st.audio(result, format="audio/mpeg")
                             st.audio(result, format="audio/wav")
 
