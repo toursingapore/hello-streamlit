@@ -1780,10 +1780,10 @@ def run():
                                     fn_index=1
                             )
                             st.write('Voice cloned with OpenVoice')
-                            st.write(result)
-                            cloned_audio = result[1]
-                            st.write(cloned_audio)
-                            st.audio(cloned_audio)
+                            #st.write(result)
+                            Synthesised_audio = result[1]
+                            #st.write(Synthesised_audio)
+                            st.audio(Synthesised_audio)
 
                             
                         except Exception as e:
