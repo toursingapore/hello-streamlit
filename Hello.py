@@ -1770,24 +1770,16 @@ def run():
                             """
 
 
-                            #import os
-                            from leptonai.client import Client
-
-                            api_token = LEPTON_API_TOKEN
-                            c = Client("https://openvoice.lepton.run", token=api_token)
-
-                            mpeg=c.run(
-                                #reference_speaker="https://www.lepton.ai/playground/openvoice/inputs/speaker_1.mp3",
-                                reference_speaker=temp_reference_mp3_path,
-                                text="Hi, can you hear me?",
-                                emotion="friendly"
+                            client = Client("https://myshell-ai-openvoicev2.hf.space/--replicas/nx4jp/")
+                            result = client.predict(
+                                    "Howdy!",	# str  in 'Text Prompt' Textbox component
+                                    "en_default,en_default",	# str (Option from: [('en_default', 'en_default'), ('en_us', 'en_us'), ('en_br', 'en_br'), ('en_au', 'en_au'), ('en_in', 'en_in'), ('es_default', 'es_default'), ('fr_default', 'fr_default'), ('jp_default', 'jp_default'), ('zh_default', 'zh_default'), ('kr_default', 'kr_default')]) in 'Style' Dropdown component
+                                    "https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
+                                    True,	# bool  in 'Agree' Checkbox component
+                                    fn_index=1
                             )
-
-                            # save as mp3 file
-                            with open('output.mp3', 'wb') as f:
-                                f.write(mpeg)
                             st.write('Voice cloned with OpenVoice')
-                            st.audio('output.mp3')
+                            st.audio(result)
 
                             
                         except Exception as e:
