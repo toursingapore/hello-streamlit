@@ -42,3 +42,4 @@ torchaudio
 openxlab>= 0.0.9
 gradio_client==0.17.0
 transformers==4.41.2
+inference-sdk==0.9.9

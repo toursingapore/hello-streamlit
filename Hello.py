@@ -1639,13 +1639,27 @@ def run():
 
                                 #or paraphrase multiple languagues - https://github.com/RasaHQ/paraphraser
 
-                                #Case4; Change hair in image with HairFastGAN model
+                                #Case6; Change hair in image with HairFastGAN model
                                 # https://youtu.be/_Yn4LrTuU64?si=e2QxZy3Jw_6lwO5P ; Xây dựng web đổi kiểu tóc với HairFastGAN, Streamlit và Colab - Mì AI
                                 # https://github.com/AIRI-Institute/HairFastGAN/
                                 # HD code here - https://blog.paperspace.com/face-verification-with-keras/ 
                                 # keras-vggface - https://github.com/rcmalli/keras-vggface
                                 # https://huggingface.co/inference-endpoints/dedicated
                                 # Download model AI here - https://modelzoo.co/
+
+
+                                #Case6; Change hair in image with HairFastGAN model
+                                from inference_sdk import InferenceHTTPClient
+
+                                ROBOFLOW_API_KEY = 'Fh4GjyJACeJLvWa4r2vN'
+                                CLIENT = InferenceHTTPClient(
+                                    api_url="https://outline.roboflow.com",
+                                    api_key=ROBOFLOW_API_KEY
+                                )
+
+                                result = CLIENT.infer(temp_filename_img_path, model_id="test-gp37s/3")
+                                st.write(result)
+
 
                             else:
                                 st.write(f"{user_input} - Error: {response.status_code}")
