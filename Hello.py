@@ -1427,8 +1427,8 @@ def run():
                         result = client.predict(
                                 #"https://images2.thanhnien.vn/528068263637045248/2023/7/6/tom-cruise-the-uk-premiere-of-mission-impossible-dead-reckoning-part-one-2-16886333643941441581231.jpg",	# filepath  in 'Model' Image component
                                 #"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/454485/sub/goods_454485_sub14.jpg",	# filepath  in 'Garment' Image component
-                                file(model),
-                                file(garment),
+                                model,
+                                garment,
                                 "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
                                 1,	# float (numeric value between 1 and 4) in 'Images' Slider component
                                 20,	# float (numeric value between 20 and 40) in 'Steps' Slider component
