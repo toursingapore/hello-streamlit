@@ -1437,7 +1437,7 @@ def run():
                                 api_name="/process_dc"
                         )
                         st.write(result)
-                        response_image = result[0][image]
+                        response_image = result[0]["image"]
                         st.image(response_image)
 
 
