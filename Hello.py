@@ -1425,7 +1425,7 @@ def run():
                         result = client.predict(
                                 #"https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",	# filepath  in 'Model' Image component
                                 user_input,
-                                "https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",	# filepath  in 'Garment' Image component
+                                #"https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",	# filepath  in 'Garment' Image component
                                 user_input_garment,
                                 "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
                                 1,	# float (numeric value between 1 and 4) in 'Images' Slider component
