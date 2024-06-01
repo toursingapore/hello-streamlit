@@ -1773,7 +1773,7 @@ def run():
                             client = Client("https://myshell-ai-openvoicev2.hf.space/--replicas/nx4jp/")
                             result = client.predict(
                                     "Hello, nice to meet you!",	# str  in 'Text Prompt' Textbox component
-                                    "en_default,en_default",	# str (Option from: [('en_default', 'en_default'), ('en_us', 'en_us'), ('en_br', 'en_br'), ('en_au', 'en_au'), ('en_in', 'en_in'), ('es_default', 'es_default'), ('fr_default', 'fr_default'), ('jp_default', 'jp_default'), ('zh_default', 'zh_default'), ('kr_default', 'kr_default')]) in 'Style' Dropdown component
+                                    "\'en_default\', \'en_us\'",	# str (Option from: [('en_default', 'en_default'), ('en_us', 'en_us'), ('en_br', 'en_br'), ('en_au', 'en_au'), ('en_in', 'en_in'), ('es_default', 'es_default'), ('fr_default', 'fr_default'), ('jp_default', 'jp_default'), ('zh_default', 'zh_default'), ('kr_default', 'kr_default')]) in 'Style' Dropdown component
                                     #"https://github.com/gradio-app/gradio/raw/main/test/test_files/audio_sample.wav",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
                                     temp_reference_mp3_path,
                                     True,	# bool  in 'Agree' Checkbox component
