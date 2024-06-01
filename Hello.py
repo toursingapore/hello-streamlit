@@ -1374,7 +1374,11 @@ def run():
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
         elif add_radio == "Change clothes from reference image":
             user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
-            user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])            
+            user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
+            model = Image.open(user_input)
+            st.image(model, caption="Model Image", use_column_width=True)
+            garment = Image.open(user_input_garment)
+            st.image(garment, caption="Garment Image", use_column_width=True)                     
         elif add_radio == "Extract masks from uploaded image":
             user_input = st.file_uploader("Choose images...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
         else:
@@ -1416,12 +1420,6 @@ def run():
                         img_path_arr.append(img_path)
 
                     case "Change clothes from reference image":
-                        model = Image.open(user_input)
-                        st.image(model, caption="Model Image", use_column_width=True)
-
-                        garment = Image.open(user_input_garment)
-                        st.image(garment, caption="Garment Image", use_column_width=True)
-
                         from gradio_client import Client, file
 
                         client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
