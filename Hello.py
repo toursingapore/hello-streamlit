@@ -1775,10 +1775,9 @@ def run():
                             audio = AudioSegment.from_file(Synthesised_audio)
                             # boost volume by 6dB
                             louder_Synthesised_audio = audio + 6  
-                            from pydub.playback import play
-                            #Play song
-                            play(louder_Synthesised_audio)                            
-                            #st.audio(louder_Synthesised_audio)                          
+                            #save louder song 
+                            louder_Synthesised_audio.export("louder_song.wav", format='wav')                   
+                            st.audio("louder_song.wav")                          
 
 
                             
