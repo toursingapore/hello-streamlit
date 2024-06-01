@@ -1377,7 +1377,7 @@ def run():
             user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
             model = Image.open(user_input)
             st.image(model, caption="Model Image", use_column_width=True)
-            garment = Image.open(user_input_garment)
+            garment = Image.open(user_input_garment) 
             st.image(garment, caption="Garment Image", use_column_width=True)                     
         elif add_radio == "Extract masks from uploaded image":
             user_input = st.file_uploader("Choose images...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
