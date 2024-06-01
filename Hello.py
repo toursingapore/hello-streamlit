@@ -1444,7 +1444,7 @@ def run():
                                 -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
                                 api_name="/process_dc"
                         )
-                        st.write(result)
+                        #st.write(result)
                         response_image = result[0]["image"]
                         st.image(response_image)
 
