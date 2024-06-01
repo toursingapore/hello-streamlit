@@ -1789,7 +1789,6 @@ def run():
                             #st.write(exc_type, fname, exc_tb.tb_lineno)
                             st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")                                             
 
-
                 case "Extract audio from URL of YouTube video":
                     for user_input in user_input_arr:
                         st.write(user_input)                        
