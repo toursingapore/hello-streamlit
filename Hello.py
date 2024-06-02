@@ -1468,7 +1468,10 @@ def run():
                                     )  # This is not blocking
                                 # Do something else                                
                                 st.write(job.status())
-                                #st.write(job.result())  # This is blocking  
+                                while not job.done():
+                                    time.sleep(0.1)
+                                    st.write(time.sleep(0.1)) 
+                                st.write(job.result())  # This is blocking  
 
 
                                 _ = """
