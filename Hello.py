@@ -1472,7 +1472,8 @@ def run():
                                     api_name="/process_dc",
                                     result_callbacks=[print_result]
                                     )  # This is not blocking
-                                # Do something else
+                                # Do something else                                
+                                st.write(job.status())
                                 st.write(job.result())  # This is blocking  
 
 
