@@ -1449,7 +1449,7 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
-                                client = Client(space="abidlabs/en2fr", hf_token=HF_API_TOKEN)
+                                client = Client("abidlabs/en2fr", hf_token=HF_API_TOKEN)
                                 job = client.submit("Hello", api_name="/predict")  # This is not blocking
                                 # Do something else
                                 st.write(job.result())  # This is blocking  
