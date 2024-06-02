@@ -1466,9 +1466,11 @@ def run():
                                 response_image = result[0]["image"]
                                 st.image(response_image)
 
-                        except HfHubHTTPError as e:
-                            #hf_raise_for_status(response)
-                            st.write(f"{str(e)} - {str(e.request_id)} - {str(e.server_message)}")
+                        except Exception as e:
+                            exc_type, exc_obj, exc_tb = sys.exc_info()
+                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                            #st.write(exc_type, fname, exc_tb.tb_lineno)
+                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")                              
 
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
