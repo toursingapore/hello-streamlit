@@ -1455,6 +1455,8 @@ def run():
                                 # Do something else
                                 st.write(job.result())  # This is blocking  
 
+                                def print_result(x):
+                                    st.write("The translated result is: {x}")
 
                                 client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 job = client.submit(
@@ -1467,7 +1469,8 @@ def run():
                                     40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
                                     1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
                                     -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
-                                    api_name="/process_dc"
+                                    api_name="/process_dc",
+                                    result_callbacks=[print_result]
                                     )  # This is not blocking
                                 # Do something else
                                 st.write(job.result())  # This is blocking  
