@@ -1454,6 +1454,7 @@ def run():
                                 job = client.submit("Hello world, nice to meet you", api_name="/predict")  # This is not blocking
                                 # Do something else
                                 st.write(job.status())
+                                st.write(job.outputs())
                                 st.write(job.result())  # This is blocking  
 
                                 def print_result(x):
