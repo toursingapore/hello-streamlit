@@ -1453,6 +1453,7 @@ def run():
                                 client = Client("abidlabs/en2fr", hf_token=HF_API_TOKEN)
                                 job = client.submit("Hello world, nice to meet you", api_name="/predict")  # This is not blocking
                                 # Do something else
+                                st.write(job.status())
                                 st.write(job.result())  # This is blocking  
 
                                 def print_result(x):
