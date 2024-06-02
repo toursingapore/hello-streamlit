@@ -1452,7 +1452,8 @@ def run():
                                 headers = {
                                         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42"
                                     }
-                                client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/", headers=headers, ssl_verify=False)
+                                client = Client("https://katiyar48-ootdiffusion-virtualtryonclothing.hf.space/--replicas/b4dt6/")                                    
+                                #client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/", headers=headers, ssl_verify=False)
                                 result = client.predict(
                                         "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                         #path_model,
@@ -1468,21 +1469,6 @@ def run():
                                 st.write(result)
                                 response_image = result[0]["image"]
                                 st.image(response_image)
-
-
-                                result2 = client.predict(
-                                        "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
-                                        #path_model,
-                                        "https://product.hstatic.net/200000456445/product/o_nam_louis_vuitton_monogram_gradient_cotton_t-shirt__vert__1abix6__1__0f8ed9eac7ac479f9ee7a9baff260272_master.png",	# filepath  in 'Garment' Image component
-                                        #path_garment,
-                                        "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
-                                        1,	# float (numeric value between 1 and 4) in 'Images' Slider component
-                                        40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
-                                        1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
-                                        -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
-                                        api_name="/process_dc"
-                                )
-                                st.write(result2)
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
