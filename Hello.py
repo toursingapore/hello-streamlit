@@ -1449,7 +1449,7 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
-                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN, timeout=120)
+                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 job = client.submit(
                                     "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                     #path_model,
@@ -1467,7 +1467,7 @@ def run():
                                 while not job.done():
                                     time.sleep(0.1)
                                     st.write(time.sleep(0.1)) 
-                                st.write(job.result())  # This is blocking  
+                                st.write(job.result(timeout=120))  # This is blocking  
 
 
                                 _ = """
