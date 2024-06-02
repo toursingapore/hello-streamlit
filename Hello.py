@@ -1468,7 +1468,7 @@ def run():
                                     time.sleep(1)                                    
                                     i += 1 
                                     a = i
-                                    x = i.replace(i, a)                                    
+                                    x = i.replace(str(i), str(a))                                    
                                     st.write(x)
                                 result = job.result(timeout=120) # This is blocking and wait 120s for result  
                                 response_image = result[0]["image"]
