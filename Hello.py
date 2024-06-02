@@ -1449,7 +1449,7 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
-                                client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
+                                client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/", hf_token=HF_API_TOKEN)
                                 result = client.predict(
                                         "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                         #path_model,
