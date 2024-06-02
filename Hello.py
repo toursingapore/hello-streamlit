@@ -1462,11 +1462,12 @@ def run():
                                     -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
                                     api_name="/process_dc"
                                     )  # This is not blocking
-                                # Do something else                                
-                                #st.write(job.status()) 
+                                # Do something else
+                                i = 1
                                 while not job.done():
-                                    time.sleep(0.1)
-                                    st.write(time.sleep(0.1)) 
+                                    time.sleep(0.1)                                    
+                                    i += 1 
+                                    st.write(i)
                                 result = job.result(timeout=120) # This is blocking and wait 120s for result  
                                 response_image = result[0]["image"]
                                 st.image(response_image)
