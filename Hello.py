@@ -1467,8 +1467,9 @@ def run():
                                 while not job.done():
                                     time.sleep(0.1)
                                     st.write(time.sleep(0.1)) 
-                                st.write(job.result(timeout=120))  # This is blocking  
-
+                                result = job.result(timeout=120) # This is blocking and wait 120s for result  
+                                response_image = result[0]["image"]
+                                st.image(response_image)
 
                                 _ = """
                                 #Case2; OOTDiffusion
