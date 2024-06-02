@@ -1469,7 +1469,7 @@ def run():
                                     st.write(i)
                                     i = i + 1
                                 st.write(f"Total time waited {i} seconds") 
-                                result = job.result(timeout=120) # This is blocking and wait max 120s for result , if not will be error 
+                                result = job.result(timeout=300) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
                                 st.image(response_image)
                                 #Client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
