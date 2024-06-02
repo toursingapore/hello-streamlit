@@ -1453,9 +1453,12 @@ def run():
                                 client = Client("abidlabs/en2fr", hf_token=HF_API_TOKEN)
                                 job = client.submit("Hello world, nice to meet you", api_name="/predict")  # This is not blocking
                                 # Do something else
-                                st.write(job.status())
-                                st.write(job.outputs())
-                                st.write(job.result())  # This is blocking  
+                                #st.write(job.status())                                
+                                if job.done():
+                                    st.write("job done")
+                                    st.write(job.result())  # This is blocking
+                                else:
+                                    st.write("job not done")
 
                                 def print_result(x):
                                     st.write("The translated result is: {x}")
