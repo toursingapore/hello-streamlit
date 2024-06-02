@@ -1456,8 +1456,8 @@ def run():
                                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
                                     }  
 
-                                #Case2; OOTDiffusion
-                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
+                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN, headers=headers)
+                                #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 job = client.submit(
                                     #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                     path_model,
@@ -1465,7 +1465,7 @@ def run():
                                     path_garment,
                                     "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
                                     1,	# float (numeric value between 1 and 4) in 'Images' Slider component
-                                    20,	# float (numeric value between 20 and 40) in 'Steps' Slider component
+                                    40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
                                     1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
                                     -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
                                     api_name="/process_dc"
@@ -1476,35 +1476,7 @@ def run():
                                 #    st.write(time.sleep(0.1)) 
                                 result = job.result(timeout=120) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
-                                st.image(response_image)
-
-                                _ = """
-                                #Case2; OOTDiffusion
-                                headers = {
-                                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-                                    'Accept-Encoding': 'gzip, deflate',
-                                    'Accept-Language': 'en-US,en;q=0.9',
-                                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-                                    }                                    
-                                #client = Client("https://katiyar48-ootdiffusion-virtualtryonclothing.hf.space/--replicas/b4dt6/")
-                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)                               
-                                #client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/", hf_token=HF_API_TOKEN, headers=headers)
-                                result = client.predict(
-                                    "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
-                                    #path_model,
-                                    "https://product.hstatic.net/200000456445/product/o_nam_louis_vuitton_monogram_gradient_cotton_t-shirt__vert__1abix6__1__0f8ed9eac7ac479f9ee7a9baff260272_master.png",	# filepath  in 'Garment' Image component
-                                    #path_garment,
-                                    "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
-                                    1,	# float (numeric value between 1 and 4) in 'Images' Slider component
-                                    40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
-                                    1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
-                                    -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
-                                    api_name="/process_dc"
-                                )
-                                st.write(result)
-                                response_image = result[0]["image"]
-                                st.image(response_image)
-                                """                    
+                                st.image(response_image)               
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
