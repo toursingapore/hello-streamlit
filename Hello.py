@@ -1449,17 +1449,6 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
-                                #Case1; translate to france
-                                client = Client("abidlabs/en2fr", hf_token=HF_API_TOKEN)
-                                job = client.submit("Hello world, nice to meet you", api_name="/predict")  # This is not blocking
-                                # Do something else
-                                #st.write(job.status())                                
-                                if job.done():
-                                    st.write("job done")
-                                    st.write(job.result())  # This is blocking
-                                else:
-                                    st.write("job not done")
-
                                 def print_result(x):
                                     st.write("The translated result is: {x}")
 
@@ -1479,10 +1468,10 @@ def run():
                                     )  # This is not blocking
                                 # Do something else                                
                                 st.write(job.status())
-                                st.write(job.result())  # This is blocking  
+                                #st.write(job.result())  # This is blocking  
 
 
-
+                                _ = """
                                 #Case2; OOTDiffusion
                                 headers = {
                                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -1507,7 +1496,8 @@ def run():
                                 )
                                 st.write(result)
                                 response_image = result[0]["image"]
-                                st.image(response_image)                       
+                                st.image(response_image)
+                                """                    
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
