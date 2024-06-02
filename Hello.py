@@ -1448,8 +1448,7 @@ def run():
 
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
-
-                                Client.reset_session()
+                                
                                 client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 job = client.submit(
                                     #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
@@ -1472,7 +1471,8 @@ def run():
                                 st.write(f"Total time waited {i} seconds") 
                                 result = job.result(timeout=120) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
-                                st.image(response_image)               
+                                st.image(response_image)
+                                client.reset_session()               
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
