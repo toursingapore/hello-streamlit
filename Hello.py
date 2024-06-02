@@ -1463,7 +1463,7 @@ def run():
                                     api_name="/process_dc"
                                     )  # This is not blocking
                                 # Do something else                                
-                                #st.write(job.status())
+                                #st.write(job.status()) 
                                 while not job.done():
                                     time.sleep(0.1)
                                     st.write(time.sleep(0.1)) 
