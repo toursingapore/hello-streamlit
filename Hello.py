@@ -1483,7 +1483,7 @@ def run():
 
 
 
-                                #Case2; translate to france
+                                #Case2; OOTDiffusion
                                 headers = {
                                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                                     'Accept-Encoding': 'gzip, deflate',
