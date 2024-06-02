@@ -1373,12 +1373,20 @@ def run():
         if add_radio == "Generate image from prompt":
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
         elif add_radio == "Change clothes from reference image":
-            user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
-            user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])                
+            #user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
+            #user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
+            
+            st.info("""
+                    Enter: model_URL|garment_URL
+                    Ex: https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg|https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg
+                """)
+            user_input = st.text_area("Enter image URL", placeholder='model_URL|garment_URL', height=200)
+            #Append keywords to array and remove whitespace dư, empty line
+            user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
         elif add_radio == "Extract masks from uploaded image":
             user_input = st.file_uploader("Choose images...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
         else:
-            user_input = st.text_area("Enter image URL", value='https://cafefcdn.com/203337114487263232/2023/2/2/photo-1-16753281552041758342824.jpg \nhttps://img.baoninhbinh.org.vn/DATA/ARTICLES/2022/7/26/tran-thanh-toi-va-hari-won-khong-ly-di--29220.jpg', placeholder='https://path_to_image1.jpg \nhttps://path_to_image2.jpg', height=200)
+            user_input = st.text_area("Enter image URL", value='|https://cafefcdn.com/203337114487263232/2023/2/2/photo-1-16753281552041758342824.jpg \nhttps://img.baoninhbinh.org.vn/DATA/ARTICLES/2022/7/26/tran-thanh-toi-va-hari-won-khong-ly-di--29220.jpg', placeholder='https://path_to_image1.jpg \nhttps://path_to_image2.jpg', height=200)
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
@@ -1416,37 +1424,38 @@ def run():
                         img_path_arr.append(img_path)
 
                     case "Change clothes from reference image":
-                        temp_dir_model = tempfile.mkdtemp()
-                        path_model = os.path.join(temp_dir_model, user_input.name)
-                        with open(path_model, "wb") as f:
-                            f.write(user_input.getvalue())
-                        st.image(path_model)
+                        for user_input in user_input_arr:
+                            temp_dir_model = tempfile.mkdtemp()
+                            path_model = os.path.join(temp_dir_model, user_input.name)
+                            with open(path_model, "wb") as f:
+                                f.write(user_input.getvalue())
+                            st.image(path_model)
 
-                        temp_dir_garment = tempfile.mkdtemp()
-                        path_garment = os.path.join(temp_dir_garment, user_input_garment.name)
-                        with open(path_garment, "wb") as f:
-                            f.write(user_input_garment.getvalue())
-                        st.image(path_garment)
+                            temp_dir_garment = tempfile.mkdtemp()
+                            path_garment = os.path.join(temp_dir_garment, user_input_garment.name)
+                            with open(path_garment, "wb") as f:
+                                f.write(user_input_garment.getvalue())
+                            st.image(path_garment)
 
-                        #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
-                        from gradio_client import Client, file
+                            #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
+                            from gradio_client import Client, file
 
-                        client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
-                        result = client.predict(
-                                #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
-                                path_model,
-                                #"https://product.hstatic.net/200000456445/product/o_nam_louis_vuitton_monogram_gradient_cotton_t-shirt__vert__1abix6__1__0f8ed9eac7ac479f9ee7a9baff260272_master.png",	# filepath  in 'Garment' Image component
-                                path_garment,
-                                "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
-                                1,	# float (numeric value between 1 and 4) in 'Images' Slider component
-                                40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
-                                1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
-                                -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
-                                api_name="/process_dc"
-                        )
-                        #st.write(result)
-                        response_image = result[0]["image"]
-                        st.image(response_image)
+                            client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
+                            result = client.predict(
+                                    #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
+                                    path_model,
+                                    #"https://product.hstatic.net/200000456445/product/o_nam_louis_vuitton_monogram_gradient_cotton_t-shirt__vert__1abix6__1__0f8ed9eac7ac479f9ee7a9baff260272_master.png",	# filepath  in 'Garment' Image component
+                                    path_garment,
+                                    "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
+                                    1,	# float (numeric value between 1 and 4) in 'Images' Slider component
+                                    40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
+                                    1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
+                                    -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
+                                    api_name="/process_dc"
+                            )
+                            #st.write(result)
+                            response_image = result[0]["image"]
+                            st.image(response_image)
 
 
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
