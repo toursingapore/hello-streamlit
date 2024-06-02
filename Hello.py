@@ -1449,6 +1449,11 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
+                                client = Client(space="abidlabs/en2fr")
+                                job = client.submit("Hello", api_name="/predict")  # This is not blocking
+                                # Do something else
+                                st.write(job.result())  # This is blocking  
+
                                 headers = {
                                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                                     'Accept-Encoding': 'gzip, deflate',
@@ -1471,23 +1476,7 @@ def run():
                                 )
                                 st.write(result)
                                 response_image = result[0]["image"]
-                                st.image(response_image)
-
-
-                                client = Client("https://bec81a83-5b5c-471e.gradio.live")  # connecting to a temporary Gradio share URL
-                                job = client.submit(
-                                    "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
-                                    #path_model,
-                                    "https://product.hstatic.net/200000456445/product/o_nam_louis_vuitton_monogram_gradient_cotton_t-shirt__vert__1abix6__1__0f8ed9eac7ac479f9ee7a9baff260272_master.png",	# filepath  in 'Garment' Image component
-                                    #path_garment,
-                                    "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
-                                    1,	# float (numeric value between 1 and 4) in 'Images' Slider component
-                                    40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
-                                    1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
-                                    -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
-                                    api_name="/process_dc"
-                                )  # runs the prediction in a background thread
-                                job.result()                                
+                                st.image(response_image)                       
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
