@@ -1378,8 +1378,7 @@ def run():
             
             st.info("""
                     Enter: model_URL|garment_URL \n
-                    Ex: https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg|https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg \n
-                    [https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg|https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg](#)
+                    Ex: [https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg|https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg](#)
                 """)
             user_input = st.text_area("Enter image URL", placeholder='model_URL|garment_URL', height=200)
             #Append keywords to array and remove whitespace dư, empty line
