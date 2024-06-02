@@ -41,5 +41,5 @@ torchaudio
 inference-sdk==0.9.15
 openxlab>= 0.0.9
 gradio==4.19.0
-gradio_client==0.10.0
+gradio_client==0.17.0
 transformers==4.41.2
