@@ -1429,7 +1429,9 @@ def run():
                             path_model = user_input_split_arr[0]
                             path_garment = user_input_split_arr[1]
                             st.write(path_model)
+                            st.image(path_model)
                             st.write(path_garment)
+                            st.image(path_garment)
 
                             #temp_dir_model = tempfile.mkdtemp()
                             #path_model = os.path.join(temp_dir_model, user_input.name)
