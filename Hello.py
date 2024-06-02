@@ -1459,7 +1459,7 @@ def run():
 
 
 
-                                client = Client("https://bec81a83-5b5c-471e.gradio.live")  # connecting to a temporary Gradio share URL
+                                client = Client("https://bec81a83-5b5c-471e.gradio.live", enable_queue=True)  # connecting to a temporary Gradio share URL
                                 job = client.submit(
                                     "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                     #path_model,
