@@ -1449,15 +1449,7 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
-                                headers = {
-                                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-                                    'Accept-Encoding': 'gzip, deflate',
-                                    'Accept-Language': 'en-US,en;q=0.9',
-                                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42'
-                                    }  
-
-                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN, headers=headers)
-                                #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
+                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 job = client.submit(
                                     #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                     path_model,
