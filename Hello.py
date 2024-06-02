@@ -1449,7 +1449,7 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
-                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
+                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN, timeout=120)
                                 job = client.submit(
                                     "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                     #path_model,
@@ -1460,8 +1460,7 @@ def run():
                                     40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
                                     1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
                                     -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
-                                    api_name="/process_dc",
-                                    timeout=120
+                                    api_name="/process_dc"
                                     )  # This is not blocking
                                 # Do something else                                
                                 #st.write(job.status()) 
