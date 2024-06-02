@@ -1798,6 +1798,7 @@ def run():
                 with open(temp_reference_mp3_path, 'wb') as f:
                     audio_bytes_data = audio.getvalue()
                     f.write(audio_bytes_data) #write all audio_bytes_data to file mp3                        
+                st.write('Reference audio')
                 st.audio(temp_reference_mp3_path)
 
                 # Convert mp3 to wav file                                                          
