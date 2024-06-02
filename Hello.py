@@ -1463,14 +1463,10 @@ def run():
                                     api_name="/process_dc"
                                     )  # This is not blocking
                                 # Do something else
-                                i = 0
-                                while not job.done():
-                                    time.sleep(1)                                    
-                                    i += 1 
-                                    a = i
-                                    x = i.replace(str(i), str(a))                                    
-                                    st.write(x)
-                                result = job.result(timeout=120) # This is blocking and wait 120s for result  
+                                #while not job.done():
+                                #    time.sleep(0.1)
+                                #    st.write(time.sleep(0.1)) 
+                                result = job.result(timeout=120) # This is blocking and wait 120s for result , if not will be error 
                                 response_image = result[0]["image"]
                                 st.image(response_image)
 
