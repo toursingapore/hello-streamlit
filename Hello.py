@@ -1424,47 +1424,51 @@ def run():
                         img_path_arr.append(img_path)
 
                     case "Change clothes from reference image":
-                        for user_input in user_input_arr:
-                            user_input_split_arr = user_input.split("|")
-                            path_model = user_input_split_arr[0]
-                            path_garment = user_input_split_arr[1]
-                            st.write(path_model)
-                            st.image(path_model)
-                            st.write(path_garment)
-                            st.image(path_garment)
+                        try:
+                            for user_input in user_input_arr:
+                                user_input_split_arr = user_input.split("|")
+                                path_model = user_input_split_arr[0]
+                                path_garment = user_input_split_arr[1]
+                                st.write(path_model)
+                                st.image(path_model)
+                                st.write(path_garment)
+                                st.image(path_garment)
 
-                            #temp_dir_model = tempfile.mkdtemp()
-                            #path_model = os.path.join(temp_dir_model, user_input.name)
-                            #with open(path_model, "wb") as f:
-                            #    f.write(user_input.getvalue())
-                            #st.image(path_model)
+                                #temp_dir_model = tempfile.mkdtemp()
+                                #path_model = os.path.join(temp_dir_model, user_input.name)
+                                #with open(path_model, "wb") as f:
+                                #    f.write(user_input.getvalue())
+                                #st.image(path_model)
 
-                            #temp_dir_garment = tempfile.mkdtemp()
-                            #path_garment = os.path.join(temp_dir_garment, user_input_garment.name)
-                            #with open(path_garment, "wb") as f:
-                            #    f.write(user_input_garment.getvalue())
-                            #st.image(path_garment)
+                                #temp_dir_garment = tempfile.mkdtemp()
+                                #path_garment = os.path.join(temp_dir_garment, user_input_garment.name)
+                                #with open(path_garment, "wb") as f:
+                                #    f.write(user_input_garment.getvalue())
+                                #st.image(path_garment)
 
-                            #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
-                            from gradio_client import Client, file
+                                #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
+                                from gradio_client import Client, file
 
-                            client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
-                            result = client.predict(
-                                    "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
-                                    #path_model,
-                                    "https://product.hstatic.net/200000456445/product/o_nam_louis_vuitton_monogram_gradient_cotton_t-shirt__vert__1abix6__1__0f8ed9eac7ac479f9ee7a9baff260272_master.png",	# filepath  in 'Garment' Image component
-                                    #path_garment,
-                                    "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
-                                    1,	# float (numeric value between 1 and 4) in 'Images' Slider component
-                                    40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
-                                    1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
-                                    -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
-                                    api_name="/process_dc"
-                            )
-                            #st.write(result)
-                            response_image = result[0]["image"]
-                            st.image(response_image)
+                                client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/")
+                                result = client.predict(
+                                        "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
+                                        #path_model,
+                                        "https://product.hstatic.net/200000456445/product/o_nam_louis_vuitton_monogram_gradient_cotton_t-shirt__vert__1abix6__1__0f8ed9eac7ac479f9ee7a9baff260272_master.png",	# filepath  in 'Garment' Image component
+                                        #path_garment,
+                                        "Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
+                                        1,	# float (numeric value between 1 and 4) in 'Images' Slider component
+                                        40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
+                                        1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
+                                        -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
+                                        api_name="/process_dc"
+                                )
+                                #st.write(result)
+                                response_image = result[0]["image"]
+                                st.image(response_image)
 
+                        except HfHubHTTPError as e:
+                            #hf_raise_for_status(response)
+                            st.write(f"{str(e)} - {str(e.request_id)} - {str(e.server_message)}")
 
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
@@ -1592,8 +1596,6 @@ def run():
                                             draw.polygon(polygon, outline=(0,255,0), width=3)
                                             st.image(img)
                                             i += 1
-
-                                    #Case3; Change clothes
 
                     case _: #trường hợp còn lại extract masks dùng Huggingface Inference API
                         # Download the image                   
