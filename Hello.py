@@ -1452,7 +1452,7 @@ def run():
                                 def print_result(x):
                                     st.write("The translated result is: {x}")
 
-                                client = Client("thobuiq/OOTDiffusion", hf_token=HF_API_TOKEN)
+                                client = Client("raznal/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 job = client.submit(
                                     "https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                     #path_model,
