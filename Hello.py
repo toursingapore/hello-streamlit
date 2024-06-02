@@ -1457,8 +1457,8 @@ def run():
                                     }  
 
                                 #Case2; OOTDiffusion
-                                client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/", headers=headers)
-                                #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
+                                #client = Client("https://levihsu-ootdiffusion.hf.space/--replicas/6urx6/", headers=headers)
+                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 job = client.submit(
                                     #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                     path_model,
