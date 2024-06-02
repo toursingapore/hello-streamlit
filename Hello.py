@@ -1472,7 +1472,7 @@ def run():
                                 result = job.result(timeout=120) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
                                 st.image(response_image)
-                                client.reset_session()               
+                                Client.reset_session()   
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
