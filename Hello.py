@@ -1545,6 +1545,7 @@ def run():
                                     cookies=cookies,
                                     headers=headers,
                                     json=json_data,
+                                    stream=True,
                                 )
                                 st.write(response)
                                 st.write(response.json())
@@ -1600,6 +1601,7 @@ def run():
                                     cookies=cookies,
                                     headers=headers,
                                     json=json_data,
+                                    stream=True,
                                 )
                                 st.write(response)
                                 st.write(response.json())
