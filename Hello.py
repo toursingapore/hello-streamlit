@@ -1529,7 +1529,8 @@ def run():
 
                                 # Define the files to upload
                                 files = {
-                                    'files': ('hinh.jpg', img_data, 'application/octet-stream'),
+                                    #'files': ('hinh.jpg', img_data, 'application/octet-stream')
+                                    'files': ('hinh.jpg', img_data)
                                 }
 
                                 # Make the POST request to upload the image
