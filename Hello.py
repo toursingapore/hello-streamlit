@@ -1446,11 +1446,25 @@ def run():
                                 #    f.write(user_input_garment.getvalue())
                                 #st.image(path_garment)
 
+
+                                HF_Token = HF_API_TOKEN
+
+                                headers = {
+                                    "Authorization": "Bearer " + HF_Token
+                                }
+
+                                url = "https://huggingface.co/api/spaces/gradio/hello_world/jwt"
+                                result = requests.get(url, headers=headers).json()
+                                ## Dict ##
+                                st.write(result) 
+                                ## Refresh Token
+                                st.write(result['token'])
+
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
                                 #client = Client("https://levihsu-ootdiffusion.hf.space")    
-                                client = Client("gradio/hello_world", hf_token=HF_API_TOKEN)
+                                client = Client("gradio/hello_world", hf_token=HF_Token)
                                 #client = Client("https://levihsu-ootdiffusion.hf.space")    
                                 #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)                               
                                 st.write(client)
