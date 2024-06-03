@@ -1499,6 +1499,58 @@ def run():
                                 client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
                                 """
 
+
+                                #Case1; 
+                                cookies = {
+                                    '_gid': 'GA1.2.2070761080.1717219336',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717406975.13.1.1717406992.0.0.0',
+                                    '_ga': 'GA1.2.11449625.1717057713',
+                                }
+
+                                headers = {
+                                    'authority': 'schirrmacher-ormbg.hf.space',
+                                    'accept': '*/*',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'content-type': 'application/json',
+                                    # 'cookie': '_gid=GA1.2.2070761080.1717219336; _ga_R1FN4KJKJH=GS1.1.1717406975.13.1.1717406992.0.0.0; _ga=GA1.2.11449625.1717057713',
+                                    'dnt': '1',
+                                    'origin': 'https://schirrmacher-ormbg.hf.space',
+                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+                                }
+
+                                params = {
+                                    '__theme': 'light',
+                                }
+
+                                json_data = {
+                                    'data': [
+                                        1,
+                                    ],
+                                    'event_data': None,
+                                    'fn_index': 3,
+                                    'trigger_id': 15,
+                                    'session_hash': 'dlym3427r7',
+                                }
+
+                                response = requests.post(
+                                    'https://schirrmacher-ormbg.hf.space/run/predict',
+                                    params=params,
+                                    cookies=cookies,
+                                    headers=headers,
+                                    json=json_data,
+                                )
+                                st.write(response)
+
+
+
+                                _ = """
                                 #Case1; Download image from url, then Upload it to space
                                 # Define the URL where the image is located
                                 url = path_model
@@ -1542,15 +1594,6 @@ def run():
                                 }                                
 
                                 # Define the files to upload
-                                #files = {
-                                    #'files': ('hinh.jpg', img_data, 'application/octet-stream')
-                                #    'files': ('hinh.jpg', img_data)
-                                #}
-
-                                #files = {
-                                #    "myfile": ("hinh.jpg", img_data, "image/jpeg")
-                                #} 
-
                                 files = {'media': open(path_model_2, 'rb')}                                                         
 
                                 # Make the POST request to upload the image
@@ -1581,7 +1624,7 @@ def run():
                                 #st.write(r_bytes.content)
 
 
-                                _ = """
+
                                 #Case; dung curl để request trực tiếp space luôn, ko cần API
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
