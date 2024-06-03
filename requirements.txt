@@ -40,6 +40,6 @@ torchvision
 torchaudio
 inference-sdk==0.9.15
 openxlab>= 0.0.9
-gradio
-gradio_client
+gradio==4.32.2
+gradio-client==0.17.0
 transformers==4.41.2
