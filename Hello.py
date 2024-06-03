@@ -1545,9 +1545,9 @@ def run():
                                 response = requests.post(
                                     'https://schirrmacher-ormbg.hf.space/upload?upload_id=5rdk4q24olu',
                                     #cookies=cookies,
-                                    headers=headers,
-                                    files=files,
-                                    #data=img_data
+                                    #headers=headers,
+                                    #files=files,
+                                    data=img_data
                                 )
 
                                 # Write the response status code and JSON to the Streamlit app
