@@ -1588,8 +1588,9 @@ def run():
                                 client = sseclient.SSEClient(response)
                                 for event in client.events():
                                     st.write(event)
-                                    if event.data != '[DONE]':
-                                        st.write(json.loads(event.data)['choices'][0]['text'], end="", flush=True),
+                                    st.write(json.loads(event.data))                                 
+                                    #if event.data != '[DONE]':
+                                        #st.write(json.loads(event.data)['choices'][0]['text'], end="", flush=True),
                                 st.write(response)
                                 st.write(response.json())
 
