@@ -1451,6 +1451,7 @@ def run():
                                                                 
                                 client = Client("levihsu/OOTDiffusion")
                                 #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
+                                st.write(client.view_api())                                
                                 st.write(client)
 
                                 job = client.submit(
