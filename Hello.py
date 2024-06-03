@@ -1476,7 +1476,7 @@ def run():
                                 response_image = result[0]["image"]
                                 st.image(response_image)
 
-                                #client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
+                                client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
