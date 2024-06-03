@@ -1552,15 +1552,24 @@ def run():
 
 
                                 #Case2; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with uploaded image
+
+
+
+
+                                cookies = {
+                                    '_gid': 'GA1.2.2070761080.1717219336',
+                                    '_gat_gtag_UA_156449732_1': '1',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717408873.14.1.1717408876.0.0.0',
+                                    '_ga': 'GA1.1.11449625.1717057713',
+                                }
+
                                 headers = {
                                     'authority': 'schirrmacher-ormbg.hf.space',
-                                    'accept': '*/*',
+                                    'accept': 'text/event-stream',
                                     'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'application/json',
-                                    #'content-type': 'text/event-stream',  # Get EventStream
-                                    # 'cookie': '_gid=GA1.2.2070761080.1717219336; _ga_R1FN4KJKJH=GS1.1.1717406975.13.1.1717406992.0.0.0; _ga=GA1.2.11449625.1717057713',
+                                    'cache-control': 'no-cache',
+                                    # 'cookie': '_gid=GA1.2.2070761080.1717219336; _gat_gtag_UA_156449732_1=1; _ga_R1FN4KJKJH=GS1.1.1717408873.14.1.1717408876.0.0.0; _ga=GA1.1.11449625.1717057713',
                                     'dnt': '1',
-                                    'origin': 'https://schirrmacher-ormbg.hf.space',
                                     'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
                                     'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
                                     'sec-ch-ua-mobile': '?0',
@@ -1572,40 +1581,12 @@ def run():
                                 }
 
                                 params = {
-                                    '__theme': 'light',
+                                    'session_hash': 'vqaes3ytdi',
                                 }
 
-                                json_data = {
-                                    'data': [
-                                        {
-                                            #'path': '/tmp/gradio/732305e4fcef5bccd9c5d0e6890bd649ae2b3f97/example2.png',
-                                            'url': 'https://schirrmacher-ormbg.hf.space/file=/tmp/gradio/732305e4fcef5bccd9c5d0e6890bd649ae2b3f97/example2.png',
-                                            'size': None,
-                                            'orig_name': 'example2.png',
-                                            'mime_type': None,
-                                            'is_stream': False,
-                                            'meta': {
-                                                '_type': 'gradio.FileData',
-                                            },
-                                        },
-                                    ],
-                                    'event_data': None,
-                                    'fn_index': 0,
-                                    'trigger_id': 12,
-                                    'session_hash': 'dlym3427r7',
-                                }
-
-                                response = requests.post(
-                                    'https://schirrmacher-ormbg.hf.space/queue/join',
-                                    params=params,
-                                    cookies=cookies,
-                                    headers=headers,
-                                    json=json_data,
-                                    stream=True,
-                                )
+                                response = requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers)
                                 st.write(response)
                                 st.write(response.json())
-
 
 
                                 _ = """
