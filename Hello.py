@@ -1453,7 +1453,8 @@ def run():
                                     "Authorization": "Bearer " + HF_Token
                                 }
 
-                                url = "https://huggingface.co/api/spaces/gradio/hello_world/jwt"
+                                #url = "https://huggingface.co/api/spaces/gradio/hello_world/jwt"
+                                url = "https://huggingface.co/api/spaces/levihsu/OOTDiffusion/jwt"
                                 result = requests.get(url, headers=headers).json()
                                 ## Dict ##
                                 st.write(result) 
