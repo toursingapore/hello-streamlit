@@ -1455,7 +1455,7 @@ def run():
                                 url = "https://huggingface.co/api/spaces/levihsu/OOTDiffusion/jwt"
                                 result = requests.get(url, headers=headers).json()
                                 ## Dict ##
-                                st.write(result) 
+                                #st.write(result) 
                                 ## Refresh Token
                                 #st.write(result['token'])                 
 
