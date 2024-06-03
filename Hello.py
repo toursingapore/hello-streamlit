@@ -1447,7 +1447,7 @@ def run():
                                 #st.image(path_garment)
 
 
-
+                                _ = """
                                 #Check HF_API_TOKEN expired or not
                                 HF_Token = HF_API_TOKEN
                                 headers = {
@@ -1457,11 +1457,10 @@ def run():
                                 url = "https://huggingface.co/api/spaces/levihsu/OOTDiffusion/jwt"
                                 result = requests.get(url, headers=headers).json()
                                 ## Dict ##
-                                st.write(result) 
+                                #st.write(result) 
                                 ## Refresh Token
                                 #st.write(result['token'])                 
-                                
-                                _ = """
+
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
@@ -1500,8 +1499,6 @@ def run():
                                 """
 
                                 #Case; dung curl để request trực tiếp space luôn, ko cần API
-                                import requests
-
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
                                     '_ga_R1FN4KJKJH': 'GS1.1.1717394302.4.1.1717394517.0.0.0',
