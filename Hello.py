@@ -1450,7 +1450,7 @@ def run():
                                 from gradio_client import Client, file
                                 
                                 client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
-                                st.write(client)
+                                #st.write(client)
                                 job = client.submit(
                                     #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                     path_model,
@@ -1467,11 +1467,8 @@ def run():
                                 i = 1
                                 while not job.done():
                                     time.sleep(1)
-                                    x = "".join(str(i))
-                                    #st.write(x)
+                                    #st.write(i)
                                     i = i + 1
-                                    a = x.replace(str(i), x)
-                                    st.write(a)                             
                                 st.write(f"Total time waited {i} seconds") 
                                 result = job.result(timeout=300) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
