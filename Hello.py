@@ -1556,8 +1556,8 @@ def run():
                                     'authority': 'schirrmacher-ormbg.hf.space',
                                     'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',
-                                    #'content-type': 'application/json',
-                                    'content-type': 'text/event-stream',  # Get EventStream
+                                    'content-type': 'application/json',
+                                    #'content-type': 'text/event-stream',  # Get EventStream
                                     # 'cookie': '_gid=GA1.2.2070761080.1717219336; _ga_R1FN4KJKJH=GS1.1.1717406975.13.1.1717406992.0.0.0; _ga=GA1.2.11449625.1717057713',
                                     'dnt': '1',
                                     'origin': 'https://schirrmacher-ormbg.hf.space',
