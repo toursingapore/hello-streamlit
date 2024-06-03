@@ -1547,7 +1547,8 @@ def run():
                                     json=json_data,
                                 )
                                 st.write(response)
-                                st.write(response.text)
+                                st.write(response.json())
+                                #Cst.write(response.text)
 
 
 
