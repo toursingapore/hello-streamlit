@@ -1516,6 +1516,7 @@ def run():
                                     'authority': 'levihsu-ootdiffusion.hf.space',
                                     'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',
+                                    'content-type': 'application/octet-stream', #For upload image
                                     'origin': 'https://levihsu-ootdiffusion.hf.space',
                                     'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
                                     'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
@@ -1535,7 +1536,7 @@ def run():
 
                                 # Make the POST request to upload the image
                                 response = requests.post(
-                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload?upload_id=y2b0ggmgwx',
+                                    'https://levihsu-ootdiffusion.hf.space/--replicas/dxvml/upload?upload_id=oef77vcdvy9',
                                     cookies=cookies,
                                     headers=headers,
                                     files=files,
