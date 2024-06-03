@@ -1451,8 +1451,26 @@ def run():
                                                                 
                                 client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 #st.write(client)
-                                client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
-                                
+
+                                # Number of retry attempts
+                                max_retries = 3
+
+                                # Set a higher timeout (e.g., 60 seconds)
+                                client.timeout = 60
+
+                                for attempt in range(max_retries):
+                                    try:
+                                        # Call the reset_session method on the instance
+                                        client.reset_session()
+                                        st.write("Operation successful")
+                                        break  # Exit the loop if the operation is successful
+                                    except Exception as e:  # Catch more generic exceptions if necessary
+                                        st.write(f"Attempt {attempt + 1} failed: {e}")
+                                        if attempt < max_retries - 1:
+                                            time.sleep(5)  # Wait before retrying
+                                        else:
+                                            st.write("Max retries reached. Operation failed.")
+
                                 job = client.submit(
                                     #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
                                     path_model,
@@ -1475,6 +1493,8 @@ def run():
                                 result = job.result(timeout=300) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
                                 st.image(response_image)
+
+                                #client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
