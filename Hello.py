@@ -1498,6 +1498,14 @@ def run():
                                 client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
                                 """
 
+                                #Case1; Download image from url, then Upload it to space
+                                url = 'http://google.com/favicon.ico'
+                                r_bytes = requests.get(url, allow_redirects=True)
+                                st.write(r_bytes.content)
+
+
+
+                                _ = """
                                 #Case; dung curl để request trực tiếp space luôn, ko cần API
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
@@ -1532,24 +1540,32 @@ def run():
                                 json_data = {
                                     'data': [
                                         {
+                                            'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
                                             'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                            'orig_name': 'model_1.png',
+                                            'size': None,
+                                            'mime_type': None,
                                         },
                                         {
+                                            'path': 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
                                             'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
+                                            'orig_name': '03244_00.jpg',
+                                            'size': None,
+                                            'mime_type': None,
                                         },
                                         1,
                                         20,
                                         2,
                                         -1,
                                     ],
-                                    'event_data': True,
+                                    'event_data': None,
                                     'fn_index': 2,
                                     'trigger_id': 17,
                                     'session_hash': '3hlqa10gkcm',
                                 }
 
-                                #requests = requests.Session()
-                                response = requests.post(
+                                myrequests = requests.Session()
+                                response = myrequests.post(
                                     'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/join',
                                     params=params,
                                     cookies=cookies,
@@ -1559,10 +1575,10 @@ def run():
                                 )
 
                                 st.write(response.status_code)
-                                st.write(response.json())                                
                                 for line in response.iter_lines():
                                     if line:
                                         st.write(line)                                
+                                st.write(response.json())
 
 
                                 # Note: json_data will not be serialized by requests
@@ -1575,7 +1591,7 @@ def run():
                                 #    headers=headers,
                                 #    data=data,
                                 #)
-
+                                """
 
 
                         except Exception as e:
