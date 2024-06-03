@@ -1503,45 +1503,41 @@ def run():
                                 img_data = requests.get(url, allow_redirects=True).content
                                 #st.write(img_data)
                                 
-                                cookies = {
-                                    '_gid': 'GA1.2.325975051.1717380551',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717397002.5.1.1717397138.0.0.0',
-                                    '_ga': 'GA1.2.659231445.1717380551',
-                                }
+
 
                                 headers = {
                                     'authority': 'levihsu-ootdiffusion.hf.space',
                                     'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',
                                     'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryhYbhzrPg9B4e0fgM',
-                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717397002.5.1.1717397138.0.0.0; _ga=GA1.2.659231445.1717380551',
+                                    'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717397002.5.1.1717397138.0.0.0; _ga=GA1.2.659231445.1717380551',
                                     'dnt': '1',
                                     'origin': 'https://levihsu-ootdiffusion.hf.space',
                                     'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua': '^\\^Microsoft',
                                     'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-ch-ua-platform': '^\\^Windows^\\^',
                                     'sec-fetch-dest': 'empty',
                                     'sec-fetch-mode': 'cors',
                                     'sec-fetch-site': 'same-origin',
                                     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                 }
 
-                                params = {
-                                    'upload_id': 'y2b3ggmgwx',
+                                params = (
+                                    ('upload_id', 'y2b3ggmgwx'),
+                                )
+
+                                data = {
+                                    f'^------WebKitFormBoundaryhYbhzrPg9B4e0fgM^ Content-Disposition: form-data; name': '^\\^files^\\^; filename=^\\^hinh.jpg^\\^^ Content-Type: application/octet-stream^ ^ ^{img_data}^'
                                 }
 
-                                files = {
-                                        'files': ('hinh.jpg', img_data, 'application/octet-stream'),
-                                    }
+                                response = requests.post('https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload', headers=headers, params=params, data=data)
 
-                                response = requests.post(
-                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload',
-                                    params=params,
-                                    cookies=cookies,
-                                    headers=headers,
-                                    files=files,
-                                )
+                                #NB. Original query string below. It seems impossible to parse and
+                                #reproduce query strings 100% accurately so the one below is given
+                                #in case the reproduced version is not "correct".
+                                # response = requests.post('https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload?upload_id=y2b3ggmgwx', headers=headers, data=data)
+
                                 st.write(response.status_code)                            
                                 st.write(response.json())
                                 for line in response.iter_lines():
