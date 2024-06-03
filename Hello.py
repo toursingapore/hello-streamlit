@@ -1476,7 +1476,8 @@ def run():
                                     40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
                                     1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
                                     -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
-                                    api_name="/process_dc"
+                                    api_name="/process_hd", #for half body
+                                    #api_name="/process_dc" #for full body
                                     )
                                 # Do something else
                                 i = 1
