@@ -1446,20 +1446,18 @@ def run():
                                 #    f.write(user_input_garment.getvalue())
                                 #st.image(path_garment)
 
-
+                                #Check HF_API_TOKEN expired or not
                                 HF_Token = HF_API_TOKEN
-
                                 headers = {
                                     "Authorization": "Bearer " + HF_Token
                                 }
 
-                                #url = "https://huggingface.co/api/spaces/gradio/hello_world/jwt"
                                 url = "https://huggingface.co/api/spaces/levihsu/OOTDiffusion/jwt"
                                 result = requests.get(url, headers=headers).json()
                                 ## Dict ##
                                 st.write(result) 
                                 ## Refresh Token
-                                st.write(result['token'])
+                                #st.write(result['token'])
 
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
