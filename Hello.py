@@ -1459,11 +1459,11 @@ def run():
                                 ## Refresh Token
                                 #st.write(result['token'])
 
-                                from huggingface_hub import login
-                                access_token_read = result['token']
-                                #access_token_read = HF_API_TOKEN
+                                from huggingface_hub import _login
+                                #access_token_read = result['token']
+                                access_token_read = HF_API_TOKEN
                                 access_token_write = "xyz"
-                                a = login(token = access_token_read, add_to_git_credential = True)
+                                a = _login(token = access_token_read, add_to_git_credential = True)
                                 st.write(a)                     
 
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
