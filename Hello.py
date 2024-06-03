@@ -1559,8 +1559,8 @@ def run():
                                     cookies=cookies,
                                     #headers=headers,
                                     params=params,
-                                    #files=files,
-                                    data=img_data,
+                                    files=files,
+                                    #data=img_data,
                                     stream=True
                                 )
 
