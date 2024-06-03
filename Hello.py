@@ -1514,21 +1514,8 @@ def run():
                                 }
 
                                 headers = {
-                                    'authority': 'schirrmacher-ormbg.hf.space',
-                                    'accept': '*/*',
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryNPodnryV6Pl44AOM',
-                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717402508.6.1.1717404213.0.0.0; _ga=GA1.1.659231445.1717380551',
-                                    'dnt': '1',
-                                    'origin': 'https://schirrmacher-ormbg.hf.space',
-                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
                                 }
 
                                 # Define the files to upload
