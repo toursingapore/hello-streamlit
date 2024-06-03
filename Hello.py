@@ -1556,7 +1556,7 @@ def run():
                                 # Make the POST request to upload the image
                                 response = requests.post(
                                     'https://schirrmacher-ormbg.hf.space/upload',
-                                    #cookies=cookies,
+                                    cookies=cookies,
                                     #headers=headers,
                                     params=params,
                                     files=files,
