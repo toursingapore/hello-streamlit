@@ -1560,7 +1560,8 @@ def run():
                                     #headers=headers,
                                     params=params,
                                     files=files,
-                                    #data=img_data
+                                    #data=img_data,
+                                    stream=True
                                 )
 
                                 # Write the response status code and JSON to the Streamlit app
