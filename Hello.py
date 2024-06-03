@@ -1518,6 +1518,10 @@ def run():
                                     'Content-Type': 'application/json'
                                 }
 
+                                params = {
+                                    'upload_id': '5rdk4q24olu',
+                                }                                
+
                                 # Define the files to upload
                                 #files = {
                                     #'files': ('hinh.jpg', img_data, 'application/octet-stream')
@@ -1530,9 +1534,10 @@ def run():
 
                                 # Make the POST request to upload the image
                                 response = requests.post(
-                                    'https://schirrmacher-ormbg.hf.space/upload?upload_id=5rdk4q24olu',
+                                    'https://schirrmacher-ormbg.hf.space/upload',
                                     #cookies=cookies,
                                     #headers=headers,
+                                    params=params,
                                     #files=files,
                                     data=img_data
                                 )
