@@ -1532,15 +1532,15 @@ def run():
                                 json_data = {
                                     'data': [
                                         {
-                                            #'path': '/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png',
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png',
+                                            'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
                                             'orig_name': 'model_1.png',
                                             'size': None,
                                             'mime_type': None,
                                         },
                                         {
-                                            #'path': '/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg',
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg',
+                                            'path': 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
                                             'orig_name': '03244_00.jpg',
                                             'size': None,
                                             'mime_type': None,
