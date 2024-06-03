@@ -1557,12 +1557,12 @@ def run():
 
                                 # Write the response status code and JSON to the Streamlit app
                                 #st.write(dir(response))                                
-                                #st.write(response)
+                                st.write(response)
                                 st.write(response.status_code)
                                 st.write(response.url)
                                 st.write(response.text)
                                 #st.write(response.cookies)
-                                st.write(response.json())
+                                #st.write(response.json())
                                 for line in response.iter_lines():
                                     if line:
                                         st.write(line)    
