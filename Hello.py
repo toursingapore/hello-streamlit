@@ -1532,7 +1532,7 @@ def run():
                                 response = requests.post(
                                     'https://schirrmacher-ormbg.hf.space/upload?upload_id=5rdk4q24olu',
                                     #cookies=cookies,
-                                    #headers=headers,
+                                    headers=headers,
                                     #files=files,
                                     data=files
                                 )
