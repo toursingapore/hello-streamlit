@@ -1459,7 +1459,7 @@ def run():
                                 ## Refresh Token
                                 #st.write(result['token'])
 
-                                from huggingface_hub import _login
+                                from huggingface_hub import login
                                 #access_token_read = result['token']
                                 access_token_read = HF_API_TOKEN
                                 access_token_write = "xyz"
