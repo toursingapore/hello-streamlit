@@ -1562,7 +1562,8 @@ def run():
                                     headers=headers,
                                     json=json_data,
                                 )
-                                st.write(response) 
+                                data = response.json()
+                                st.write(data) 
 
                                 # Note: json_data will not be serialized by requests
                                 # exactly as it was in the original request.
