@@ -1543,11 +1543,11 @@ def run():
                                 )
 
                                 # Write the response status code and JSON to the Streamlit app
-                                st.write(dir(response))                                
-                                st.write(response)
+                                #st.write(dir(response))                                
+                                #st.write(response)
                                 st.write(response.status_code)
-                                st.write(response.text)
-                                st.write(response.cookies)
+                                #st.write(response.text)
+                                #st.write(response.cookies)
                                 try:
                                     st.write(response.json())
                                 except ValueError:
