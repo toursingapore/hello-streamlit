@@ -1167,7 +1167,7 @@ def run():
                         soup = BeautifulSoup(html_content,'html.parser')
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
                         headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])           
-                        #headings = soup.find_all(re.compile("^h[1-6]$"))
+                        #headings = soup.find_all(re.compile("h[1-6]$"))
                         translated_content_array = []
                         image_list_array = []
                         for heading in headings:
@@ -1514,9 +1514,9 @@ def run():
                                     'dnt': '1',
                                     'origin': 'https://levihsu-ootdiffusion.hf.space',
                                     'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
-                                    'sec-ch-ua': '^\\^Microsoft',
+                                    'sec-ch-ua': '\\Microsoft',
                                     'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '^\\^Windows^\\^',
+                                    'sec-ch-ua-platform': '\\Windows\\',
                                     'sec-fetch-dest': 'empty',
                                     'sec-fetch-mode': 'cors',
                                     'sec-fetch-site': 'same-origin',
@@ -1528,7 +1528,7 @@ def run():
                                 )
 
                                 data = {
-                                    f'^------WebKitFormBoundaryhYbhzrPg9B4e0fgM^ Content-Disposition: form-data; name': '^\\^files^\\^; filename=^\\^hinh.jpg^\\^^ Content-Type: application/octet-stream^ ^ ^{img_data}^'
+                                    f'------WebKitFormBoundaryhYbhzrPg9B4e0fgM Content-Disposition: form-data; name': '\\files\\; filename=\\hinh.jpg\\ Content-Type: application/octet-stream  {img_data}'
                                 }
 
                                 response = requests.post('https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload', headers=headers, params=params, data=data)
