@@ -1500,12 +1500,59 @@ def run():
 
                                 #Case1; Download image from url, then Upload it to space
                                 url = path_model
-                                r_bytes = requests.get(url, allow_redirects=True)
-                                st.write(r_bytes.content)
+                                r_path_model = requests.get(url, allow_redirects=True)
+                                img_data = r_path_model.content
+                                #st.write(img_data)
+                                
+                                cookies = {
+                                    '_gid': 'GA1.2.325975051.1717380551',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717397002.5.1.1717397138.0.0.0',
+                                    '_ga': 'GA1.2.659231445.1717380551',
+                                }
 
-                                url = path_garment
-                                r_bytes = requests.get(url, allow_redirects=True)
-                                st.write(r_bytes.content)
+                                headers = {
+                                    'authority': 'levihsu-ootdiffusion.hf.space',
+                                    'accept': '*/*',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryhYbhzrPg9B4e0fgM',
+                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717397002.5.1.1717397138.0.0.0; _ga=GA1.2.659231445.1717380551',
+                                    'dnt': '1',
+                                    'origin': 'https://levihsu-ootdiffusion.hf.space',
+                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+
+                                params = {
+                                    'upload_id': 'y2b3ggmgwx',
+                                }
+
+                                #files = {
+                                #    'files': ('hinh.jpg', 'application/octet-stream')
+                                #    }
+
+                                files = {"image": ("hinh.jpg", img_data)}
+                                response = requests.post(
+                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload',
+                                    params=params,
+                                    cookies=cookies,
+                                    headers=headers,
+                                    files=files,
+                                )
+                                st.write(response.status_code)                            
+                                st.write(response.json())
+                                for line in response.iter_lines():
+                                    if line:
+                                        st.write(line)    
+
+                                #url = path_garment
+                                #r_bytes = requests.get(url, allow_redirects=True)
+                                #st.write(r_bytes.content)
 
 
                                 _ = """
