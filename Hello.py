@@ -1446,6 +1446,7 @@ def run():
                                 #    f.write(user_input_garment.getvalue())
                                 #st.image(path_garment)
 
+                                #space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
 
                                 _ = """
                                 #Check HF_API_TOKEN expired or not
@@ -1542,7 +1543,7 @@ def run():
 
                                 # Make the POST request to upload the image
                                 response = requests.post(
-                                    'https://levihsu-ootdiffusion.hf.space/--replicas/dxvml/upload?upload_id=oef77vcdvy9',
+                                    'https://schirrmacher-ormbg.hf.space/upload?upload_id=5rdk4q24olu',
                                     #cookies=cookies,
                                     #headers=headers,
                                     files=files,
