@@ -1540,7 +1540,7 @@ def run():
                                 response = requests.post(
                                     'https://levihsu-ootdiffusion.hf.space/--replicas/dxvml/upload?upload_id=oef77vcdvy9',
                                     #cookies=cookies,
-                                    #headers=headers,
+                                    headers=headers,
                                     #files=files,
                                     data=img_data
                                 )
