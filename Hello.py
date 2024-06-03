@@ -1514,14 +1514,14 @@ def run():
                                 }
 
                                 headers = {
-                                    'authority': 'levihsu-ootdiffusion.hf.space',
+                                    'authority': 'schirrmacher-ormbg.hf.space',
                                     'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary1C1X4SexlmwuRdGR',
-                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; SL_G_WPT_TO=en; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1; _gat_gtag_UA_156449732_1=1; _ga_R1FN4KJKJH=GS1.1.1717402508.6.1.1717402568.0.0.0; _ga=GA1.1.659231445.1717380551',
+                                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryNPodnryV6Pl44AOM',
+                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717402508.6.1.1717404213.0.0.0; _ga=GA1.1.659231445.1717380551',
                                     'dnt': '1',
-                                    'origin': 'https://levihsu-ootdiffusion.hf.space',
-                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
+                                    'origin': 'https://schirrmacher-ormbg.hf.space',
+                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
                                     'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
                                     'sec-ch-ua-mobile': '?0',
                                     'sec-ch-ua-platform': '"Windows"',
