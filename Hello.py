@@ -1434,11 +1434,11 @@ def run():
                                 st.write(path_garment)
                                 st.image(path_garment)
 
-                                temp_dir_model = tempfile.mkdtemp()
-                                path_model = os.path.join(temp_dir_model, user_input.name)
-                                with open(path_model, "wb") as f:
-                                    f.write(user_input.getvalue())
-                                st.image(path_model)
+                                #temp_dir_model = tempfile.mkdtemp()
+                                #path_model = os.path.join(temp_dir_model, user_input.name)
+                                #with open(path_model, "wb") as f:
+                                #    f.write(user_input.getvalue())
+                                #st.image(path_model)
 
                                 #temp_dir_garment = tempfile.mkdtemp()
                                 #path_garment = os.path.join(temp_dir_garment, user_input_garment.name)
@@ -1506,6 +1506,12 @@ def run():
                                 # Fetch the image data from the URL
                                 img_data = requests.get(url, allow_redirects=True).content
 
+                                temp_dir_model = tempfile.mkdtemp()
+                                path_model_2 = os.path.join(temp_dir_model, user_input.name)
+                                with open(path_model_2, "wb") as f:
+                                    f.write(img_data)
+                                st.image(path_model_2)
+
                                 # Define cookies and headers
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
@@ -1545,7 +1551,7 @@ def run():
                                 #    "myfile": ("hinh.jpg", img_data, "image/jpeg")
                                 #} 
 
-                                files = {'media': open('test.jpg', 'rb')}                                                         
+                                files = {'media': open(path_model_2, 'rb')}                                                         
 
                                 # Make the POST request to upload the image
                                 response = requests.post(
