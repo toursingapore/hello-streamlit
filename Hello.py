@@ -1434,11 +1434,11 @@ def run():
                                 st.write(path_garment)
                                 st.image(path_garment)
 
-                                #temp_dir_model = tempfile.mkdtemp()
-                                #path_model = os.path.join(temp_dir_model, user_input.name)
-                                #with open(path_model, "wb") as f:
-                                #    f.write(user_input.getvalue())
-                                #st.image(path_model)
+                                temp_dir_model = tempfile.mkdtemp()
+                                path_model = os.path.join(temp_dir_model, user_input.name)
+                                with open(path_model, "wb") as f:
+                                    f.write(user_input.getvalue())
+                                st.image(path_model)
 
                                 #temp_dir_garment = tempfile.mkdtemp()
                                 #path_garment = os.path.join(temp_dir_garment, user_input_garment.name)
@@ -1541,9 +1541,11 @@ def run():
                                 #    'files': ('hinh.jpg', img_data)
                                 #}
 
-                                files = {
-                                    "myfile": ("hinh.jpg", img_data, "image/jpeg")
-                                }                                
+                                #files = {
+                                #    "myfile": ("hinh.jpg", img_data, "image/jpeg")
+                                #} 
+
+                                files = {'media': open('test.jpg', 'rb')}                                                         
 
                                 # Make the POST request to upload the image
                                 response = requests.post(
@@ -1551,8 +1553,8 @@ def run():
                                     #cookies=cookies,
                                     #headers=headers,
                                     params=params,
-                                    #files=files,
-                                    data=img_data
+                                    files=files,
+                                    #data=img_data
                                 )
 
                                 # Write the response status code and JSON to the Streamlit app
