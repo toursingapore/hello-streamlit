@@ -1542,7 +1542,7 @@ def run():
                                         2,
                                         -1,
                                     ],
-                                    'event_data': None,
+                                    'event_data': True,
                                     'fn_index': 2,
                                     'trigger_id': 17,
                                     'session_hash': '3hlqa10gkcm',
