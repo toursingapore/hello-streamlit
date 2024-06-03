@@ -1461,7 +1461,7 @@ def run():
 
                                 from huggingface_hub import login
 
-                                access_token = result['token']
+                                access_token = HF_API_TOKEN
                                 st.write(access_token)
                                 st.write(login(token = access_token))
 
