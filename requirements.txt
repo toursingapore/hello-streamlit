@@ -40,6 +40,6 @@ torchvision
 torchaudio
 inference-sdk==0.9.15
 openxlab>= 0.0.9
-https://gradio-builds.s3.amazonaws.com/e4ee5facabf3290c7ff68a9ed0a92a75d5ca6bc1/gradio-4.32.2-py3-none-any.whl
+https://gradio-builds.s3.amazonaws.com/c884e5eeb35bdf8b86153ede1e8500ac1bca25f6/gradio-4.7.1-py3-none-any.whl
 gradio-client @ git+https://github.com/gradio-app/gradio@c884e5eeb35bdf8b86153ede1e8500ac1bca25f6#subdirectory=client/python
 transformers==4.41.2
