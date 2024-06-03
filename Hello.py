@@ -1499,11 +1499,13 @@ def run():
                                 """
 
                                 #Case1; Download image from url, then Upload it to space
+                                # Define the URL where the image is located
                                 url = path_model
+
+                                # Fetch the image data from the URL
                                 img_data = requests.get(url, allow_redirects=True).content
-                                #st.write(img_data)
-                                
-                                
+
+                                # Define cookies and headers
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
                                     '_ga_R1FN4KJKJH': 'GS1.1.1717397002.5.1.1717397138.0.0.0',
@@ -1514,9 +1516,6 @@ def run():
                                     'authority': 'levihsu-ootdiffusion.hf.space',
                                     'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryhYbhzrPg9B4e0fgM',
-                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717397002.5.1.1717397138.0.0.0; _ga=GA1.2.659231445.1717380551',
-                                    'dnt': '1',
                                     'origin': 'https://levihsu-ootdiffusion.hf.space',
                                     'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
                                     'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
@@ -1528,23 +1527,25 @@ def run():
                                     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                 }
 
-                                params = {
-                                    'upload_id': 'y2b3ggmgwx',
+                                # Define the files to upload
+                                files = {
+                                    'files': ('hinh.jpg', img_data, 'application/octet-stream'),
                                 }
 
-                                files = {
-                                        'files': ('hinh.jpg', img_data, 'application/octet-stream'),
-                                    }
-
+                                # Make the POST request to upload the image
                                 response = requests.post(
                                     'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload?upload_id=y2b3ggmgwx',
-                                    #params=params,
                                     cookies=cookies,
                                     headers=headers,
                                     files=files,
                                 )
-                                st.write(response.status_code)                            
-                                st.write(response.json())
+
+                                # Write the response status code and JSON to the Streamlit app
+                                st.write(response.status_code)
+                                try:
+                                    st.write(response.json())
+                                except ValueError:
+                                    st.write("Response content is not in JSON format.")
                                 for line in response.iter_lines():
                                     if line:
                                         st.write(line)    
