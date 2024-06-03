@@ -1501,7 +1501,7 @@ def run():
                                 #Case1; Download image from url, then Upload it to space
                                 url = path_model
                                 img_data = requests.get(url, allow_redirects=True).content
-                                st.write(img_data)
+                                #st.write(img_data)
                                 
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
