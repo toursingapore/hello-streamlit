@@ -1560,7 +1560,7 @@ def run():
                                     #headers=headers,
                                     params=params,
                                     #files=files,
-                                    data=files,
+                                    data=img_data,
                                     stream=True
                                 )
 
