@@ -1531,7 +1531,11 @@ def run():
                                 }
 
                                 json_data = {
-                                    {"data":[1],"event_data":null,"fn_index":3,"trigger_id":15,"session_hash":"dlym3427r7"}
+                                    'data': [1],
+                                    'event_data': None,
+                                    'fn_index': 3,
+                                    'trigger_id': 15,
+                                    'session_hash': 'dlym3427r7',
                                 }
 
                                 response = requests.post(
