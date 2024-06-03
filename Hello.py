@@ -1555,7 +1555,8 @@ def run():
                                     'session_hash': '3hlqa10gkcm',
                                 }
 
-                                response = requests.post(
+                                myrequests = requests.Session()
+                                response = myrequests.post(
                                     'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/join',
                                     params=params,
                                     cookies=cookies,
@@ -1565,8 +1566,11 @@ def run():
                                 )
 
                                 st.write(response.status_code)
+                                for line in response.iter_lines():
+                                    if line:
+                                        st.write(line)                                
                                 st.write(response.json())
-
+                                
 
                                 # Note: json_data will not be serialized by requests
                                 # exactly as it was in the original request.
