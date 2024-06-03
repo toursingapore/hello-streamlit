@@ -1511,8 +1511,8 @@ def run():
                                     'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',                                    
                                     'connection': 'Keep-Alive', #Stream phai Keep-Alive connection moi duoc
-                                    'content-type': 'application/json',
-                                    #'content-type': 'text/event-stream',  # Get EventStream
+                                    #'content-type': 'application/json',
+                                    'content-type': 'text/event-stream',  # Get EventStream
                                     'dnt': '1',
                                     'origin': 'https://levihsu-ootdiffusion.hf.space',
                                     'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
@@ -1532,18 +1532,10 @@ def run():
                                 json_data = {
                                     'data': [
                                         {
-                                            'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
                                             'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                            'orig_name': 'model_1.png',
-                                            'size': None,
-                                            'mime_type': None,
                                         },
                                         {
-                                            'path': 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
                                             'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
-                                            'orig_name': '03244_00.jpg',
-                                            'size': None,
-                                            'mime_type': None,
                                         },
                                         1,
                                         20,
