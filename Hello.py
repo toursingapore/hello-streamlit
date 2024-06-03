@@ -1461,7 +1461,7 @@ def run():
 
                                 from huggingface_hub import login
 
-                                access_token = HF_API_TOKEN
+                                access_token = result['token']
                                 st.write(login(token = access_token))
 
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
