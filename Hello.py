@@ -1571,15 +1571,21 @@ def run():
                                     'session_hash': 'vqaes3ytdi', 
                                 }
 
-                                response = requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers)
-                                client = sseclient.SSEClient(response)
-                                for event in client.events():
-                                    st.write(event)
-                                    st.write(json.loads(event.data))                                 
+                                #response = requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers)
+                                #client = sseclient.SSEClient(response)
+                                #for event in client.events():
+                                #    st.write(event)
+                                #    st.write(json.loads(event.data))                                 
                                     #if event.data != '[DONE]':
                                         #st.write(json.loads(event.data)['choices'][0]['text'], end="", flush=True),
+                                
+                                with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                    for line in response.iter_lines(decode_unicode=True):
+                                        if line:
+                                            st.write(line)                                
                                 st.write(response)
                                 st.write(response.json())
+                                
 
 
                                 _ = """
