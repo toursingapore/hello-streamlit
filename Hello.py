@@ -1537,7 +1537,7 @@ def run():
                                     }
 
                                 response = requests.post(
-                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload?upload_id=y2b3ggmgwx',
+                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload?upload_id=y7b3ggmgwx',
                                     #params=params,
                                     cookies=cookies,
                                     headers=headers,
