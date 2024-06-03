@@ -1500,7 +1500,7 @@ def run():
                                 """
 
 
-                                #Case1; https://huggingface.co/spaces/schirrmacher/ormbg - remove background
+                                #Case1; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with default image
                                 cookies = {
                                     '_gid': 'GA1.2.2070761080.1717219336',
                                     '_ga_R1FN4KJKJH': 'GS1.1.1717406975.13.1.1717406992.0.0.0',
@@ -1551,7 +1551,7 @@ def run():
                                 #Cst.write(response.text)
 
 
-
+                                #Case1; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with uploaded image
                                 headers = {
                                     'authority': 'schirrmacher-ormbg.hf.space',
                                     'accept': '*/*',
