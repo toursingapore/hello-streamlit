@@ -1460,7 +1460,8 @@ def run():
                                 #st.write(result['token'])
 
                                 from huggingface_hub import login
-                                access_token_read = HF_API_TOKEN
+                                access_token_read = result['token']
+                                #access_token_read = HF_API_TOKEN
                                 access_token_write = "xyz"
                                 a = login(token = access_token_read, add_to_git_credential = True)
                                 st.write(a)                     
