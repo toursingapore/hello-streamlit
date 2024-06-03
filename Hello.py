@@ -1451,7 +1451,7 @@ def run():
                                                                 
                                 client = Client("levihsu/OOTDiffusion")
                                 #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
-                                #st.write(client)
+                                st.write(client)
 
                                 job = client.submit(
                                     #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
