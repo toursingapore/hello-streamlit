@@ -1551,7 +1551,7 @@ def run():
                                 #Cst.write(response.text)
 
 
-                                #Case1; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with uploaded image
+                                #Case2; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with uploaded image
                                 headers = {
                                     'authority': 'schirrmacher-ormbg.hf.space',
                                     'accept': '*/*',
@@ -1578,7 +1578,7 @@ def run():
                                 json_data = {
                                     'data': [
                                         {
-                                            'path': '/tmp/gradio/732305e4fcef5bccd9c5d0e6890bd649ae2b3f97/example2.png',
+                                            #'path': '/tmp/gradio/732305e4fcef5bccd9c5d0e6890bd649ae2b3f97/example2.png',
                                             'url': 'https://schirrmacher-ormbg.hf.space/file=/tmp/gradio/732305e4fcef5bccd9c5d0e6890bd649ae2b3f97/example2.png',
                                             'size': None,
                                             'orig_name': 'example2.png',
@@ -1605,6 +1605,8 @@ def run():
                                 )
                                 st.write(response)
                                 st.write(response.json())
+
+
 
                                 _ = """
                                 #Case1; Download image from url, then Upload it to space
