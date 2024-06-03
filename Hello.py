@@ -62,8 +62,8 @@ import httpx
 
 LOGGER = get_logger(__name__)
 
-HF_API_TOKEN = "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" #scope for read only
-#HF_API_TOKEN = "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" #scope for write
+#HF_API_TOKEN = "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" #scope for read only
+HF_API_TOKEN = "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" #scope for write
 HUB_ULTRALYTICS_API_KEY = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
 LEPTON_API_TOKEN = "Idts8YzDtSJSFXrpOlwbxJr7Y1Gx60Os"
 ROBOFLOW_API_KEY = 'Fh4GjyJACeJLvWa4r2vN'
