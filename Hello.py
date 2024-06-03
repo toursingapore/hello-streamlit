@@ -1562,10 +1562,7 @@ def run():
                                 st.write(response.url)
                                 st.write(response.text)
                                 #st.write(response.cookies)
-                                try:
-                                    st.write(response.json())
-                                except ValueError:
-                                    st.write("Response content is not in JSON format.")
+                                st.write(response.json())
                                 for line in response.iter_lines():
                                     if line:
                                         st.write(line)    
