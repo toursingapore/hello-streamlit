@@ -1468,8 +1468,10 @@ def run():
                                 while not job.done():
                                     time.sleep(1)
                                     x = "".join(str(i))
-                                    st.write(x)
+                                    #st.write(x)
                                     i = i + 1
+                                    a = x.replace(str(i), x)
+                                    st.write(a)                             
                                 st.write(f"Total time waited {i} seconds") 
                                 result = job.result(timeout=300) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
