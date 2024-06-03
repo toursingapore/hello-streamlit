@@ -1564,20 +1564,7 @@ def run():
                                 }
 
                                 headers = {
-                                    'authority': 'schirrmacher-ormbg.hf.space',
-                                    'accept': 'text/event-stream',
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'cache-control': 'no-cache',
-                                    # 'cookie': '_gid=GA1.2.2070761080.1717219336; _gat_gtag_UA_156449732_1=1; _ga_R1FN4KJKJH=GS1.1.1717408873.14.1.1717408876.0.0.0; _ga=GA1.1.11449625.1717057713',
-                                    'dnt': '1',
-                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+                                    'Accept': 'text/event-stream'
                                 }
 
                                 params = {
