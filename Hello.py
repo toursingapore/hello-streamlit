@@ -1539,9 +1539,10 @@ def run():
                                 # Make the POST request to upload the image
                                 response = requests.post(
                                     'https://levihsu-ootdiffusion.hf.space/--replicas/dxvml/upload?upload_id=oef77vcdvy9',
-                                    cookies=cookies,
-                                    headers=headers,
-                                    files=files,
+                                    #cookies=cookies,
+                                    #headers=headers,
+                                    #files=files,
+                                    data=img_data
                                 )
 
                                 # Write the response status code and JSON to the Streamlit app
