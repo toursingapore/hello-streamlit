@@ -1500,7 +1500,7 @@ def run():
                                 """
 
 
-                                #Case1; 
+                                #Case1; https://huggingface.co/spaces/schirrmacher/ormbg - remove background
                                 cookies = {
                                     '_gid': 'GA1.2.2070761080.1717219336',
                                     '_ga_R1FN4KJKJH': 'GS1.1.1717406975.13.1.1717406992.0.0.0',
