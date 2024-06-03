@@ -1511,8 +1511,8 @@ def run():
                                     'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',                                    
                                     'connection': 'Keep-Alive', #Stream phai Keep-Alive connection moi duoc
-                                    #'content-type': 'application/json',
-                                    'content-type': 'text/event-stream',  # Get EventStream
+                                    'content-type': 'application/json',
+                                    #'content-type': 'text/event-stream',  # Get EventStream
                                     'dnt': '1',
                                     'origin': 'https://levihsu-ootdiffusion.hf.space',
                                     'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
