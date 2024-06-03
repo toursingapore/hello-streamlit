@@ -1522,57 +1522,7 @@ def run():
                                     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                 }
 
-                                params = {
-                                    '__theme': 'light',
-                                }
-
-                                json_data = {
-                                    'data': [
-                                        {
-                                            'path': '/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
-                                            'orig_name': 'hinh.jpg',
-                                            'size': 225698,
-                                            'mime_type': '',
-                                        },
-                                        {
-                                            'path': '/tmp/gradio/04aeecba3eb1c681904ba45ca7e1acae98e6d4bc/garment.png',
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/04aeecba3eb1c681904ba45ca7e1acae98e6d4bc/garment.png',
-                                            'orig_name': 'garment.png',
-                                            'size': 167704,
-                                            'mime_type': '',
-                                        },
-                                        1,
-                                        20,
-                                        2,
-                                        -1,
-                                    ],
-                                    'event_data': None,
-                                    'fn_index': 2,
-                                    'trigger_id': 17,
-                                    'session_hash': 'hc5bmt1kwif',
-                                }
-
-                                response = requests.post(
-                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/join',
-                                    params=params,
-                                    cookies=cookies,
-                                    headers=headers,
-                                    json=json_data,
-                                )
-                                data = response.json()
-                                st.write(data) 
-
-                                # Note: json_data will not be serialized by requests
-                                # exactly as it was in the original request.
-                                #data = '{"data":[{"path":"/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg","url":"https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg","orig_name":"hinh.jpg","size":225698,"mime_type":""},{"path":"/tmp/gradio/04aeecba3eb1c681904ba45ca7e1acae98e6d4bc/garment.png","url":"https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/04aeecba3eb1c681904ba45ca7e1acae98e6d4bc/garment.png","orig_name":"garment.png","size":167704,"mime_type":""},1,20,2,-1],"event_data":null,"fn_index":2,"trigger_id":17,"session_hash":"hc5bmt1kwif"}'
-                                #response = requests.post(
-                                #    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/join',
-                                #    params=params,
-                                #    cookies=cookies,
-                                #    headers=headers,
-                                #    data=data,
-                                #)                                
+                          
 
 
 
