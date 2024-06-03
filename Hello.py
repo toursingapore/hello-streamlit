@@ -1499,10 +1499,13 @@ def run():
                                 """
 
                                 #Case1; Download image from url, then Upload it to space
-                                url = 'http://google.com/favicon.ico'
+                                url = path_model
                                 r_bytes = requests.get(url, allow_redirects=True)
                                 st.write(r_bytes.content)
 
+                                url = path_garment
+                                r_bytes = requests.get(url, allow_redirects=True)
+                                st.write(r_bytes.content)
 
 
                                 _ = """
