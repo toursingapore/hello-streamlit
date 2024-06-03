@@ -1447,6 +1447,7 @@ def run():
                                 #st.image(path_garment)
 
 
+
                                 #Check HF_API_TOKEN expired or not
                                 HF_Token = HF_API_TOKEN
                                 headers = {
@@ -1456,10 +1457,11 @@ def run():
                                 url = "https://huggingface.co/api/spaces/levihsu/OOTDiffusion/jwt"
                                 result = requests.get(url, headers=headers).json()
                                 ## Dict ##
-                                #st.write(result) 
+                                st.write(result) 
                                 ## Refresh Token
                                 #st.write(result['token'])                 
-
+                                
+                                _ = """
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
@@ -1495,9 +1497,11 @@ def run():
                                 response_image = result[0]["image"]
                                 st.image(response_image)
                                 client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
+                                """
 
-                                _ = """
                                 #Case; dung curl để request trực tiếp space luôn, ko cần API
+                                import requests
+
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
                                     '_ga_R1FN4KJKJH': 'GS1.1.1717394302.4.1.1717394517.0.0.0',
@@ -1509,10 +1513,7 @@ def run():
                                     'authority': 'levihsu-ootdiffusion.hf.space',
                                     'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',
-                                    #'content-type': 'application/json',
-                                    'content-type': 'text/event-stream', #Get EventStream
-                                    #'Connection': 'Keep-Alive',
-                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717394302.4.1.1717394517.0.0.0; _ga=GA1.2.659231445.1717380551; _gat_gtag_UA_156449732_1=1',
+                                    'content-type': 'text/event-stream',  # Get EventStream
                                     'dnt': '1',
                                     'origin': 'https://levihsu-ootdiffusion.hf.space',
                                     'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
@@ -1563,9 +1564,10 @@ def run():
                                     headers=headers,
                                     json=json_data,
                                 )
-                                st.write(response) 
-                                data = response.json()
-                                st.write(data) 
+
+                                print(response.status_code)
+                                print(response.json())
+
 
                                 # Note: json_data will not be serialized by requests
                                 # exactly as it was in the original request.
@@ -1577,7 +1579,7 @@ def run():
                                 #    headers=headers,
                                 #    data=data,
                                 #)
-                                """
+
 
 
                         except Exception as e:
