@@ -1463,10 +1463,10 @@ def run():
                                 from gradio_client import Client, file
 
                                 #client = Client("https://levihsu-ootdiffusion.hf.space")    
-                                #client = Client("gradio/hello_world", hf_token=HF_Token)
+                                client = Client("gradio/hello_world", hf_token=HF_Token)
                                 #client = Client("https://levihsu-ootdiffusion.hf.space")    
-                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)                               
-                                st.write(client)
+                                #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)                               
+                                st.write(client) #hiển thị error này 'The read operation timed out' là do ko access được space vì bị nghẽn, do nhiều requests
 
                                 job = client.submit(
                                     #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
