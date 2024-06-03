@@ -1462,9 +1462,7 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
-                                client = Client("https://levihsu-ootdiffusion.hf.space")    
-                                #client = Client("gradio/hello_world", hf_token=HF_Token)
-                                #client = Client("https://levihsu-ootdiffusion.hf.space")    
+                                client = Client("gradio/hello_world", hf_token=HF_API_TOKEN)
                                 #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)                               
                                 st.write(client) #hiển thị error này 'The read operation timed out' là do ko access được space vì bị nghẽn, do nhiều requests
 
