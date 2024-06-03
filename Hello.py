@@ -62,8 +62,8 @@ import httpx
 
 LOGGER = get_logger(__name__)
 
-#HF_API_TOKEN = "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" #scope for read only
-HF_API_TOKEN = "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" #scope for write
+HF_API_TOKEN = "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" #scope for read only
+#HF_API_TOKEN = "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" #scope for write
 HUB_ULTRALYTICS_API_KEY = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
 LEPTON_API_TOKEN = "Idts8YzDtSJSFXrpOlwbxJr7Y1Gx60Os"
 ROBOFLOW_API_KEY = 'Fh4GjyJACeJLvWa4r2vN'
@@ -1452,8 +1452,6 @@ def run():
                                                                 
                                 #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 client = Client.duplicate("toursingapore/hello-streamlit-huggingface.co", hf_token=HF_API_TOKEN)
-                                #client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
-
                                 st.write(client)
 
                                 job = client.submit(
@@ -1482,7 +1480,7 @@ def run():
                                 result = job.result(timeout=300) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
                                 st.image(response_image)
-
+                                #client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
