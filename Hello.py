@@ -1510,8 +1510,9 @@ def run():
                                     'authority': 'levihsu-ootdiffusion.hf.space',
                                     'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'text/event-stream',  # Get EventStream
-                                    #'content-type': 'application/json',
+                                    #'content-type': 'text/event-stream',  # Get EventStream
+                                    'connection': 'Keep-Alive',
+                                    'content-type': 'application/json',
                                     'dnt': '1',
                                     'origin': 'https://levihsu-ootdiffusion.hf.space',
                                     'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
@@ -1570,7 +1571,7 @@ def run():
                                     if line:
                                         st.write(line)                                
                                 st.write(response.json())
-                                
+
 
                                 # Note: json_data will not be serialized by requests
                                 # exactly as it was in the original request.
