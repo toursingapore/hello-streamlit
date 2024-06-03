@@ -1451,7 +1451,7 @@ def run():
                                 from gradio_client import Client, file
                                                                 
                                 #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
-                                client = Client.duplicate("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
+                                client = Client.duplicate("toursingapore/hello-streamlit-huggingface.co", hf_token=HF_API_TOKEN)
                                 #client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
 
                                 st.write(client)
