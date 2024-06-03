@@ -1500,9 +1500,8 @@ def run():
 
                                 #Case1; Download image from url, then Upload it to space
                                 url = path_model
-                                r_path_model = requests.get(url, allow_redirects=True)
-                                img_data = r_path_model.content
-                                #st.write(img_data)
+                                img_data = requests.get(url, allow_redirects=True).content
+                                st.write(img_data)
                                 
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
@@ -1532,11 +1531,12 @@ def run():
                                     'upload_id': 'y2b3ggmgwx',
                                 }
 
-                                #files = {
-                                #    'files': ('hinh.jpg', 'application/octet-stream')
-                                #    }
+                                files = {
+                                    'files': (
+                                        "image": ("hinh.jpg", img_data),
+                                        'application/octet-stream')
+                                    }
 
-                                files = {"image": ("hinh.jpg", img_data)}
                                 response = requests.post(
                                     'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/upload',
                                     params=params,
