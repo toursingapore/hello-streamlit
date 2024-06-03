@@ -1459,6 +1459,11 @@ def run():
                                 ## Refresh Token
                                 #st.write(result['token'])
 
+                                from huggingface_hub import login
+
+                                access_token = HF_API_TOKEN
+                                st.write(login(token = access_token))
+
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
