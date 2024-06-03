@@ -1561,6 +1561,7 @@ def run():
                                     cookies=cookies,
                                     headers=headers,
                                     json=json_data,
+                                    stream=True
                                 )
 
                                 st.write(response.status_code)
