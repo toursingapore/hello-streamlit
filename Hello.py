@@ -1546,7 +1546,7 @@ def run():
                                 #st.write(dir(response))                                
                                 #st.write(response)
                                 st.write(response.status_code)
-                                #st.write(response.text)
+                                st.write(response.text)
                                 #st.write(response.cookies)
                                 try:
                                     st.write(response.json())
