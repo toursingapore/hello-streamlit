@@ -1557,7 +1557,7 @@ def run():
                                 response = requests.post(
                                     'https://schirrmacher-ormbg.hf.space/upload',
                                     cookies=cookies,
-                                    #headers=headers,
+                                    headers=headers,
                                     params=params,
                                     files=files,
                                     #data=img_data,
