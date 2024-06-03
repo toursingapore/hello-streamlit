@@ -1532,14 +1532,14 @@ def run():
                                 json_data = {
                                     'data': [
                                         {
-                                            'path': '/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png',
+                                            #'path': '/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png',
                                             'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png',
                                             'orig_name': 'model_1.png',
                                             'size': None,
                                             'mime_type': None,
                                         },
                                         {
-                                            'path': '/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg',
+                                            #'path': '/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg',
                                             'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg',
                                             'orig_name': '03244_00.jpg',
                                             'size': None,
