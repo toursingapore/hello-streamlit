@@ -1548,8 +1548,8 @@ def run():
                                     'session_hash': '3hlqa10gkcm',
                                 }
 
-                                myrequests = requests.Session()
-                                response = myrequests.post(
+                                #requests = requests.Session()
+                                response = requests.post(
                                     'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/join',
                                     params=params,
                                     cookies=cookies,
