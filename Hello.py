@@ -1499,7 +1499,7 @@ def run():
                                 client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
                                 """
 
-
+                                _ = """
                                 #Case1; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with default image
                                 cookies = {
                                     '_gid': 'GA1.2.2070761080.1717219336',
@@ -1549,10 +1549,10 @@ def run():
                                 st.write(response)
                                 st.write(response.json())
                                 #Cst.write(response.text)
-
+                                """
 
                                 #Case2; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with uploaded image
-
+                                import sseclient
 
 
 
@@ -1585,6 +1585,11 @@ def run():
                                 }
 
                                 response = requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers)
+                                client = sseclient.SSEClient(response)
+                                for event in client.events():
+                                    st.write(event)
+                                    if event.data != '[DONE]':
+                                        st.write(json.loads(event.data)['choices'][0]['text'], end="", flush=True),
                                 st.write(response)
                                 st.write(response.json())
 
