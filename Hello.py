@@ -1459,15 +1459,15 @@ def run():
                                 ## Dict ##
                                 st.write(result) 
                                 ## Refresh Token
-                                #st.write(result['token'])
+                                st.write(result['token'])
 
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
                                 #client = Client("https://levihsu-ootdiffusion.hf.space")    
-                                client = Client("gradio/hello_world", hf_token=HF_Token)
+                                #client = Client("gradio/hello_world", hf_token=HF_Token)
                                 #client = Client("https://levihsu-ootdiffusion.hf.space")    
-                                #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)                               
+                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)                               
                                 st.write(client)
 
                                 job = client.submit(
