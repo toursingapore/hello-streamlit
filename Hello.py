@@ -1449,9 +1449,7 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
                                                                 
-                                #client = Client("levihsu/OOTDiffusion")
                                 client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
-                                st.write(client.view_api())                                
                                 st.write(client)
 
                                 job = client.submit(
@@ -1470,7 +1468,7 @@ def run():
                                 i = 1
                                 my_bar = st.progress(0, text="Please wait ...")                                
                                 while not job.done():
-                                    time.sleep(1)
+                                    time.sleep(0.1)
                                     #st.write(i)
                                     my_bar.progress(i + 1, text="Please wait ...")
                                     i = i + 1
