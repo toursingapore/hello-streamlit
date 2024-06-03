@@ -1552,10 +1552,6 @@ def run():
                                 """
 
                                 #Case2; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with uploaded image
-                                import sseclient
-
-
-
                                 cookies = {
                                     '_gid': 'GA1.2.2070761080.1717219336',
                                     '_gat_gtag_UA_156449732_1': '1',
@@ -1568,16 +1564,8 @@ def run():
                                 }
 
                                 params = {
-                                    'session_hash': 'vqaes3ytdi', 
+                                    'session_hash': '8j1w6gernce', 
                                 }
-
-                                #response = requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers)
-                                #client = sseclient.SSEClient(response)
-                                #for event in client.events():
-                                #    st.write(event)
-                                #    st.write(json.loads(event.data))                                 
-                                    #if event.data != '[DONE]':
-                                        #st.write(json.loads(event.data)['choices'][0]['text'], end="", flush=True),
                                 
                                 with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                     for line in response.iter_lines(decode_unicode=True):
