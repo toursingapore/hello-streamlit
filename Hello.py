@@ -1467,12 +1467,14 @@ def run():
                                     )
                                 # Do something else
                                 i = 1
+                                my_bar = st.progress(0, text="Please wait ...")                                
                                 while not job.done():
                                     time.sleep(1)
                                     #st.write(i)
-                                    st.progress(i, text="Please wait ...")
+                                    my_bar.progress(i + 1, text="Please wait ...")
                                     i = i + 1
-
+                                my_bar.empty()
+                                
                                 st.write(f"Total time waited {i} seconds") 
                                 result = job.result(timeout=300) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
