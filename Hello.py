@@ -1507,7 +1507,7 @@ def run():
 
                                 headers = {
                                     'authority': 'levihsu-ootdiffusion.hf.space',
-                                    #'accept': '*/*',
+                                    'accept': '*/*',
                                     'accept-language': 'en-US,en;q=0.9',
                                     #'content-type': 'application/json',
                                     'content-type': 'text/event-stream', #Get EventStream
