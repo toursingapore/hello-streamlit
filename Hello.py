@@ -1500,16 +1500,19 @@ def run():
                                 #Case; dung curl để request trực tiếp space luôn, ko cần API
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717389525.3.1.1717391108.0.0.0',
-                                    '_ga': 'GA1.1.659231445.1717380551',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717394302.4.1.1717394517.0.0.0',
+                                    '_ga': 'GA1.2.659231445.1717380551',
+                                    '_gat_gtag_UA_156449732_1': '1',
                                 }
 
                                 headers = {
                                     'authority': 'levihsu-ootdiffusion.hf.space',
-                                    'accept': '*/*',
+                                    #'accept': '*/*',
+                                    'accept': 'text/event-stream',
+                                    'Connection': 'Keep-Alive',
                                     'accept-language': 'en-US,en;q=0.9',
                                     'content-type': 'application/json',
-                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717389525.3.1.1717391108.0.0.0; _ga=GA1.1.659231445.1717380551',
+                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717394302.4.1.1717394517.0.0.0; _ga=GA1.2.659231445.1717380551; _gat_gtag_UA_156449732_1=1',
                                     'dnt': '1',
                                     'origin': 'https://levihsu-ootdiffusion.hf.space',
                                     'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
@@ -1522,22 +1525,58 @@ def run():
                                     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                 }
 
-                          
-
-
-
-                                params2 = {
-                                    'session_hash': 'hc5bmt1kwif',
+                                params = {
+                                    '__theme': 'light',
                                 }
 
-                                response2 = requests.get(
-                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/data',
-                                    params=params2,
+                                json_data = {
+                                    'data': [
+                                        {
+                                            'path': '/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png',
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png',
+                                            'orig_name': 'model_1.png',
+                                            'size': None,
+                                            'mime_type': None,
+                                        },
+                                        {
+                                            'path': '/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg',
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg',
+                                            'orig_name': '03244_00.jpg',
+                                            'size': None,
+                                            'mime_type': None,
+                                        },
+                                        1,
+                                        20,
+                                        2,
+                                        -1,
+                                    ],
+                                    'event_data': None,
+                                    'fn_index': 2,
+                                    'trigger_id': 17,
+                                    'session_hash': '3hlqa10gkcm',
+                                }
+
+                                response = requests.post(
+                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/join',
+                                    params=params,
                                     cookies=cookies,
                                     headers=headers,
+                                    json=json_data,
                                 )
-                                data2 = response2.json()
-                                st.write(data2)                                 
+                                data = response.json()
+                                st.write(data) 
+
+                                # Note: json_data will not be serialized by requests
+                                # exactly as it was in the original request.
+                                #data = '{"data":[{"path":"/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png","url":"https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png","orig_name":"model_1.png","size":null,"mime_type":null},{"path":"/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg","url":"https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg","orig_name":"03244_00.jpg","size":null,"mime_type":null},1,20,2,-1],"event_data":null,"fn_index":2,"trigger_id":17,"session_hash":"3hlqa10gkcm"}'
+                                #response = requests.post(
+                                #    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/join',
+                                #    params=params,
+                                #    cookies=cookies,
+                                #    headers=headers,
+                                #    data=data,
+                                #)
+
 
 
                         except Exception as e:
