@@ -1532,9 +1532,7 @@ def run():
                                 }
 
                                 files = {
-                                    'files': (
-                                        "image": ("hinh.jpg", img_data),
-                                        'application/octet-stream')
+                                        'files': ('hinh.jpg', img_data, 'application/octet-stream'),
                                     }
 
                                 response = requests.post(
