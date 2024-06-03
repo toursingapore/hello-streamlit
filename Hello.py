@@ -1559,10 +1559,10 @@ def run():
                                 )
 
                                 st.write(response.status_code)
+                                st.write(response.json())                                
                                 for line in response.iter_lines():
                                     if line:
                                         st.write(line)                                
-                                st.write(response.json())
 
 
                                 # Note: json_data will not be serialized by requests
