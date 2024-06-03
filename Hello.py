@@ -1449,7 +1449,7 @@ def run():
                                 #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 from gradio_client import Client, file
 
-                                client = Client("https://levihsu-ootdiffusion.hf.space")    
+                                client = Client("https://gradio-hello-world.hf.space")    
                                 #client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 #client = Client.duplicate("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)
                                 st.write(client)
