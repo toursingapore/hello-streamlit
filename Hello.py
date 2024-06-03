@@ -1446,7 +1446,7 @@ def run():
                                 #    f.write(user_input_garment.getvalue())
                                 #st.image(path_garment)
 
-                                _ = """
+
                                 #Check HF_API_TOKEN expired or not
                                 HF_Token = HF_API_TOKEN
                                 headers = {
@@ -1491,12 +1491,12 @@ def run():
                                 my_bar.empty()
                                 
                                 st.write(f"Total time waited {i} seconds") 
-                                result = job.result(timeout=300) # This is blocking and wait max 120s for result , if not will be error 
+                                result = job.result(timeout=5000) # This is blocking and wait max 120s for result , if not will be error 
                                 response_image = result[0]["image"]
                                 st.image(response_image)
                                 client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
-                                """
 
+                                _ = """
                                 #Case; dung curl để request trực tiếp space luôn, ko cần API
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
@@ -1577,7 +1577,7 @@ def run():
                                 #    headers=headers,
                                 #    data=data,
                                 #)
-
+                                """
 
 
                         except Exception as e:
