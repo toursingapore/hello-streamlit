@@ -1498,8 +1498,6 @@ def run():
                                 """
 
                                 #Case; dung curl để request trực tiếp space luôn, ko cần API
-                                import requests
-
                                 cookies = {
                                     '_gid': 'GA1.2.325975051.1717380551',
                                     '_ga_R1FN4KJKJH': 'GS1.1.1717389525.3.1.1717391108.0.0.0',
@@ -1576,6 +1574,37 @@ def run():
                                 #    data=data,
                                 #)                                
 
+
+
+                                headers = {
+                                    'authority': 'levihsu-ootdiffusion.hf.space',
+                                    'accept': 'text/event-stream',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'cache-control': 'no-cache',
+                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717389525.3.1.1717391108.0.0.0; _ga=GA1.1.659231445.1717380551',
+                                    'dnt': '1',
+                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+
+                                params = {
+                                    'session_hash': 'hc5bmt1kwif',
+                                }
+
+                                response = requests.get(
+                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/data',
+                                    params=params,
+                                    cookies=cookies,
+                                    headers=headers,
+                                )
+                                data = response.json()
+                                st.write(data)                                 
 
 
                         except Exception as e:
