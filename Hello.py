@@ -1511,6 +1511,14 @@ def run():
 
 
 
+                                import websocket
+                                ws = websocket.WebSocket()
+                                ws.connect("ws://echo.websocket.events")
+                                ws.send("Hello, Server")
+                                st.write(ws.recv())
+                                ws.close()
+
+
                                 _ = """
                                 #Check HF_API_TOKEN expired or not
                                 HF_Token = HF_API_TOKEN
