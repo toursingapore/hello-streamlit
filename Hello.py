@@ -1447,6 +1447,21 @@ def run():
                                 #st.image(path_garment)
 
                                 #space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
+                                #space test - https://toromanow-test2.hf.space/ - HD https://stackoverflow.com/questions/76223210/huggingface-expected-input-format
+                                headers = {
+                                    'Content-Type': 'application/json',
+                                }
+
+                                json_data = {
+                                    'data': [
+                                        'John',
+                                    ],
+                                }
+
+                                response = requests.post('https://toromanow-test2.hf.space/api/predict', headers=headers, json=json_data)
+                                st.write(response)
+                                st.write(response.json())                                
+
 
                                 _ = """
                                 #Check HF_API_TOKEN expired or not
@@ -1548,8 +1563,8 @@ def run():
                                 )
                                 st.write(response)
                                 st.write(response.json())
-                                #Cst.write(response.text)
-                                """
+                                #st.write(response.text)
+
 
                                 #Case2; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with uploaded image
                                 cookies = {
@@ -1573,7 +1588,7 @@ def run():
                                             st.write(line)                                
                                 st.write(response)
                                 st.write(response.json())
-                                
+                                """                                
 
 
                                 _ = """
