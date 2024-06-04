@@ -1461,6 +1461,35 @@ def run():
                                 st.write(response.json())                                
 
 
+                                #Request1 for Subdomain space that using website directly
+                                import websocket                                
+                                #Case1. website socket test default                            
+                                #websocket.enableTrace(True)
+                                #ws = websocket.WebSocket()
+                                #ws.connect("ws://echo.websocket.events")
+                                #ws.send("Hello, Server. Nice to meet you")
+                                #st.write(f"response from server: {ws.recv()}")                                                              
+                                #ws.close()
+
+                                #Case2. website socket and post data to space HF directly - https://toromanow-test2.hf.space/
+                                websocket.enableTrace(True)
+                                ws = websocket.WebSocket()
+                                ws.connect("wss://toromanow-test2.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
+                                ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")
+                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")             
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
+                                ws.close()
+
+
                                 #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
                                 headers = {
                                     'Content-Type': 'application/json',
@@ -1509,33 +1538,6 @@ def run():
                                 st.write(response.json())
 
 
-
-
-                                import websocket
-                                websocket.enableTrace(True)
-                                ws = websocket.WebSocket()
-                                ws.connect("ws://echo.websocket.events")
-                                ws.send("Hello, Server. Nice to meet you")
-                                st.write(f"response from server: {ws.recv()}")                                                              
-                                ws.close()
-
-
-                                websocket.enableTrace(True)
-                                ws = websocket.WebSocket()
-                                ws.connect("wss://toromanow-test2.hf.space/queue/join")
-                                ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")
-                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}") 
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}") 
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")             
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
-                                ws.close()
 
 
 
