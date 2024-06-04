@@ -1509,38 +1509,6 @@ def run():
                                 st.write(response.json())
 
 
-                                #Request4; request stream=True and read response event-stream line by line
-                                url = "https://schirrmacher-ormbg.hf.space/queue/data?session_hash=bcm66qeo1gb"
-
-                                headers = {
-                                    'Accept': 'text/event-stream'
-                                }
-                                params = {
-                                    'session_hash': '8j1w6gernck', 
-                                }
-                                
-                                with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, headers=headers, stream=True) as response:
-                                    for line in response.iter_lines(decode_unicode=True):
-                                        if line:
-                                            st.write(line)
-                                            if 'success' in line:
-                                                st.write('Found success!')                                                                           
-                                    st.write(response)
-                                    st.write(response.text)
-
-
-
-                                from websocket import create_connection
-
-                                ws = create_connection("ws://echo.websocket.org/")
-                                st.write(ws.recv())
-                                st.write("Sending 'Hello, World'...")
-                                ws.send("Hello, World")
-                                st.write("Sent")
-                                st.write("Receiving...")
-                                result =  ws.recv()
-                                st.write("Received '%s'" % result)
-                                ws.close()
 
 
                                 _ = """
