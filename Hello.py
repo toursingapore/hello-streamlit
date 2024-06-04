@@ -1655,7 +1655,6 @@ def run():
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
                                             st.write(line)                                
-                                    st.write(response)
 
 
 
