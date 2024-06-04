@@ -1617,6 +1617,8 @@ def run():
                                 )
                                 st.write(response)
                                 st.write(response.json())
+                                event_id = response.json()["event_id"]
+                                st.write(event_id)
                               
 
 
