@@ -1481,7 +1481,7 @@ def run():
                                 }
                                 json_data = {
                                     #'data': ['hello world',],
-                                    'image': ['https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png',],                            
+                                    'image': 'https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png',                            
                                 }
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
                                 st.write(response)
