@@ -1659,8 +1659,8 @@ def run():
                                                 textArr = line.split("\"")
                                                 #for text in textArr:
                                                 #    st.write(text)
-                                                #st.write(textArr[18])
-                                                EventStream = '\n'.join(textArr[18])
+                                                #st.write(textArr[19])
+                                                EventStream = '\n'.join(textArr[19])
                                 st.write(EventStream)                       
 
 
