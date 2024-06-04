@@ -1474,8 +1474,8 @@ def run():
                                 st.write(response.json())     
 
                                 #Request3
-                                from gradio_client.utils import encode_file_to_base64, encode_url_to_base64
-                                # https://github.com/gradio-app/gradio/blob/main/client/python/gradio_client/utils.py
+                                from gradio_client.utils import encode_url_or_file_to_base64
+                                #Nhiều method sẵn tại đây - https://github.com/gradio-app/gradio/blob/main/client/python/gradio_client/utils.py
 
                                 headers = {
                                     'Content-Type': 'application/json',
@@ -1483,7 +1483,7 @@ def run():
                                 }
                                 json_data = {
                                     'data': [
-                                        encode_url_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
+                                        encode_url_or_file_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
                                     ],
                                 }
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
