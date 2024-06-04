@@ -1461,9 +1461,8 @@ def run():
                                 st.write(response.json())                                
 
 
-                                _ = """
+                                #Request1 websocket
                                 import websocket                                
-                                #Request1 for Subdomain space that using website directly                              
                                 #Case1. website socket test default                            
                                 #websocket.enableTrace(True)
                                 #ws = websocket.WebSocket()
@@ -1489,19 +1488,6 @@ def run():
                                 time.sleep(5)
                                 st.write(f"response from server: {ws.recv()}")                                                                                                                           
                                 ws.close()
-                                """
-
-                                #import websocket 
-                                import asyncio
-                                import websockets
-
-                                async def test():
-                                    async with websockets.connect("wss://toromanow-test2.hf.space/queue/join") as ws:
-                                        await ws.send("hello")
-                                        response = await ws.recv()
-                                        st.write(response)
-
-                                asyncio.get_event_loop().run_until_complete(test())                                    
 
 
                                 #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
