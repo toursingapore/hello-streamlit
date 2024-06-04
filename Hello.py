@@ -1485,7 +1485,9 @@ def run():
                                     tmpfile.write(response.content)
                                     temp_filename_img_path = tmpfile.name
                                 st.write(temp_filename_img_path)
-                                st.image(temp_filename_img_path)
+                                image = Image.open(temp_filename_img_path)
+                                image.show()                                
+                                #st.image(temp_filename_img_path)
 
                                 headers = {
                                     'Content-Type': 'application/json',
