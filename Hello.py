@@ -1482,10 +1482,10 @@ def run():
                                 img_data = requests.get(url, allow_redirects=True).content
 
                                 temp_dir_model = tempfile.mkdtemp()
-                                path_model_2 = os.path.join(temp_dir_model) + ".jpg"
-                                with open(path_model_2, "wb") as f:
+                                temp_filename_img_path = os.path.join(temp_dir_model) + ".jpg"
+                                with open(temp_filename_img_path, "wb") as f:
                                     f.write(img_data)
-                                st.image(path_model_2)
+                                st.image(temp_filename_img_path)
 
                                 headers = {
                                     'Content-Type': 'application/json',
