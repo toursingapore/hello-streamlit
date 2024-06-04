@@ -1651,13 +1651,8 @@ def run():
                                         if line:
                                             st.write(line)
 
-                                            # Define the regular expression pattern to match the URL
-                                            pattern = r'"url":"(.*?)"'
-                                            # Search for the pattern in the data string
-                                            match = re.search(pattern, line)
-                                            # Extract the URL from the match object
-                                            #url = match.group(1)
-                                            st.write(match)
+                                            json_data = json.load(line)
+                                            st.write(json_data)
 
 
                                 _ = """
