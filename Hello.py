@@ -59,6 +59,7 @@ from youtube_transcript_api.formatters import SRTFormatter
 
 import openai
 import httpx 
+import websocket
 
 LOGGER = get_logger(__name__)
 
@@ -1461,8 +1462,8 @@ def run():
                                 st.write(response.json())                                
 
 
-                                #Request1 websocket
-                                import websocket                                
+                                _ = """
+                                #Request1 websocket                                                            
                                 #Case1. website socket test default                            
                                 #websocket.enableTrace(True)
                                 #ws = websocket.WebSocket()
@@ -1518,9 +1519,9 @@ def run():
                                 time.sleep(5)
                                 st.write(f"response from server: {ws.recv()}")             
                                 time.sleep(5)
-                                st.write(f"response from server: {json.loads(ws.recv())}")                                                                                                                           
+                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
                                 ws.close()
-
+                                
 
                                 #Request3
                                 #from gradio_client.utils import encode_url_or_file_to_base64
@@ -1554,9 +1555,88 @@ def run():
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
                                 st.write(response)
                                 st.write(response.json())
+                                """
 
 
 
+
+                                #Request3 get event_id
+                                cookies = {
+                                    '_gid': 'GA1.2.581266382.1717491025',
+                                    '_ga': 'GA1.1.155016585.1717491025',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717491025.1.0.1717491030.0.0.0',
+                                }
+
+                                headers = {
+                                    'authority': 'schirrmacher-ormbg.hf.space',
+                                    'accept': '*/*',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'content-type': 'application/json',
+                                    # 'cookie': '_gid=GA1.2.581266382.1717491025; _ga=GA1.1.155016585.1717491025; _ga_R1FN4KJKJH=GS1.1.1717491025.1.0.1717491030.0.0.0',
+                                    'dnt': '1',
+                                    'origin': 'https://schirrmacher-ormbg.hf.space',
+                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+
+                                params = {
+                                    '__theme': 'light',
+                                }
+
+                                json_data = {
+                                    'data': [
+                                        {
+                                            'path': '/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
+                                            'url': 'https://schirrmacher-ormbg.hf.space/file=/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
+                                            'orig_name': 'hinh.jpg',
+                                            'size': None,
+                                            'mime_type': None,
+                                            'meta': {
+                                                '_type': 'gradio.FileData',
+                                            },
+                                        },
+                                    ],
+                                    'event_data': None,
+                                    'fn_index': 0,
+                                    'trigger_id': 12,
+                                    'session_hash': 'f58zw7qt0zc',
+                                }
+
+                                response = requests.post(
+                                    'https://schirrmacher-ormbg.hf.space/queue/join',
+                                    params=params,
+                                    cookies=cookies,
+                                    headers=headers,
+                                    json=json_data,
+                                )
+                                st.write(response)
+                                st.write(response.json())
+                              
+
+
+                                #Request3 websocket
+                                websocket.enableTrace(True)
+                                ws = websocket.WebSocket()
+                                ws.connect("wss://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
+                                ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")
+                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")             
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
+                                ws.close()
 
 
                                 _ = """
