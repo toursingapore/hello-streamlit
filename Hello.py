@@ -1562,7 +1562,8 @@ def run():
                                 #B1; post request to get event_id
                                 session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
                                 url_image = 'https://img.freepik.com/free-photo/nice-girl-trendy-oversized-sweater-leaned-looking-camera-against-background-cars-with-smile_197531-26006.jpg'
-
+                                st.image(url_image) 
+                                
                                 cookies = {
                                     '_gid': 'GA1.2.581266382.1717491025',
                                     '_ga': 'GA1.1.155016585.1717491025',
@@ -1647,7 +1648,7 @@ def run():
                                     'session_hash': session_hash,
                                 }
 
-                                url_img_process_completed = ''
+                                url_image_process_completed = ''
                                 with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                     for line_EventStream in response.iter_lines(decode_unicode=True):
                                         if line_EventStream:
@@ -1657,9 +1658,9 @@ def run():
                                                 textArr = line_EventStream.split("\"")
                                                 #for text in textArr:
                                                 #    st.write(text)                                                
-                                                url_img_process_completed = '\n'.join(textArr[19])
-                                                #st.write(url_img_process_completed)
-                                st.image(url_img_process_completed)          
+                                                url_image_process_completed = '\n'.join(textArr[19])
+                                                #st.write(url_image_process_completed)
+                                st.image(url_image_process_completed)     
 
 
 
