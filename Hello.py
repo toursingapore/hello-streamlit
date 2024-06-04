@@ -1454,7 +1454,6 @@ def run():
 
                                 json_data = {
                                     'data': [
-                                        'John',
                                         'Alex',
                                     ],
                                 }
