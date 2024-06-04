@@ -1461,8 +1461,8 @@ def run():
                                 st.write(response.json())                                
 
 
-                                import websocket
                                 _ = """
+                                import websocket                                
                                 #Request1 for Subdomain space that using website directly                              
                                 #Case1. website socket test default                            
                                 #websocket.enableTrace(True)
@@ -1492,20 +1492,16 @@ def run():
                                 """
 
                                 #import websocket 
-                                def on_open(wsapp):
-                                    wsapp.send("Hello")
+                                import asyncio
+                                import websockets
 
-                                def on_message(ws, message):
-                                    st.write(message)
-                                    ws.send("Send a ping", websocket.ABNF.OPCODE_PING)
+                                async def test():
+                                    async with websockets.connect("wss://toromanow-test2.hf.space/queue/join") as ws:
+                                        await ws.send("hello")
+                                        response = await ws.recv()
+                                        st.write(response)
 
-                                def on_pong(wsapp, message):
-                                    st.write("Got a pong! No need to respond")
-                                    
-                                websocket.enableTrace(True)
-                                wsapp = websocket.WebSocketApp("ws://echo.websocket.events", on_open=on_open, on_message=on_message, on_pong=on_pong)
-                                wsapp.run_forever()  
-
+                                asyncio.get_event_loop().run_until_complete(test())                                    
 
 
                                 #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
