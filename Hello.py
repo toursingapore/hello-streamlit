@@ -1481,6 +1481,7 @@ def run():
                                 
                                 # Download image data from the URL and place in temp folder
                                 img_data = requests.get(url, allow_redirects=True).content
+                                # Encoded utf-8 image bytes
                                 img_b64encode = base64.b64encode(img_data).decode('utf-8')  
 
                                 temp_dir_model = tempfile.mkdtemp()
@@ -1506,6 +1507,15 @@ def run():
 
 
 
+                                import http.client
+
+                                conn = http.client.HTTPSConnection("postman-echo.com")
+                                payload = ''
+                                headers = {}
+                                conn.request("GET", "/server-events/5", payload, headers)
+                                res = conn.getresponse()
+                                data = res.read()
+                                st.write(data.decode("utf-8"))
 
 
 
