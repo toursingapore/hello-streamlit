@@ -1501,11 +1501,13 @@ def run():
                                     'Sec-WebSocket-Extensions': 'permessage-deflate; client_max_window_bits',
                                 }
 
-                                with response = requests.get(
+                                with requests.get(
                                     'https://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join', 
+                                    params=params, 
                                     #cookies=cookies, 
-                                    headers=headers
-                                )
+                                    headers=headers, 
+                                    stream=True) as response:   
+
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
                                             st.write(line)                                                                     
