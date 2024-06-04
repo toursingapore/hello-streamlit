@@ -1473,14 +1473,16 @@ def run():
                                 st.write(response)
                                 st.write(response.json())     
 
-                                #Request3                           
+                                #Request3
+                                from gradio_client import encode_file_to_base64
+
                                 headers = {
                                     'Content-Type': 'application/json',
                                     "Authorization": "Bearer " + HF_API_TOKEN
                                 }
                                 json_data = {
                                     'data': [
-                                        'https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg',
+                                        encode_file_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
                                     ],
                                 }
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
