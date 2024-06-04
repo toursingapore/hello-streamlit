@@ -1560,6 +1560,9 @@ def run():
 
                                 #Request3; upload image from space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
                                 #B1; post request to get event_id
+                                session_hash = 'f58zw7qt0zc' #random ngẫu nhiên
+                                url_image = 'https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg'
+
                                 cookies = {
                                     '_gid': 'GA1.2.581266382.1717491025',
                                     '_ga': 'GA1.1.155016585.1717491025',
@@ -1593,8 +1596,10 @@ def run():
                                         {
                                             #'path': '/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
                                             #'url': 'https://schirrmacher-ormbg.hf.space/file=/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
-                                            'path': 'https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',                                            
+                                            #'path': 'https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',
+                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',                                            
+                                            'path': url_image,
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file='+url_image,
                                             'orig_name': 'hinh.jpg',
                                             'size': None,
                                             'mime_type': None,
@@ -1606,7 +1611,7 @@ def run():
                                     'event_data': None,
                                     'fn_index': 0,
                                     'trigger_id': 12,
-                                    'session_hash': 'f58zw7qt0zc',
+                                    'session_hash': session_hash,
                                 }
 
                                 response = requests.post(
@@ -1621,15 +1626,10 @@ def run():
                                 event_id = response.json()["event_id"]
                                 st.write(event_id)
 
-                                #B2; get request to read event_id
-                                cookies = {
-                                    '_gid': 'GA1.2.581266382.1717491025',
-                                    '_ga': 'GA1.1.155016585.1717491025',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717491025.1.0.1717491030.0.0.0',
-                                }
+                                #B2; get request and read event-stream
                                 headers = {
                                     'authority': 'schirrmacher-ormbg.hf.space',
-                                    'accept': 'text/event-stream',
+                                    'accept': 'text/event-stream', #event-stream reponse like type websocket
                                     'accept-language': 'en-US,en;q=0.9',
                                     'cache-control': 'no-cache',
                                     # 'cookie': '_gid=GA1.2.581266382.1717491025; _ga=GA1.1.155016585.1717491025; _ga_R1FN4KJKJH=GS1.1.1717491025.1.0.1717491030.0.0.0',
@@ -1644,7 +1644,7 @@ def run():
                                     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                 }
                                 params = {
-                                    'session_hash': 'f58zw7qt0zc',
+                                    'session_hash': session_hash,
                                 }
                                 with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                     for line in response.iter_lines(decode_unicode=True):
