@@ -1516,7 +1516,7 @@ def run():
                                 ws = websocket.WebSocket()
                                 ws.connect("ws://echo.websocket.events")
                                 ws.send("Hello, Server. Nice to meet you")
-                                st.write(ws.recv())                                                                
+                                st.write(f"response from server: {ws.recv()}")                                                              
                                 ws.close()
 
 
