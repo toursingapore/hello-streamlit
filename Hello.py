@@ -1505,23 +1505,34 @@ def run():
                                 st.write(response)
                                 st.write(response.json())
 
-
                                 #Request4; request stream=True and read response event-stream line by line
-                                headers = {
-                                    'Accept': 'text/event-stream'
-                                }
+                                url = "https://schirrmacher-ormbg.hf.space/queue/data?session_hash=bcm66qeo1gb"
 
-                                params = {
-                                    'session_hash': '8j1w6gernck', 
+                                payload = {}
+                                headers = {
+                                'authority': 'schirrmacher-ormbg.hf.space',
+                                'accept': 'text/event-stream',
+                                'accept-language': 'en-US,en;q=0.9',
+                                'cache-control': 'no-cache',
+                                'cookie': '_gid=GA1.2.978356395.1717473012',
+                                'dnt': '1',
+                                'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
+                                'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                'sec-ch-ua-mobile': '?0',
+                                'sec-ch-ua-platform': '"Windows"',
+                                'sec-fetch-dest': 'empty',
+                                'sec-fetch-mode': 'cors',
+                                'sec-fetch-site': 'same-origin',
+                                'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42'
                                 }
-                                
-                                with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, headers=headers, stream=True) as response:
+                                with requests.request("GET", url, headers=headers, data=payload) as response:
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
-                                            st.write(line)                                
+                                            st.write(line)
+                                            if 'process_completed' in line:
+                                                print('Found process_completed!')                                                                           
                                     st.write(response)
-
-
+                                    st.write(response.text)
 
 
 
