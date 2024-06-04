@@ -1651,14 +1651,14 @@ def run():
                                 with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                     for line_EventStream in response.iter_lines(decode_unicode=True):
                                         if line_EventStream:
-                                            #st.write(line_EventStream)
+                                            st.write(line_EventStream)
                                             if 'process_completed' in line_EventStream:
                                                 #st.write('Found process_completed!')                                          
                                                 textArr = line_EventStream.split("\"")
                                                 #for text in textArr:
-                                                #    st.write(text)
-                                                #st.write(textArr[19])
+                                                #    st.write(text)                                                
                                                 url_img_process_completed = '\n'.join(textArr[19])
+                                                #st.write(url_img_process_completed)
                                 st.image(url_img_process_completed)          
 
 
