@@ -1520,8 +1520,8 @@ def run():
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
                                             st.write(line)
-                                            if 'process_completed' in line:
-                                                st.write('Found process_completed!')                                                                           
+                                            if 'success' in line:
+                                                st.write('Found success!')                                                                           
                                     st.write(response)
                                     st.write(response.text)
 
