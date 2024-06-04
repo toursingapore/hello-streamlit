@@ -1473,41 +1473,19 @@ def run():
                                 st.write(response)
                                 st.write(response.json())     
 
-
-
-
                                 #Request3
-                                cookies = {
-                                    '_gid': 'GA1.2.737443915.1717466946',
-                                    'ajs_anonymous_id': 'd70bcee0-e68c-4596-b522-0e2f4cf89838',
-                                    'SL_G_WPT_TO': 'en',
-                                    'SL_GWPT_Show_Hide_tmp': '1',
-                                    'SL_wptGlobTipTmp': '1',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717466945.1.1.1717472125.0.0.0',
-                                    '_ga': 'GA1.1.936910561.1717466946',
-                                }
+                                from gradio_client import Client, file
 
                                 headers = {
-                                    'Pragma': 'no-cache',
-                                    'Origin': 'https://amitontheweb-instaoffyzfreeparaphraser.hf.space',
-                                    'Accept-Language': 'en-US,en;q=0.9',
-                                    'Sec-WebSocket-Key': 'qOljF9PnsB37Z9JqAuLftw==',
-                                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                    'Upgrade': 'websocket',
-                                    'Cache-Control': 'no-cache',
-                                    # 'Cookie': '_gid=GA1.2.737443915.1717466946; ajs_anonymous_id=d70bcee0-e68c-4596-b522-0e2f4cf89838; SL_G_WPT_TO=en; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1; _ga_R1FN4KJKJH=GS1.1.1717466945.1.1.1717472125.0.0.0; _ga=GA1.1.936910561.1717466946',
-                                    'Connection': 'Upgrade',
-                                    'Sec-WebSocket-Version': '13',
-                                    'Sec-WebSocket-Extensions': 'permessage-deflate; client_max_window_bits',
+                                    'Content-Type': 'application/json',
                                 }
-
-                                with requests.get('http://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join', cookies=cookies, headers=headers) as response:
-                                    for line in response.iter_lines(decode_unicode=True):
-                                        if line:
-                                            st.write(line)                                                                     
-                                st.write(response.status)
-                                st.write(response.text)
-                                #st.write(response.json())
+                                json_data = {
+                                    #'data': ['hello world',],
+                                    'image': [file('https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png'),],                            
+                                }
+                                response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
+                                st.write(response)
+                                st.write(response.json())
 
 
 
