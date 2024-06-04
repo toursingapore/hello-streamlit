@@ -1474,7 +1474,7 @@ def run():
                                 st.write(response.json())     
 
                                 #Request3
-                                from gradio_client import encode_file_to_base64
+                                from gradio_client.utils import encode_file_to_base64
 
                                 headers = {
                                     'Content-Type': 'application/json',
