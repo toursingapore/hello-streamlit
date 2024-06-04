@@ -1473,9 +1473,10 @@ def run():
                                 st.write(response)
                                 st.write(response.json())     
 
-                                #Request3
+                                #Request3                           
                                 headers = {
                                     'Content-Type': 'application/json',
+                                    "Authorization": "Bearer " + HF_API_TOKEN
                                 }
                                 json_data = {
                                     'data': [
