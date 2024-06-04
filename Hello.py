@@ -1447,7 +1447,7 @@ def run():
                                 #st.image(path_garment)
 
                                 #space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
-                                #space test - https://toromanow-test2.hf.space/ - HD https://stackoverflow.com/questions/76223210/huggingface-expected-input-format
+                                #Request1 for Subdomain space - https://toromanow-test2.hf.space/ - HD https://stackoverflow.com/questions/76223210/huggingface-expected-input-format
                                 headers = {
                                     'Content-Type': 'application/json',
                                 }
@@ -1460,7 +1460,7 @@ def run():
                                 st.write(response)
                                 st.write(response.json())                                
 
-                                #space test - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source; https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
+                                #Request2 for Subdomain space - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
                                 headers = {
                                     'Content-Type': 'application/json',
                                 }
@@ -1477,6 +1477,40 @@ def run():
 
 
 
+                                cookies = {
+                                    '_gid': 'GA1.2.737443915.1717466946',
+                                    'ajs_anonymous_id': 'd70bcee0-e68c-4596-b522-0e2f4cf89838',
+                                    'SL_G_WPT_TO': 'en',
+                                    'SL_GWPT_Show_Hide_tmp': '1',
+                                    'SL_wptGlobTipTmp': '1',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717466945.1.1.1717472125.0.0.0',
+                                    '_ga': 'GA1.1.936910561.1717466946',
+                                }
+
+                                headers = {
+                                    'Pragma': 'no-cache',
+                                    'Origin': 'https://amitontheweb-instaoffyzfreeparaphraser.hf.space',
+                                    'Accept-Language': 'en-US,en;q=0.9',
+                                    'Sec-WebSocket-Key': 'qOljF9PnsB37Z9JqAuLftw==',
+                                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                    'Upgrade': 'websocket',
+                                    'Cache-Control': 'no-cache',
+                                    # 'Cookie': '_gid=GA1.2.737443915.1717466946; ajs_anonymous_id=d70bcee0-e68c-4596-b522-0e2f4cf89838; SL_G_WPT_TO=en; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1; _ga_R1FN4KJKJH=GS1.1.1717466945.1.1.1717472125.0.0.0; _ga=GA1.1.936910561.1717466946',
+                                    'Connection': 'Upgrade',
+                                    'Sec-WebSocket-Version': '13',
+                                    'Sec-WebSocket-Extensions': 'permessage-deflate; client_max_window_bits',
+                                }
+
+                                response = requests.get(
+                                    'https://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join', 
+                                    cookies=cookies, 
+                                    headers=headers
+                                )
+                                for line in response.iter_lines(decode_unicode=True):
+                                    if line:
+                                        st.write(line)                                                                     
+                                st.write(response)
+                                st.write(response.json())
 
 
 
