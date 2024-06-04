@@ -1494,7 +1494,7 @@ def run():
                                 json_data = {
                                     'data': [
                                         #encode_url_or_file_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
-                                        'image', encode_url_or_file_to_base64(temp_filename_img_path),
+                                        'media', encode_url_or_file_to_base64(temp_filename_img_path),
                                     ],
                                 }
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
