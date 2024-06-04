@@ -1518,7 +1518,7 @@ def run():
                                 time.sleep(5)
                                 st.write(f"response from server: {ws.recv()}")             
                                 time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
+                                st.write(f"response from server: {json.load(ws.recv())}")                                                                                                                           
                                 ws.close()
 
 
