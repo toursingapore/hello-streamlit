@@ -1513,11 +1513,8 @@ def run():
                                 payload = ''
                                 headers = {
                                     'Content-Type': 'application/json',
-                                }
-                                params = {
-                                    'session_hash': 'bcm66qeo1ga',
-                                }                                
-                                conn.request("GET", "/queue/data", params, payload, headers)
+                                }                            
+                                conn.request("GET", "queue/data?session_hash=bcm66qeo1ga", payload, headers)
                                 res = conn.getresponse()
                                 data = res.read()
                                 st.write(data.decode("utf-8"))
