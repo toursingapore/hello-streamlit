@@ -1526,7 +1526,7 @@ def run():
                                 ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text
                                 st.write(f"response from server: {ws.recv()}")
                                 time.sleep(5)
-                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":null,"session_hash":"4ajikro1ekg"}))
+                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
                                 st.write(f"response from server: {ws.recv()}")                                  
                                 ws.close()
 
