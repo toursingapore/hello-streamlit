@@ -1652,8 +1652,14 @@ def run():
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
                                             st.write(line)
-                                        EventStream = '\n'.join(line)
-                                st.write(EventStream)          
+                                            #EventStream = '\n'.join(line)
+
+                                            if 'process_completed' in line:
+                                                st.write('Found process_completed!')                                          
+                                                fruits = line.split("\"")
+                                                for x in fruits:
+                                                    st.write(x)
+                                                       
 
 
 
