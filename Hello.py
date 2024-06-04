@@ -1529,7 +1529,7 @@ def run():
 
                                 from websocket import create_connection
 
-                                ws = create_connection("ws://echo.websocket.events/")
+                                ws = create_connection("ws://echo.websocket.org/")
                                 st.write(ws.recv())
                                 st.write("Sending 'Hello, World'...")
                                 ws.send("Hello, World")
