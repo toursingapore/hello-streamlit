@@ -1451,16 +1451,38 @@ def run():
                                 headers = {
                                     'Content-Type': 'application/json',
                                 }
-
                                 json_data = {
                                     'data': [
                                         'Alex',
                                     ],
                                 }
-
                                 response = requests.post('https://toromanow-test2.hf.space/api/predict', headers=headers, json=json_data)
                                 st.write(response)
                                 st.write(response.json())                                
+
+                                #space test - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source; https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
+                                headers = {
+                                    'Content-Type': 'application/json',
+                                }
+                                json_data = {
+                                    'data': [
+                                        'hello world',
+                                    ],
+                                }
+                                response = requests.post('https://amitontheweb-instaoffyzfreeparaphraser.hf.space/api/predict', headers=headers, json=json_data)
+                                st.write(response)
+                                st.write(response.json())     
+
+
+
+
+
+
+
+
+
+
+
 
 
                                 _ = """
