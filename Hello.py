@@ -1481,8 +1481,8 @@ def run():
                                 
                                 # Download image data from the URL and place in temp folder
                                 img_data = requests.get(url, allow_redirects=True).content
-                                img_b64encode = base64.b64encode(img_data)   
-                                                          
+                                img_b64encode = base64.b64encode(img_data).decode('utf-8')  
+
                                 temp_dir_model = tempfile.mkdtemp()
                                 temp_filename_img_path = os.path.join(temp_dir_model) + ".jpg"
                                 with open(temp_filename_img_path, "wb") as f:
