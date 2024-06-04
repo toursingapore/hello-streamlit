@@ -1483,7 +1483,7 @@ def run():
 
                                 temp_dir_model = tempfile.mkdtemp()
                                 path_model_2 = os.path.join(temp_dir_model)
-                                with open(path_model_2, "wb") as f:
+                                with open(f"{path_model_2}.jpg", "wb") as f:
                                     f.write(img_data)
                                 st.image(path_model_2)
 
