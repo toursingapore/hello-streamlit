@@ -1503,7 +1503,7 @@ def run():
 
                                 with requests.get(
                                     'https://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join', 
-                                    params=params, 
+                                    #params=params, 
                                     #cookies=cookies, 
                                     headers=headers, 
                                     stream=True) as response:   
