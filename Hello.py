@@ -1474,13 +1474,15 @@ def run():
                                 st.write(response.json())     
 
                                 #Request3
-                                from gradio_client.utils import encode_url_or_file_to_base64
+                                #from gradio_client.utils import encode_url_or_file_to_base64
                                 #Nhiều method sẵn tại đây - https://github.com/gradio-app/gradio/blob/main/client/python/gradio_client/utils.py                               
 
                                 url = "https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg"                            
                                 
                                 # Download image data from the URL and place in temp folder
                                 img_data = requests.get(url, allow_redirects=True).content
+                                img_b64encode = base64.b64encode(img_data)   
+                                                          
                                 temp_dir_model = tempfile.mkdtemp()
                                 temp_filename_img_path = os.path.join(temp_dir_model) + ".jpg"
                                 with open(temp_filename_img_path, "wb") as f:
@@ -1494,7 +1496,8 @@ def run():
                                 json_data = {
                                     'data': [
                                         #encode_url_or_file_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
-                                        'media', encode_url_or_file_to_base64(temp_filename_img_path),
+                                        #'media', encode_url_or_file_to_base64(temp_filename_img_path),
+                                        img_b64encode,
                                     ],
                                 }
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
