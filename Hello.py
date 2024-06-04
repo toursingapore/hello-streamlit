@@ -1528,7 +1528,11 @@ def run():
                                 st.write(f"response from server: {ws.recv()}")
                                 ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
                                 time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")                               
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")                                                                                               
                                 ws.close()
 
 
