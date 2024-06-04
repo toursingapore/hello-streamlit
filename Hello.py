@@ -1482,8 +1482,8 @@ def run():
                                 img_data = requests.get(url, allow_redirects=True).content
 
                                 temp_dir_model = tempfile.mkdtemp()
-                                path_model_2 = os.path.join(temp_dir_model)
-                                with open(f"{path_model_2}.jpg", "wb") as f:
+                                path_model_2 = os.path.join(temp_dir_model) + ".jpg"
+                                with open(path_model_2, "wb") as f:
                                     f.write(img_data)
                                 st.image(path_model_2)
 
