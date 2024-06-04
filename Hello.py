@@ -1523,11 +1523,16 @@ def run():
                                 websocket.enableTrace(True)
                                 ws = websocket.WebSocket()
                                 ws.connect("wss://toromanow-test2.hf.space/queue/join")
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(1)
                                 ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text
+                                time.sleep(1)
+                                st.write(f"response from server: {ws.recv()}")
+                                time.sleep(1)
+                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
                                 st.write(f"response from server: {ws.recv()}")
                                 time.sleep(5)
-                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
-                                st.write(f"response from server: {ws.recv()}")                                  
+                                st.write(f"response from server: {ws.recv()}")                                                              
                                 ws.close()
 
 
