@@ -1656,9 +1656,10 @@ def run():
 
                                             if 'process_completed' in line:
                                                 st.write('Found process_completed!')                                          
-                                                fruits = line.split("\"")
-                                                for x in fruits:
-                                                    st.write(x)
+                                                textArr = line.split("\"")
+                                                #for text in textArr:
+                                                #    st.write(text)
+                                                st.write(textArr[15])
                                                        
 
 
