@@ -1506,18 +1506,20 @@ def run():
                                 st.write(response.json())
 
 
-
-                                import http.client
-
-                                conn = http.client.HTTPSConnection("schirrmacher-ormbg.hf.space")
-                                payload = ''
+                                #Request4; request stream=True and read response event-stream line by line
                                 headers = {
-                                    'Content-Type': 'application/json',
-                                }                            
-                                conn.request("GET", "queue/data?session_hash=bcm66qeo1gj", payload, headers)
-                                res = conn.getresponse()
-                                data = res.read()
-                                st.write(data.decode("utf-8"))
+                                    'Accept': 'text/event-stream'
+                                }
+
+                                params = {
+                                    'session_hash': '8j1w6gernck', 
+                                }
+                                
+                                with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, headers=headers, stream=True) as response:
+                                    for line in response.iter_lines(decode_unicode=True):
+                                        if line:
+                                            st.write(line)                                
+                                    st.write(response)
 
 
 
