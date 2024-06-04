@@ -1349,7 +1349,7 @@ def run():
             return_command_line = os.popen(user_input).read()
             st.write(return_command_line)
             for line in return_command_line:
-                print(line.strip())            
+                st.write(line.strip())            
 
     st.divider()
 
@@ -1527,6 +1527,17 @@ def run():
 
 
 
+                                from websocket import create_connection
+
+                                ws = create_connection("ws://echo.websocket.events/")
+                                st.write(ws.recv())
+                                st.write("Sending 'Hello, World'...")
+                                ws.send("Hello, World")
+                                st.write("Sent")
+                                st.write("Receiving...")
+                                result =  ws.recv()
+                                st.write("Received '%s'" % result)
+                                ws.close()
 
 
                                 _ = """
