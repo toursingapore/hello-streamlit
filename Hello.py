@@ -1650,13 +1650,14 @@ def run():
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
                                             st.write(line)
-                                            # Use a regular expression to match the URL
-                                            pattern = r"https?:\/\/[^\s]+"
-                                            matches = re.findall(pattern, line)
 
-                                            # Print the extracted URLs
-                                            for match in matches:
-                                                st.write(match)
+                                            # Define the regular expression pattern to match the URL
+                                            pattern = r'"url":"(.*?)"'
+                                            # Search for the pattern in the data string
+                                            match = re.search(pattern, line)
+                                            # Extract the URL from the match object
+                                            url = match.group(1)
+                                            st.write(url)
 
 
                                 _ = """
