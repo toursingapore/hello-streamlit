@@ -1650,9 +1650,10 @@ def run():
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
                                             st.write(line)
+                                            
+                                            #check data type with type() method
+                                            st.write(type(line))
 
-                                            json_data = json.load(line)
-                                            st.write(json_data)
 
 
                                 _ = """
