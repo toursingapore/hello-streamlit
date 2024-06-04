@@ -1623,8 +1623,8 @@ def run():
                                 )
                                 st.write(response)
                                 st.write(response.json())
-                                event_id = response.json()["event_id"]
-                                st.write(event_id)
+                                #event_id = response.json()["event_id"]
+                                #st.write(event_id)
 
                                 #B2; get request and read event-stream
                                 headers = {
@@ -1649,10 +1649,14 @@ def run():
                                 with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
-                                            st.write(line)                                
+                                            st.write(line)
+                                            # Use a regular expression to match the URL
+                                            pattern = r"https?:\/\/[^\s]+"
+                                            matches = re.findall(pattern, line)
 
-
-
+                                            # Print the extracted URLs
+                                            for match in matches:
+                                                st.write(match)
 
 
                                 _ = """
