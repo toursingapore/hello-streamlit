@@ -1476,7 +1476,7 @@ def run():
 
 
 
-
+                                #Request3
                                 cookies = {
                                     '_gid': 'GA1.2.737443915.1717466946',
                                     'ajs_anonymous_id': 'd70bcee0-e68c-4596-b522-0e2f4cf89838',
@@ -1503,7 +1503,7 @@ def run():
 
                                 response = requests.get(
                                     'https://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join', 
-                                    cookies=cookies, 
+                                    #cookies=cookies, 
                                     headers=headers
                                 )
                                 for line in response.iter_lines(decode_unicode=True):
