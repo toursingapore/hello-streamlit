@@ -1461,8 +1461,9 @@ def run():
                                 st.write(response.json())                                
 
 
-                                #Request1 for Subdomain space that using website directly
-                                import websocket                                
+                                import websocket
+                                _ = """
+                                #Request1 for Subdomain space that using website directly                              
                                 #Case1. website socket test default                            
                                 #websocket.enableTrace(True)
                                 #ws = websocket.WebSocket()
@@ -1488,6 +1489,23 @@ def run():
                                 time.sleep(5)
                                 st.write(f"response from server: {ws.recv()}")                                                                                                                           
                                 ws.close()
+                                """
+
+                                #import websocket
+                                def on_open(wsapp):
+                                    wsapp.send("Hello")
+
+                                def on_message(ws, message):
+                                    st.write(message)
+                                    ws.send("Send a ping", websocket.ABNF.OPCODE_PING)
+
+                                def on_pong(wsapp, message):
+                                    st.write("Got a pong! No need to respond")
+                                    
+                                websocket.enableTrace(True)
+                                wsapp = websocket.WebSocketApp("ws://echo.websocket.events", on_open=on_open, on_message=on_message, on_pong=on_pong)
+                                wsapp.run_forever()  
+
 
 
                                 #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
