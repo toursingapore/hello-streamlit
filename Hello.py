@@ -1489,7 +1489,7 @@ def run():
 
                                 headers = {
                                     'Content-Type': 'application/json',
-                                    "Authorization": "Bearer " + HF_API_TOKEN
+                                    #"Authorization": "Bearer " + HF_API_TOKEN
                                 }
                                 json_data = {
                                     'data': [
