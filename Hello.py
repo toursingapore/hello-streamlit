@@ -1560,7 +1560,7 @@ def run():
 
                                 #Request3; upload image from space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
                                 #B1; post request to get event_id
-                                session_hash = 'f58zw7qt0zd' #random ngẫu nhiên
+                                session_hash = 'f58zw7qt0zd' #random 11 ký tự ngẫu nhiên
                                 url_image = 'https://img.freepik.com/free-photo/nice-girl-trendy-oversized-sweater-leaned-looking-camera-against-background-cars-with-smile_197531-26006.jpg'
 
                                 cookies = {
