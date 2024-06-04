@@ -1479,12 +1479,11 @@ def run():
 
                                 url = "https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg"                            
                                 headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
-                                response = requests.get(url, headers=headers, allow_redirects=True)
-                                if response.status_code == 200:                                    
-                                    # Save the downloaded image to a temporary file
-                                    with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
-                                        tmpfile.write(response.content)
-                                        temp_filename_img_path = tmpfile.name
+                                response = requests.get(url, headers=headers, allow_redirects=True)                              
+                                # Save the downloaded image to a temporary file
+                                with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
+                                    tmpfile.write(response.content)
+                                    temp_filename_img_path = tmpfile.name
                                 st.write(temp_filename_img_path)
                                 st.image(temp_filename_img_path)
 
