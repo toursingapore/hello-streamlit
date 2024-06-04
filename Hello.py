@@ -1478,7 +1478,7 @@ def run():
                                 #Nhiều method sẵn tại đây - https://github.com/gradio-app/gradio/blob/main/client/python/gradio_client/utils.py                               
 
                                 url = "https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg"                            
-                                # Fetch the image data from the URL
+                                # Fetch the image data from the URL 
                                 img_data = requests.get(url, allow_redirects=True).content
 
                                 temp_dir_model = tempfile.mkdtemp()
