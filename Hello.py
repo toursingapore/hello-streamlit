@@ -1503,6 +1503,24 @@ def run():
                                 st.write(response)
                                 st.write(response.json())     
 
+                                #Request2 websocket
+                                websocket.enableTrace(True)
+                                ws = websocket.WebSocket()
+                                ws.connect("wss://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
+                                ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")
+                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")             
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
+                                ws.close()
+
 
                                 #Request3
                                 #from gradio_client.utils import encode_url_or_file_to_base64
