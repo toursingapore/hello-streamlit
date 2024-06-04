@@ -1485,6 +1485,7 @@ def run():
                                 }
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
                                 st.write(response)
+                                st.write(response.text)
                                 st.write(response.json())
 
 
