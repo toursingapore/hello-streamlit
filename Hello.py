@@ -1619,13 +1619,48 @@ def run():
                                 st.write(response.json())
                                 event_id = response.json()["event_id"]
                                 st.write(event_id)
-                              
+
+
+
+
+                                cookies = {
+                                    '_gid': 'GA1.2.581266382.1717491025',
+                                    '_ga': 'GA1.1.155016585.1717491025',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717491025.1.0.1717491030.0.0.0',
+                                }
+
+                                headers = {
+                                    'authority': 'schirrmacher-ormbg.hf.space',
+                                    'accept': 'text/event-stream',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'cache-control': 'no-cache',
+                                    # 'cookie': '_gid=GA1.2.581266382.1717491025; _ga=GA1.1.155016585.1717491025; _ga_R1FN4KJKJH=GS1.1.1717491025.1.0.1717491030.0.0.0',
+                                    'dnt': '1',
+                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+
+                                params = {
+                                    'session_hash': 'f58zw7qt0zc',
+                                }
+
+                                with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                    for line in response.iter_lines(decode_unicode=True):
+                                        if line:
+                                            st.write(line)                                
+                                    st.write(response)
 
 
                                 #Request3 websocket
                                 websocket.enableTrace(True)
                                 ws = websocket.WebSocket()
-                                ws.connect("https://schirrmacher-ormbg.hf.space/queue/joi") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
+                                ws.connect("wss://schirrmacher-ormbg.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
                                 #ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
                                 #time.sleep(5)
                                 st.write(f"response from server: {ws.recv()}")
