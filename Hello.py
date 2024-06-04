@@ -1477,16 +1477,11 @@ def run():
                                 headers = {
                                     'Content-Type': 'application/json',
                                 }
-                                #json_data = {
-                                    #'data': ['hello world',],
-                                    #'image': 'https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg',                            
-                                #}
                                 json_data = {
                                     'data': [
                                         'image','https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg',
                                     ],
                                 }
-
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
                                 st.write(response)
                                 st.write(response.json())
