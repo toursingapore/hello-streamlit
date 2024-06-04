@@ -1661,7 +1661,8 @@ def run():
                                                 #    st.write(text)
                                                 #st.write(textArr[19])
                                                 EventStream = '\n'.join(textArr[19])
-                                st.write(EventStream)                       
+                                st.write(EventStream)
+                                st.image(EventStream)              
 
 
 
