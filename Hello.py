@@ -1475,7 +1475,18 @@ def run():
 
                                 #Request3
                                 from gradio_client.utils import encode_url_or_file_to_base64
-                                #Nhiều method sẵn tại đây - https://github.com/gradio-app/gradio/blob/main/client/python/gradio_client/utils.py
+                                #Nhiều method sẵn tại đây - https://github.com/gradio-app/gradio/blob/main/client/python/gradio_client/utils.py                               
+
+                                url = "https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg"                            
+                                headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
+                                response = requests.get(url, headers=headers, allow_redirects=True)
+                                if response.status_code == 200:                                    
+                                    # Save the downloaded image to a temporary file
+                                    with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmpfile:
+                                        tmpfile.write(response.content)
+                                        temp_filename_img_path = tmpfile.name
+                                st.write(temp_filename_img_path)
+                                st.image(temp_filename_img_path)
 
                                 headers = {
                                     'Content-Type': 'application/json',
@@ -1483,7 +1494,8 @@ def run():
                                 }
                                 json_data = {
                                     'data': [
-                                        encode_url_or_file_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
+                                        #encode_url_or_file_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
+                                        encode_url_or_file_to_base64(temp_filename_img_path),
                                     ],
                                 }
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
