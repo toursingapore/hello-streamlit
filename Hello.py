@@ -1655,12 +1655,12 @@ def run():
                                             #EventStream = '\n'.join(line)
 
                                             if 'process_completed' in line:
-                                                st.write('Found process_completed!')                                          
+                                                #st.write('Found process_completed!')                                          
                                                 textArr = line.split("\"")
                                                 #for text in textArr:
                                                 #    st.write(text)
-                                                #st.write(textArr[17])
-                                                EventStream = '\n'.join(textArr[17])
+                                                #st.write(textArr[18])
+                                                EventStream = '\n'.join(textArr[18])
                                 st.write(EventStream)                       
 
 
