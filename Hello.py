@@ -1509,10 +1509,15 @@ def run():
 
                                 import http.client
 
-                                conn = http.client.HTTPSConnection("postman-echo.com")
+                                conn = http.client.HTTPSConnection("schirrmacher-ormbg.hf.space")
                                 payload = ''
-                                headers = {}
-                                conn.request("GET", "/server-events/5", payload, headers)
+                                headers = {
+                                    'Content-Type': 'application/json',
+                                }
+                                params = {
+                                    'session_hash': 'bcm66qeo1ga',
+                                }                                
+                                conn.request("GET", "/queue/data", params, payload, headers)
                                 res = conn.getresponse()
                                 data = res.read()
                                 st.write(data.decode("utf-8"))
