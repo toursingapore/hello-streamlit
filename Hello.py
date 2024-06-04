@@ -1569,7 +1569,6 @@ def run():
                                     '_ga': 'GA1.1.155016585.1717491025',
                                     '_ga_R1FN4KJKJH': 'GS1.1.1717491025.1.0.1717491030.0.0.0',
                                 }
-
                                 headers = {
                                     'authority': 'schirrmacher-ormbg.hf.space',
                                     'accept': '*/*',
@@ -1587,11 +1586,9 @@ def run():
                                     'sec-fetch-site': 'same-origin',
                                     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                 }
-
                                 params = {
                                     '__theme': 'light',
                                 }
-
                                 json_data = {
                                     'data': [
                                         {
