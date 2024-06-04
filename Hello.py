@@ -1560,7 +1560,8 @@ def run():
 
 
 
-                                #Request3 get event_id
+                                #Request3
+                                #B1; post request to get event_id
                                 cookies = {
                                     '_gid': 'GA1.2.581266382.1717491025',
                                     '_ga': 'GA1.1.155016585.1717491025',
@@ -1620,9 +1621,7 @@ def run():
                                 event_id = response.json()["event_id"]
                                 st.write(event_id)
 
-
-
-
+                                #B2; get request to read event-stream that show like socket message
                                 cookies = {
                                     '_gid': 'GA1.2.581266382.1717491025',
                                     '_ga': 'GA1.1.155016585.1717491025',
@@ -1646,34 +1645,14 @@ def run():
                                     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                 }
 
-                                params = {
-                                    'session_hash': 'f58zw7qt0zc',
-                                }
-
                                 with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
-                                    for line in response.iter_lines(decode_unicode=True):
-                                        if line:
-                                            st.write(line)                                
+                                    #for line in response.iter_lines(decode_unicode=True):
+                                    #    if line:
+                                    #        st.write(line)                                
                                     st.write(response)
 
 
-                                #Request3 websocket
-                                websocket.enableTrace(True)
-                                ws = websocket.WebSocket()
-                                ws.connect("wss://schirrmacher-ormbg.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
-                                #ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
-                                #time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")
-                                #ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
-                                #time.sleep(5)
-                                #st.write(f"response from server: {ws.recv()}") 
-                                #time.sleep(5)
-                                #st.write(f"response from server: {ws.recv()}") 
-                                #time.sleep(5)
-                                #st.write(f"response from server: {ws.recv()}")             
-                                #time.sleep(5)
-                                #st.write(f"response from server: {ws.recv()}")                                                                                                                           
-                                ws.close()
+
 
 
                                 _ = """
