@@ -1460,7 +1460,8 @@ def run():
                                 st.write(response)
                                 st.write(response.json())                                
 
-                                #Request2 for Subdomain space - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
+
+                                #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
                                 headers = {
                                     'Content-Type': 'application/json',
                                 }
@@ -1472,6 +1473,7 @@ def run():
                                 response = requests.post('https://amitontheweb-instaoffyzfreeparaphraser.hf.space/api/predict', headers=headers, json=json_data)
                                 st.write(response)
                                 st.write(response.json())     
+
 
                                 #Request3
                                 #from gradio_client.utils import encode_url_or_file_to_base64
@@ -1498,7 +1500,8 @@ def run():
                                     'data': [
                                         #encode_url_or_file_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
                                         #encode_url_or_file_to_base64(temp_filename_img_path),
-                                        img_b64encode,
+                                        #img_b64encode,
+                                        0,
                                     ],
                                 }
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/run/predict', headers=headers, json=json_data)
