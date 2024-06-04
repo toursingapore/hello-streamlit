@@ -1646,10 +1646,10 @@ def run():
                                 }
 
                                 with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
-                                    #for line in response.iter_lines(decode_unicode=True):
-                                    #    if line:
-                                    #        st.write(line)                                
-                                    st.write(response)
+                                    for line in response.iter_lines(decode_unicode=True):
+                                        if line:
+                                            st.write(line + '\n')                                
+                                    #st.write(response)
 
 
 
