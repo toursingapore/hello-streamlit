@@ -1646,11 +1646,14 @@ def run():
                                 params = {
                                     'session_hash': session_hash,
                                 }
+
+                                EventStream = ''
                                 with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
                                             st.write(line)
-                                            
+                                            EventStream = ''.join(line)
+                                st.write(EventStream)          
 
 
 
