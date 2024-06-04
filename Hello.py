@@ -1514,13 +1514,19 @@ def run():
                                 import websocket
                                 websocket.enableTrace(True)
                                 ws = websocket.WebSocket()
-                                #ws.connect("ws://echo.websocket.events")
-                                #ws.send("Hello, Server")
-                                #st.write(ws.recv())                                
-                                ws.connect("wss://toromanow-test2.hf.space/queue/join")
-                                ws.send({"fn_index":0,"session_hash":"4ajikro1ekg"})
-                                st.write(ws.recv())                                   
+                                ws.connect("ws://echo.websocket.events")
+                                ws.send("Hello, Server. Nice to meet you")
+                                st.write(ws.recv())                                                                
                                 ws.close()
+
+
+                                websocket.enableTrace(True)
+                                ws = websocket.WebSocket()
+                                ws.connect("wss://toromanow-test2.hf.space/queue/join")
+                                ws.send(json.dumps({ "fn_index": 0, "session_hash": "4ajikro1ekg" }))
+                                st.write(ws.recv())   
+                                ws.close()
+
 
 
                                 _ = """
