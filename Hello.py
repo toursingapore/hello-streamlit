@@ -1447,7 +1447,7 @@ def run():
                                 #    f.write(user_input_garment.getvalue())
                                 #st.image(path_garment)
 
-                                #space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
+
                                 #Request1 for Subdomain space - https://toromanow-test2.hf.space/ - HD https://stackoverflow.com/questions/76223210/huggingface-expected-input-format
                                 headers = {
                                     'Content-Type': 'application/json',
@@ -1558,9 +1558,7 @@ def run():
                                 """
 
 
-
-
-                                #Request3
+                                #Request3; upload image from space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
                                 #B1; post request to get event_id
                                 cookies = {
                                     '_gid': 'GA1.2.581266382.1717491025',
@@ -1593,8 +1591,10 @@ def run():
                                 json_data = {
                                     'data': [
                                         {
-                                            'path': '/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
-                                            'url': 'https://schirrmacher-ormbg.hf.space/file=/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
+                                            #'path': '/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
+                                            #'url': 'https://schirrmacher-ormbg.hf.space/file=/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
+                                            'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',                                            
                                             'orig_name': 'hinh.jpg',
                                             'size': None,
                                             'mime_type': None,
@@ -1621,15 +1621,12 @@ def run():
                                 event_id = response.json()["event_id"]
                                 st.write(event_id)
 
-
-
                                 #B2; get request to read event_id
                                 cookies = {
                                     '_gid': 'GA1.2.581266382.1717491025',
                                     '_ga': 'GA1.1.155016585.1717491025',
                                     '_ga_R1FN4KJKJH': 'GS1.1.1717491025.1.0.1717491030.0.0.0',
                                 }
-
                                 headers = {
                                     'authority': 'schirrmacher-ormbg.hf.space',
                                     'accept': 'text/event-stream',
@@ -1646,11 +1643,9 @@ def run():
                                     'sec-fetch-site': 'same-origin',
                                     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                 }
-
                                 params = {
                                     'session_hash': 'f58zw7qt0zc',
                                 }
-
                                 with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                     for line in response.iter_lines(decode_unicode=True):
                                         if line:
