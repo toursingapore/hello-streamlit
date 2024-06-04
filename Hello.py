@@ -1656,8 +1656,8 @@ def run():
                                             # Search for the pattern in the data string
                                             match = re.search(pattern, line)
                                             # Extract the URL from the match object
-                                            url = match.group(1)
-                                            st.write(url)
+                                            #url = match.group(1)
+                                            st.write(match)
 
 
                                 _ = """
