@@ -1593,7 +1593,7 @@ def run():
                                         {
                                             #'path': '/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
                                             #'url': 'https://schirrmacher-ormbg.hf.space/file=/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
-                                            #'path': 'https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',
+                                            'path': 'https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',
                                             'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',                                            
                                             'orig_name': 'hinh.jpg',
                                             'size': None,
