@@ -1576,19 +1576,12 @@ def run():
                                     #size = (1080, 1080)
                                     #size = im.size
 
-                                    w, h = im.size[0], im.size[1]
-                                    filepath = "image.jpg"
-                                    url = url_image_process_completed
-
-                                    r = requests.get(url, stream=True)
-                                    if r.status_code == 200:
-                                        img = Image.open(io.BytesIO(r.content))
-                                        
-                                        # Do something with image                                       
-                                        # Save image to file
-                                        img.save(filepath)
-
-                                    st.image(filepath, caption="Processed image", use_column_width="auto", output_format="JPEG")   
+                                    response = requests.get(url_image_process_completed)
+                                    if response.status_code == 200:
+                                        with open("url_image_process_completed.jpg", 'wb') as f:
+                                            f.write(response.content)
+                                    image_resized = img.resize(im.size, Image.Resampling.LANCZOS)
+                                    st.image(image_resized, caption="Processed image", use_column_width="auto", output_format="JPEG")   
 
 
                                     _ = """
