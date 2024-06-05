@@ -1772,11 +1772,10 @@ def run():
                                                 match = re.search(pattern, line_EventStream)
                                                 if match:
                                                     # Extract the matched string and remove the surrounding quotes
-                                                    file_path = match.group(0).strip('"')
-                                                    st.write(file_path)
-                                                    st.image(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}') 
-                                                else:
-                                                    st.write("No match found")
+                                                    path = match.group(0).strip('"')
+                                                    st.write(path)
+                                                    url_image_process_completed = f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}'
+                                                    st.image(url_image_process_completed) 
                                                     
 
                                 st.image(url_image_process_completed)  
