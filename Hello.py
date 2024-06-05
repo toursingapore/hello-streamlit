@@ -1380,7 +1380,7 @@ def run():
             st.info("""
                     Enter: model_image_URL|garment_image_URL \n
                     Note: model_image_URL and garment_image_URL with a white background will change clothes more accurately \n
-                    Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg](#image-extract-masks-from-image)
+                    Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg](#)
                 """)
             user_input = st.text_area("Enter image URL", placeholder='model_URL|garment_URL', height=200)
             #Append keywords to array and remove whitespace dư, empty line
@@ -1433,6 +1433,9 @@ def run():
                                 path_garment = user_input_split_arr[1]
                                 st.write(path_model)
                                 st.image(path_model)
+                                im = Image.open(requests.get(url, stream=True).raw)
+                                st.write(im.size)
+
                                 st.write(path_garment)
                                 st.image(path_garment)
 
@@ -1569,231 +1572,231 @@ def run():
                                     st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")   
 
 
-                                _ = """
-                                #Check HF_API_TOKEN expired or not
-                                HF_Token = HF_API_TOKEN
-                                headers = {
-                                    "Authorization": "Bearer " + HF_Token
-                                }
+                                    _ = """
+                                    #Check HF_API_TOKEN expired or not
+                                    HF_Token = HF_API_TOKEN
+                                    headers = {
+                                        "Authorization": "Bearer " + HF_Token
+                                    }
 
-                                url = "https://huggingface.co/api/spaces/levihsu/OOTDiffusion/jwt"
-                                result = requests.get(url, headers=headers).json()
-                                ## Dict ##
-                                #st.write(result) 
-                                ## Refresh Token
-                                #st.write(result['token'])
-   
+                                    url = "https://huggingface.co/api/spaces/levihsu/OOTDiffusion/jwt"
+                                    result = requests.get(url, headers=headers).json()
+                                    ## Dict ##
+                                    #st.write(result) 
+                                    ## Refresh Token
+                                    #st.write(result['token'])
+    
 
-                                #Request1 for Subdomain space - https://toromanow-test2.hf.space/ - HD https://stackoverflow.com/questions/76223210/huggingface-expected-input-format
-                                headers = {
-                                    'Content-Type': 'application/json',
-                                }
-                                json_data = {
-                                    'data': [
-                                        'Alex',
-                                    ],
-                                }
-                                response = requests.post('https://toromanow-test2.hf.space/api/predict', headers=headers, json=json_data)
-                                st.write(response)
-                                st.write(response.json())                                
-                                """   
+                                    #Request1 for Subdomain space - https://toromanow-test2.hf.space/ - HD https://stackoverflow.com/questions/76223210/huggingface-expected-input-format
+                                    headers = {
+                                        'Content-Type': 'application/json',
+                                    }
+                                    json_data = {
+                                        'data': [
+                                            'Alex',
+                                        ],
+                                    }
+                                    response = requests.post('https://toromanow-test2.hf.space/api/predict', headers=headers, json=json_data)
+                                    st.write(response)
+                                    st.write(response.json())                                
+                                    """   
 
-                                _ = """
-                                #Request1 websocket                                                            
-                                #Case1. website socket test default                            
-                                #websocket.enableTrace(True)
-                                #ws = websocket.WebSocket()
-                                #ws.connect("ws://echo.websocket.events")
-                                #ws.send("Hello, Server. Nice to meet you")
-                                #st.write(f"response from server: {ws.recv()}")                                                              
-                                #ws.close()
+                                    _ = """
+                                    #Request1 websocket                                                            
+                                    #Case1. website socket test default                            
+                                    #websocket.enableTrace(True)
+                                    #ws = websocket.WebSocket()
+                                    #ws.connect("ws://echo.websocket.events")
+                                    #ws.send("Hello, Server. Nice to meet you")
+                                    #st.write(f"response from server: {ws.recv()}")                                                              
+                                    #ws.close()
 
-                                #Case2. website socket and post data to space HF directly - https://toromanow-test2.hf.space/
-                                websocket.enableTrace(True)
-                                ws = websocket.WebSocket()
-                                ws.connect("wss://toromanow-test2.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
-                                ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")
-                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}") 
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}") 
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")             
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
-                                ws.close()
-
-
-                                #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
-                                headers = {
-                                    'Content-Type': 'application/json',
-                                }
-                                json_data = {
-                                    'data': [
-                                        'hello world',
-                                    ],
-                                }
-                                response = requests.post('https://amitontheweb-instaoffyzfreeparaphraser.hf.space/api/predict', headers=headers, json=json_data)
-                                st.write(response)
-                                st.write(response.json())     
-
-                                #Request2 websocket
-                                websocket.enableTrace(True)
-                                ws = websocket.WebSocket()
-                                ws.connect("wss://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
-                                ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")
-                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}") 
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}") 
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")             
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
-                                ws.close()
-                                
-
-                                #Request3
-                                #from gradio_client.utils import encode_url_or_file_to_base64
-                                #Nhiều method sẵn tại đây - https://github.com/gradio-app/gradio/blob/main/client/python/gradio_client/utils.py                               
-
-                                url = "https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg"                            
-                                
-                                # Download image data from the URL and place in temp folder
-                                img_data = requests.get(url, allow_redirects=True).content
-                                # Encoded utf-8 image bytes
-                                img_b64encode = base64.b64encode(img_data).decode('utf-8')  
-
-                                temp_dir_model = tempfile.mkdtemp()
-                                temp_filename_img_path = os.path.join(temp_dir_model) + ".jpg"
-                                with open(temp_filename_img_path, "wb") as f:
-                                    f.write(img_data)
-                                st.image(temp_filename_img_path)
-
-                                headers = {
-                                    'Content-Type': 'application/json',
-                                    #"Authorization": "Bearer " + HF_API_TOKEN
-                                }
-                                json_data = {
-                                    'data': [
-                                        #encode_url_or_file_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
-                                        #encode_url_or_file_to_base64(temp_filename_img_path),
-                                        #img_b64encode,
-                                        0,
-                                    ],
-                                }
-                                response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
-                                st.write(response)
-                                st.write(response.json())
+                                    #Case2. website socket and post data to space HF directly - https://toromanow-test2.hf.space/
+                                    websocket.enableTrace(True)
+                                    ws = websocket.WebSocket()
+                                    ws.connect("wss://toromanow-test2.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
+                                    ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}")
+                                    ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}") 
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}") 
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}")             
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}")                                                                                                                           
+                                    ws.close()
 
 
-                                #Request3; Upload image for space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
-                                #B1; post request to get event_id
-                                session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
-                                url_image = 'https://img.freepik.com/free-photo/nice-girl-trendy-oversized-sweater-leaned-looking-camera-against-background-cars-with-smile_197531-26006.jpg'
-                                st.image(url_image) 
-                                
-                                cookies = {
-                                    '_gid': 'GA1.2.581266382.1717491025',
-                                    '_ga': 'GA1.1.155016585.1717491025',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717491025.1.0.1717491030.0.0.0',
-                                }
-                                headers = {
-                                    'authority': 'schirrmacher-ormbg.hf.space',
-                                    'accept': '*/*',
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'application/json',
-                                    # 'cookie': '_gid=GA1.2.581266382.1717491025; _ga=GA1.1.155016585.1717491025; _ga_R1FN4KJKJH=GS1.1.1717491025.1.0.1717491030.0.0.0',
-                                    'dnt': '1',
-                                    'origin': 'https://schirrmacher-ormbg.hf.space',
-                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                }
-                                params = {
-                                    '__theme': 'light',
-                                }
-                                json_data = {
-                                    'data': [
-                                        {
-                                            #'path': '/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
-                                            #'url': 'https://schirrmacher-ormbg.hf.space/file=/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
-                                            #'path': 'https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',
-                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',                                            
-                                            'path': url_image,
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file='+url_image,
-                                            'orig_name': 'hinh.jpg',
-                                            'size': None,
-                                            'mime_type': None,
-                                            'meta': {
-                                                '_type': 'gradio.FileData',
+                                    #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
+                                    headers = {
+                                        'Content-Type': 'application/json',
+                                    }
+                                    json_data = {
+                                        'data': [
+                                            'hello world',
+                                        ],
+                                    }
+                                    response = requests.post('https://amitontheweb-instaoffyzfreeparaphraser.hf.space/api/predict', headers=headers, json=json_data)
+                                    st.write(response)
+                                    st.write(response.json())     
+
+                                    #Request2 websocket
+                                    websocket.enableTrace(True)
+                                    ws = websocket.WebSocket()
+                                    ws.connect("wss://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
+                                    ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}")
+                                    ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}") 
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}") 
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}")             
+                                    time.sleep(5)
+                                    st.write(f"response from server: {ws.recv()}")                                                                                                                           
+                                    ws.close()
+                                    
+
+                                    #Request3
+                                    #from gradio_client.utils import encode_url_or_file_to_base64
+                                    #Nhiều method sẵn tại đây - https://github.com/gradio-app/gradio/blob/main/client/python/gradio_client/utils.py                               
+
+                                    url = "https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg"                            
+                                    
+                                    # Download image data from the URL and place in temp folder
+                                    img_data = requests.get(url, allow_redirects=True).content
+                                    # Encoded utf-8 image bytes
+                                    img_b64encode = base64.b64encode(img_data).decode('utf-8')  
+
+                                    temp_dir_model = tempfile.mkdtemp()
+                                    temp_filename_img_path = os.path.join(temp_dir_model) + ".jpg"
+                                    with open(temp_filename_img_path, "wb") as f:
+                                        f.write(img_data)
+                                    st.image(temp_filename_img_path)
+
+                                    headers = {
+                                        'Content-Type': 'application/json',
+                                        #"Authorization": "Bearer " + HF_API_TOKEN
+                                    }
+                                    json_data = {
+                                        'data': [
+                                            #encode_url_or_file_to_base64('https://static.vecteezy.com/system/resources/thumbnails/026/829/465/small_2x/beautiful-girl-with-autumn-leaves-photo.jpg'),
+                                            #encode_url_or_file_to_base64(temp_filename_img_path),
+                                            #img_b64encode,
+                                            0,
+                                        ],
+                                    }
+                                    response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
+                                    st.write(response)
+                                    st.write(response.json())
+
+
+                                    #Request3; Upload image for space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
+                                    #B1; post request to get event_id
+                                    session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
+                                    url_image = 'https://img.freepik.com/free-photo/nice-girl-trendy-oversized-sweater-leaned-looking-camera-against-background-cars-with-smile_197531-26006.jpg'
+                                    st.image(url_image) 
+                                    
+                                    cookies = {
+                                        '_gid': 'GA1.2.581266382.1717491025',
+                                        '_ga': 'GA1.1.155016585.1717491025',
+                                        '_ga_R1FN4KJKJH': 'GS1.1.1717491025.1.0.1717491030.0.0.0',
+                                    }
+                                    headers = {
+                                        'authority': 'schirrmacher-ormbg.hf.space',
+                                        'accept': '*/*',
+                                        'accept-language': 'en-US,en;q=0.9',
+                                        'content-type': 'application/json',
+                                        # 'cookie': '_gid=GA1.2.581266382.1717491025; _ga=GA1.1.155016585.1717491025; _ga_R1FN4KJKJH=GS1.1.1717491025.1.0.1717491030.0.0.0',
+                                        'dnt': '1',
+                                        'origin': 'https://schirrmacher-ormbg.hf.space',
+                                        'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
+                                        'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                        'sec-ch-ua-mobile': '?0',
+                                        'sec-ch-ua-platform': '"Windows"',
+                                        'sec-fetch-dest': 'empty',
+                                        'sec-fetch-mode': 'cors',
+                                        'sec-fetch-site': 'same-origin',
+                                        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                    }
+                                    params = {
+                                        '__theme': 'light',
+                                    }
+                                    json_data = {
+                                        'data': [
+                                            {
+                                                #'path': '/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
+                                                #'url': 'https://schirrmacher-ormbg.hf.space/file=/tmp/gradio/02fbd5a7d1e6159f8042ad1600ddbe9cee4c2842/hinh.jpg',
+                                                #'path': 'https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',
+                                                #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://img.freepik.com/free-photo/charming-girl-stands-street_8353-5373.jpg',                                            
+                                                'path': url_image,
+                                                'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file='+url_image,
+                                                'orig_name': 'hinh.jpg',
+                                                'size': None,
+                                                'mime_type': None,
+                                                'meta': {
+                                                    '_type': 'gradio.FileData',
+                                                },
                                             },
-                                        },
-                                    ],
-                                    'event_data': None,
-                                    'fn_index': 0,
-                                    'trigger_id': 12,
-                                    'session_hash': session_hash,
-                                }
+                                        ],
+                                        'event_data': None,
+                                        'fn_index': 0,
+                                        'trigger_id': 12,
+                                        'session_hash': session_hash,
+                                    }
 
-                                response = requests.post(
-                                    'https://schirrmacher-ormbg.hf.space/queue/join',
-                                    params=params,
-                                    cookies=cookies,
-                                    headers=headers,
-                                    json=json_data,
-                                )
-                                st.write(response)
-                                st.write(response.json())
-                                #event_id = response.json()["event_id"]
-                                #st.write(event_id)
+                                    response = requests.post(
+                                        'https://schirrmacher-ormbg.hf.space/queue/join',
+                                        params=params,
+                                        cookies=cookies,
+                                        headers=headers,
+                                        json=json_data,
+                                    )
+                                    st.write(response)
+                                    st.write(response.json())
+                                    #event_id = response.json()["event_id"]
+                                    #st.write(event_id)
 
-                                #B2; get request and read event-stream
-                                headers = {
-                                    'authority': 'schirrmacher-ormbg.hf.space',
-                                    'accept': 'text/event-stream', #event-stream reponse like type websocket
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'cache-control': 'no-cache',
-                                    # 'cookie': '_gid=GA1.2.581266382.1717491025; _ga=GA1.1.155016585.1717491025; _ga_R1FN4KJKJH=GS1.1.1717491025.1.0.1717491030.0.0.0',
-                                    'dnt': '1',
-                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                }
-                                params = {
-                                    'session_hash': session_hash,
-                                }
+                                    #B2; get request and read event-stream
+                                    headers = {
+                                        'authority': 'schirrmacher-ormbg.hf.space',
+                                        'accept': 'text/event-stream', #event-stream reponse like type websocket
+                                        'accept-language': 'en-US,en;q=0.9',
+                                        'cache-control': 'no-cache',
+                                        # 'cookie': '_gid=GA1.2.581266382.1717491025; _ga=GA1.1.155016585.1717491025; _ga_R1FN4KJKJH=GS1.1.1717491025.1.0.1717491030.0.0.0',
+                                        'dnt': '1',
+                                        'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
+                                        'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                        'sec-ch-ua-mobile': '?0',
+                                        'sec-ch-ua-platform': '"Windows"',
+                                        'sec-fetch-dest': 'empty',
+                                        'sec-fetch-mode': 'cors',
+                                        'sec-fetch-site': 'same-origin',
+                                        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                    }
+                                    params = {
+                                        'session_hash': session_hash,
+                                    }
 
-                                url_image_process_completed = ''
-                                with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
-                                    for line_EventStream in response.iter_lines(decode_unicode=True):
-                                        if line_EventStream:
-                                            st.write(line_EventStream)
-                                            if 'process_completed' in line_EventStream:
-                                                #st.write('Found process_completed!')                                          
-                                                textArr = line_EventStream.split("\"")
-                                                #for text in textArr:
-                                                #    st.write(text)                                                
-                                                url_image_process_completed = '\n'.join(textArr[19])
-                                                #st.write(url_image_process_completed)
-                                st.image(url_image_process_completed, use_column_width=True)     
-                                """                  
+                                    url_image_process_completed = ''
+                                    with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                        for line_EventStream in response.iter_lines(decode_unicode=True):
+                                            if line_EventStream:
+                                                st.write(line_EventStream)
+                                                if 'process_completed' in line_EventStream:
+                                                    #st.write('Found process_completed!')                                          
+                                                    textArr = line_EventStream.split("\"")
+                                                    #for text in textArr:
+                                                    #    st.write(text)                                                
+                                                    url_image_process_completed = '\n'.join(textArr[19])
+                                                    #st.write(url_image_process_completed)
+                                    st.image(url_image_process_completed, use_column_width=True)     
+                                    """                  
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
