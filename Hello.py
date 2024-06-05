@@ -1378,8 +1378,9 @@ def run():
             #user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
             
             st.info("""
-                    Enter: model_URL|garment_URL \n
-                    Ex: [https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg|https://i.pinimg.com/736x/f8/0f/f8/f80ff8ec363fab4e60921fdfc2588aea.jpg](#)
+                    Enter: model_image_URL|garment_image_URL \n
+                    Note: model_image_URL and garment_image_URL with a white background will change clothes more accurately
+                    Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg](#)
                 """)
             user_input = st.text_area("Enter image URL", placeholder='model_URL|garment_URL', height=200)
             #Append keywords to array and remove whitespace dư, empty line
@@ -1453,8 +1454,9 @@ def run():
                                     session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
                                     #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
                                     #url_image_garment = 'https://i.pinimg.com/736x/f8/0f/f8/f80ff8ec363fab4e60921fdfc2588aea.jpg'
+                                    #model image và garment image nên là white background mới change clothes chính xác hơn
                                     url_image_model = path_model
-                                    url_image_garment = path_garment #garment image nên là white background mới change clothes chính xác hơn
+                                    url_image_garment = path_garment
 
 
                                     cookies = {
