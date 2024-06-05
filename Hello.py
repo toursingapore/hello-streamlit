@@ -1437,7 +1437,11 @@ def run():
                         try:
                             for user_input in user_input_arr:
                                 st.write(user_input)
-                                st.image(user_input)                       
+                                st.image(user_input)
+
+                                #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
+                                #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
+                                #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
