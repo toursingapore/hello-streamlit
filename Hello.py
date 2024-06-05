@@ -1665,7 +1665,7 @@ def run():
                                 ##Request4; change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 #B1; post request to get event_id
                                 session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
-                                url_image_model = 'https://img.freepik.com/free-photo/nice-girl-trendy-oversized-sweater-leaned-looking-camera-against-background-cars-with-smile_197531-26006.jpg'
+                                url_image_model = 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg'
                                 url_image_garment = 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg'
 
                                 cookies = {
@@ -1717,7 +1717,7 @@ def run():
                                             'mime_type': None,
                                         },
                                         1,
-                                        40,
+                                        40, #edit 20 - 40 steps here
                                         2,
                                         -1,
                                     ],
