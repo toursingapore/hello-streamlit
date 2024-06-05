@@ -1101,37 +1101,6 @@ def run():
         #Free Train custom model YOLOv5 and YOLOv8 via Ultralytics HUB - https://hub.ultralytics.com/ và dùng model đó qua cloud api luôn - https://youtu.be/OpWpBI35A5Y?si=oIWqe7Zm0rt1cvcd ; Inference API Ultralytics HUB | Episode 32
         #Xem thêm dùng AI MODEL fairseq - https://github.com/facebookresearch/fairseq/tree/main/examples/paraphraser
         paraphrase = st.checkbox("Paraphrase content") 
-        if paraphrase:
-            #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
-            headers = {
-                'Content-Type': 'application/json',
-            }
-            json_data = {
-                'data': [
-                    'Bộ trưởng Ngô Văn Tuấn: Chưa cán bộ kiểm toán nào bị xử lý vì bỏ lọt vi phạm',
-                ],
-            }
-            response = requests.post('https://amitontheweb-instaoffyzfreeparaphraser.hf.space/api/predict', headers=headers, json=json_data)
-            st.write(response)
-            st.write(response.json())     
-
-            #Request2 websocket
-            #websocket.enableTrace(True)
-            #ws = websocket.WebSocket()
-            #ws.connect("wss://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
-            #ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
-            #time.sleep(5)
-            #st.write(f"response from server: {ws.recv()}")
-            #ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
-            #time.sleep(5)
-            #st.write(f"response from server: {ws.recv()}") 
-            #time.sleep(5)
-            #st.write(f"response from server: {ws.recv()}") 
-            #time.sleep(5)
-            #st.write(f"response from server: {ws.recv()}")             
-            #time.sleep(5)
-            #st.write(f"response from server: {ws.recv()}")                                                                                                                           
-            #ws.close()            
 
         # http://toursingapore.medianewsonline.com/ | user wp; DipasiEdI | pass D1[yE7.7L6Gv2tO
         #Must Install plugin ‘Application Passwords Enable’ - https://wordpress.org/plugins/application-passwords-enable/ và config để lấy wordpress_application_password thì mới auto post được
@@ -1466,7 +1435,6 @@ def run():
                                 st.write(path_garment)
                                 st.image(path_garment)
 
-                                _ = """
                                 #temp_dir_model = tempfile.mkdtemp()
                                 #path_model = os.path.join(temp_dir_model, user_input.name)
                                 #with open(path_model, "wb") as f:
@@ -1479,6 +1447,120 @@ def run():
                                 #    f.write(user_input_garment.getvalue())
                                 #st.image(path_garment)
 
+                                ##Request4; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
+                                #B1; post request to get event_id
+                                session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
+                                url_image_model = 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg'
+                                url_image_garment = 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg'
+
+                                cookies = {
+                                    '_gid': 'GA1.2.1887367721.1717550611',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717550610.1.1.1717550656.0.0.0',
+                                    '_ga': 'GA1.2.1683534568.1717550611',
+                                }
+                                headers = {
+                                    'authority': 'levihsu-ootdiffusion.hf.space',
+                                    'accept': '*/*',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'content-type': 'application/json',
+                                    # 'cookie': '_gid=GA1.2.1887367721.1717550611; _ga_R1FN4KJKJH=GS1.1.1717550610.1.1.1717550656.0.0.0; _ga=GA1.2.1683534568.1717550611',
+                                    'dnt': '1',
+                                    'origin': 'https://levihsu-ootdiffusion.hf.space',
+                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+                                params = {
+                                    '__theme': 'light',
+                                }
+                                json_data = {
+                                    'data': [
+                                        {
+                                            #'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                            'path': url_image_model,
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image,
+                                            'orig_name': 'model_1.png',
+                                            'size': None,
+                                            'mime_type': None,
+                                        },
+                                        {
+                                            #'path': 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
+                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
+                                            'path': url_image_garment,
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image,
+                                            'orig_name': 'garment_1.jpg',
+                                            'size': None,
+                                            'mime_type': None,
+                                        },
+                                        1,
+                                        40, #edit 20 - 40 steps here
+                                        2,
+                                        -1,
+                                    ],
+                                    'event_data': None,
+                                    'fn_index': 2,
+                                    'trigger_id': 17,
+                                    'session_hash': session_hash,
+                                }
+
+                                response = requests.post(
+                                    'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join',
+                                    params=params,
+                                    cookies=cookies,
+                                    headers=headers,
+                                    json=json_data,
+                                )
+                                st.write(response)
+                                st.write(response.json())
+                                #event_id = response.json()["event_id"]
+                                #st.write(event_id)
+
+                                #B2; get request and read event-stream
+                                headers = {
+                                    'authority': 'levihsu-ootdiffusion.hf.space',
+                                    'accept': 'text/event-stream',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'cache-control': 'no-cache',
+                                    # 'cookie': '_gid=GA1.2.1887367721.1717550611; _ga_R1FN4KJKJH=GS1.1.1717550610.1.1.1717550656.0.0.0; _ga=GA1.2.1683534568.1717550611',
+                                    'dnt': '1',
+                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+                                params = {
+                                    'session_hash': session_hash,
+                                }
+                                url_image_process_completed = ''
+                                with requests.get('https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                    for line_EventStream in response.iter_lines(decode_unicode=True):
+                                        if line_EventStream:
+                                            st.write(line_EventStream)
+                                            if 'process_completed' in line_EventStream:
+                                                #st.write('Found process_completed!')
+                                                pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
+                                                match = re.search(pattern, line_EventStream)
+                                                if match:
+                                                    # Extract the matched string and remove the surrounding quotes
+                                                    path = match.group(0).strip('"')
+                                                    st.write(path)
+                                                    url_image_process_completed = '\n'.join(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}')
+                                                    break                                                    
+
+                                st.image(url_image_process_completed, caption="Processed image", use_column_width=True)   
+
+
+                                _ = """
                                 #Check HF_API_TOKEN expired or not
                                 HF_Token = HF_API_TOKEN
                                 headers = {
@@ -1491,7 +1573,7 @@ def run():
                                 #st.write(result) 
                                 ## Refresh Token
                                 #st.write(result['token'])
-                                """      
+   
 
                                 #Request1 for Subdomain space - https://toromanow-test2.hf.space/ - HD https://stackoverflow.com/questions/76223210/huggingface-expected-input-format
                                 headers = {
@@ -1505,7 +1587,7 @@ def run():
                                 response = requests.post('https://toromanow-test2.hf.space/api/predict', headers=headers, json=json_data)
                                 st.write(response)
                                 st.write(response.json())                                
-
+                                """   
 
                                 _ = """
                                 #Request1 websocket                                                            
@@ -1536,6 +1618,36 @@ def run():
                                 ws.close()
 
 
+                                #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
+                                headers = {
+                                    'Content-Type': 'application/json',
+                                }
+                                json_data = {
+                                    'data': [
+                                        'hello world',
+                                    ],
+                                }
+                                response = requests.post('https://amitontheweb-instaoffyzfreeparaphraser.hf.space/api/predict', headers=headers, json=json_data)
+                                st.write(response)
+                                st.write(response.json())     
+
+                                #Request2 websocket
+                                websocket.enableTrace(True)
+                                ws = websocket.WebSocket()
+                                ws.connect("wss://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
+                                ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")
+                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}") 
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")             
+                                time.sleep(5)
+                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
+                                ws.close()
                                 
 
                                 #Request3
@@ -1570,7 +1682,6 @@ def run():
                                 response = requests.post('https://schirrmacher-ormbg.hf.space/api/predict', headers=headers, json=json_data)
                                 st.write(response)
                                 st.write(response.json())
-                                """
 
 
                                 #Request3; Upload image for space remove background - https://huggingface.co/spaces/schirrmacher/ormbg
@@ -1673,122 +1784,7 @@ def run():
                                                 url_image_process_completed = '\n'.join(textArr[19])
                                                 #st.write(url_image_process_completed)
                                 st.image(url_image_process_completed, use_column_width=True)     
-
-
-                                ##Request4; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
-                                #B1; post request to get event_id
-                                session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
-                                url_image_model = 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg'
-                                url_image_garment = 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg'
-
-                                cookies = {
-                                    '_gid': 'GA1.2.1887367721.1717550611',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717550610.1.1.1717550656.0.0.0',
-                                    '_ga': 'GA1.2.1683534568.1717550611',
-                                }
-
-                                headers = {
-                                    'authority': 'levihsu-ootdiffusion.hf.space',
-                                    'accept': '*/*',
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'application/json',
-                                    # 'cookie': '_gid=GA1.2.1887367721.1717550611; _ga_R1FN4KJKJH=GS1.1.1717550610.1.1.1717550656.0.0.0; _ga=GA1.2.1683534568.1717550611',
-                                    'dnt': '1',
-                                    'origin': 'https://levihsu-ootdiffusion.hf.space',
-                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                }
-
-                                params = {
-                                    '__theme': 'light',
-                                }
-
-                                json_data = {
-                                    'data': [
-                                        {
-                                            #'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                            'path': url_image_model,
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image,
-                                            'orig_name': 'model_1.png',
-                                            'size': None,
-                                            'mime_type': None,
-                                        },
-                                        {
-                                            #'path': 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
-                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
-                                            'path': url_image_garment,
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image,
-                                            'orig_name': 'garment_1.jpg',
-                                            'size': None,
-                                            'mime_type': None,
-                                        },
-                                        1,
-                                        40, #edit 20 - 40 steps here
-                                        2,
-                                        -1,
-                                    ],
-                                    'event_data': None,
-                                    'fn_index': 2,
-                                    'trigger_id': 17,
-                                    'session_hash': session_hash,
-                                }
-
-                                response = requests.post(
-                                    'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join',
-                                    params=params,
-                                    cookies=cookies,
-                                    headers=headers,
-                                    json=json_data,
-                                )
-                                st.write(response)
-                                st.write(response.json())
-                                #event_id = response.json()["event_id"]
-                                #st.write(event_id)
-
-                                #B2; get request and read event-stream
-                                headers = {
-                                    'authority': 'levihsu-ootdiffusion.hf.space',
-                                    'accept': 'text/event-stream',
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'cache-control': 'no-cache',
-                                    # 'cookie': '_gid=GA1.2.1887367721.1717550611; _ga_R1FN4KJKJH=GS1.1.1717550610.1.1.1717550656.0.0.0; _ga=GA1.2.1683534568.1717550611',
-                                    'dnt': '1',
-                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                }
-                                params = {
-                                    'session_hash': session_hash,
-                                }
-                                url_image_process_completed = ''
-                                with requests.get('https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
-                                    for line_EventStream in response.iter_lines(decode_unicode=True):
-                                        if line_EventStream:
-                                            st.write(line_EventStream)
-                                            if 'process_completed' in line_EventStream:
-                                                #st.write('Found process_completed!')
-                                                pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
-                                                match = re.search(pattern, line_EventStream)
-                                                if match:
-                                                    # Extract the matched string and remove the surrounding quotes
-                                                    path = match.group(0).strip('"')
-                                                    st.write(path)
-                                                    url_image_process_completed = '\n'.join(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}')
-                                                    break                                                    
-
-                                st.image(url_image_process_completed, caption="Processed image", use_column_width=True)                     
+                                """                  
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
