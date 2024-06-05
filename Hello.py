@@ -1666,8 +1666,7 @@ def run():
                                 #B1; post request to get event_id
                                 session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
                                 url_image_model = 'https://img.freepik.com/free-photo/nice-girl-trendy-oversized-sweater-leaned-looking-camera-against-background-cars-with-smile_197531-26006.jpg'
-                                url_image_garment = 
-                                st.image(url_image) 
+                                url_image_garment = 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg'
 
                                 cookies = {
                                     '_gid': 'GA1.2.1887367721.1717550611',
