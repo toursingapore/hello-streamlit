@@ -1380,7 +1380,7 @@ def run():
             st.info("""
                     Enter: model_image_URL|garment_image_URL \n
                     Note: model_image_URL and garment_image_URL with a white background will change clothes more accurately \n
-                    Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg]()
+                    Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg](#image-extract-masks-from-image)
                 """)
             user_input = st.text_area("Enter image URL", placeholder='model_URL|garment_URL', height=200)
             #Append keywords to array and remove whitespace dư, empty line
