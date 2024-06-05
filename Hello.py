@@ -1764,7 +1764,7 @@ def run():
                                                 textArr = line_EventStream.split("\"")
                                                 #for text in textArr:
                                                 #    st.write(text)                                                
-                                                url_image_process_completed = '\n'.join(textArr[19])
+                                                url_image_process_completed = '\n'.join(textArr[18])
                                                 #st.write(url_image_process_completed)
                                 st.image(url_image_process_completed)  
 
