@@ -1433,7 +1433,7 @@ def run():
                                 path_garment = user_input_split_arr[1]
                                 st.write(path_model)
                                 st.image(path_model)
-                                im = Image.open(requests.get(url, stream=True).raw)
+                                im = Image.open(requests.get(path_model, stream=True).raw)
                                 st.write(im.size)
 
                                 st.write(path_garment)
