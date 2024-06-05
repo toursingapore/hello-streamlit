@@ -1661,6 +1661,115 @@ def run():
 
 
 
+
+                                ##Request4; change clothes - https://huggingface.co/spaces/levihsu/OOTDiffusion
+                                #B1; post request to get event_id
+                                cookies = {
+                                    '_gid': 'GA1.2.1887367721.1717550611',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717550610.1.1.1717550656.0.0.0',
+                                    '_ga': 'GA1.2.1683534568.1717550611',
+                                }
+
+                                headers = {
+                                    'authority': 'levihsu-ootdiffusion.hf.space',
+                                    'accept': '*/*',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'content-type': 'application/json',
+                                    # 'cookie': '_gid=GA1.2.1887367721.1717550611; _ga_R1FN4KJKJH=GS1.1.1717550610.1.1.1717550656.0.0.0; _ga=GA1.2.1683534568.1717550611',
+                                    'dnt': '1',
+                                    'origin': 'https://levihsu-ootdiffusion.hf.space',
+                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+
+                                params = {
+                                    '__theme': 'light',
+                                }
+
+                                json_data = {
+                                    'data': [
+                                        {
+                                            'path': '/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png',
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png',
+                                            'orig_name': 'model_1.png',
+                                            'size': None,
+                                            'mime_type': None,
+                                        },
+                                        {
+                                            'path': '/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg',
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg',
+                                            'orig_name': '03244_00.jpg',
+                                            'size': None,
+                                            'mime_type': None,
+                                        },
+                                        1,
+                                        20,
+                                        2,
+                                        -1,
+                                    ],
+                                    'event_data': None,
+                                    'fn_index': 2,
+                                    'trigger_id': 17,
+                                    'session_hash': 'lwvjfuljfpd',
+                                }
+
+                                response = requests.post(
+                                    'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join',
+                                    params=params,
+                                    cookies=cookies,
+                                    headers=headers,
+                                    json=json_data,
+                                )
+                                st.write(response)
+                                st.write(response.json())
+                                #event_id = response.json()["event_id"]
+                                #st.write(event_id)
+
+
+                                #B2; get request and read event-stream
+                                headers = {
+                                    'authority': 'levihsu-ootdiffusion.hf.space',
+                                    'accept': 'text/event-stream',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'cache-control': 'no-cache',
+                                    # 'cookie': '_gid=GA1.2.1887367721.1717550611; _ga_R1FN4KJKJH=GS1.1.1717550610.1.1.1717550656.0.0.0; _ga=GA1.2.1683534568.1717550611',
+                                    'dnt': '1',
+                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+
+                                params = {
+                                    'session_hash': 'lwvjfuljfpd',
+                                }
+
+                                url_image_process_completed = ''
+                                with requests.get('https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                    for line_EventStream in response.iter_lines(decode_unicode=True):
+                                        if line_EventStream:
+                                            st.write(line_EventStream)
+                                            if 'process_completed' in line_EventStream:
+                                                #st.write('Found process_completed!')                                          
+                                                textArr = line_EventStream.split("\"")
+                                                #for text in textArr:
+                                                #    st.write(text)                                                
+                                                url_image_process_completed = '\n'.join(textArr[19])
+                                                #st.write(url_image_process_completed)
+                                st.image(url_image_process_completed)  
+
+
+
                                 _ = """
                                 #Check HF_API_TOKEN expired or not
                                 HF_Token = HF_API_TOKEN
@@ -1710,247 +1819,7 @@ def run():
                                 response_image = result[0]["image"]
                                 st.image(response_image)
                                 client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
-                                """
-
-                                _ = """
-                                #Case1; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with default image
-                                cookies = {
-                                    '_gid': 'GA1.2.2070761080.1717219336',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717406975.13.1.1717406992.0.0.0',
-                                    '_ga': 'GA1.2.11449625.1717057713',
-                                }
-
-                                headers = {
-                                    'authority': 'schirrmacher-ormbg.hf.space',
-                                    'accept': '*/*',
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'application/json',
-                                    #'content-type': 'text/event-stream',  # Get EventStream
-                                    # 'cookie': '_gid=GA1.2.2070761080.1717219336; _ga_R1FN4KJKJH=GS1.1.1717406975.13.1.1717406992.0.0.0; _ga=GA1.2.11449625.1717057713',
-                                    'dnt': '1',
-                                    'origin': 'https://schirrmacher-ormbg.hf.space',
-                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-                                }
-
-                                params = {
-                                    '__theme': 'light',
-                                }
-
-                                json_data = {
-                                    'data': [1],
-                                    'event_data': None,
-                                    'fn_index': 3,
-                                    'trigger_id': 15,
-                                    'session_hash': 'dlym3427r7',
-                                }
-
-                                response = requests.post(
-                                    'https://schirrmacher-ormbg.hf.space/run/predict',
-                                    params=params,
-                                    cookies=cookies,
-                                    headers=headers,
-                                    json=json_data,
-                                    stream=True,
-                                )
-                                st.write(response)
-                                st.write(response.json())
-                                #st.write(response.text)
-
-
-                                #Case2; https://huggingface.co/spaces/schirrmacher/ormbg - remove background with uploaded image
-                                cookies = {
-                                    '_gid': 'GA1.2.2070761080.1717219336',
-                                    '_gat_gtag_UA_156449732_1': '1',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717408873.14.1.1717408876.0.0.0',
-                                    '_ga': 'GA1.1.11449625.1717057713',
-                                }
-
-                                headers = {
-                                    'Accept': 'text/event-stream'
-                                }
-
-                                params = {
-                                    'session_hash': '8j1w6gernck', 
-                                }
-                                
-                                with requests.get('https://schirrmacher-ormbg.hf.space/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
-                                    for line in response.iter_lines(decode_unicode=True):
-                                        if line:
-                                            st.write(line)                                
-                                st.write(response)
-                                st.write(response.json())
-                                """                                
-
-
-                                _ = """
-                                #Case1; Download image from url, then Upload it to space
-                                # Define the URL where the image is located
-                                url = path_model
-
-                                # Fetch the image data from the URL
-                                img_data = requests.get(url, allow_redirects=True).content
-
-                                temp_dir_model = tempfile.mkdtemp()
-                                path_model_2 = os.path.join(temp_dir_model, 'niceimage.jpg')
-                                with open(path_model_2, "wb") as f:
-                                    f.write(img_data)
-                                st.image(path_model_2)
-
-                                # Define cookies and headers
-                                cookies = {
-                                    '_gid': 'GA1.2.325975051.1717380551',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717397002.5.1.1717397138.0.0.0',
-                                    '_ga': 'GA1.2.659231445.1717380551',
-                                }
-
-                                headers = {
-                                    'authority': 'schirrmacher-ormbg.hf.space',
-                                    'accept': '*/*',
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryNPodnryV6Pl44AOM',
-                                    # 'cookie': '_gid=GA1.2.325975051.1717380551; _ga_R1FN4KJKJH=GS1.1.1717402508.6.1.1717404213.0.0.0; _ga=GA1.1.659231445.1717380551',
-                                    'dnt': '1',
-                                    'origin': 'https://schirrmacher-ormbg.hf.space',
-                                    'referer': 'https://schirrmacher-ormbg.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                }
-
-                                params = {
-                                    'upload_id': '5rdk4q24olu',
-                                }                                
-
-                                # Define the files to upload
-                                files = {'media': open(path_model_2, 'rb')}                                                         
-
-                                # Make the POST request to upload the image
-                                response = requests.post(
-                                    'https://schirrmacher-ormbg.hf.space/upload',
-                                    cookies=cookies,
-                                    #headers=headers,
-                                    params=params,
-                                    files=files,
-                                    #data=img_data,
-                                    stream=True
-                                )
-
-                                # Write the response status code and JSON to the Streamlit app
-                                #st.write(dir(response))                                
-                                st.write(response)
-                                st.write(response.status_code)
-                                st.write(response.url)
-                                st.write(response.text)
-                                #st.write(response.cookies)
-                                #st.write(response.json())
-                                for line in response.iter_lines():
-                                    if line:
-                                        st.write(line)    
-
-                                #url = path_garment
-                                #r_bytes = requests.get(url, allow_redirects=True)
-                                #st.write(r_bytes.content)
-
-
-
-                                #Case; dung curl để request trực tiếp space luôn, ko cần API
-                                cookies = {
-                                    '_gid': 'GA1.2.325975051.1717380551',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717394302.4.1.1717394517.0.0.0',
-                                    '_ga': 'GA1.2.659231445.1717380551',
-                                    '_gat_gtag_UA_156449732_1': '1',
-                                }
-
-                                headers = {
-                                    'authority': 'levihsu-ootdiffusion.hf.space',
-                                    'accept': '*/*',
-                                    'accept-language': 'en-US,en;q=0.9',                                    
-                                    'connection': 'Keep-Alive', #Stream phai Keep-Alive connection moi duoc
-                                    #'content-type': 'application/json',
-                                    'content-type': 'text/event-stream',  # Get EventStream
-                                    'dnt': '1',
-                                    'origin': 'https://levihsu-ootdiffusion.hf.space',
-                                    'referer': 'https://levihsu-ootdiffusion.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                }
-
-                                params = {
-                                    '__theme': 'light',
-                                }
-
-                                json_data = {
-                                    'data': [
-                                        {
-                                            'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                            'orig_name': 'model_1.png',
-                                            'size': None,
-                                            'mime_type': None,
-                                        },
-                                        {
-                                            'path': 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
-                                            'orig_name': '03244_00.jpg',
-                                            'size': None,
-                                            'mime_type': None,
-                                        },
-                                        1,
-                                        20,
-                                        2,
-                                        -1,
-                                    ],
-                                    'event_data': None,
-                                    'fn_index': 2,
-                                    'trigger_id': 17,
-                                    'session_hash': '3hlqa10gkcm',
-                                }
-
-                                myrequests = requests.Session()
-                                response = myrequests.post(
-                                    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/join',
-                                    params=params,
-                                    cookies=cookies,
-                                    headers=headers,
-                                    json=json_data,
-                                    stream=True
-                                )
-
-                                st.write(response.status_code)
-                                for line in response.iter_lines():
-                                    if line:
-                                        st.write(line)                                
-                                st.write(response.json())
-
-
-                                # Note: json_data will not be serialized by requests
-                                # exactly as it was in the original request.
-                                #data = '{"data":[{"path":"/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png","url":"https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/2e0cca23e744c036b3905c4b6167371632942e1c/model_1.png","orig_name":"model_1.png","size":null,"mime_type":null},{"path":"/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg","url":"https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/file=/tmp/gradio/180d4e2a1139071a8685a5edee7ab24bcf1639f5/03244_00.jpg","orig_name":"03244_00.jpg","size":null,"mime_type":null},1,20,2,-1],"event_data":null,"fn_index":2,"trigger_id":17,"session_hash":"3hlqa10gkcm"}'
-                                #response = requests.post(
-                                #    'https://levihsu-ootdiffusion.hf.space/--replicas/6qtby/queue/join',
-                                #    params=params,
-                                #    cookies=cookies,
-                                #    headers=headers,
-                                #    data=data,
-                                #)
-                                """
-
+                                """                         
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
