@@ -1761,11 +1761,24 @@ def run():
                                             st.write(line_EventStream)
                                             if 'process_completed' in line_EventStream:
                                                 #st.write('Found process_completed!')                                          
-                                                textArr = line_EventStream.split("\"")
+                                                #textArr = line_EventStream.split("\"")
                                                 #for text in textArr:
                                                 #    st.write(text)                                                
-                                                url_image_process_completed = '\n'.join(textArr[18])
+                                                #url_image_process_completed = '\n'.join(textArr[19])
                                                 #st.write(url_image_process_completed)
+
+
+                                                # Regular expression pattern to match the image path
+                                                pattern = r'"/tmp/gradio/[^"]+image\.png"'
+                                                # Find all matches in the data string
+                                                matches = re.findall(pattern, data)
+                                                # Extract the path without quotes
+                                                image_paths = [match.strip('"') for match in matches]
+                                                # Print the extracted image paths
+                                                for path in image_paths:
+                                                    st.write(path)
+                                                    
+
                                 st.image(url_image_process_completed)  
 
 
