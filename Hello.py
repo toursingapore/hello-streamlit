@@ -1573,7 +1573,12 @@ def run():
                                     
                                     #Default image to get is 768x124    
                                     #st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")
-                                    st.image(url_image_process_completed, caption="Processed image", width=img_width, use_column_width="auto", output_format="JPEG")   
+                                    #size = (1080, 1080)
+                                    size = im.size
+                                    userImage = Image.open(url_image_process_completed)
+                                    imageResized = userImage.resize(size) ### EDITED LINE
+                                    #imageResized.show()                                    
+                                    st.image(imageResized, caption="Processed image", use_column_width="auto", output_format="JPEG")   
 
 
                                     _ = """
