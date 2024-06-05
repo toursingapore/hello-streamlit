@@ -1662,7 +1662,7 @@ def run():
 
 
 
-                                ##Request4; change clothes - https://huggingface.co/spaces/levihsu/OOTDiffusion
+                                ##Request4; change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                 #B1; post request to get event_id
                                 session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
                                 url_image_model = 'https://img.freepik.com/free-photo/nice-girl-trendy-oversized-sweater-leaned-looking-camera-against-background-cars-with-smile_197531-26006.jpg'
@@ -1699,25 +1699,25 @@ def run():
                                 json_data = {
                                     'data': [
                                         {
-                                            'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                            #'path': url_image_model,
-                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image,
+                                            #'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                            'path': url_image_model,
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image,
                                             'orig_name': 'model_1.png',
                                             'size': None,
                                             'mime_type': None,
                                         },
                                         {
-                                            'path': 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
-                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
-                                            #'path': url_image_garment,
-                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image,
+                                            #'path': 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
+                                            #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
+                                            'path': url_image_garment,
+                                            'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image,
                                             'orig_name': 'garment_1.jpg',
                                             'size': None,
                                             'mime_type': None,
                                         },
                                         1,
-                                        20,
+                                        40,
                                         2,
                                         -1,
                                     ],
