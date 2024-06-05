@@ -1587,7 +1587,7 @@ def run():
                         try:
                             for user_input in user_input_arr:
                                 st.write(user_input)
-                                st.image(path_model)                       
+                                st.image(user_input)                       
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
