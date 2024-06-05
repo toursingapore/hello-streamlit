@@ -1549,7 +1549,7 @@ def run():
                                     with requests.get('https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                         for line_EventStream in response.iter_lines(decode_unicode=True):
                                             if line_EventStream:
-                                                st.write(line_EventStream)
+                                                #st.write(line_EventStream)
                                                 if 'process_completed' in line_EventStream:
                                                     #st.write('Found process_completed!')
                                                     pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
@@ -1559,7 +1559,10 @@ def run():
                                                         path = match.group(0).strip('"')
                                                         #st.write(path)
                                                         url_image_process_completed = '\n'.join(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}')
-                                                        break                                                    
+                                                        break
+                                                    else:
+                                                        st.write(line_EventStream) 
+                                                        break                                              
 
                                     st.image(url_image_process_completed, caption="Processed image", use_column_width="auto")   
 
