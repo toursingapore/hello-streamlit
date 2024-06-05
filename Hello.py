@@ -1379,7 +1379,7 @@ def run():
             
             st.info("""
                     Enter: model_URL|garment_URL \n
-                    Ex: [https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg|https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg](#)
+                    Ex: [https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg|https://i.pinimg.com/736x/f8/0f/f8/f80ff8ec363fab4e60921fdfc2588aea.jpg](#)
                 """)
             user_input = st.text_area("Enter image URL", placeholder='model_URL|garment_URL', height=200)
             #Append keywords to array and remove whitespace dư, empty line
@@ -1454,7 +1454,7 @@ def run():
                                     #url_image_model = 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg'
                                     #url_image_garment = 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg'
                                     url_image_model = path_model
-                                    url_image_garment = path_garment
+                                    url_image_garment = path_garment #Dùng garment image đã remove background sẽ change clothes chính xác hơn
 
 
                                     cookies = {
