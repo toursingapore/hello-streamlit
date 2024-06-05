@@ -1567,7 +1567,7 @@ def run():
                                                         break                                            
                                     
                                     #Default image to get is 768x1024
-                                    st.image(url_image_process_completed, caption="Processed image", width=2000, output_format="JPEG")
+                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")
 
 
                                     _ = """
