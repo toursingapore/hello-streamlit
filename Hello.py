@@ -1433,11 +1433,6 @@ def run():
                                 path_garment = user_input_split_arr[1]
                                 st.write(path_model)
                                 st.image(path_model)
-                                im = Image.open(requests.get(path_model, stream=True).raw)
-                                st.write(im.size)
-                                img_width = int(im.size[0])
-                                st.write(img_width)
-
                                 st.write(path_garment)
                                 st.image(path_garment)
 
@@ -1572,18 +1567,7 @@ def run():
                                                         break                                            
                                     
                                     #Default image to get is 768x1024
-                                    st.write(url_image_process_completed)
                                     st.image(url_image_process_completed, caption="Processed image", width=2000, output_format="JPEG")
-                                    #st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")
-                                    #size = (1080, 1080)
-                                    #size = im.size
-
-                                    #response = requests.get(url_image_process_completed)
-                                    #if response.status_code == 200:
-                                    #    with open("url_image_process_completed.jpg", 'wb') as f:
-                                    #        f.write(response.content)
-                                    #image_resized = img.resize(im.size, Image.Resampling.LANCZOS)
-                                    #st.image(image_resized, caption="Processed image", use_column_width="auto", output_format="JPEG")   
 
 
                                     _ = """
