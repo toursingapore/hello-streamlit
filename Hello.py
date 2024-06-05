@@ -1778,7 +1778,7 @@ def run():
                                                     url_image_process_completed = '\n'.join(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}')
                                                     break                                                    
 
-                                st.image(url_image_process_completed, width=768)  
+                                st.image(url_image_process_completed, caption="Processed image", use_column_width=True)  
 
 
 
