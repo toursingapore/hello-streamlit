@@ -1774,9 +1774,8 @@ def run():
                                                     # Extract the matched string and remove the surrounding quotes
                                                     path = match.group(0).strip('"')
                                                     st.write(path)
-                                                    url_image_process_completed = f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}'
-                                                    st.image(url_image_process_completed) 
-                                                    
+                                                    url_image_process_completed = '\n'.join(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}')
+                                                    break                                                    
 
                                 st.image(url_image_process_completed)  
 
