@@ -1574,10 +1574,21 @@ def run():
                                     #Default image to get is 768x124    
                                     #st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")
                                     #size = (1080, 1080)
-                                    size = im.size
-                                    im_image_process = Image.open(requests.get(url_image_process_completed, stream=True).raw)
-                                    imageResized = im_image_process.resize(size)                               
-                                    st.image(imageResized, caption="Processed image", use_column_width="auto", output_format="JPEG")   
+                                    #size = im.size
+
+                                    w, h = im.size[0], im.size[1]
+                                    filepath = "image.jpg"
+                                    url = url_image_process_completed
+
+                                    r = requests.get(url, stream=True)
+                                    if r.status_code == 200:
+                                        img = Image.open(io.BytesIO(r.content))
+                                        
+                                        # Do something with image                                       
+                                        # Save image to file
+                                        img.save(filepath)
+
+                                    st.image(filepath, caption="Processed image", use_column_width="auto", output_format="JPEG")   
 
 
                                     _ = """
