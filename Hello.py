@@ -1777,6 +1777,7 @@ def run():
                                                 # Print the extracted image paths
                                                 for path in image_paths:
                                                     st.write(path)
+                                                    st.image(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}') 
                                                     
 
                                 st.image(url_image_process_completed)  
