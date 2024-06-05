@@ -1768,16 +1768,15 @@ def run():
                                                 #st.write(url_image_process_completed)
 
 
-                                                # Regular expression pattern to match the image path
-                                                pattern = r'"/tmp/gradio/[^"]+image\.png"'
-                                                # Find all matches in the data string
-                                                matches = re.findall(pattern, data)
-                                                # Extract the path without quotes
-                                                image_paths = [match.strip('"') for match in matches]
-                                                # Print the extracted image paths
-                                                for path in image_paths:
-                                                    st.write(path)
+                                                pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
+                                                match = re.search(pattern, line_EventStream)
+                                                if match:
+                                                    # Extract the matched string and remove the surrounding quotes
+                                                    file_path = match.group(0).strip('"')
+                                                    st.write(file_path)
                                                     st.image(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}') 
+                                                else:
+                                                    st.write("No match found")
                                                     
 
                                 st.image(url_image_process_completed)  
