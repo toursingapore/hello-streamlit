@@ -1435,6 +1435,8 @@ def run():
                                 st.image(path_model)
                                 im = Image.open(requests.get(path_model, stream=True).raw)
                                 st.write(im.size)
+                                img_width = int(im.size[0])
+                                st.write(img_width)
 
                                 st.write(path_garment)
                                 st.image(path_garment)
@@ -1568,8 +1570,10 @@ def run():
                                                     else:
                                                         st.write(line_EventStream) 
                                                         break                                            
-
-                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")   
+                                    
+                                    #Default image to get is 768x124    
+                                    #st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")
+                                    st.image(url_image_process_completed, caption="Processed image", width=img_width, use_column_width="auto", output_format="JPEG")   
 
 
                                     _ = """
