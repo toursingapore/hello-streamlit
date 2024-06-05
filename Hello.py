@@ -1101,6 +1101,37 @@ def run():
         #Free Train custom model YOLOv5 and YOLOv8 via Ultralytics HUB - https://hub.ultralytics.com/ và dùng model đó qua cloud api luôn - https://youtu.be/OpWpBI35A5Y?si=oIWqe7Zm0rt1cvcd ; Inference API Ultralytics HUB | Episode 32
         #Xem thêm dùng AI MODEL fairseq - https://github.com/facebookresearch/fairseq/tree/main/examples/paraphraser
         paraphrase = st.checkbox("Paraphrase content") 
+        if paraphrase:
+            #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
+            headers = {
+                'Content-Type': 'application/json',
+            }
+            json_data = {
+                'data': [
+                    'Bộ trưởng Ngô Văn Tuấn: Chưa cán bộ kiểm toán nào bị xử lý vì bỏ lọt vi phạm',
+                ],
+            }
+            response = requests.post('https://amitontheweb-instaoffyzfreeparaphraser.hf.space/api/predict', headers=headers, json=json_data)
+            st.write(response)
+            st.write(response.json())     
+
+            #Request2 websocket
+            #websocket.enableTrace(True)
+            #ws = websocket.WebSocket()
+            #ws.connect("wss://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
+            #ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
+            #time.sleep(5)
+            #st.write(f"response from server: {ws.recv()}")
+            #ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
+            #time.sleep(5)
+            #st.write(f"response from server: {ws.recv()}") 
+            #time.sleep(5)
+            #st.write(f"response from server: {ws.recv()}") 
+            #time.sleep(5)
+            #st.write(f"response from server: {ws.recv()}")             
+            #time.sleep(5)
+            #st.write(f"response from server: {ws.recv()}")                                                                                                                           
+            #ws.close()            
 
         # http://toursingapore.medianewsonline.com/ | user wp; DipasiEdI | pass D1[yE7.7L6Gv2tO
         #Must Install plugin ‘Application Passwords Enable’ - https://wordpress.org/plugins/application-passwords-enable/ và config để lấy wordpress_application_password thì mới auto post được
@@ -1435,6 +1466,7 @@ def run():
                                 st.write(path_garment)
                                 st.image(path_garment)
 
+                                _ = """
                                 #temp_dir_model = tempfile.mkdtemp()
                                 #path_model = os.path.join(temp_dir_model, user_input.name)
                                 #with open(path_model, "wb") as f:
@@ -1447,6 +1479,19 @@ def run():
                                 #    f.write(user_input_garment.getvalue())
                                 #st.image(path_garment)
 
+                                #Check HF_API_TOKEN expired or not
+                                HF_Token = HF_API_TOKEN
+                                headers = {
+                                    "Authorization": "Bearer " + HF_Token
+                                }
+
+                                url = "https://huggingface.co/api/spaces/levihsu/OOTDiffusion/jwt"
+                                result = requests.get(url, headers=headers).json()
+                                ## Dict ##
+                                #st.write(result) 
+                                ## Refresh Token
+                                #st.write(result['token'])
+                                """      
 
                                 #Request1 for Subdomain space - https://toromanow-test2.hf.space/ - HD https://stackoverflow.com/questions/76223210/huggingface-expected-input-format
                                 headers = {
@@ -1491,36 +1536,6 @@ def run():
                                 ws.close()
 
 
-                                #Request2 for Subdomain space with paraphrase - https://amitontheweb-instaoffyzfreeparaphraser.hf.space/ - source space at HF: https://huggingface.co/spaces/Amitontheweb/InstaoffyzFreeParaphraser
-                                headers = {
-                                    'Content-Type': 'application/json',
-                                }
-                                json_data = {
-                                    'data': [
-                                        'hello world',
-                                    ],
-                                }
-                                response = requests.post('https://amitontheweb-instaoffyzfreeparaphraser.hf.space/api/predict', headers=headers, json=json_data)
-                                st.write(response)
-                                st.write(response.json())     
-
-                                #Request2 websocket
-                                websocket.enableTrace(True)
-                                ws = websocket.WebSocket()
-                                ws.connect("wss://amitontheweb-instaoffyzfreeparaphraser.hf.space/queue/join") #Vì có trao đổi qua lại 7 sockets(2 requests, 5 response) nên thực hiện như dưới
-                                ws.send(json.dumps({"fn_index": 0, "session_hash": "4ajikro1ekg"})) #Convert json to normal text and session_hash chữ số ngẫu nhiên tự tạo
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")
-                                ws.send(json.dumps({"fn_index":0,"data":["hello world"],"event_data":None,"session_hash":"4ajikro1ekg"}))
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}") 
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}") 
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")             
-                                time.sleep(5)
-                                st.write(f"response from server: {ws.recv()}")                                                                                                                           
-                                ws.close()
                                 
 
                                 #Request3
@@ -1737,7 +1752,6 @@ def run():
                                 #event_id = response.json()["event_id"]
                                 #st.write(event_id)
 
-
                                 #B2; get request and read event-stream
                                 headers = {
                                     'authority': 'levihsu-ootdiffusion.hf.space',
@@ -1755,11 +1769,9 @@ def run():
                                     'sec-fetch-site': 'same-origin',
                                     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                 }
-
                                 params = {
                                     'session_hash': session_hash,
                                 }
-
                                 url_image_process_completed = ''
                                 with requests.get('https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                     for line_EventStream in response.iter_lines(decode_unicode=True):
@@ -1776,60 +1788,7 @@ def run():
                                                     url_image_process_completed = '\n'.join(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}')
                                                     break                                                    
 
-                                st.image(url_image_process_completed, caption="Processed image", use_column_width=True)  
-
-
-
-                                _ = """
-                                #Check HF_API_TOKEN expired or not
-                                HF_Token = HF_API_TOKEN
-                                headers = {
-                                    "Authorization": "Bearer " + HF_Token
-                                }
-
-                                url = "https://huggingface.co/api/spaces/levihsu/OOTDiffusion/jwt"
-                                result = requests.get(url, headers=headers).json()
-                                ## Dict ##
-                                #st.write(result) 
-                                ## Refresh Token
-                                #st.write(result['token'])                 
-
-                                #Get from this space - https://huggingface.co/spaces/levihsu/OOTDiffusion
-                                from gradio_client import Client, file
-
-                                #client = Client("gradio/hello_world", hf_token=HF_API_TOKEN)
-                                client = Client("levihsu/OOTDiffusion", hf_token=HF_API_TOKEN)                               
-                                st.write(client) #hiển thị error này 'The read operation timed out' là do ko access được space vì bị nghẽn, do nhiều requests
-
-                                job = client.submit(
-                                    #"https://images2.thanhnien.vn/528068263637045248/2023/3/28/tran-thanh-16799781612722113108566.jpeg",	# filepath  in 'Model' Image component
-                                    path_model,
-                                    #"https://product.hstatic.net/200000456445/product/o_nam_louis_vuitton_monogram_gradient_cotton_t-shirt__vert__1abix6__1__0f8ed9eac7ac479f9ee7a9baff260272_master.png",	# filepath  in 'Garment' Image component
-                                    path_garment,
-                                    #"Upper-body",	# Literal['Upper-body', 'Lower-body', 'Dress']  in 'Garment category (important option!!!)' Dropdown component
-                                    1,	# float (numeric value between 1 and 4) in 'Images' Slider component
-                                    40,	# float (numeric value between 20 and 40) in 'Steps' Slider component
-                                    1,	# float (numeric value between 1.0 and 5.0) in 'Guidance scale' Slider component
-                                    -1,	# float (numeric value between -1 and 2147483647) in 'Seed' Slider component
-                                    api_name="/process_hd", #for half body
-                                    #api_name="/process_dc" #for full body , then uncomment"Upper-body" above
-                                    )
-                                # Do something else
-                                i = 1
-                                my_bar = st.progress(0, text="Please wait ...")                                
-                                while not job.done():
-                                    time.sleep(0.1)
-                                    #st.write(i)
-                                    my_bar.progress(i + 1, text="Please wait ...")
-                                    i = i + 1
-                                my_bar.empty()
-                                
-                                st.write(f"Total time waited {i} seconds") 
-                                result = job.result(timeout=5000) # This is blocking and wait max 120s for result , if not will be error 
-                                response_image = result[0]["image"]
-                                st.image(response_image)
-                                client.reset_session()   #nhiều request trong loop thì dùng cái này để nó tự reset lại sau mỗi loop
-                                """                         
+                                st.image(url_image_process_completed, caption="Processed image", use_column_width=True)                     
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
