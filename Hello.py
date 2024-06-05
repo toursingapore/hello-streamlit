@@ -1562,7 +1562,7 @@ def run():
                                                         break
                                                     else:
                                                         st.write(line_EventStream) 
-                                                        break                                              
+                                                        break                                            
 
                                     st.image(url_image_process_completed, caption="Processed image", use_column_width="auto")   
 
