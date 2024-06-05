@@ -1456,7 +1456,7 @@ def run():
                                 with st.spinner('Wait for it...'): 
                                     ##Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                     #B1; post request to get event_id
-                                    session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
+                                    session_hash = 'f58zw7qt0zk' #random 11 ký tự ngẫu nhiên
                                     #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
                                     #url_image_garment = 'https://i.pinimg.com/736x/f8/0f/f8/f80ff8ec363fab4e60921fdfc2588aea.jpg'
                                     #model image và garment image nên là white background mới change clothes chính xác hơn
