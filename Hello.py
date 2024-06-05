@@ -1521,8 +1521,8 @@ def run():
                                         headers=headers,
                                         json=json_data,
                                     )
-                                    st.write(response)
-                                    st.write(response.json())
+                                    #st.write(response)
+                                    #st.write(response.json())
                                     #event_id = response.json()["event_id"]
                                     #st.write(event_id)
 
