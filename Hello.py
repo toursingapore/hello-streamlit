@@ -1575,9 +1575,8 @@ def run():
                                     #st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")
                                     #size = (1080, 1080)
                                     size = im.size
-                                    userImage = Image.open(url_image_process_completed)
-                                    imageResized = userImage.resize(size) ### EDITED LINE
-                                    #imageResized.show()                                    
+                                    im_image_process = Image.open(requests.get(url_image_process_completed, stream=True).raw)
+                                    imageResized = im_image_process.resize(size)                               
                                     st.image(imageResized, caption="Processed image", use_column_width="auto", output_format="JPEG")   
 
 
