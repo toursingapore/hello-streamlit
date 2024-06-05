@@ -1367,13 +1367,13 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt", "Change clothes from reference image", "Extract masks from uploaded image", "Extract masks from image URL"],
+            ["Generate image from prompt", "Change clothes from reference garment image", "Extract masks from uploaded image", "Extract masks from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
         if add_radio == "Generate image from prompt":
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
-        elif add_radio == "Change clothes from reference image":
+        elif add_radio == "Change clothes from reference garment image":
             #user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
             #user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
             
@@ -1424,7 +1424,7 @@ def run():
                         img_path = temp_filename_img_path
                         img_path_arr.append(img_path)
 
-                    case "Change clothes from reference image":
+                    case "Change clothes from reference garment image":
                         try:
                             for user_input in user_input_arr:
                                 user_input_split_arr = user_input.split("|")
