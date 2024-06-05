@@ -1367,12 +1367,20 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt", "Change clothes from reference garment image", "Generate image from reference image", "Extract masks from uploaded image", "Extract masks from image URL"],
+            ["Generate image from prompt", "Generate image from reference image", "Change clothes from reference garment image", "Extract masks from uploaded image", "Extract masks from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
         if add_radio == "Generate image from prompt":
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
+        elif add_radio == "Generate image from reference image":
+            st.info("""
+                    Enter: reference_image_URL \n
+                    Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg](#)
+                """)
+            user_input = st.text_area("Enter image URL", placeholder='reference_image_URL', height=200)
+            #Append keywords to array and remove whitespace dư, empty line
+            user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]        
         elif add_radio == "Change clothes from reference garment image":
             #user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
             #user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
@@ -1383,14 +1391,6 @@ def run():
                     Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg](#)
                 """)
             user_input = st.text_area("Enter image URL", placeholder='model_image_URL|garment_image_URL', height=200)
-            #Append keywords to array and remove whitespace dư, empty line
-            user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
-        elif add_radio == "Generate image from reference image":
-            st.info("""
-                    Enter: reference_image_URL \n
-                    Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg](#)
-                """)
-            user_input = st.text_area("Enter image URL", placeholder='reference_image_URL', height=200)
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
         elif add_radio == "Extract masks from uploaded image":
@@ -1432,6 +1432,18 @@ def run():
                         #st.code(temp_filename_img_path, language="text")
                         img_path = temp_filename_img_path
                         img_path_arr.append(img_path)
+
+                    case "Generate image from reference image":
+                        try:
+                            for user_input in user_input_arr:
+                                st.write(user_input)
+                                st.image(user_input)                       
+
+                        except Exception as e:
+                            exc_type, exc_obj, exc_tb = sys.exc_info()
+                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                            #st.write(exc_type, fname, exc_tb.tb_lineno)
+                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")   
 
                     case "Change clothes from reference garment image":
                         try:
@@ -1582,18 +1594,6 @@ def run():
                             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
                             #st.write(exc_type, fname, exc_tb.tb_lineno)
                             st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")                              
-
-                    case "Generate image from reference image":
-                        try:
-                            for user_input in user_input_arr:
-                                st.write(user_input)
-                                st.image(user_input)                       
-
-                        except Exception as e:
-                            exc_type, exc_obj, exc_tb = sys.exc_info()
-                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                            #st.write(exc_type, fname, exc_tb.tb_lineno)
-                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")   
 
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
