@@ -1454,7 +1454,7 @@ def run():
                                     #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
                                     #url_image_garment = 'https://i.pinimg.com/736x/f8/0f/f8/f80ff8ec363fab4e60921fdfc2588aea.jpg'
                                     url_image_model = path_model
-                                    url_image_garment = path_garment #garment image là loại đã remove background or white background mới change clothes chính xác hơn
+                                    url_image_garment = path_garment #garment image nên là white background mới change clothes chính xác hơn
 
 
                                     cookies = {
