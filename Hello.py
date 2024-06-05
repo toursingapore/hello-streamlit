@@ -1571,12 +1571,13 @@ def run():
                                                         st.write(line_EventStream) 
                                                         break                                            
                                     
-                                    #Default image to get is 768x124    
+                                    #Default image to get is 768x124
+                                    st.write(url_image_process_completed)
                                     #st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")
                                     #size = (1080, 1080)
                                     #size = im.size
 
-                                    response = requests.get(url_image_process_completed)
+                                    response = requests.get(urllib.quote_plus(url_image_process_completed))
                                     if response.status_code == 200:
                                         with open("url_image_process_completed.jpg", 'wb') as f:
                                             f.write(response.content)
