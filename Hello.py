@@ -1564,7 +1564,7 @@ def run():
                                                         st.write(line_EventStream) 
                                                         break                                            
 
-                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto")   
+                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")   
 
 
                                 _ = """
