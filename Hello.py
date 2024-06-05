@@ -1447,8 +1447,7 @@ def run():
                                 #    f.write(user_input_garment.getvalue())
                                 #st.image(path_garment)
 
-                                #with st.spinner('Wait for it...'): 
-                                with st.expander("Click here to view data"):                                    
+                                with st.spinner('Wait for it...'): 
                                     ##Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                     #B1; post request to get event_id
                                     session_hash = 'f58zw7qt0ze' #random 11 ký tự ngẫu nhiên
