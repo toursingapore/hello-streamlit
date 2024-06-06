@@ -1650,17 +1650,26 @@ def run():
                                         #f'https': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
                                     }
                                     
-                                    response = scraper.post(
-                                        url_space+'/queue/join',
-                                        params=params,
-                                        json=json_data,
-                                        #cookies=cookies,
-                                        #headers=headers,
-                                        proxies=proxies,
-                                        verify=False,   #chưa được xem verify ssl here - https://github.com/ccxt/ccxt/issues/5394                                                                       
-                                    )
-                                    st.write(response.text)
-
+                                    if use_proxy:
+                                        response = scraper.post(
+                                            url_space+'/queue/join',
+                                            params=params,
+                                            json=json_data,
+                                            #cookies=cookies,
+                                            #headers=headers,                                                                    
+                                        )
+                                        st.write(response.text)
+                                    else:
+                                        response = scraper.post(
+                                            url_space+'/queue/join',
+                                            params=params,
+                                            json=json_data,
+                                            #cookies=cookies,
+                                            #headers=headers,
+                                            proxies=proxies,
+                                            verify=False, #skips SSL verification
+                                        )
+                                        st.write(response.text)
 
                                     #B3; get request and read event-stream
                                     headers = {
