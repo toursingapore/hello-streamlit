@@ -1473,18 +1473,7 @@ def run():
                                 #st.image(path_garment)
 
                                 with st.spinner('Wait for it...'): 
-                                    ##Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
-                                    #B1; post request to get event_id
-                                    session_hash = 'f58zw7qt0zk' #random 11 ký tự ngẫu nhiên
-                                    #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
-                                    #url_image_garment = 'https://i.pinimg.com/736x/f8/0f/f8/f80ff8ec363fab4e60921fdfc2588aea.jpg'
-                                    #model image và garment image nên là white background mới change clothes chính xác hơn
-                                    url_image_model = path_model
-                                    url_image_garment = path_garment
-
-
-
-                                    #get code
+                                    #Get url space with random code mỗi ngày
                                     if device == "Mobile - Android":
                                         scraper = cloudscraper.create_scraper(
                                             browser={
@@ -1502,23 +1491,26 @@ def run():
                                         soup = BeautifulSoup(html,'html.parser')
                                         scripts = soup.findAll('script')
                                         pattern = r'"root":\s*"(https?://[^"]+)"'
-
                                         for script in scripts:
                                             script_content = script.string                                            
                                             st.write(script_content)     
-
                                             match = re.search(pattern, script_content)
                                             if match:
                                                 root_url = match.group(1)
-                                                st.write(f"Extracted URL: {root_url}")
-                                            else:
-                                                st.write("No match found.")                                                                                    
-                                        #results = soup.body.findAll(text='https://levihsu-ootdiffusion.hf.space/--replicas/iif7h')   
-                                        #results = soup.findAll("script", {"root" : re.compile('https://levihsu-ootdiffusion.hf.space/--replicas.*')})
-                                        #st.write(results)
-                               
+                                                #st.write(f"Extracted URL: {root_url}")
+                                                break
+                                    st.write(f"Extracted URL: {root_url}")
 
-
+                                    ##Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
+                                    #B1; post request to get event_id
+                                    #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #cdoe 'qb7za' auto change random mỗi ngày
+                                    url_space = root_url
+                                    session_hash = 'f58zw7qt0zk' #random 11 ký tự ngẫu nhiên
+                                    #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
+                                    #url_image_garment = 'https://i.pinimg.com/736x/f8/0f/f8/f80ff8ec363fab4e60921fdfc2588aea.jpg'
+                                    #model image và garment image nên là white background mới change clothes chính xác hơn
+                                    url_image_model = path_model
+                                    url_image_garment = path_garment                            
 
                                     cookies = {
                                         '_gid': 'GA1.2.1887367721.1717550611',
@@ -1551,7 +1543,7 @@ def run():
                                                 #'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
                                                 #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
                                                 'path': url_image_model,
-                                                'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image_model,
+                                                'url': url_space+'/file='+url_image_model,
                                                 'orig_name': 'model_1.png',
                                                 'size': None,
                                                 'mime_type': None,
@@ -1560,7 +1552,7 @@ def run():
                                                 #'path': 'https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
                                                 #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://static.pullandbear.net/2/photos//2024/V/0/2/p/8240/540/800/8240540800_2_6_8.jpg',
                                                 'path': url_image_garment,
-                                                'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file='+url_image_garment,
+                                                'url': url_space+'/file='+url_image_garment,
                                                 'orig_name': 'garment_1.jpg',
                                                 'size': None,
                                                 'mime_type': None,
@@ -1577,7 +1569,7 @@ def run():
                                     }
 
                                     response = requests.post(
-                                        'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join',
+                                        url_space+'/queue/join',
                                         params=params,
                                         cookies=cookies,
                                         headers=headers,
@@ -1609,7 +1601,7 @@ def run():
                                         'session_hash': session_hash,
                                     }
                                     url_image_process_completed = ''
-                                    with requests.get('https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                    with requests.get(url_space+'/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                         for line_EventStream in response.iter_lines(decode_unicode=True):
                                             if line_EventStream:
                                                 #st.write(line_EventStream)
@@ -1621,7 +1613,7 @@ def run():
                                                         # Extract the matched string and remove the surrounding quotes
                                                         path = match.group(0).strip('"')
                                                         #st.write(path)
-                                                        url_image_process_completed = '\n'.join(f'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file={path}')
+                                                        url_image_process_completed = '\n'.join(f'{url_space}/file={path}')
                                                         break
                                                     else:
                                                         st.write(line_EventStream) 
