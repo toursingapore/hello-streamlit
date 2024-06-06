@@ -1378,9 +1378,28 @@ def run():
                     Enter: reference_image_URL \n
                     Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg](#)
                 """)
+
+            styles = [
+                "(No style)", 
+                "Cinematic", 
+                "Disney Charactor", 
+                "Digital Art", 
+                "Photographic (Default)", 
+                "Fantasy art", 
+                "Neonpunk", 
+                "Enhance", 
+                "Comic book", 
+                "Lowpoly", 
+                "Line art"
+            ]
+
+            # Creating a select box
+            selected_style = st.selectbox("Pick a style", styles, key="style_selector")
+            st.write(selected_style)
+
             user_input = st.text_area("Enter image URL", value='https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg', placeholder='reference_image_URL', height=200)
             #Append keywords to array and remove whitespace dư, empty line
-            user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]        
+            user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
         elif add_radio == "Change clothes from reference garment image":
             #user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
             #user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
