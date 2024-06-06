@@ -1598,7 +1598,9 @@ def run():
                                                             break                                            
                                     """
                                     #Use Cloudscraper tương tự requests
-                                    with scraper.post(url_space+'/queue/data', params=params, stream=True) as response:                     
+                                    with scraper.post(url_space+'/queue/data', params=params) as responses:
+                                        st.write(responses.text)
+                                        response = responses.text                          
                                         for line_EventStream in response.iter_lines(decode_unicode=True):
                                             if line_EventStream:
                                                 st.write(line_EventStream)
