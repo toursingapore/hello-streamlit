@@ -1659,7 +1659,7 @@ def run():
                                             #cookies=cookies,
                                             #headers=headers,
                                             proxies=proxies,
-                                            verify=False, #skips SSL verification
+                                            verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
                                         )
                                         st.write(response.text)
                                     else:
