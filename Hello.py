@@ -1394,7 +1394,7 @@ def run():
             ]
 
             # Creating a select box
-            selected_style = st.selectbox("Pick a style", styles, key="style_selector")
+            selected_style = st.selectbox("Pick a style", styles, index=4, key="style_selector")
             st.write(selected_style)
 
             user_input = st.text_area("Enter image URL", value='https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg', placeholder='reference_image_URL', height=200)
