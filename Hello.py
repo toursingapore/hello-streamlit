@@ -1659,7 +1659,7 @@ def run():
                                             #cookies=cookies,
                                             #headers=headers,
                                             proxies=proxies,
-                                            verify=False, #skips SSL verification
+                                            #verify=False, #skips SSL verification
                                         )
                                         st.write(response.text)
                                     else:
