@@ -1457,6 +1457,15 @@ def run():
                                         )                               
                                     response = scraper.get(space_HF_url)
                                     if response.status_code == 200:
+                                        script_content = response.text
+                                        st.write(script_content)
+                                        #pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
+                                        pattern = r'"https://tencentarc-photomaker.hf.space/--replicas/[a-f0-9]{40}"'
+                                        match = re.search(pattern, script_content)
+                                        if match:
+                                            root_url = match.group(1)
+
+                                        _ = """
                                         html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
                                         #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
                                         #Đưa vào BeautifulSoup cho dễ scrape elements
@@ -1470,6 +1479,7 @@ def run():
                                             if match:
                                                 root_url = match.group(1)
                                                 break
+                                        """
                                     st.write(f"Extracted URL: {root_url}")
 
                                     #Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
