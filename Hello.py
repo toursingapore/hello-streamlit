@@ -1664,26 +1664,26 @@ def run():
                                                             break                                            
                                     """
                                     #Use Cloudscraper tương tự requests 
-                                    with scraper.get(url_space+'/queue/data', params=params) as response:
-                                        #st.write(response.text) #Auto show all response like stream=True and iter_lines                              
-                                        line_EventStream = response.text
-                                        if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
-                                            #st.write('You have exceeded your GPU quota')
-                                            pattern = r'"error":\s*"(.*?)"'
-                                            match = re.search(pattern, line_EventStream)
+                                    response = scraper.get(url_space+'/queue/data', params=params)
+                                    #st.write(response.text) #Auto show all response like stream=True and iter_lines                              
+                                    line_EventStream = response.text
+                                    if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
+                                        #st.write('You have exceeded your GPU quota')
+                                        pattern = r'"error":\s*"(.*?)"'
+                                        match = re.search(pattern, line_EventStream)
+                                        if match:
+                                            error_message = match.group(1)
+                                            st.write(error_message)     
+                                    else:
+                                        pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
+                                        matches = re.findall(pattern, line_EventStream)
+                                        for match in matches:
                                             if match:
-                                                error_message = match.group(1)
-                                                st.write(error_message)     
-                                        else:
-                                            pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
-                                            matches = re.findall(pattern, line_EventStream)
-                                            for match in matches:
-                                                if match:
-                                                    #Show 2 kết quả nên add vào array                                                    
-                                                    url_image_process_completed_arr.append(f'{url_space}/file={match}')
-                                                else:
-                                                    st.write(line_EventStream) 
-                                                    break  
+                                                #Show 2 kết quả nên add vào array                                                    
+                                                url_image_process_completed_arr.append(f'{url_space}/file={match}')
+                                            else:
+                                                st.write(line_EventStream) 
+                                                break  
                   
                                     #Default image to get is 768x1024
                                     for url_image_process_completed in url_image_process_completed_arr:
