@@ -1656,7 +1656,8 @@ def run():
                                         json=json_data,
                                         #cookies=cookies,
                                         #headers=headers,
-                                        proxies=proxies,                                                                            
+                                        proxies=proxies,
+                                        verify=False,                                                                          
                                     )
                                     st.write(response.text)
 
