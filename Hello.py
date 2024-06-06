@@ -1650,7 +1650,7 @@ def run():
                                         #f'https': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
                                     }
                                     
-                                    if use_proxy:
+                                    if not use_proxy:
                                         response = scraper.post(
                                             url_space+'/queue/join',
                                             params=params,
