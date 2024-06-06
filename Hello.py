@@ -1459,11 +1459,12 @@ def run():
                     case "Generate image from reference image":
                         try:
                             #Get free 1000 proxy - https://scrapeops.io/app/register/proxy
+                            url_scrape = 'https://ipinfo.io/json'
                             params={
                                 'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
                                 'url': 'https://quotes.toscrape.com/', 
                             }                                                    
-                            response = requests.get('https://ipinfo.io/json',params=params)
+                            response = requests.get(url_scrape,params=params)
                             #st.write('Response Body: ', response.content)
                             #html = response.content
                             st.write(response.json())
