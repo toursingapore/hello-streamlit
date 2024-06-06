@@ -1453,7 +1453,8 @@ def run():
                                                 'platform': 'android', #auto random user-agent: 'linux', 'windows', 'darwin', 'android', 'ios' bypass cloudflare rất ok
                                                 'desktop': False
                                             },             
-                                            disableCloudflareV1=True  #Disable site có cloudflare           
+                                            disableCloudflareV1=True,  #Disable site có cloudflare
+                                            debug=True        
                                         )                               
                                     response = scraper.get(space_HF_url)
                                     if response.status_code == 200:
