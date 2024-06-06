@@ -1446,51 +1446,64 @@ def run():
                                     #B1; Get url space, nó sẽ auto change random code mỗi ngày
                                     space_HF_url = "https://tencentarc-photomaker.hf.space/"
 
-                                    if device == "Mobile - Android":
+                                    devices = [
+                                        "Mobile - Android",
+                                        "Mobile - iOS",
+                                        "Desktop - Windows",
+                                        "Desktop - Linux",
+                                        "Desktop - macOS"
+                                    ]
+
+                                    # Randomly select a device from the array
+                                    selected_device = random.choice(devices)
+                                    st.write(selected_device)
+
+                                    # Configure cloudscraper based on the selected device
+                                    if selected_device == "Mobile - Android":
                                         scraper = cloudscraper.create_scraper(
                                             browser={
-                                                'browser': 'chrome', #firefox or chrome
-                                                'platform': 'android', #auto random user-agent: 'linux', 'windows', 'darwin', 'android', 'ios' bypass cloudflare rất ok
+                                                'browser': 'chrome',  # options: 'firefox' or 'chrome'
+                                                'platform': 'android',  # 'linux', 'windows', 'darwin', 'android', 'ios'
                                                 'desktop': False
-                                            },             
-                                            disableCloudflareV1=True  #Disable site có cloudflare           
-                                        )  # returns a CloudScraper instance
-                                    elif device == "Mobile - iOS":
+                                            },
+                                            disableCloudflareV1=True  # Disable sites with Cloudflare
+                                        )
+                                    elif selected_device == "Mobile - iOS":
                                         scraper = cloudscraper.create_scraper(
                                             browser={
                                                 'browser': 'chrome',
-                                                'platform': 'ios', 
+                                                'platform': 'ios',
                                                 'desktop': False
-                                            },             
-                                            disableCloudflareV1=True           
-                                        )    
-                                    elif device == "Desktop - Windows":
+                                            },
+                                            disableCloudflareV1=True
+                                        )
+                                    elif selected_device == "Desktop - Windows":
                                         scraper = cloudscraper.create_scraper(
                                             browser={
                                                 'browser': 'chrome',
-                                                'platform': 'windows', 
+                                                'platform': 'windows',
                                                 'desktop': True
-                                            },             
-                                            disableCloudflareV1=True           
-                                        )  
-                                    elif device == "Desktop - Linux":
+                                            },
+                                            disableCloudflareV1=True
+                                        )
+                                    elif selected_device == "Desktop - Linux":
                                         scraper = cloudscraper.create_scraper(
                                             browser={
                                                 'browser': 'chrome',
-                                                'platform': 'linux', 
+                                                'platform': 'linux',
                                                 'desktop': True
-                                            },             
-                                            disableCloudflareV1=True          
-                                        )    
-                                    else:
+                                            },
+                                            disableCloudflareV1=True
+                                        )
+                                    else:  # "Desktop - macOS"
                                         scraper = cloudscraper.create_scraper(
                                             browser={
                                                 'browser': 'chrome',
-                                                'platform': 'darwin', 
+                                                'platform': 'darwin',
                                                 'desktop': True
-                                            },             
-                                            disableCloudflareV1=True          
-                                        )                                       
+                                            },
+                                            disableCloudflareV1=True
+                                        )                                
                                     response = scraper.get(space_HF_url)
                                     if response.status_code == 200:
                                         html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
