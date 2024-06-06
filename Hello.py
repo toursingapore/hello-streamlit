@@ -1535,7 +1535,7 @@ def run():
                                         'trigger_id': 12,
                                         'session_hash': session_hash,
                                     }
-
+                                    _ = """
                                     response = requests.post(
                                         url_space+'/queue/join',
                                         params=params,
@@ -1544,7 +1544,19 @@ def run():
                                         json=json_data,
                                     )
                                     st.write(response)
-                                    st.write(response.json())
+                                    st.write(response.json())                                    
+                                    """
+                                    response = scraper.post(
+                                        url_space+'/queue/join',
+                                        params=params,
+                                        #cookies=cookies,
+                                        #headers=headers,
+                                        json=json_data,                                        
+                                    )
+                                    st.write(response.text)
+
+
+
 
                                     #B3; get request and read event-stream
                                     headers = {
