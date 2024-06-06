@@ -1597,9 +1597,9 @@ def run():
                                                             st.write(line_EventStream) 
                                                             break                                            
                                     """
-                                    #Use Cloudscraper tương tự requests stream=True and read iter_lines
+                                    #Use Cloudscraper 
                                     with scraper.get(url_space+'/queue/data', params=params) as response:
-                                        st.write(response.text)                                     
+                                        #st.write(response.text) #Show tương tự requests stream=True and read iter_lines                              
                                         line_EventStream = response.text
                                         if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
                                             #st.write('You have exceeded your GPU quota')
@@ -1613,7 +1613,6 @@ def run():
                                             matches = re.findall(pattern, line_EventStream)
                                             for match in matches:
                                                 if match:
-                                                    st.write(match)
                                                     #Show 2 kết quả nên add vào array                                                    
                                                     url_image_process_completed_arr.append(f'{url_space}/file={match}')
                                                 else:
