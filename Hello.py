@@ -1688,12 +1688,8 @@ def run():
                                     #Default image to get is 768x1024
                                     for url_image_process_completed in url_image_process_completed_arr:
                                         st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="auto") 
-                                        time.sleep(5)   
-
-
-
-
-
+                                        time.sleep(1)
+                            time.sleep(5) 
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
