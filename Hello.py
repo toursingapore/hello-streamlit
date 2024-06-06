@@ -1442,115 +1442,154 @@ def run():
                                 #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
                                 #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
                                 #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
-                                #B1
-                                cookies = {
-                                    '_gid': 'GA1.2.1748695530.1717638365',
-                                    '_ga_R1FN4KJKJH': 'GS1.1.1717646415.2.1.1717646438.0.0.0',
-                                    '_ga': 'GA1.1.1146802884.1717638365',
-                                }
+                                with st.spinner('Wait for it...'): 
+                                    #B1; Get url space, nó sẽ auto change random code mỗi ngày
+                                    space_HF_url = "https://tencentarc-photomaker.hf.space/"
 
-                                headers = {
-                                    'authority': 'tencentarc-photomaker.hf.space',
-                                    'accept': '*/*',
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'content-type': 'application/json',
-                                    # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
-                                    'dnt': '1',
-                                    'origin': 'https://tencentarc-photomaker.hf.space',
-                                    'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                }
+                                    if device == "Mobile - Android":
+                                        scraper = cloudscraper.create_scraper(
+                                            browser={
+                                                'browser': 'chrome', #firefox or chrome
+                                                'platform': 'android', #auto random user-agent: 'linux', 'windows', 'darwin', 'android', 'ios' bypass cloudflare rất ok
+                                                'desktop': False
+                                            },             
+                                            disableCloudflareV1=True  #Disable site có cloudflare           
+                                        )                               
+                                    response = scraper.get(space_HF_url)
+                                    if response.status_code == 200:
+                                        html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
+                                        #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                                        #Đưa vào BeautifulSoup cho dễ scrape elements
+                                        soup = BeautifulSoup(html,'html.parser')
+                                        scripts = soup.findAll('script')
+                                        pattern = r'"root":\s*"(https?://[^"]+)"'
+                                        for script in scripts:
+                                            script_content = script.string                                            
+                                            #st.write(script_content)     
+                                            match = re.search(pattern, script_content)
+                                            if match:
+                                                root_url = match.group(1)
+                                                break
+                                    st.write(f"Extracted URL: {root_url}")
 
-                                params = {
-                                    '__theme': 'light',
-                                }
+                                    #Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
+                                    #B2; post request to get event_id
+                                    #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #code 'qb7za' auto change random mỗi ngày
+                                    url_space = root_url
+                                    session_hash = 'f58zw7qt0zk' #tự cho random 11 ký tự ngẫu nhiên nào cũng được
+                                    #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
+                                    url_image_model = user_input               
 
-                                json_data = {
-                                    'data': [
-                                        [
-                                            {
-                                                'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                                'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                                #'path': url_image_model,
-                                                #'url': url_space+'/file='+url_image_model,
-                                                'orig_name': 'model_1.png',
-                                                'size': None,
-                                                'mime_type': None,
-                                            },
+                                    cookies = {
+                                        '_gid': 'GA1.2.1748695530.1717638365',
+                                        '_ga_R1FN4KJKJH': 'GS1.1.1717646415.2.1.1717646438.0.0.0',
+                                        '_ga': 'GA1.1.1146802884.1717638365',
+                                    }
+
+                                    headers = {
+                                        'authority': 'tencentarc-photomaker.hf.space',
+                                        'accept': '*/*',
+                                        'accept-language': 'en-US,en;q=0.9',
+                                        'content-type': 'application/json',
+                                        # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
+                                        'dnt': '1',
+                                        'origin': 'https://tencentarc-photomaker.hf.space',
+                                        'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
+                                        'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                        'sec-ch-ua-mobile': '?0',
+                                        'sec-ch-ua-platform': '"Windows"',
+                                        'sec-fetch-dest': 'empty',
+                                        'sec-fetch-mode': 'cors',
+                                        'sec-fetch-site': 'same-origin',
+                                        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                    }
+
+                                    params = {
+                                        '__theme': 'light',
+                                    }
+
+                                    json_data = {
+                                        'data': [
+                                            [
+                                                {
+                                                    #'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                                    #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                                    'path': url_image_model,
+                                                    'url': url_space+'/file='+url_image_model,
+                                                    'orig_name': 'model_1.png',
+                                                    'size': None,
+                                                    'mime_type': None,
+                                                },
+                                            ],
+                                            'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain',
+                                            '(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth',
+                                            '(No style)', #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
+                                            50,
+                                            20,
+                                            2,
+                                            5,
+                                            665256543,
                                         ],
-                                        'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain',
-                                        '(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth',
-                                        '(No style)', #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
-                                        50,
-                                        20,
-                                        2,
-                                        5,
-                                        665256543,
-                                    ],
-                                    'event_data': None,
-                                    'fn_index': 5,
-                                    'trigger_id': 12,
-                                    'session_hash': '9x31ajvdwa7',
-                                }
+                                        'event_data': None,
+                                        'fn_index': 5,
+                                        'trigger_id': 12,
+                                        'session_hash': session_hash,
+                                    }
 
-                                response = requests.post(
-                                    'https://tencentarc-photomaker.hf.space/--replicas/tk1ar/queue/join',
-                                    params=params,
-                                    cookies=cookies,
-                                    headers=headers,
-                                    json=json_data,
-                                )
-                                st.write(response)
-                                st.write(response.json())
+                                    response = requests.post(
+                                        'https://tencentarc-photomaker.hf.space/--replicas/tk1ar/queue/join',
+                                        params=params,
+                                        cookies=cookies,
+                                        headers=headers,
+                                        json=json_data,
+                                    )
+                                    st.write(response)
+                                    st.write(response.json())
 
-                                #B2
-                                headers = {
-                                    'authority': 'tencentarc-photomaker.hf.space',
-                                    'accept': 'text/event-stream',
-                                    'accept-language': 'en-US,en;q=0.9',
-                                    'cache-control': 'no-cache',
-                                    # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
-                                    'dnt': '1',
-                                    'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
-                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                    'sec-ch-ua-mobile': '?0',
-                                    'sec-ch-ua-platform': '"Windows"',
-                                    'sec-fetch-dest': 'empty',
-                                    'sec-fetch-mode': 'cors',
-                                    'sec-fetch-site': 'same-origin',
-                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                }
+                                    #B3; get request and read event-stream
+                                    headers = {
+                                        'authority': 'tencentarc-photomaker.hf.space',
+                                        'accept': 'text/event-stream',
+                                        'accept-language': 'en-US,en;q=0.9',
+                                        'cache-control': 'no-cache',
+                                        # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
+                                        'dnt': '1',
+                                        'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
+                                        'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                        'sec-ch-ua-mobile': '?0',
+                                        'sec-ch-ua-platform': '"Windows"',
+                                        'sec-fetch-dest': 'empty',
+                                        'sec-fetch-mode': 'cors',
+                                        'sec-fetch-site': 'same-origin',
+                                        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                    }
 
-                                params = {
-                                    'session_hash': '9x31ajvdwa7',
-                                }
-                                url_image_process_completed = ''
-                                with requests.get('https://tencentarc-photomaker.hf.space/--replicas/tk1ar/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
-                                    for line_EventStream in response.iter_lines(decode_unicode=True):
-                                        if line_EventStream:
-                                            st.write(line_EventStream)
-                                            if 'process_completed' in line_EventStream:
-                                                #st.write('Found process_completed!')
-                                                pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
-                                                match = re.search(pattern, line_EventStream)
-                                                if match:
-                                                    # Extract the matched string and remove the surrounding quotes
-                                                    path = match.group(0).strip('"')
-                                                    st.write(path)
-                                                    url_image_process_completed = '\n'.join(f'https://tencentarc-photomaker.hf.space/--replicas/tk1ar/file={path}')
-                                                    break
-                                                else:
-                                                    st.write(line_EventStream) 
-                                                    break                                            
-                                
-                                #Default image to get is 768x1024
-                                st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")   
+                                    params = {
+                                        'session_hash': session_hash,
+                                    }
+                                    url_image_process_completed = ''
+                                    with requests.get(url_space+'/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                        for line_EventStream in response.iter_lines(decode_unicode=True):
+                                            if line_EventStream:
+                                                st.write(line_EventStream)
+                                                if 'process_completed' in line_EventStream:
+                                                    #st.write('Found process_completed!')
+                                                    pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
+                                                    match = re.search(pattern, line_EventStream)
+                                                    if match:
+                                                        # Extract the matched string and remove the surrounding quotes
+                                                        path = match.group(0).strip('"')
+                                                        st.write(path)
+                                                        url_image_process_completed = '\n'.join(f'{url_space}/file={path}')
+                                                        break
+                                                    else:
+                                                        st.write(line_EventStream) 
+                                                        break                                            
+                                    
+                                    #Default image to get is 768x1024
+                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")     
+
+
 
 
 
