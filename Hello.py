@@ -1527,7 +1527,6 @@ def run():
                                                 break
                                     st.write(f"Extracted URL: {root_url}")
 
-                                    #Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                     #B2; post request to get event_id
                                     #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #code 'qb7za' auto change random mỗi ngày
                                     url_space = root_url
@@ -1601,17 +1600,6 @@ def run():
                                         'trigger_id': 12,
                                         'session_hash': session_hash,
                                     }
-                                    _ = """
-                                    response = requests.post(
-                                        url_space+'/queue/join',
-                                        params=params,
-                                        cookies=cookies,
-                                        headers=headers,
-                                        json=json_data,
-                                    )
-                                    st.write(response)
-                                    st.write(response.json())                                    
-                                    """
                                     #Use Cloudscraper tương tự requests
                                     response = scraper.post(
                                         url_space+'/queue/join',
@@ -1644,26 +1632,8 @@ def run():
                                     params = {
                                         'session_hash': session_hash,
                                     }
-                                    url_image_process_completed_arr = []
-                                    _ = """
-                                    with requests.get(url_space+'/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
-                                        for line_EventStream in response.iter_lines(decode_unicode=True):
-                                            if line_EventStream:
-                                                st.write(line_EventStream)
-                                                if 'process_completed' in line_EventStream:
-                                                    #st.write('Found process_completed!')
-                                                    pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
-                                                    matches = re.findall(pattern, line_EventStream)
-                                                    for match in matches:
-                                                        if match:
-                                                            st.write(match)
-                                                            #Show 2 kết quả nên add vào array                                                    
-                                                            url_image_process_completed_arr.append(f'{url_space}/file={match}')
-                                                        else:
-                                                            st.write(line_EventStream) 
-                                                            break                                            
-                                    """
                                     #Use Cloudscraper tương tự requests 
+                                    url_image_process_completed_arr = []
                                     response = scraper.get(url_space+'/queue/data', params=params)
                                     #st.write(response.text) #Auto show all response stream=True and iter_lines                              
                                     line_EventStream = response.text
