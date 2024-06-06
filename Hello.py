@@ -1567,7 +1567,7 @@ def run():
                                     params = {
                                         'session_hash': session_hash,
                                     }
-                                    url_image_process_completed = ''
+                                    url_image_process_completed_arr = []
                                     with requests.get(url_space+'/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                         for line_EventStream in response.iter_lines(decode_unicode=True):
                                             if line_EventStream:
@@ -1580,14 +1580,15 @@ def run():
                                                         # Extract the matched string and remove the surrounding quotes
                                                         path = match.group(0).strip('"')
                                                         st.write(path)
-                                                        url_image_process_completed = '\n'.join(f'{url_space}/file={path}')
-                                                        break
+                                                        #Show 2 kết quả nên add vào array                                                    
+                                                        url_image_process_completed_arr.append(f'{url_space}/file={path}')
                                                     else:
                                                         st.write(line_EventStream) 
                                                         break                                            
                                     
                                     #Default image to get is 768x1024
-                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="auto")     
+                                    for url_image_process_completed in url_image_process_completed_arr:
+                                        st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="auto")     
 
 
 
