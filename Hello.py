@@ -1542,8 +1542,8 @@ def run():
                                                 if match:
                                                     # Extract the matched string and remove the surrounding quotes
                                                     path = match.group(0).strip('"')
-                                                    #st.write(path)
-                                                    url_image_process_completed = '\n'.join(f'{url_space}/file={path}')
+                                                    st.write(path)
+                                                    url_image_process_completed = '\n'.join(f'https://tencentarc-photomaker.hf.space/--replicas/tk1ar/file={path}')
                                                     break
                                                 else:
                                                     st.write(line_EventStream) 
