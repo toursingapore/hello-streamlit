@@ -1578,11 +1578,9 @@ def run():
                                                     matches = re.findall(pattern, line_EventStream)
                                                     for match in matches:
                                                         if match:
-                                                            # Extract the matched string and remove the surrounding quotes
-                                                            path = match.group(0).strip('"')
-                                                            st.write(path)
+                                                            st.write(match)
                                                             #Show 2 kết quả nên add vào array                                                    
-                                                            url_image_process_completed_arr.append(f'{url_space}/file={path}')
+                                                            url_image_process_completed_arr.append(f'{url_space}/file={match}')
                                                         else:
                                                             st.write(line_EventStream) 
                                                             break                                            
