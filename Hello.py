@@ -1537,7 +1537,7 @@ def run():
                                     }
 
                                     response = requests.post(
-                                        'https://tencentarc-photomaker.hf.space/--replicas/tk1ar/queue/join',
+                                        url_space+'/queue/join',
                                         params=params,
                                         cookies=cookies,
                                         headers=headers,
@@ -1568,7 +1568,7 @@ def run():
                                         'session_hash': session_hash,
                                     }
                                     url_image_process_completed = ''
-                                    with requests.get('https://tencentarc-photomaker.hf.space/--replicas/tk1ar/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                    with requests.get(url_space+'/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                         for line_EventStream in response.iter_lines(decode_unicode=True):
                                             if line_EventStream:
                                                 st.write(line_EventStream)
@@ -1587,7 +1587,7 @@ def run():
                                                         break                                            
                                     
                                     #Default image to get is 768x1024
-                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")     
+                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="auto")     
 
 
 
