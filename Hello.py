@@ -1599,7 +1599,7 @@ def run():
                                     """
                                     #Use Cloudscraper tương tự requests
                                     with scraper.get(url_space+'/queue/data', params=params) as responses:
-                                        st.write(responses.text)
+                                        #st.write(responses.text)
                                         response = responses.text                          
                                         for line_EventStream in response.iter_lines(decode_unicode=True):
                                             if line_EventStream:
