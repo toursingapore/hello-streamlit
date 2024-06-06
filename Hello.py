@@ -1647,7 +1647,7 @@ def run():
                                     SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                     proxies = {
                                         f'http': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',  #default port 5353
-                                        f'https': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
+                                        #f'https': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
                                     }
                                     
                                     response = scraper.post(
@@ -1656,8 +1656,8 @@ def run():
                                         json=json_data,
                                         #cookies=cookies,
                                         #headers=headers,
-                                        #proxies=proxies,
-                                        #verify=False,   #chưa được xem verify ssl here - https://github.com/ccxt/ccxt/issues/5394                                                                       
+                                        proxies=proxies,
+                                        verify=False,   #chưa được xem verify ssl here - https://github.com/ccxt/ccxt/issues/5394                                                                       
                                     )
                                     st.write(response.text)
 
