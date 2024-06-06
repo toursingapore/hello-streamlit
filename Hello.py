@@ -1457,22 +1457,20 @@ def run():
                         img_path_arr.append(img_path)
 
                     case "Generate image from reference image":
-
-
-                        #Get free 1000 proxy - https://scrapeops.io/app/register/proxy
-                        response = requests.get(
-                            url='ipinfo.io/json',
+                        try:
+                            #Get free 1000 proxy - https://scrapeops.io/app/register/proxy
+                            payload = (('key1', 'value1'), ('key2', 'value2'))
                             params={
                                 'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
                                 'url': 'https://quotes.toscrape.com/', 
-                            },
-                        )
-                        st.write('Response Body: ', response.content)
-                        html = response.content
-                        st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                            }                                                    
+                            response = requests.get('https://ipinfo.io/json',params=urlencode(params))
+                            st.write('Response Body: ', response.content)
+                            html = response.content
+                            st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
 
 
-                        try:
+
                             for user_input in user_input_arr:
                                 #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
                                 #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
