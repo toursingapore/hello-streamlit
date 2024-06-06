@@ -1599,7 +1599,7 @@ def run():
                                     """
                                     #Use Cloudscraper tương tự requests stream=True and read iter_lines
                                     with scraper.get(url_space+'/queue/data', params=params) as response:
-                                        #st.write(response.text)                                     
+                                        st.write(response.text)                                     
                                         line_EventStream = response.text
                                         if 'process_completed' in line_EventStream:
                                             st.write('Found process_completed!')
