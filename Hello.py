@@ -1574,17 +1574,18 @@ def run():
                                                 st.write(line_EventStream)
                                                 if 'process_completed' in line_EventStream:
                                                     #st.write('Found process_completed!')
-                                                    pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
-                                                    match = re.search(pattern, line_EventStream)
-                                                    if match:
-                                                        # Extract the matched string and remove the surrounding quotes
-                                                        path = match.group(0).strip('"')
-                                                        st.write(path)
-                                                        #Show 2 kết quả nên add vào array                                                    
-                                                        url_image_process_completed_arr.append(f'{url_space}/file={path}')
-                                                    else:
-                                                        st.write(line_EventStream) 
-                                                        break                                            
+                                                    pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'                                                    
+                                                    matches = re.findall(pattern, line_EventStream)
+                                                    for match in matches:
+                                                        if match:
+                                                            # Extract the matched string and remove the surrounding quotes
+                                                            path = match.group(0).strip('"')
+                                                            st.write(path)
+                                                            #Show 2 kết quả nên add vào array                                                    
+                                                            url_image_process_completed_arr.append(f'{url_space}/file={path}')
+                                                        else:
+                                                            st.write(line_EventStream) 
+                                                            break                                            
                                     
                                     #Default image to get is 768x1024
                                     for url_image_process_completed in url_image_process_completed_arr:
