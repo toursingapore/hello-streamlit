@@ -1602,7 +1602,13 @@ def run():
                                         st.write(response.text)                                     
                                         line_EventStream = response.text
                                         if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
-                                            st.write('You have exceeded your GPU quota')
+                                            #st.write('You have exceeded your GPU quota')
+                                            pattern = r'"error": "\'[a-f0-9]{40}\'"'   
+                                            match = re.search(pattern, line_EventStream)
+                                            if match:
+                                                root_url = match.group(1)
+                                                break
+                                                st.write(root_url)     
                                         else:
                                             pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
                                             matches = re.findall(pattern, line_EventStream)
