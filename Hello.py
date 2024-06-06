@@ -1560,6 +1560,16 @@ def run():
                                                     'size': None,
                                                     'mime_type': None,
                                                 },
+                                                {
+                                                    #Có thể add max 4 ảnh append vào là mảng array, nó tự mix thánh 1 face có nét các ảnh này
+                                                    #'path': 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
+                                                    #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
+                                                    #'path': url_image_model,
+                                                    #'url': url_space+'/file='+url_image_model,
+                                                    #'orig_name': 'model_1.png',
+                                                    #'size': None,
+                                                    #'mime_type': None,
+                                                },                                                
                                             ],
                                             #'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', #Default Prompt
                                             prompt,
