@@ -1502,15 +1502,13 @@ def run():
                                         #soup = BeautifulSoup(html,'html.parser')    
 
                                         # Use a regular expression to find the string 'iif7h'
-                                        match = re.search(r'/replicas/([^/]+)/', html)
-                                        # Check if there is a match and extract the desired part
+                                        pattern = r"https://[^&]+"
+                                        match = re.search(pattern, html)
                                         if match:
-                                            extracted_string = match.group(1)
-                                            st.write(extracted_string)  # Output: iif7h                                    
+                                            extracted_url = match.group(0)
+                                            st.write(extracted_url)
                                         else:
-                                            st.write("No match found")
-
-
+                                            st.write('Unable to extract url')
 
 
 
