@@ -1495,13 +1495,20 @@ def run():
                                             disableCloudflareV1=True  #Disable site có cloudflare           
                                         )                               
                                     response = scraper.get("https://levihsu-ootdiffusion.hf.space/")
-                                    html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
-                                    st.write(response.status_code) #status code với reCAPTCHA 429, còn 200 là OK
-                                    st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
-                                    
                                     if response.status_code == 200:
+                                        html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
+                                        #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
                                         #Đưa vào BeautifulSoup cho dễ scrape elements
-                                        soup = BeautifulSoup(html,'html.parser')
+                                        #soup = BeautifulSoup(html,'html.parser')    
+
+                                        # Use a regular expression to find the string 'iif7h'
+                                        match = re.search(r'/replicas/([^/]+)/', html)
+                                        # Check if there is a match and extract the desired part
+                                        if match:
+                                            extracted_string = match.group(1)
+                                            st.write(extracted_string)  # Output: iif7h                                    
+                                        else:
+                                            st.write("No match found")
 
 
 
