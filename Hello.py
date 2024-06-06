@@ -1601,7 +1601,7 @@ def run():
                                     with scraper.get(url_space+'/queue/data', params=params) as response:
                                         st.write(response.text)                                     
                                         line_EventStream = response.text
-                                        if 'process_completed' in line_EventStream:
+                                        if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
                                             st.write('Found process_completed!')
                                             pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
                                             matches = re.findall(pattern, line_EventStream)
