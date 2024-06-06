@@ -1499,8 +1499,9 @@ def run():
                                         html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
                                         #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
                                         #Đưa vào BeautifulSoup cho dễ scrape elements
-                                        soup = BeautifulSoup(html,'html.parser')    
-                                        results = soup.findAll("script", {"root" : re.compile('https://levihsu-ootdiffusion.hf.space/--replicas.*')})
+                                        soup = BeautifulSoup(html,'html.parser')
+                                        results = soup.body.findAll(text='https://levihsu-ootdiffusion.hf.space/--replicas/iif7h')   
+                                        #results = soup.findAll("script", {"root" : re.compile('https://levihsu-ootdiffusion.hf.space/--replicas.*')})
                                         st.write(results)
 
 
