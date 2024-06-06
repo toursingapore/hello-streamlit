@@ -1599,6 +1599,7 @@ def run():
                                     }
 
                                     if use_proxy:
+                                        st.write(use_proxy)
                                         #Thêm 2 params của scrapeops.io để use proxy
                                         params={
                                             'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
