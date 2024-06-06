@@ -1602,6 +1602,7 @@ def run():
                                         st.write(use_proxy)
                                         #Thêm 2 params của scrapeops.io để use proxy
                                         params={
+                                            '__theme': 'light',                                            
                                             'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
                                             'url': 'https://quotes.toscrape.com/', 
                                             #'render_js': 'true',  #Turn on javascript với site khó yêu cầu js mới cho crawl
