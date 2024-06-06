@@ -1598,21 +1598,9 @@ def run():
                                         'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                     }
 
-                                    if use_proxy:
-                                        st.write(use_proxy)
-                                        #Thêm 2 params của scrapeops.io để use proxy
-                                        params={
-                                            '__theme': 'light',                                            
-                                            'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
-                                            'url': 'https://quotes.toscrape.com/', 
-                                            #'render_js': 'true',  #Turn on javascript với site khó yêu cầu js mới cho crawl
-                                            #'residential': 'true',  #Dùng proxy residential chất lượng để crawl site khó
-                                            #'country': 'us',  #Dùng specific country proxy
-                                        }
-                                    else:
-                                        params = {
-                                            '__theme': 'light',
-                                        }
+                                    params = {
+                                        '__theme': 'light',                                     
+                                    }                                     
 
                                     json_data = {
                                         'data': [
@@ -1683,22 +1671,9 @@ def run():
                                         'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                     }
 
-                                    if use_proxy:
-                                        st.write(use_proxy)
-                                        #Thêm 2 params của scrapeops.io để use proxy
-                                        params={
-                                            'session_hash': session_hash,                                            
-                                            'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
-                                            'url': 'https://quotes.toscrape.com/', 
-                                            #'render_js': 'true',  #Turn on javascript với site khó yêu cầu js mới cho crawl
-                                            #'residential': 'true',  #Dùng proxy residential chất lượng để crawl site khó
-                                            #'country': 'us',  #Dùng specific country proxy
-                                        }
-                                    else:
-                                        params = {
-                                            'session_hash': session_hash,
-                                        }
-
+                                    params = {
+                                        'session_hash': session_hash,
+                                    }
                                     #Use Cloudscraper tương tự requests 
                                     url_image_process_completed_arr = []
                                     response = scraper.get(url_space+'/queue/data', params=params)
