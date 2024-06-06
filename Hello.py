@@ -1499,16 +1499,9 @@ def run():
                                         html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
                                         #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
                                         #Đưa vào BeautifulSoup cho dễ scrape elements
-                                        #soup = BeautifulSoup(html,'html.parser')    
-
-                                        # Use a regular expression to find the string 'iif7h'
-                                        pattern = r"https://[^&]+"
-                                        match = re.search(pattern, html)
-                                        if match:
-                                            extracted_url = match.group(0)
-                                            st.write(extracted_url)
-                                        else:
-                                            st.write('Unable to extract url')
+                                        soup = BeautifulSoup(html,'html.parser')    
+                                        results = soup.findAll("script", {"root" : re.compile('https://levihsu-ootdiffusion.hf.space/--replicas.*')})
+                                        st.write(results)
 
 
 
