@@ -1656,8 +1656,8 @@ def run():
                                         json=json_data,
                                         #cookies=cookies,
                                         #headers=headers,
-                                        proxies=proxies,
-                                        verify=False,                                                                          
+                                        #proxies=proxies,
+                                        #verify=False,   #chưa được xem verify ssl here - https://github.com/ccxt/ccxt/issues/5394                                                                       
                                     )
                                     st.write(response.text)
 
