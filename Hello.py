@@ -1458,23 +1458,24 @@ def run():
                     case "Generate image from reference image":
                         try:
                             for user_input in user_input_arr:
-                                st.write(user_input)
-                                st.image(user_input)
-
                                 #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
                                 #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
                                 #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
                                 with st.spinner('Wait for it...'): 
+                                    
                                     #B1; Get url space, nó sẽ auto change random code mỗi ngày
                                     space_HF_url = "https://tencentarc-photomaker.hf.space/"
                                     #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
-                                    url_image_model = user_input               
+                                    st.write(user_input)
+                                    st.image(user_input)
+                                    url_image_model = user_input            
                                     #prompt = "instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain", #Default Prompt
                                     prompt = user_input_prompt
                                     #negativePrompt = "(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth", #Default Negative prompt
                                     negativePrompt = user_input_nagativePrompt
                                     #styleTemplate = "Photographic (Default)" #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
                                     styleTemplate = selected_style
+
 
                                     devices = [
                                         "Mobile - Android",
