@@ -1568,7 +1568,7 @@ def run():
                                         'session_hash': session_hash,
                                     }
                                     url_image_process_completed = ''
-                                    with requests.get(url_space+'/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                    with requests.get('https://tencentarc-photomaker.hf.space/--replicas/tk1ar/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
                                         for line_EventStream in response.iter_lines(decode_unicode=True):
                                             if line_EventStream:
                                                 st.write(line_EventStream)
