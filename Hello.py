@@ -1442,6 +1442,7 @@ def run():
                                 #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
                                 #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
                                 #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
+                                #B1
                                 cookies = {
                                     '_gid': 'GA1.2.1748695530.1717638365',
                                     '_ga_R1FN4KJKJH': 'GS1.1.1717646415.2.1.1717646438.0.0.0',
@@ -1507,6 +1508,49 @@ def run():
                                 )
                                 st.write(response)
                                 st.write(response.json())
+
+                                #B2
+                                headers = {
+                                    'authority': 'tencentarc-photomaker.hf.space',
+                                    'accept': 'text/event-stream',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'cache-control': 'no-cache',
+                                    # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
+                                    'dnt': '1',
+                                    'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+
+                                params = {
+                                    'session_hash': '9x31ajvdwa7',
+                                }
+                                url_image_process_completed = ''
+                                with requests.get('https://tencentarc-photomaker.hf.space/--replicas/tk1ar/queue/data', params=params, cookies=cookies, headers=headers, stream=True) as response:
+                                    for line_EventStream in response.iter_lines(decode_unicode=True):
+                                        if line_EventStream:
+                                            st.write(line_EventStream)
+                                            if 'process_completed' in line_EventStream:
+                                                #st.write('Found process_completed!')
+                                                pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
+                                                match = re.search(pattern, line_EventStream)
+                                                if match:
+                                                    # Extract the matched string and remove the surrounding quotes
+                                                    path = match.group(0).strip('"')
+                                                    #st.write(path)
+                                                    url_image_process_completed = '\n'.join(f'{url_space}/file={path}')
+                                                    break
+                                                else:
+                                                    st.write(line_EventStream) 
+                                                    break                                            
+                                
+                                #Default image to get is 768x1024
+                                st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")   
 
 
 
