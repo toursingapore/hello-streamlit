@@ -1459,13 +1459,13 @@ def run():
                     case "Generate image from reference image":
                         try:
                             #Get free 1000 proxy - https://scrapeops.io/app/register/proxy
-                            url_scrape = 'https://ipinfo.io/json' 
-                            params={
-                                'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
-                                'url': 'https://quotes.toscrape.com/', 
-                            }                                                    
-                            response = requests.get(url_scrape,params=params)
-                            st.write(response.json())                            
+                            #url_scrape = 'https://ipinfo.io/json' 
+                            #params={
+                            #    'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
+                            #    'url': 'https://quotes.toscrape.com/', 
+                            #}                                                    
+                            #response = requests.get(url_scrape, params=params)
+                            #st.write(response.json())                            
                             #st.write('Response Body: ', response.content)
 
                             for user_input in user_input_arr:
@@ -1563,6 +1563,7 @@ def run():
                                                 break
                                     st.write(f"Extracted URL: {root_url}")
 
+
                                     #B2; post request to get event_id
                                     #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #code 'qb7za' auto change random mỗi ngày
                                     url_space = root_url
@@ -1597,7 +1598,9 @@ def run():
 
                                     params = {
                                         '__theme': 'light',
-                                    }
+                                        'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459', #Thêm 2 params của scrapeops.io để use proxy
+                                        'url': 'https://quotes.toscrape.com/'                                        
+                                    }                                     
 
                                     json_data = {
                                         'data': [
