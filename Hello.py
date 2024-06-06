@@ -8,7 +8,7 @@ import glob
 import pygwalker as pyg
 import json
 import uuid
-import random
+import random, string
 import gspread 
 from oauth2client.service_account import ServiceAccountCredentials
 from googleapiclient.discovery import build
