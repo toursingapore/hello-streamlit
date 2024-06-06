@@ -1604,9 +1604,9 @@ def run():
                                                             st.write(line_EventStream) 
                                                             break                                            
                                     """
-                                    #Use Cloudscraper 
+                                    #Use Cloudscraper tương tự requests 
                                     with scraper.get(url_space+'/queue/data', params=params) as response:
-                                        #st.write(response.text) #Show tương tự requests stream=True and read iter_lines                              
+                                        #st.write(response.text) #Auto show all response like stream=True and iter_lines                              
                                         line_EventStream = response.text
                                         if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
                                             #st.write('You have exceeded your GPU quota')
