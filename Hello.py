@@ -1570,7 +1570,7 @@ def run():
                                     #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #code 'qb7za' auto change random mỗi ngày
                                     url_space = root_url
                                     #session_hash = 'f58zw7qt0zk' #tự cho random 11 ký tự ngẫu nhiên nào cũng được
-                                    #characters = string.ascii_lowercase + string.digits
+                                    characters = string.ascii_lowercase + string.digits
                                     session_hash = ''.join(random.choice(characters) for _ in range(11))
                                     st.write(f'session_hash = {session_hash}')
 
