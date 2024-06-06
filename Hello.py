@@ -1481,7 +1481,7 @@ def run():
                                     url_image_model = user_input               
                                     prompt = "instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain", #Default Prompt
                                     negativePrompt = "(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth", #Default Negative prompt
-                                    styleTemplate = "(No style)" #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
+                                    styleTemplate = "Photographic (Default)" #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
 
 
                                     cookies = {
