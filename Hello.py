@@ -1597,28 +1597,23 @@ def run():
                                                             st.write(line_EventStream) 
                                                             break                                            
                                     """
-                                    #Use Cloudscraper tương tự requests
-                                    with scraper.get(url_space+'/queue/data', params=params) as responses:
-                                        #st.write(responses.text)
-                                        response = responses.text                          
-                                        for line_EventStream in response.iter_lines(decode_unicode=True):
-                                            if line_EventStream:
-                                                st.write(line_EventStream)
-                                                if 'process_completed' in line_EventStream:
-                                                    #st.write('Found process_completed!')
-                                                    pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
-                                                    matches = re.findall(pattern, line_EventStream)
-                                                    for match in matches:
-                                                        if match:
-                                                            st.write(match)
-                                                            #Show 2 kết quả nên add vào array                                                    
-                                                            url_image_process_completed_arr.append(f'{url_space}/file={match}')
-                                                        else:
-                                                            st.write(line_EventStream) 
-                                                            break                       
-
-
-
+                                    #Use Cloudscraper tương tự requests stream=True and read iter_lines
+                                    with scraper.get(url_space+'/queue/data', params=params) as response:
+                                        st.write(response.text)                                     
+                                        line_EventStream = response.text
+                                        if 'process_completed' in line_EventStream:
+                                            #st.write('Found process_completed!')
+                                            pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
+                                            matches = re.findall(pattern, line_EventStream)
+                                            for match in matches:
+                                                if match:
+                                                    st.write(match)
+                                                    #Show 2 kết quả nên add vào array                                                    
+                                                    url_image_process_completed_arr.append(f'{url_space}/file={match}')
+                                                else:
+                                                    st.write(line_EventStream) 
+                                                    break  
+                  
                                     #Default image to get is 768x1024
                                     for url_image_process_completed in url_image_process_completed_arr:
                                         st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="auto")     
