@@ -1602,7 +1602,7 @@ def run():
                                         #st.write(response.text)                                     
                                         line_EventStream = response.text
                                         if 'process_completed' in line_EventStream:
-                                            #st.write('Found process_completed!')
+                                            st.write('Found process_completed!')
                                             pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
                                             matches = re.findall(pattern, line_EventStream)
                                             for match in matches:
