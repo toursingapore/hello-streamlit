@@ -1500,8 +1500,7 @@ def run():
                                         #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
                                         #Đưa vào BeautifulSoup cho dễ scrape elements
                                         soup = BeautifulSoup(html,'html.parser')
-                                        head = soup.find('head')
-                                        results = head.text
+                                        results = soup.find('head')
                                         #results = soup.body.findAll(text='https://levihsu-ootdiffusion.hf.space/--replicas/iif7h')   
                                         #results = soup.findAll("script", {"root" : re.compile('https://levihsu-ootdiffusion.hf.space/--replicas.*')})
                                         st.write(results)
