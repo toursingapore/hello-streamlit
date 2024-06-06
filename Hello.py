@@ -1459,7 +1459,6 @@ def run():
                     case "Generate image from reference image":
                         try:
                             #Get free 1000 proxy - https://scrapeops.io/app/register/proxy
-                            payload = (('key1', 'value1'), ('key2', 'value2'))
                             params={
                                 'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
                                 'url': 'https://quotes.toscrape.com/', 
