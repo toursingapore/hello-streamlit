@@ -1404,6 +1404,8 @@ def run():
             user_input_prompt = st.text_input("Enter prompt", value='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', placeholder='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain') 
             user_input_nagativePrompt = st.text_input("Enter negative prompt", value='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', placeholder='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth') 
 
+            use_proxy = st.checkbox("Use proxy")
+
         elif add_radio == "Change clothes from reference garment image":
             #user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
             #user_input_garment = st.file_uploader("Choose a garment image...", type=["jpg", "png", "jpeg"])
@@ -1596,11 +1598,19 @@ def run():
                                         'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                     }
 
-                                    params = {
-                                        '__theme': 'light',
-                                        'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459', #Thêm 2 params của scrapeops.io để use proxy
-                                        'url': 'https://quotes.toscrape.com/'                                        
-                                    }                                     
+                                    if use_proxy:
+                                        #Thêm 2 params của scrapeops.io để use proxy
+                                        params={
+                                            'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
+                                            'url': 'https://quotes.toscrape.com/', 
+                                            #'render_js': 'true',  #Turn on javascript với site khó yêu cầu js mới cho crawl
+                                            #'residential': 'true',  #Dùng proxy residential chất lượng để crawl site khó
+                                            #'country': 'us',  #Dùng specific country proxy
+                                        }
+                                    else:
+                                        params = {
+                                            '__theme': 'light',
+                                        }
 
                                     json_data = {
                                         'data': [
