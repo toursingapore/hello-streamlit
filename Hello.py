@@ -1501,12 +1501,13 @@ def run():
                                         #Đưa vào BeautifulSoup cho dễ scrape elements
                                         soup = BeautifulSoup(html,'html.parser')
                                         scripts = soup.findAll('script')
+                                        pattern = r'"root":\s*"(https?://[^"]+)"'
+
                                         for script in scripts:
-                                            st.write(script)     
+                                            script_content = script.string                                            
+                                            st.write(script_content)     
 
-
-                                            pattern = r'"root":\s*"(https?://[^"]+)"'
-                                            match = re.search(pattern, script)
+                                            match = re.search(pattern, script_content)
                                             if match:
                                                 root_url = match.group(1)
                                                 st.write(f"Extracted URL: {root_url}")
