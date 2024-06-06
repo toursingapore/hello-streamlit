@@ -1584,12 +1584,12 @@ def run():
                                                     #'mime_type': None,
                                                 #},                                                
                                             ],
-                                            'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', #Default Prompt
-                                            #prompt,
-                                            '(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', #Default Negative prompt
-                                            #negativePrompt,
-                                            '(No style)', #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
-                                            #styleTemplate,
+                                            #'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', #Default Prompt
+                                            prompt,
+                                            #'(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', #Default Negative prompt
+                                            negativePrompt,
+                                            #'(No style)', #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
+                                            styleTemplate,
                                             50,
                                             20,
                                             2,
@@ -1665,7 +1665,7 @@ def run():
                                     """
                                     #Use Cloudscraper tương tự requests 
                                     response = scraper.get(url_space+'/queue/data', params=params)
-                                    st.write(response.text) #Auto show all response like stream=True and iter_lines                              
+                                    #st.write(response.text) #Auto show all response stream=True and iter_lines                              
                                     line_EventStream = response.text
                                     if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
                                         #st.write('You have exceeded your GPU quota')
