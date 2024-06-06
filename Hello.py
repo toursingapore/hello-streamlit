@@ -1602,7 +1602,8 @@ def run():
                                         st.write(response.text)                                     
                                         line_EventStream = response.text
                                         if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
-                                            st.write('Found process_completed!')
+                                            st.write('You have exceeded your GPU quota')
+                                        else:
                                             pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
                                             matches = re.findall(pattern, line_EventStream)
                                             for match in matches:
