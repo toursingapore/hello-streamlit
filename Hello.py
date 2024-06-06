@@ -1473,7 +1473,7 @@ def run():
                                 #st.image(path_garment)
 
                                 with st.spinner('Wait for it...'): 
-                                    #Get url space with random code mỗi ngày
+                                    #B1; Get url space, nó sẽ auto change random code mỗi ngày
                                     if device == "Mobile - Android":
                                         scraper = cloudscraper.create_scraper(
                                             browser={
@@ -1493,17 +1493,16 @@ def run():
                                         pattern = r'"root":\s*"(https?://[^"]+)"'
                                         for script in scripts:
                                             script_content = script.string                                            
-                                            st.write(script_content)     
+                                            #st.write(script_content)     
                                             match = re.search(pattern, script_content)
                                             if match:
                                                 root_url = match.group(1)
-                                                #st.write(f"Extracted URL: {root_url}")
                                                 break
                                     st.write(f"Extracted URL: {root_url}")
 
-                                    ##Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
-                                    #B1; post request to get event_id
-                                    #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #cdoe 'qb7za' auto change random mỗi ngày
+                                    #Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
+                                    #B2; post request to get event_id
+                                    #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #code 'qb7za' auto change random mỗi ngày
                                     url_space = root_url
                                     session_hash = 'f58zw7qt0zk' #random 11 ký tự ngẫu nhiên
                                     #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
@@ -1580,7 +1579,7 @@ def run():
                                     #event_id = response.json()["event_id"]
                                     #st.write(event_id)
 
-                                    #B2; get request and read event-stream
+                                    #B3; get request and read event-stream
                                     headers = {
                                         'authority': 'levihsu-ootdiffusion.hf.space',
                                         'accept': 'text/event-stream',
