@@ -1650,16 +1650,8 @@ def run():
                                         #f'https': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
                                     }
                                     
-                                    if not use_proxy:
-                                        response = scraper.post(
-                                            url_space+'/queue/join',
-                                            params=params,
-                                            json=json_data,
-                                            #cookies=cookies,
-                                            #headers=headers,                                                                    
-                                        )
-                                        st.write(response.text)
-                                    else:
+                                    if use_proxy:
+                                        st.write(use_proxy)
                                         response = scraper.post(
                                             url_space+'/queue/join',
                                             params=params,
@@ -1668,6 +1660,16 @@ def run():
                                             #headers=headers,
                                             proxies=proxies,
                                             verify=False, #skips SSL verification
+                                        )
+                                        st.write(response.text)
+                                    else:
+                                        st.write(use_proxy)
+                                        response = scraper.post(
+                                            url_space+'/queue/join',
+                                            params=params,
+                                            json=json_data,
+                                            #cookies=cookies,
+                                            #headers=headers,                                                                    
                                         )
                                         st.write(response.text)
 
