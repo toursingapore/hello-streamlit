@@ -1643,12 +1643,20 @@ def run():
                                         'session_hash': session_hash,
                                     }
                                     #Use Cloudscraper tương tự requests
+
+                                    SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
+                                    proxies = {
+                                        f'http': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',  #default port 5353
+                                        f'https': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
+                                    }
+                                    
                                     response = scraper.post(
                                         url_space+'/queue/join',
                                         params=params,
                                         json=json_data,
                                         #cookies=cookies,
-                                        #headers=headers,                                                                                
+                                        #headers=headers,
+                                        proxies=proxies,                                                                            
                                     )
                                     st.write(response.text)
 
