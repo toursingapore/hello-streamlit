@@ -1522,7 +1522,7 @@ def run():
                                                 },
                                             ],
                                             'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain',
-                                            '(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth',
+                                            '(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', #Default Negative prompt
                                             '(No style)', #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
                                             50,
                                             20,
