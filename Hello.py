@@ -1465,9 +1465,9 @@ def run():
                                 'url': 'https://quotes.toscrape.com/', 
                             }                                                    
                             response = requests.get('https://ipinfo.io/json',params=params)
-                            st.write('Response Body: ', response.content)
-                            html = response.content
-                            st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                            #st.write('Response Body: ', response.content)
+                            #html = response.content
+                            st.write(response.json())
 
 
 
