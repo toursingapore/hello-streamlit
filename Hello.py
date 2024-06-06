@@ -1501,7 +1501,7 @@ def run():
                                         #Đưa vào BeautifulSoup cho dễ scrape elements
                                         soup = BeautifulSoup(html,'html.parser')
                                         head = soup.find('head')
-                                        results = head.get_text()
+                                        results = head.text
                                         #results = soup.body.findAll(text='https://levihsu-ootdiffusion.hf.space/--replicas/iif7h')   
                                         #results = soup.findAll("script", {"root" : re.compile('https://levihsu-ootdiffusion.hf.space/--replicas.*')})
                                         st.write(results)
