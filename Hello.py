@@ -1559,7 +1559,7 @@ def run():
                                     #session_hash = 'f58zw7qt0zk' #tự cho random 11 ký tự ngẫu nhiên nào cũng được
                                     characters = string.ascii_lowercase + string.digits
                                     session_hash = ''.join(random.choice(characters) for _ in range(11))
-                                    st.write(session_hash)
+                                    st.write('session_hash = {session_hash}')
 
                                     cookies = {
                                         '_gid': 'GA1.2.1748695530.1717638365',
