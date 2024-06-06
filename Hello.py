@@ -1484,20 +1484,28 @@ def run():
 
 
 
-                                    #from requests_html import AsyncHTMLSession
-                                    #asession = AsyncHTMLSession()
-                                    #async def get_pythonorg():
-                                    #    r = await asession.get('https://python.org/')
-                                    #async def get_reddit():
-                                    #    r = await asession.get('https://reddit.com/')
-                                    #async def get_google():
-                                    #    r = await asession.get('https://google.com/')
-                                    #result = session.run(get_pythonorg, get_reddit, get_google)
+                                    #get code
+                                    if device == "Mobile - Android":
+                                        scraper = cloudscraper.create_scraper(
+                                            browser={
+                                                'browser': 'chrome', #firefox or chrome
+                                                'platform': 'android', #auto random user-agent: 'linux', 'windows', 'darwin', 'android', 'ios' bypass cloudflare rất ok
+                                                'desktop': False
+                                            },             
+                                            disableCloudflareV1=True  #Disable site có cloudflare           
+                                        )                               
+                                    response = scraper.get("https://levihsu-ootdiffusion.hf.space/")
+                                    html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
+                                    #st.write(response.status_code) #status code với reCAPTCHA 429, còn 200 là OK
+                                    st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                                    
+                                    if response.status_code == 200:
+                                        #Đưa vào BeautifulSoup cho dễ scrape elements
+                                        soup = BeautifulSoup(html,'html.parser')
 
-                                    from requests_html import HTMLSession
-                                    session = HTMLSession()
-                                    r = session.get('https://python.org/')
-                                    st.write(r)
+
+
+
 
                                     cookies = {
                                         '_gid': 'GA1.2.1887367721.1717550611',
