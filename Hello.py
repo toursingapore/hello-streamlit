@@ -1474,6 +1474,8 @@ def run():
 
                                 with st.spinner('Wait for it...'): 
                                     #B1; Get url space, nó sẽ auto change random code mỗi ngày
+                                    space_HF_url = "https://levihsu-ootdiffusion.hf.space/"
+
                                     if device == "Mobile - Android":
                                         scraper = cloudscraper.create_scraper(
                                             browser={
@@ -1483,7 +1485,7 @@ def run():
                                             },             
                                             disableCloudflareV1=True  #Disable site có cloudflare           
                                         )                               
-                                    response = scraper.get("https://levihsu-ootdiffusion.hf.space/")
+                                    response = scraper.get(space_HF_url)
                                     if response.status_code == 200:
                                         html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
                                         #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
