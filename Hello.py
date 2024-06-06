@@ -1439,9 +1439,76 @@ def run():
                                 st.write(user_input)
                                 st.image(user_input)
 
-                                #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
                                 #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
                                 #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
+                                #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
+                                cookies = {
+                                    '_gid': 'GA1.2.1748695530.1717638365',
+                                    '_ga_R1FN4KJKJH': 'GS1.1.1717646415.2.1.1717646438.0.0.0',
+                                    '_ga': 'GA1.1.1146802884.1717638365',
+                                }
+
+                                headers = {
+                                    'authority': 'tencentarc-photomaker.hf.space',
+                                    'accept': '*/*',
+                                    'accept-language': 'en-US,en;q=0.9',
+                                    'content-type': 'application/json',
+                                    # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
+                                    'dnt': '1',
+                                    'origin': 'https://tencentarc-photomaker.hf.space',
+                                    'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
+                                    'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                    'sec-ch-ua-mobile': '?0',
+                                    'sec-ch-ua-platform': '"Windows"',
+                                    'sec-fetch-dest': 'empty',
+                                    'sec-fetch-mode': 'cors',
+                                    'sec-fetch-site': 'same-origin',
+                                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                }
+
+                                params = {
+                                    '__theme': 'light',
+                                }
+
+                                json_data = {
+                                    'data': [
+                                        [
+                                            {
+                                                'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                                'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                                #'path': url_image_model,
+                                                #'url': url_space+'/file='+url_image_model,
+                                                'orig_name': 'model_1.png',
+                                                'size': None,
+                                                'mime_type': None,
+                                            },
+                                        ],
+                                        'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain',
+                                        '(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth',
+                                        '(No style)',
+                                        50,
+                                        20,
+                                        2,
+                                        5,
+                                        665256543,
+                                    ],
+                                    'event_data': None,
+                                    'fn_index': 5,
+                                    'trigger_id': 12,
+                                    'session_hash': '9x31ajvdwa7',
+                                }
+
+                                response = requests.post(
+                                    'https://tencentarc-photomaker.hf.space/--replicas/tk1ar/queue/join',
+                                    params=params,
+                                    cookies=cookies,
+                                    headers=headers,
+                                    json=json_data,
+                                )
+                                st.write(response)
+                                st.write(response.json())
+
+
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
