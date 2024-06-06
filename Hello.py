@@ -1497,7 +1497,7 @@ def run():
                                     response = scraper.get("https://levihsu-ootdiffusion.hf.space/")
                                     if response.status_code == 200:
                                         html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
-                                        #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                                        st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
                                         #Đưa vào BeautifulSoup cho dễ scrape elements
                                         #soup = BeautifulSoup(html,'html.parser')    
 
