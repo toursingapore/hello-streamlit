@@ -1607,7 +1607,6 @@ def run():
                                             match = re.search(pattern, line_EventStream)
                                             if match:
                                                 error_message = match.group(1)
-                                                break
                                                 st.write(error_message)     
                                         else:
                                             pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
