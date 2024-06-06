@@ -1496,7 +1496,7 @@ def run():
                                         )                               
                                     response = scraper.get("https://levihsu-ootdiffusion.hf.space/")
                                     html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
-                                    #st.write(response.status_code) #status code với reCAPTCHA 429, còn 200 là OK
+                                    st.write(response.status_code) #status code với reCAPTCHA 429, còn 200 là OK
                                     st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
                                     
                                     if response.status_code == 200:
