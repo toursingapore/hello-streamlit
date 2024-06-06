@@ -1424,7 +1424,7 @@ def run():
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
         button = st.button("SUBMIT", type="primary", key="27")
-        if button and user_input and user_input_prompt and user_input_nagativePrompt:                   
+        if button and user_input and user_input_prompt and user_input_nagativePrompt:              
             try:
                 client = InferenceClient(
                     token=f"{HF_API_TOKEN}"
@@ -1457,6 +1457,21 @@ def run():
                         img_path_arr.append(img_path)
 
                     case "Generate image from reference image":
+
+
+                        #Get free 1000 proxy - https://scrapeops.io/app/register/proxy
+                        response = requests.get(
+                            url='ipinfo.io/json',
+                            params={
+                                'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
+                                'url': 'https://quotes.toscrape.com/', 
+                            },
+                        )
+                        st.write('Response Body: ', response.content)
+                        html = response.content
+                        st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+
+
                         try:
                             for user_input in user_input_arr:
                                 #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
@@ -1688,18 +1703,6 @@ def run():
                                     for url_image_process_completed in url_image_process_completed_arr:
                                         st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="auto") 
                                         time.sleep(3)
-
-
-                                    #Get free 1000 proxy - https://scrapeops.io/app/register/proxy
-                                    response = requests.get(
-                                    url='https://proxy.scrapeops.io/v1/',
-                                    params={
-                                        'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
-                                        'url': 'https://quotes.toscrape.com/', 
-                                    },
-                                    )
-                                    st.write('Response Body: ', response.content)
-
 
                             time.sleep(5) 
 
