@@ -1484,8 +1484,8 @@ def run():
 
 
 
-                                    from requests_html import AsyncHTMLSession
-                                    asession = AsyncHTMLSession()
+                                    #from requests_html import AsyncHTMLSession
+                                    #asession = AsyncHTMLSession()
                                     #async def get_pythonorg():
                                     #    r = await asession.get('https://python.org/')
                                     #async def get_reddit():
@@ -1494,11 +1494,10 @@ def run():
                                     #    r = await asession.get('https://google.com/')
                                     #result = session.run(get_pythonorg, get_reddit, get_google)
 
-                                    async def get_url_webpage():
-                                        r = await asession.get('https://levihsu-ootdiffusion.hf.space/')
-                                    result = session.run(get_url_webpage)                    
-                                    st.write(result)
-
+                                    from requests_html import HTMLSession
+                                    session = HTMLSession()
+                                    r = session.get('https://python.org/')
+                                    st.write(r)
 
                                     cookies = {
                                         '_gid': 'GA1.2.1887367721.1717550611',
