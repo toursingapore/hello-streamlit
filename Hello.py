@@ -1401,7 +1401,7 @@ def run():
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
             user_input_prompt = st.text_input("Enter prompt", value='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', placeholder='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain') 
-            user_input_nagativePrompt = st.text_input("Enter negative prompt", value='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', placeholder='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth') 
+            user_input_nagativePrompt = st.text_input("Enter negative prompt", value='asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', placeholder='asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth') 
 
         elif add_radio == "Change clothes from reference garment image":
             #user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
