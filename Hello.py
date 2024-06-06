@@ -1500,7 +1500,7 @@ def run():
                                             if match:
                                                 root_url = match.group(1)
                                                 break
-                                    st.write(f"Extracted URL: {root_url}")
+                                    #st.write(f"Extracted URL: {root_url}")
 
                                     #Request1; Upload image for space Change clothes OOTDiffusion - https://huggingface.co/spaces/levihsu/OOTDiffusion
                                     #B2; post request to get event_id
