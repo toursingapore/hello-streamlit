@@ -1453,8 +1453,44 @@ def run():
                                                 'platform': 'android', #auto random user-agent: 'linux', 'windows', 'darwin', 'android', 'ios' bypass cloudflare rất ok
                                                 'desktop': False
                                             },             
-                                            disableCloudflareV1=True  #Disable site có cloudflare
-                                        )                               
+                                            disableCloudflareV1=True  #Disable site có cloudflare           
+                                        )  # returns a CloudScraper instance
+                                    elif device == "Mobile - iOS":
+                                        scraper = cloudscraper.create_scraper(
+                                            browser={
+                                                'browser': 'chrome',
+                                                'platform': 'ios', 
+                                                'desktop': False
+                                            },             
+                                            disableCloudflareV1=True           
+                                        )    
+                                    elif device == "Desktop - Windows":
+                                        scraper = cloudscraper.create_scraper(
+                                            browser={
+                                                'browser': 'chrome',
+                                                'platform': 'windows', 
+                                                'desktop': True
+                                            },             
+                                            disableCloudflareV1=True           
+                                        )  
+                                    elif device == "Desktop - Linux":
+                                        scraper = cloudscraper.create_scraper(
+                                            browser={
+                                                'browser': 'chrome',
+                                                'platform': 'linux', 
+                                                'desktop': True
+                                            },             
+                                            disableCloudflareV1=True          
+                                        )    
+                                    else:
+                                        scraper = cloudscraper.create_scraper(
+                                            browser={
+                                                'browser': 'chrome',
+                                                'platform': 'darwin', 
+                                                'desktop': True
+                                            },             
+                                            disableCloudflareV1=True          
+                                        )                                       
                                     response = scraper.get(space_HF_url)
                                     if response.status_code == 200:
                                         html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
