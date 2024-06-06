@@ -1688,6 +1688,19 @@ def run():
                                     for url_image_process_completed in url_image_process_completed_arr:
                                         st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="auto") 
                                         time.sleep(3)
+
+
+                                    #Get free 1000 proxy - https://scrapeops.io/app/register/proxy
+                                    response = requests.get(
+                                    url='https://proxy.scrapeops.io/v1/',
+                                    params={
+                                        'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
+                                        'url': 'https://quotes.toscrape.com/', 
+                                    },
+                                    )
+                                    st.write('Response Body: ', response.content)
+
+
                             time.sleep(5) 
 
                         except Exception as e:
