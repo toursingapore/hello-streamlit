@@ -1500,12 +1500,22 @@ def run():
                                         #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
                                         #Đưa vào BeautifulSoup cho dễ scrape elements
                                         soup = BeautifulSoup(html,'html.parser')
-                                        results = soup.findAll('script')
+                                        scripts = soup.findAll('script')
+                                        for script in scripts:
+                                            st.write(script)     
+
+
+                                            pattern = r'"root":\s*"(https?://[^"]+)"'
+                                            match = re.search(pattern, script)
+                                            if match:
+                                                root_url = match.group(1)
+                                                st.write(f"Extracted URL: {root_url}")
+                                            else:
+                                                st.write("No match found.")                                                                                    
                                         #results = soup.body.findAll(text='https://levihsu-ootdiffusion.hf.space/--replicas/iif7h')   
                                         #results = soup.findAll("script", {"root" : re.compile('https://levihsu-ootdiffusion.hf.space/--replicas.*')})
                                         #st.write(results)
-                                        for result in results:
-                                            st.write(result)                                    
+                               
 
 
 
