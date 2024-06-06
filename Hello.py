@@ -1464,7 +1464,7 @@ def run():
                                 'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
                                 'url': 'https://quotes.toscrape.com/', 
                             }                                                    
-                            response = requests.get('https://ipinfo.io/json',params=urlencode(params))
+                            response = requests.get('https://ipinfo.io/json',params=params)
                             st.write('Response Body: ', response.content)
                             html = response.content
                             st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
