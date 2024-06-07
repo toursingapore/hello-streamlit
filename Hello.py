@@ -1689,8 +1689,8 @@ def run():
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
                                         }
-                                        #response = s.get("https://httpbin.co/ip", proxies=proxies, verify=False)
-                                        response = requests.request("GET", url, proxies=proxies, verify=False)
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                        #response = requests.request("GET", url, proxies=proxies, verify=False)
                                         st.write(response.text)                                        
 
 
