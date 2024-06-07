@@ -1674,8 +1674,7 @@ def run():
                                             #'render': 'true', #Default render=false , cho phép turn on js dùng cho site khó yêu cầu có js khi crawl
                                         }  
                                         response = s.get("https://api.scrape.do", params=params)
-                                        st.markdown(response.text, unsafe_allow_html=True)
-
+                                        st.write(response.json()) 
 
 
                                         response = scraper.post(
