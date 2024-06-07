@@ -1630,7 +1630,8 @@ def run():
                                     }
                                     #Dùng session requests và các site free proxies below
                                     if use_proxy:
-                                        _ = """                                        
+                                        _ = """  
+                                        # https://scrape.do/pricing/ - Free 1000 proxies per month
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
@@ -1650,6 +1651,7 @@ def run():
                                         st.write(response.json())
                                         """
  
+                                        # https://scrapeops.io/app/register/proxy - Free 1000 proxies per month
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
