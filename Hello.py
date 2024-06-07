@@ -660,10 +660,6 @@ def run():
                             st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page                   
                         #continue #bypass tới keyword tiếp theo
                         break   #exit for loop luôn                          
-                        #HD Use proxy scrapeops.io for cloudscraper - https://scrapeops.io/python-web-scraping-playbook/python-cloudscraper/#:~:text=Using%20Proxies%20With%20CloudScraper%E2%80%8B&text=If%20you%20use%20proxies%20with,or%20ban%20the%20IP%20address.
-                        #free proxy https://scrape.do/pricing/
-                        #HD Use proxy scrapingbee.com for cloudscraper - https://www.scrapingbee.com/blog/how-to-scrape-websites-with-cloudscraper-python-example/
-
 
                 time.sleep(10) #phải sleep mới hạn chế dính recaptcha
                 keywords_data.append([datetime.date.today().strftime("%Y-%m-%d"),urllib.parse.unquote(keyword),myrank,mywebsite,device,selected_country])                            
@@ -1460,16 +1456,6 @@ def run():
 
                     case "Generate image from reference image":
                         try:
-                            #Get free 1000 proxy - https://scrapeops.io/app/register/proxy
-                            #url_scrape = 'https://ipinfo.io/json' 
-                            #params={
-                            #    'api_key': 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459',
-                            #    'url': 'https://quotes.toscrape.com/', 
-                            #}                                                    
-                            #response = requests.get(url_scrape, params=params)
-                            #st.write(response.json())                            
-                            #st.write('Response Body: ', response.content)
-
                             for user_input in user_input_arr:
                                 #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
                                 #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
@@ -1643,13 +1629,18 @@ def run():
                                         'session_hash': session_hash,
                                     }
                                     #Use Cloudscraper tương tự requests
-
-                                    SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
-                                    proxies = {
-                                        f'http': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',  #default port 5353
+                                    #SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
+                                    #proxies = {
+                                    #    f'http': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',  #default port 5353
                                         #f'https': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
+                                    #}
+
+                                    SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                                    proxies = {
+                                        'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
+                                        'https': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
                                     }
-                                    
+
                                     if use_proxy:
                                         st.write(use_proxy)
                                         response = scraper.post(
