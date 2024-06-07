@@ -1658,7 +1658,7 @@ def run():
                                         response = requests.get("http://ip-api.com/json/", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
                                         st.write(response.json())                                        
 
-                                        st.write(use_proxy)
+
                                         response = scraper.post(
                                             url_space+'/queue/join',
                                             params=params,
@@ -1670,7 +1670,6 @@ def run():
                                         )
                                         st.write(response.text)
                                     else:
-                                        st.write(use_proxy)
                                         response = scraper.post(
                                             url_space+'/queue/join',
                                             params=params,
