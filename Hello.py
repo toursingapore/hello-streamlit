@@ -1670,11 +1670,9 @@ def run():
                                         #Site 1 the same proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
-                                        #Site 2 the same proxy IP
-                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
-                                        st.write(response.json())                                        
-                                        #response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
-                                        #st.markdown(response.text, unsafe_allow_html=True)
+                                        #Site 2 different proxy IP (site này cùng session nhưng mỗi request nó vẫn lấy khác IP, nhưng the same country)
+                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
+                                        st.markdown(response.text, unsafe_allow_html=True)
 
 
 
