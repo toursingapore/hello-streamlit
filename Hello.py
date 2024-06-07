@@ -1660,9 +1660,9 @@ def run():
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        country = 'fr' #br Brazil, ca Canada, cn China, in India, it Italy, jp Japan, fr France, de Germany, ru Russian, es Spain, us United States, uk United Kingdom
-                                        render_js = True
-                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country={country}&render_js=True@proxy.scrapeops.io:5353'
+                                        country='fr' #br Brazil, ca Canada, cn China, in India, it Italy, jp Japan, fr France, de Germany, ru Russian, es Spain, us United States, uk United Kingdom
+                                        render_js=True #Turn on javascript tốn 10 credit dùng cho site khó vd - &country=fr&render_js=True
+                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country={country}&session_number=1000@proxy.scrapeops.io:5353'
                                         proxies = {
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
