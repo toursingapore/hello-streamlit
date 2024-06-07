@@ -1678,13 +1678,10 @@ def run():
                                         
                                         session_number = 123456 #Dùng session_number=123456 tương đương 'IP US 142.147.106.203' random 0-1000000, mỗi số tương đương với 1 IP US khác cho nhiều requests để tiết kiệm, nhưng default chị IP US
                                         proxyModeUrl = f'http://scraperapi.session_number={session_number}:{SCRAPERAPI_API_KEY}&@proxy-server.scraperapi.com:8001'
-                                        #proxies = {
-                                        #    'http': proxyModeUrl,
-                                        #    'https': proxyModeUrl,
-                                        #}
                                         proxies = {
-                                            "https": "http://scraperapi.render=true.country_code=uk:0c8cc4d8101c74aa7c5f7d363ea1e476@proxy-server.scraperapi.com:8001"
-                                        }                                        
+                                            'http': proxyModeUrl,
+                                            'https': proxyModeUrl,
+                                        }
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
