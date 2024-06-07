@@ -1629,24 +1629,23 @@ def run():
                                         'session_hash': session_hash,
                                     }
                                     #Use Cloudscraper tương tự requests
-                                    #SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
-                                    #proxies = {
-                                    #    f'http': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',  #default port 5353
-                                    #}
-
-                                    SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
-                                    proxies = {
-                                        'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
-                                    }
-
-                                    params = {
-                                        '__theme': 'light',
-                                        'sessionId': '1234', #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
-                                        'super': 'true',
-                                        'regionalGeoCode': 'europe',
-                                    }    
-
                                     if use_proxy:
+                                        #SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
+                                        #proxies = {
+                                        #    f'http': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',  #default port 5353
+                                        #}
+
+                                        SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                                        proxies = {
+                                            'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
+                                        }
+                                        params = {
+                                            '__theme': 'light',
+                                            'sessionId': '1234', #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
+                                            'super': 'true',
+                                            'regionalGeoCode': 'europe',
+                                        } 
+
                                         st.write(use_proxy)
                                         response = scraper.post(
                                             url_space+'/queue/join',
