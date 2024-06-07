@@ -1641,6 +1641,12 @@ def run():
                                         #'https': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
                                     }
 
+                                    params = {
+                                        '__theme': 'light',
+                                        'super': 'true',
+                                        'regionalGeoCode': 'europe',
+                                    }    
+
                                     if use_proxy:
                                         st.write(use_proxy)
                                         response = scraper.post(
