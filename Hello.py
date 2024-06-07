@@ -1656,12 +1656,15 @@ def run():
                                         #urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
 
                                         token = SCRAPEDO_API_KEY
+
                                         proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(token)
-                                        #proxyModeUrl = 'http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080'
                                         proxies = {
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
                                         }
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                        st.write(response.json())
+
                                         response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
                                         st.markdown(response.text, unsafe_allow_html=True)                                       
  
