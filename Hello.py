@@ -1668,7 +1668,6 @@ def run():
                                         st.write(response.json())
                                         """
 
-
                                         #Site proxy 3: https://www.scraperapi.com/pricing/ - Free 1000 proxies per month
                                         SCRAPERAPI_API_KEY = '0c8cc4d8101c74aa7c5f7d363ea1e476'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
