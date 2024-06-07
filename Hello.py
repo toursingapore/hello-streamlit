@@ -1648,7 +1648,7 @@ def run():
                                         #Site 1 the same proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
-                                        
+
  
                                         _ = """
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
@@ -1666,7 +1666,7 @@ def run():
                                         """
 
 
-                                        response = scraper.post(
+                                        response = s.post(
                                             url_space+'/queue/join',
                                             params=params,
                                             json=json_data,
