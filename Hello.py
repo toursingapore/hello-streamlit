@@ -1650,14 +1650,14 @@ def run():
                                         payload = {}
                                         headers = {}
                                         response = requests.request("GET", url, headers=headers, data=payload)
-                                        st.write(response.text)
+                                        st.write(response.json())
 
                                         url2 = "https://api.scrape.do?token=1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6&url=https://browserleaks.com/ip&sessionId=1234&super=true&regionalGeoCode=europe"
                                         response = requests.request("GET", url2, headers=headers, data=payload)
                                         st.write(response.text)
                                         st.markdown(response.text, unsafe_allow_html=True)
 
-                                        
+
 
                                         response = scraper.post(
                                             url_space+'/queue/join',
