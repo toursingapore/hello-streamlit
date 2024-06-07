@@ -1647,17 +1647,20 @@ def run():
                                         
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         s = requests.Session()
+                                        params = {
+                                            'sessionId': '1234', #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
+                                            'super': 'true',
+                                            'regionalGeoCode': 'europe', #random ip europe must be Pro Plan subscription
+                                            #'geoCode': 'us', #OR select specific ip US must be Pro Plan subscription
+                                            #'device': 'Mobile', #Default device=Desktop
+                                            #'render': 'true', #Default render=false , cho phép turn on js dùng cho site khó yêu cầu có js khi crawl
+                                        }  
+                                        proxies = {
+                                            'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
+                                        }
+                                        response = s.get("https://ipinfo.io/json", params=params, proxies=proxies, verify=False)
+                                        st.write(response.json()) 
 
-                                        url = "https://api.scrape.do?token=1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6&url=http://ip-api.com/json&sessionId=1234&super=true&regionalGeoCode=europe"
-                                        payload = {}
-                                        headers = {}
-                                        response = s.request("GET", url, headers=headers, data=payload)
-                                        st.write(response.json())
-
-                                        url2 = "https://api.scrape.do?token=1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6&url=https://browserleaks.com/ip&sessionId=1234&super=true&regionalGeoCode=europe"
-                                        response = s.request("GET", url2, headers=headers, data=payload)
-                                        st.write(response.text)
-                                        st.markdown(response.text, unsafe_allow_html=True)
 
 
 
