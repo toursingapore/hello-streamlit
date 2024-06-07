@@ -1656,8 +1656,8 @@ def run():
                                         #urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
 
                                         token = SCRAPEDO_API_KEY
-                                        #proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(token)
-                                        proxyModeUrl = 'http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080'
+                                        proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(token)
+                                        #proxyModeUrl = 'http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080'
                                         proxies = {
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
