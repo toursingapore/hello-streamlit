@@ -1655,10 +1655,9 @@ def run():
                                             }
                                             return proxies
 
-                                        s = requests.Session()  # Use a new requests session
-
                                         # Using Scrapedo Proxy
                                         scrapedo_proxies = get_scrapedo_proxy()
+                                        s = requests.Session()  # Use a new requests session
 
                                         # Check proxy IP for Scrapedo
                                         response = s.get("http://ip-api.com/json", proxies=scrapedo_proxies, verify=False)
@@ -1666,6 +1665,7 @@ def run():
 
                                         # Using Scrapeops Proxy
                                         scrapeops_proxies = get_scrapeops_proxy()
+                                        s = requests.Session()  # Use a new requests session
 
                                         # Check proxy IP for Scrapeops
                                         response = s.get("http://ip-api.com/json", proxies=scrapeops_proxies, verify=False)
@@ -1673,7 +1673,6 @@ def run():
 
                                         # Randomly select either Scrapedo or Scrapeops proxy for the POST request
                                         selected_proxies = random.choice([scrapedo_proxies, scrapeops_proxies])
-                                        st.write(selected_proxies)
 
                                         # Example of posting data using the randomly selected proxy
                                         response = s.post(
