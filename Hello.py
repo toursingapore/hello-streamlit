@@ -1679,7 +1679,7 @@ def run():
 
                                         proxies = {
                                             'http': 'http://{SCRAPEDO_API_KEY}@:@proxy.scrape.do:8080',
-                                            #'https': 'http://{SCRAPEDO_API_KEY}@:@proxy.scrape.do:8080',
+                                            'https': 'http://{SCRAPEDO_API_KEY}@:@proxy.scrape.do:8080',
                                         }
 
                                         response = s.get('https://httpbin.org/ip', proxies=proxies, verify=False)
