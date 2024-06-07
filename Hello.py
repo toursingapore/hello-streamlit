@@ -1682,7 +1682,7 @@ def run():
                                         # Disable warnings for self-signed certificate
                                         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
 
-                                        url = "https://httpbin.co/ip"
+                                        url = "http://ip-api.com/json"
                                         token = SCRAPEDO_API_KEY
                                         proxyModeUrl = "http://{}:customHeaders=false@proxy.scrape.do:8080".format(token)
                                         proxies = {
