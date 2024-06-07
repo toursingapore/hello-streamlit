@@ -1687,10 +1687,9 @@ def run():
                                         proxyModeUrl = "http://{}:customHeaders=false@proxy.scrape.do:8080".format(token)
                                         proxies = {
                                             "http": proxyModeUrl,
-                                            "https": proxyModeUrl,
+                                            #"https": proxyModeUrl,
                                         }
                                         response = s.get("https://httpbin.co/ip", proxies=proxies, verify=False)
-                                        #response = requests.request("GET", url, proxies=proxies, verify=False)
                                         st.write(response.text)                                        
 
 
