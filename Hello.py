@@ -1662,7 +1662,7 @@ def run():
 
                                         session_number = '1234'
                                         country = 'es'
-                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&session_number={session_number}&country={country}@proxy.scrapeops.io:5353'
+                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country={country}@proxy.scrapeops.io:5353'
                                         proxies = {
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
