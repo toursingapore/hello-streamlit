@@ -1691,15 +1691,16 @@ def run():
                                         """
 
 
-                                        # pip install scrapingbee
-                                        from scrapingbee import ScrapingBeeClient
-
-                                        client = ScrapingBeeClient(api_key='FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG')
-                                        response = client.get('http://ip-api.com/json',
-                                            params = { 
-                                                'session_id': '123',                                         
-                                            }
-                                        )
+                                        SCRAPINGBEE_API_KEY = 'FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG'
+                                        session_number = 123456 #Dùng session_number=123456 tương đương 'IP US 142.147.106.203' random 0-1000000, mỗi số tương đương với 1 IP US khác cho nhiều requests để tiết kiệm, nhưng default chị IP US
+                                        proxyModeUrl = f'http://scraperapi.session_number={session_number}:{SCRAPERAPI_API_KEY}&@proxy-server.scraperapi.com:8001'
+                                        
+                                        proxies = {
+                                            "http": "http://{SCRAPINGBEE_API_KEY}:render_js=False@proxy.scrapingbee.com:8886",
+                                            "https": "https://{SCRAPINGBEE_API_KEY}:render_js=False@proxy.scrapingbee.com:8887"
+                                        }
+                                        #Site 1 the check proxy IP
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
 
 
