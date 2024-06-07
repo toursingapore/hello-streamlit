@@ -1697,9 +1697,7 @@ def run():
                                         client = ScrapingBeeClient(api_key='FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG')
                                         response = client.get('http://ip-api.com/json',
                                             params = { 
-                                                'session_id': '123',
-                                                'country_code': 'de',
-                                                'premium_proxy': 'True',                                                
+                                                'session_id': '123',                                         
                                             }
                                         )
                                         st.write(response.json())
