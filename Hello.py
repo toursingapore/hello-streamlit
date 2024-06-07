@@ -1677,7 +1677,8 @@ def run():
                                         #proxyModeUrl = f'http://scraperapi:{SCRAPERAPI_API_KEY}&country_code={country_code}@proxy-server.scraperapi.com:8001'
                                         
                                         #Dùng session_number dùng 1 proxy cho nhiều requests để tiết kiệm, nhưng default chị IP US
-                                        proxyModeUrl = f'http://scraperapi.session_number=123:{SCRAPERAPI_API_KEY}@proxy-server.scraperapi.com:8001'                                        proxies = {
+                                        proxyModeUrl = f'http://scraperapi.session_number=123:{SCRAPERAPI_API_KEY}&@proxy-server.scraperapi.com:8001'
+                                        proxies = {
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
                                         }
