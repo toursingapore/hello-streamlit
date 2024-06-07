@@ -1682,7 +1682,7 @@ def run():
                                             #'https': 'http://YOUR_TOKEN:@proxy.scrape.do:8080',
                                         }
 
-                                        response = s.get('https://httpbin.co/anything', proxies=proxies, verify=False)
+                                        response = s.get('https://httpbin.org/ip', proxies=proxies, verify=False)
                                         st.write(response.text)
 
 
