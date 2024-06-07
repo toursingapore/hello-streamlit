@@ -1649,27 +1649,15 @@ def run():
                                         URL = 'http://ip-api.com/json'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        params = {
-                                            'url': URL,
-                                            'token': SCRAPEDO_API_KEY,
-                                            'sessionId': '1234', #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
-                                            'super': 'true',
-                                            'regionalGeoCode': 'europe', #random ip europe must be Pro Plan subscription
-                                            #'geoCode': 'us', #OR select specific ip US must be Pro Plan subscription
-                                            #'device': 'Mobile', #Default device=Desktop
-                                            #'render': 'true', #Default render=false , cho phép turn on js dùng cho site khó yêu cầu có js khi crawl
-                                        }  
-                                        response = s.get("https://api.scrape.do", params=params)
-                                        st.write(response.json()) 
-
                                         #Proxy Mode
                                         #import requests
-                                        import urllib3
+                                        #import urllib3
                                         # Disable warnings for self-signed certificate
-                                        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
+                                        #urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
 
                                         token = SCRAPEDO_API_KEY
-                                        proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(token)
+                                        #proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(token)
+                                        proxyModeUrl = 'http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080'
                                         proxies = {
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
