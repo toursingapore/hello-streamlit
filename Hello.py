@@ -1654,7 +1654,7 @@ def run():
                                         sessionId = 1234
                                         super = 'true'
                                         regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
-                                        geoCode = 'us' #specific IP proxy, yêu cầu PRO PLAN
+                                        #geoCode = 'us' #specific IP proxy, yêu cầu PRO PLAN
 
                                         proxyModeUrl = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"
                                         proxies = {
