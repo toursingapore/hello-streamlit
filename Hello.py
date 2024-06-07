@@ -1663,12 +1663,11 @@ def run():
 
 
 
-
+                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353'
                                         proxies = {
-                                            'http': f'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
-                                            'https': f'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
+                                            'http': proxyModeUrl,
+                                            'https': proxyModeUrl,
                                         }
-
                                         response = s.get('http://ip-api.com/json', proxies=proxies)
                                         st.write(response.json())
 
