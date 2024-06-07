@@ -1650,7 +1650,7 @@ def run():
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(SCRAPEDO_API_KEY)
+                                        proxyModeUrl = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080"
                                         proxies = {
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
