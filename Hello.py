@@ -1638,8 +1638,11 @@ def run():
                                             '__theme': 'light',
                                             'country': 'uk',
                                             #'residential': 'true', #consume 10 API Credits per proxy
-                                            'session_number': '7', #Sticky Sessions giữ proxy exits 5 phút để tiết kiệm proxy, sau đó nó tự tạo new proxy
+                                            'session_number': '7', #session_number random 0-1000000 - Sticky Sessions giữ proxy exits 5 phút để tiết kiệm proxy, sau đó nó tự tạo new proxy
                                         }                                         
+                                        response = requests.get("https://ipinfo.io/json", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
+                                        st.write(response.json())
+
 
                                         _ = """
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
