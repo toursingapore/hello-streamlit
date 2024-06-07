@@ -1662,20 +1662,6 @@ def run():
                                         response = s.get("https://api.scrape.do", params=params)
                                         st.write(response.json()) 
 
-                                        URL2 = 'https://browserleaks.com/ip'
-                                        params = {
-                                            'url': URL2,
-                                            'token': SCRAPEDO_API_KEY,
-                                            'sessionId': '1234', #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
-                                            'super': 'true',
-                                            'regionalGeoCode': 'europe', #random ip europe must be Pro Plan subscription
-                                            #'geoCode': 'us', #OR select specific ip US must be Pro Plan subscription
-                                            #'device': 'Mobile', #Default device=Desktop
-                                            #'render': 'true', #Default render=false , cho phép turn on js dùng cho site khó yêu cầu có js khi crawl
-                                        }  
-                                        response = s.get("https://api.scrape.do", params=params)
-                                        st.markdown(response.text, unsafe_allow_html=True)
-
                                         #Proxy Mode
                                         #import requests
                                         import urllib3
