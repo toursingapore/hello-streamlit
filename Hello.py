@@ -1646,21 +1646,18 @@ def run():
                                         """
                                         
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
-                                        proxies = {
-                                            'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
-                                        }
-                                        params = {
-                                            '__theme': 'light',
-                                            #'sessionId': '1234', #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
-                                            'super': 'true',
-                                            'regionalGeoCode': 'europe',
-                                        } 
-                                        requests_session = requests.Session()
-                                        response = requests_session.get("https://api.scrape.do?token=1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6&url=http://ip-api.com/json&sessionId=1234&super=true&regionalGeoCode=europe", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
-                                        st.write(response.json())                                        
-                                        response = requests_session.get("https://api.scrape.do?token=1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6&url=https://browserleaks.com/ip&sessionId=1234&super=true&regionalGeoCode=europe", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
-                                        #st.write(response.text) 
+                                        url = "https://api.scrape.do?token=1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6&url=http://ip-api.com/json&sessionId=1234&super=true&regionalGeoCode=europe"
+                                        payload = {}
+                                        headers = {}
+                                        response = requests.request("GET", url, headers=headers, data=payload)
+                                        st.write(response.text)
+
+                                        url2 = "https://api.scrape.do?token=1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6&url=https://browserleaks.com/ip&sessionId=1234&super=true&regionalGeoCode=europe"
+                                        response = requests.request("GET", url2, headers=headers, data=payload)
+                                        st.write(response.text)
                                         st.markdown(response.text, unsafe_allow_html=True)
+
+                                        
 
                                         response = scraper.post(
                                             url_space+'/queue/join',
