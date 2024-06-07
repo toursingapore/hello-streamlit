@@ -1631,7 +1631,7 @@ def run():
                                     #Dùng session requests và các site free proxies below
                                     if use_proxy:
                                         _ = """  
-                                        # https://scrape.do/pricing/ - Free 1000 proxies per month
+                                        # https://scrape.do/pricing/ - Free 1000 proxies per month & automatically renew every month
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
