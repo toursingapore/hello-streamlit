@@ -1630,7 +1630,6 @@ def run():
                                     }
                                     #Use Cloudscraper tương tự requests
                                     if use_proxy:
-                                        _ = """
                                         #Proxy Mode
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
@@ -1649,12 +1648,9 @@ def run():
                                         #Site 1 the same proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
-
-                                        #Site 2 the same proxy IP
-                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
-                                        st.markdown(response.text, unsafe_allow_html=True)
-                                        """                                        
+                                        
  
+                                        _ = """
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
@@ -1667,6 +1663,7 @@ def run():
                                         }
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
+                                        """
 
 
                                         response = scraper.post(
