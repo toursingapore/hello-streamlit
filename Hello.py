@@ -1641,6 +1641,7 @@ def run():
 
                                     params = {
                                         '__theme': 'light',
+                                        'sessionId': '1234', #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
                                         'super': 'true',
                                         'regionalGeoCode': 'europe',
                                     }    
