@@ -1628,7 +1628,7 @@ def run():
                                         'trigger_id': 12,
                                         'session_hash': session_hash,
                                     }
-                                    #Dùng session requests
+                                    #Dùng session requests và các site free proxies below
                                     if use_proxy:
                                         _ = """                                        
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
