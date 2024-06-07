@@ -1668,6 +1668,7 @@ def run():
                                         st.write(response.json())
                                         """
 
+                                        _ = """
                                         #Site proxy 3: https://www.scraperapi.com/pricing/ - Free 1000 proxies per month
                                         SCRAPERAPI_API_KEY = '0c8cc4d8101c74aa7c5f7d363ea1e476'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
@@ -1687,6 +1688,21 @@ def run():
                                         #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
                                         #response = s.get("https://ip-api.io/", proxies=proxies, verify=False)
                                         #st.markdown(response.text, unsafe_allow_html=True)
+                                        """
+
+
+                                        # pip install scrapingbee
+                                        from scrapingbee import ScrapingBeeClient
+
+                                        client = ScrapingBeeClient(api_key='FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG')
+                                        response = client.get('http://ip-api.com/json',
+                                            params = { 
+                                                'session_id': '123',
+                                                'country_code': 'de',
+                                                'premium_proxy': 'True',                                                
+                                            }
+                                        )
+                                        st.write(response.json())
 
 
 
