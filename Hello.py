@@ -1691,12 +1691,12 @@ def run():
                                         """
 
 
-                                        SCRAPINGBEE_API_KEY = "FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG"
+                                        SCRAPINGBEE_API_KEY = 'FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được                                        
                                                                                 
                                         proxies = {
-                                            "http": "http://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True@proxy.scrapingbee.com:8886",
-                                            "https": "https://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True@proxy.scrapingbee.com:8887"
+                                            'http': f'http://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True@proxy.scrapingbee.com:8886',
+                                            'https': f'https://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True@proxy.scrapingbee.com:8887',
                                         }
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
