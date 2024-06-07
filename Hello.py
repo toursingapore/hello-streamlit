@@ -1661,13 +1661,18 @@ def run():
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
 
-                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country=es@proxy.scrapeops.io:5353'
+                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&session_number=7&country=es&device_type=mobile@proxy.scrapeops.io:5353'
                                         proxies = {
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
                                         }
-                                        response = s.get('http://ip-api.com/json', proxies=proxies, verify=False)
+                                        #Site 1 the same proxy IP
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
+                                        #Site 2 the same proxy IP
+                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
+                                        st.markdown(response.text, unsafe_allow_html=True)
+
 
 
                                         response = scraper.post(
