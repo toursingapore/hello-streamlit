@@ -1643,23 +1643,6 @@ def run():
                                         response = requests.get("http://ip-api.com/json/", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
                                         st.write(response.json())
 
-                                        json_data = {
-                                            "title":"Hello world",
-                                            "author":"stevejob",
-                                        }                                        
-                                        response = requests.post(
-                                            'https://postman-echo.com/post',
-                                            params=params,
-                                            json=json_data,
-                                            #cookies=cookies,
-                                            #headers=headers,
-                                            proxies=proxies,
-                                            verify=False, #skips SSL verification
-                                        
-                                        )
-                                        st.write(response.json())
-
-
                                         _ = """
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         proxies = {
