@@ -1676,14 +1676,22 @@ def run():
                                         response = s.get("https://api.scrape.do", params=params)
                                         st.markdown(response.text, unsafe_allow_html=True)
 
+                                        #Proxy Mode
+                                        import requests
+                                        import urllib3
+                                        # Disable warnings for self-signed certificate
+                                        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
 
+                                        url = "https://httpbin.co/ip"
+                                        token = SCRAPEDO_API_KEY
+                                        proxyModeUrl = "http://{}:customHeaders=false@proxy.scrape.do:8080".format(token)
                                         proxies = {
-                                            'http': 'http://{SCRAPEDO_API_KEY}@:@proxy.scrape.do:8080',
-                                            'https': 'http://{SCRAPEDO_API_KEY}@:@proxy.scrape.do:8080',
+                                            "http": proxyModeUrl,
+                                            "https": proxyModeUrl,
                                         }
-
-                                        response = s.get('https://httpbin.org/ip', proxies=proxies, verify=False)
-                                        st.write(response.text)
+                                        response = s.get("https://httpbin.co/ip", proxies=proxies, verify=False)
+                                        #response = requests.request("GET", url, proxies=proxies, verify=False)
+                                        st.write(response.text)                                        
 
 
                                         response = scraper.post(
