@@ -1630,62 +1630,53 @@ def run():
                                     }
                                     #Dùng session requests
                                     if use_proxy:
+                                        _ = """                                        
+                                        SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        def get_scrapedo_proxy():
-                                            SCRAPEDO_API_KEY = 'keyhere'
-                                            sessionId = random.randint(1000, 9999)  # Generate random sessionId
-                                            super = 'true'
-                                            regionalGeoCode = random.choice(['asia', 'europe', 'africa', 'oceania', 'northamerica', 'southamerica'])  # Random regionalGeoCode
-                                            
-                                            proxyModeUrl = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"
-                                            proxies = {
-                                                "http": proxyModeUrl,
-                                                "https": proxyModeUrl,
-                                            }
-                                            return proxies
+                                        #Proxy Mode - Set custom proxy IP
+                                        sessionId = 1234
+                                        super = 'true'
+                                        regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
+                                        #geoCode = 'us' #specific IP proxy, yêu cầu PRO PLAN
 
-                                        def get_scrapeops_proxy():
-                                            SCRAPEOPS_API_KEY = 'keyhere'
-                                            country = random.choice(['uk', 'us', 'br', 'ca', 'cn', 'in', 'it', 'jp', 'fr', 'de', 'ru', 'es'])  # Random country
-                                            
-                                            proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country={country}@proxy.scrapeops.io:5353'
-                                            proxies = {
-                                                'http': proxyModeUrl,
-                                                'https': proxyModeUrl,
-                                            }
-                                            return proxies
+                                        proxyModeUrl = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"
+                                        proxies = {
+                                            "http": proxyModeUrl,
+                                            "https": proxyModeUrl,
+                                        }
+                                        #Site 1 the check proxy IP
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                        st.write(response.json())
+                                        """
+ 
+                                        SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
+                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        # Using Scrapedo Proxy
-                                        scrapedo_proxies = get_scrapedo_proxy()
-                                        s = requests.Session()  # Use a new requests session
-
-                                        # Check proxy IP for Scrapedo
-                                        response = s.get("http://ip-api.com/json", proxies=scrapedo_proxies, verify=False)
+                                        country='uk' #br Brazil, ca Canada, cn China, in India, it Italy, jp Japan, fr France, de Germany, ru Russian, es Spain, us United States, uk United Kingdom
+                                        #render_js=True #Turn on javascript tốn 10 credit dùng cho site khó vd - &country=fr&render_js=True
+                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country={country}@proxy.scrapeops.io:5353'
+                                        proxies = {
+                                            'http': proxyModeUrl,
+                                            'https': proxyModeUrl,
+                                        }
+                                        #Site 1 the check proxy IP
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
 
-                                        # Using Scrapeops Proxy
-                                        scrapeops_proxies = get_scrapeops_proxy()
-                                        s = requests.Session()  # Use a new requests session
 
-                                        # Check proxy IP for Scrapeops
-                                        response = s.get("http://ip-api.com/json", proxies=scrapeops_proxies, verify=False)
-                                        st.write(response.json())
-
-                                        # Randomly select either Scrapedo or Scrapeops proxy for the POST request
-                                        selected_proxies = random.choice([scrapedo_proxies, scrapeops_proxies])
-
-                                        # Example of posting data using the randomly selected proxy
+                                        #Site 2 using the same proxy IP
                                         response = s.post(
                                             url_space+'/queue/join',
                                             params=params,
                                             json=json_data,
                                             #cookies=cookies,
                                             #headers=headers,
-                                            proxies=selected_proxies,
-                                            verify=False,  # Skips SSL verification
+                                            proxies=proxies,
+                                            verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
                                         )
                                         st.write(response.text)
-
+                                        
                                     else:
                                         response = scraper.post(
                                             url_space+'/queue/join',
