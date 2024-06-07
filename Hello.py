@@ -1664,7 +1664,7 @@ def run():
 
                                         URL2 = 'https://browserleaks.com/ip'
                                         params = {
-                                            'url': URL,
+                                            'url': URL2,
                                             'token': SCRAPEDO_API_KEY,
                                             'sessionId': '1234', #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
                                             'super': 'true',
@@ -1674,7 +1674,8 @@ def run():
                                             #'render': 'true', #Default render=false , cho phép turn on js dùng cho site khó yêu cầu có js khi crawl
                                         }  
                                         response = s.get("https://api.scrape.do", params=params)
-                                        st.write(response.json()) 
+                                        st.markdown(response.text, unsafe_allow_html=True)
+
 
 
                                         response = scraper.post(
