@@ -1660,15 +1660,16 @@ def run():
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        session_number = 7
-                                        country = 'uk'
-                                        #residential = 'true'
-                                        proxyModeUrl = f"http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353", #default port 5353
+
+
+
+
                                         proxies = {
-                                            "http": proxyModeUrl,
-                                            "https": proxyModeUrl,
-                                        }                                        
-                                        response = s.get("http://ip-api.com/json/", proxies=proxies, verify=False) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
+                                            'http': f'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
+                                            'https': f'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
+                                        }
+
+                                        response = s.get('http://ip-api.com/json', proxies=proxies)
                                         st.write(response.json())
 
 
