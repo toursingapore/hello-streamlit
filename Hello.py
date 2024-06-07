@@ -1646,8 +1646,11 @@ def run():
                                         """
                                         
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                                        URL = 'http://ip-api.com/json'
                                         s = requests.Session()
                                         params = {
+                                            'url': URL,
+                                            'token': SCRAPEDO_API_KEY,
                                             'sessionId': '1234', #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
                                             'super': 'true',
                                             'regionalGeoCode': 'europe', #random ip europe must be Pro Plan subscription
@@ -1655,10 +1658,7 @@ def run():
                                             #'device': 'Mobile', #Default device=Desktop
                                             #'render': 'true', #Default render=false , cho phép turn on js dùng cho site khó yêu cầu có js khi crawl
                                         }  
-                                        proxies = {
-                                            'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
-                                        }
-                                        response = s.get("http://ip-api.com/json", params=params)
+                                        response = s.get("https://api.scrape.do", params=params)
                                         st.write(response.json()) 
 
 
