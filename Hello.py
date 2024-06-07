@@ -1674,7 +1674,7 @@ def run():
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
                                         country_code='vn' #uk, us, vn.... - List all supported country_code here - https://docs.scraperapi.com/making-requests/customizing-requests/geographic-location
-                                        proxyModeUrl = f'http://scraperapi:{SCRAPERAPI_API_KEY}&session_number=123&country_code={country_code}@proxy-server.scraperapi.com:8001'
+                                        proxyModeUrl = f'http://scraperapi:{SCRAPERAPI_API_KEY}&country_code={country_code}@proxy-server.scraperapi.com:8001'
                                         proxies = {
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
