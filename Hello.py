@@ -1665,8 +1665,9 @@ def run():
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
                                         }
-                                        #response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                        response = s.get("https://tencentarc-photomaker.hf.space", proxies=proxies, verify=False)
                                         #st.write(response.json())
+                                        st.markdown(response.text, unsafe_allow_html=True)
 
 
                                         response = scraper.post(
