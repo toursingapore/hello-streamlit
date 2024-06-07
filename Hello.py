@@ -1496,7 +1496,6 @@ def run():
                                                 'platform': 'android',  # 'linux', 'windows', 'darwin', 'android', 'ios'
                                                 'desktop': False
                                             },
-                                            sess=session,
                                             disableCloudflareV1=True  # Disable sites with Cloudflare
                                         )
                                     elif selected_device == "Mobile - iOS":
@@ -1506,7 +1505,6 @@ def run():
                                                 'platform': 'ios',
                                                 'desktop': False
                                             },
-                                            sess=session,
                                             disableCloudflareV1=True
                                         )
                                     elif selected_device == "Desktop - Windows":
@@ -1516,7 +1514,6 @@ def run():
                                                 'platform': 'windows',
                                                 'desktop': True
                                             },
-                                            sess=session,
                                             disableCloudflareV1=True
                                         )
                                     elif selected_device == "Desktop - Linux":
@@ -1526,7 +1523,6 @@ def run():
                                                 'platform': 'linux',
                                                 'desktop': True
                                             },
-                                            sess=session,
                                             disableCloudflareV1=True
                                         )
                                     else:  # "Desktop - macOS"
@@ -1536,7 +1532,6 @@ def run():
                                                 'platform': 'darwin',
                                                 'desktop': True
                                             },
-                                            sess=session,
                                             disableCloudflareV1=True
                                         )                                
                                     response = scraper.get(space_HF_url)
@@ -1670,9 +1665,8 @@ def run():
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
                                         }
-                                        response = s.get("https://tencentarc-photomaker.hf.space", proxies=proxies, verify=False)
-                                        #st.write(response.json())
-                                        st.markdown(response.text, unsafe_allow_html=True)
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                        st.write(response.json())
 
 
                                         response = scraper.post(
