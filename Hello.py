@@ -1630,6 +1630,7 @@ def run():
                                     }
                                     #Use Cloudscraper tương tự requests
                                     if use_proxy:
+                                        _ = """
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         proxies = {
                                             f'http': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',  #default port 5353
@@ -1642,8 +1643,8 @@ def run():
                                         }                                         
                                         response = requests.get("http://ip-api.com/json/", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
                                         st.write(response.json())
-
-                                        _ = """
+                                        """
+                                        
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         proxies = {
                                             'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
@@ -1654,7 +1655,8 @@ def run():
                                             'super': 'true',
                                             'regionalGeoCode': 'europe',
                                         } 
-                                        """
+                                        response = requests.get("http://ip-api.com/json/", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
+                                        st.write(response.json())                                        
 
                                         st.write(use_proxy)
                                         response = scraper.post(
