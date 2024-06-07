@@ -1668,7 +1668,6 @@ def run():
                                         # Disable warnings for self-signed certificate
                                         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
 
-                                        url = "http://ip-api.com/json"
                                         token = SCRAPEDO_API_KEY
                                         proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(token)
                                         proxies = {
@@ -1676,7 +1675,6 @@ def run():
                                             "https": proxyModeUrl,
                                         }
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
-                                        #response = requests.request("GET", url, proxies=proxies, verify=False)
                                         st.write(response.text)                                        
  
 
