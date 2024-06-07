@@ -1670,7 +1670,7 @@ def run():
 
                                         url = "http://ip-api.com/json"
                                         token = SCRAPEDO_API_KEY
-                                        proxyModeUrl = "http://{}:customHeaders=false@proxy.scrape.do:8080".format(token)
+                                        proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(token)
                                         proxies = {
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
@@ -1678,17 +1678,7 @@ def run():
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         #response = requests.request("GET", url, proxies=proxies, verify=False)
                                         st.write(response.text)                                        
-
-                                        url = "https://browserleaks.com/ip"
-                                        token = SCRAPEDO_API_KEY
-                                        proxyModeUrl = "http://{}:customHeaders=false@proxy.scrape.do:8080".format(token)
-                                        proxies = {
-                                            "http": proxyModeUrl,
-                                            "https": proxyModeUrl,
-                                        }
-                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
-                                        #response = requests.request("GET", url, proxies=proxies, verify=False)
-                                        st.write(response.text)      
+ 
 
 
 
