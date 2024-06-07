@@ -1650,7 +1650,8 @@ def run():
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
                                         """
- 
+
+                                        _ = """ 
                                         # https://scrapeops.io/app/register/proxy - Free 1000 proxies per month
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
@@ -1665,6 +1666,22 @@ def run():
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
+                                        """
+
+
+                                        # https://www.scraperapi.com/pricing/ - Free 1000 proxies per month
+                                        SCRAPERAPI_API_KEY = '0c8cc4d8101c74aa7c5f7d363ea1e476'
+                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
+
+                                        proxyModeUrl = f'http://scraperapi:{SCRAPERAPI_API_KEY}@proxy-server.scraperapi.com:8001'
+                                        proxies = {
+                                            'http': proxyModeUrl,
+                                            'https': proxyModeUrl,
+                                        }
+                                        #Site 1 the check proxy IP
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                        st.write(response.json())
+
 
 
                                         #Site 2 using the same proxy IP
