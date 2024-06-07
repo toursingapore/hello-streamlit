@@ -1665,7 +1665,6 @@ def run():
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
                                         }
-                                        #Site 1 the same proxy IP
                                         #response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         #st.write(response.json())
 
