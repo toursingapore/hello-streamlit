@@ -1662,8 +1662,8 @@ def run():
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
                                         }
-                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
-                                        st.write(response.text)                                        
+                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
+                                        st.markdown(response.text, unsafe_allow_html=True)                                       
  
 
 
