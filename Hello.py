@@ -1662,7 +1662,7 @@ def run():
 
                                         country = 'jp' #br Brazil, ca Canada, cn China, in India, it Italy, jp Japan, fr France, de Germany, ru Russian, es Spain, us United States, uk United Kingdom
                                         #scrapeops.render = 'true'
-                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country={country}&scrapeops.render=true@proxy.scrapeops.io:5353'
+                                        proxyModeUrl = f'http://scrapeops.render=true:{SCRAPEOPS_API_KEY}&country={country}@proxy.scrapeops.io:5353'
                                         proxies = {
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
