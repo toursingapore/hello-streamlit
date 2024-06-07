@@ -1658,7 +1658,7 @@ def run():
                                         proxies = {
                                             'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
                                         }
-                                        response = s.get("https://ipinfo.io/json", params=params, proxies=proxies, verify=False)
+                                        response = s.get("http://ip-api.com/json", params=params, proxies=proxies, verify=False)
                                         st.write(response.json()) 
 
 
