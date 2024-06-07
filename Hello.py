@@ -1630,11 +1630,18 @@ def run():
                                     }
                                     #Use Cloudscraper tương tự requests
                                     if use_proxy:
-                                        #SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
-                                        #proxies = {
-                                        #    f'http': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',  #default port 5353
-                                        #}
+                                        SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
+                                        proxies = {
+                                            f'http': 'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',  #default port 5353
+                                        }
+                                        params = {
+                                            '__theme': 'light',
+                                            'country': 'uk',
+                                            #'residential': 'true', #consume 10 API Credits per proxy
+                                            'session_number': '7', #Sticky Sessions giữ proxy exits 5 phút để tiết kiệm proxy, sau đó nó tự tạo new proxy
+                                        }                                         
 
+                                        _ = """
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         proxies = {
                                             'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
@@ -1645,6 +1652,7 @@ def run():
                                             'super': 'true',
                                             'regionalGeoCode': 'europe',
                                         } 
+                                        """
 
                                         st.write(use_proxy)
                                         response = scraper.post(
