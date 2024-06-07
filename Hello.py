@@ -1660,7 +1660,7 @@ def run():
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        session_number = '7'
+                                        session_number = '1234'
                                         country = 'es'
                                         proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&session_number={session_number}&country={country}@proxy.scrapeops.io:5353'
                                         proxies = {
