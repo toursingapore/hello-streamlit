@@ -1638,7 +1638,7 @@ def run():
                                     SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                     proxies = {
                                         'http': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
-                                        'https': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
+                                        #'https': 'http://{SCRAPEDO_API_KEY}@proxy.scrape.do:8080',
                                     }
 
                                     if use_proxy:
