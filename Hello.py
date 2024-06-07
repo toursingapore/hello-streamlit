@@ -1679,6 +1679,18 @@ def run():
                                         #response = requests.request("GET", url, proxies=proxies, verify=False)
                                         st.write(response.text)                                        
 
+                                        url = "https://browserleaks.com/ip"
+                                        token = SCRAPEDO_API_KEY
+                                        proxyModeUrl = "http://{}:customHeaders=false@proxy.scrape.do:8080".format(token)
+                                        proxies = {
+                                            "http": proxyModeUrl,
+                                            "https": proxyModeUrl,
+                                        }
+                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
+                                        #response = requests.request("GET", url, proxies=proxies, verify=False)
+                                        st.write(response.text)      
+
+
 
                                         response = scraper.post(
                                             url_space+'/queue/join',
