@@ -1655,7 +1655,7 @@ def run():
                                             'super': 'true',
                                             'regionalGeoCode': 'europe',
                                         } 
-                                        response = requests.get("http://ip-api.com/json/", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
+                                        response = requests.get("http://ip-api.com/json/", params=params, proxies=proxies) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
                                         st.write(response.json())                                        
 
 
