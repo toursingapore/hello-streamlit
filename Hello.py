@@ -1677,7 +1677,7 @@ def run():
                                         st.markdown(response.text, unsafe_allow_html=True)
 
                                         #Proxy Mode
-                                        import requests
+                                        #import requests
                                         import urllib3
                                         # Disable warnings for self-signed certificate
                                         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
