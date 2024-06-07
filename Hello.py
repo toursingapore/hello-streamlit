@@ -1661,7 +1661,7 @@ def run():
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
 
-                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country=cn@proxy.scrapeops.io:5353'
+                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country=es@proxy.scrapeops.io:5353'
                                         proxies = {
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
