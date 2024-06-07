@@ -1673,8 +1673,8 @@ def run():
                                         SCRAPERAPI_API_KEY = '0c8cc4d8101c74aa7c5f7d363ea1e476'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        country_code='eu' #uk, us, vn.... - List all supported country_code here - https://docs.scraperapi.com/making-requests/customizing-requests/geographic-location
-                                        proxyModeUrl = f'http://scraperapi:{SCRAPERAPI_API_KEY}&country_code={country_code}@proxy-server.scraperapi.com:8001'
+                                        country_code='eu' #Free plan chỉ support us, uk, eu - List all country_code here - https://docs.scraperapi.com/making-requests/customizing-requests/geographic-location
+                                        proxyModeUrl = f'http://scraperapi.session_number=123:{SCRAPERAPI_API_KEY}&country_code={country_code}@proxy-server.scraperapi.com:8001'
                                         proxies = {
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
@@ -1682,6 +1682,9 @@ def run():
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
+                                        #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
+                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
+                                        st.markdown(response.text, unsafe_allow_html=True)
 
 
 
