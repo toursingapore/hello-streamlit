@@ -1660,7 +1660,7 @@ def run():
                                         st.write(response.json())                                        
                                         response = requests_session.get("https://browserleaks.com/ip", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
                                         #st.write(response.text) 
-                                        st.markdown(html, unsafe_allow_html=True)
+                                        st.markdown(response.text, unsafe_allow_html=True)
 
                                         response = scraper.post(
                                             url_space+'/queue/join',
