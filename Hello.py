@@ -1653,9 +1653,7 @@ def run():
                                         #Site 2 the same proxy IP
                                         response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
                                         st.markdown(response.text, unsafe_allow_html=True)
-                                        """
-                                        
-
+                                        """                                        
  
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
@@ -1668,12 +1666,8 @@ def run():
                                             'https': proxyModeUrl,
                                         }
                                         #Site 1 the same proxy IP
-                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
-                                        st.write(response.json())
-                                        #Site 2 different proxy IP (site này cùng session nhưng mỗi request nó vẫn lấy khác IP, nhưng the same country)
-                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
-                                        st.markdown(response.text, unsafe_allow_html=True)
-
+                                        #response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                        #st.write(response.json())
 
 
                                         response = scraper.post(
