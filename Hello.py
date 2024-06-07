@@ -1552,7 +1552,7 @@ def run():
                                     st.write(f"Extracted URL: {root_url}")
 
 
-                                    #B2; post request to get event_id
+                                    #B2; Post request dùng proxy tại đây là đủ để get event_id
                                     #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #code 'qb7za' auto change random mỗi ngày
                                     url_space = root_url
                                     #session_hash = 'f58zw7qt0zk' #tự cho random 11 ký tự ngẫu nhiên nào cũng được
@@ -1628,13 +1628,13 @@ def run():
                                         'trigger_id': 12,
                                         'session_hash': session_hash,
                                     }
-                                    #Use Cloudscraper tương tự requests
+                                    #Dùng session requests
                                     if use_proxy:
-                                        #Proxy Mode
+                                        _ = """                                        
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        #Set custom proxy IP
+                                        #Proxy Mode - Set custom proxy IP
                                         sessionId = 1234
                                         super = 'true'
                                         regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
@@ -1645,12 +1645,11 @@ def run():
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
                                         }
-                                        #Site 1 the same proxy IP
+                                        #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
-
+                                        """
  
-                                        _ = """
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
@@ -1661,11 +1660,12 @@ def run():
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
                                         }
+                                        #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
-                                        """
 
 
+                                        #Site 2 using the same proxy IP
                                         response = s.post(
                                             url_space+'/queue/join',
                                             params=params,
@@ -1686,7 +1686,8 @@ def run():
                                         )
                                         st.write(response.text)
 
-                                    #B3; get request and read event-stream
+
+                                    #B3; Use Cloudscraper tương tự requests read event-stream dễ dàng
                                     headers = {
                                         'authority': 'tencentarc-photomaker.hf.space',
                                         'accept': 'text/event-stream',
