@@ -1671,8 +1671,10 @@ def run():
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
                                         #Site 2 the same proxy IP
-                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
-                                        st.markdown(response.text, unsafe_allow_html=True)
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                        st.write(response.json())                                        
+                                        #response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
+                                        #st.markdown(response.text, unsafe_allow_html=True)
 
 
 
