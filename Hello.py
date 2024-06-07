@@ -1676,8 +1676,8 @@ def run():
                                         #country_code='eu' #Free plan chỉ support us, uk, eu - List all country_code here - https://docs.scraperapi.com/making-requests/customizing-requests/geographic-location
                                         #proxyModeUrl = f'http://scraperapi:{SCRAPERAPI_API_KEY}&country_code={country_code}@proxy-server.scraperapi.com:8001'
                                         
-                                        #Dùng session_number dùng 1 proxy cho nhiều requests để tiết kiệm, nhưng default chị IP US
-                                        proxyModeUrl = f'http://scraperapi.session_number=123:{SCRAPERAPI_API_KEY}&@proxy-server.scraperapi.com:8001'
+                                        #Dùng session_number=123 tương đương 'IP US 142.147.106.203' dùng 1 proxy cho nhiều requests để tiết kiệm, nhưng default chị IP US
+                                        proxyModeUrl = f'http://scraperapi.session_number=123456:{SCRAPERAPI_API_KEY}&@proxy-server.scraperapi.com:8001'
                                         proxies = {
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
