@@ -1640,7 +1640,7 @@ def run():
                                             #'residential': 'true', #consume 10 API Credits per proxy
                                             'session_number': '7', #session_number random 0-1000000 - Sticky Sessions giữ proxy exits 5 phút để tiết kiệm proxy, sau đó nó tự tạo new proxy
                                         }                                         
-                                        response = requests.get("https://ipinfo.io/json", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
+                                        response = requests.get("http://ip-api.com/json/", params=params) #nếu scrawl site đã có params sẵn thì thêm 2 code api vào params sẵn để tích hợp proxy là được
                                         st.write(response.json())
 
 
