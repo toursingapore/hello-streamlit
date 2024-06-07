@@ -1647,7 +1647,7 @@ def run():
                                         
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         URL = 'http://ip-api.com/json'
-                                        s = requests.Session()
+                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
                                         params = {
                                             'url': URL,
@@ -1676,6 +1676,14 @@ def run():
                                         response = s.get("https://api.scrape.do", params=params)
                                         st.markdown(response.text, unsafe_allow_html=True)
 
+
+                                        proxies = {
+                                            'http': 'http://YOUR_TOKEN:@proxy.scrape.do:8080',
+                                            #'https': 'http://YOUR_TOKEN:@proxy.scrape.do:8080',
+                                        }
+
+                                        response = s.get('https://httpbin.co/anything', proxies=proxies, verify=False)
+                                        st.write(response.text)
 
 
                                         response = scraper.post(
