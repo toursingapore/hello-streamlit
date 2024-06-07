@@ -1645,26 +1645,21 @@ def run():
                                         st.write(response.json())
                                         """
                                         
-                                        SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
-                                        URL = 'http://ip-api.com/json'
-                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
-
                                         #Proxy Mode
                                         #import requests
-                                        #import urllib3
-                                        # Disable warnings for self-signed certificate
-                                        #urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
+                                        SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        token = SCRAPEDO_API_KEY
-
-                                        proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(token)
+                                        proxyModeUrl = "http://{}:customHeaders=false&sessionId=1234&super=true&regionalGeoCode=europe@proxy.scrape.do:8080".format(SCRAPEDO_API_KEY)
                                         proxies = {
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
                                         }
+                                        #Site 1 the same proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
 
+                                        #Site 2 the same proxy IP
                                         response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
                                         st.markdown(response.text, unsafe_allow_html=True)                                       
  
