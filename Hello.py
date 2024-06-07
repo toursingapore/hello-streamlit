@@ -1683,7 +1683,7 @@ def run():
                                         #    'https': proxyModeUrl,
                                         #}
                                         proxies = {
-                                            "https": "scraperapi.render=true.country_code=us:0c8cc4d8101c74aa7c5f7d363ea1e476@proxy-server.scraperapi.com:8001"
+                                            "https": "http://scraperapi.render=true.country_code=uk:0c8cc4d8101c74aa7c5f7d363ea1e476@proxy-server.scraperapi.com:8001"
                                         }                                        
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
