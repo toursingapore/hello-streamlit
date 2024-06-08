@@ -1363,13 +1363,15 @@ def run():
         from torrequest import TorRequest
 
         with TorRequest() as tr:
-            #Case 1: GET method
+            # Case 1: GET method
             tr.reset_identity()  # Reset Tor every request
             response = tr.get('http://ip-api.com/json')
             st.write(response.json())
-
-            #Case 2: POST method
-            tr.reset_identity()  # Reset Tor every request         
+            
+            # Reset Tor identity for the next request
+            tr.reset_identity()  # Reset Tor every request
+            
+            # Case 2: POST method
             response = tr.post(
                 url, #url_space+'/queue/join' - https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join               
                 params=params,
@@ -1379,11 +1381,6 @@ def run():
                 #proxies=proxies,
                 #verify=False, # skips SSL verification
             )
-            st.write(response.text) #show event_id đã post thành công
-
-            #Case 3: GET method
-            tr.reset_identity()  # Reset Tor every request
-            response = tr.get('https://tencentarc-photomaker.hf.space/queue/data')
             st.write(response.text)
 
 
@@ -1522,7 +1519,7 @@ def run():
 
                                         # Randomly select a device from the array
                                         selected_device = random.choice(devices)
-                                        #st.write(selected_device)
+                                        st.write(selected_device)
 
                                         # Configure cloudscraper based on the selected device
                                         if selected_device == "Mobile - Android":
@@ -1627,7 +1624,7 @@ def run():
                                                 [
                                                     {
                                                         #'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                                        #'url': 'https://tencentarc-photomaker.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                                        #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
                                                         'path': url_image_model,
                                                         'url': url_space+'/file='+url_image_model,
                                                         'orig_name': 'model_1.png',
@@ -1637,7 +1634,7 @@ def run():
                                                     #{
                                                         #Có thể add max 4 ảnh append vào là mảng array, nó tự mix thánh 1 face có nét các ảnh này
                                                         #'path': 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
-                                                        #'url': 'https://tencentarc-photomaker.hf.space/--replicas/qb7za/file=https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
+                                                        #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
                                                         #'path': url_image_model,
                                                         #'url': url_space+'/file='+url_image_model,
                                                         #'orig_name': 'model_1.png',
@@ -1665,9 +1662,10 @@ def run():
                                         #Dùng session requests và các site free proxies below
                                         if use_proxy:
                                             #Use TOR free random proxy cho nhanh
-                                            TOR_random_proxy_func(url_space+'/queue/join', params, json_data)
-                                                                                        
-                                            _ = """  
+                                            #TOR_random_proxy_func(url_space+'/queue/join', params, json_data)
+
+
+ 
                                             s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
                                             #Site proxy 1: https://scrape.do/pricing/ - Free 1000 proxies per month & automatically renew every month
@@ -1687,7 +1685,7 @@ def run():
                                             response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                             st.write(response.json())
 
-
+                                            _ = """ 
                                             #Site proxy 2: https://scrapeops.io/app/register/proxy - Free 1000 proxies per month
                                             SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                             country='uk' #br Brazil, ca Canada, cn China, in India, it Italy, jp Japan, fr France, de Germany, ru Russian, es Spain, us United States, uk United Kingdom
@@ -1784,6 +1782,7 @@ def run():
                                             'sec-fetch-site': 'same-origin',
                                             'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                         }
+
                                         params = {
                                             'session_hash': session_hash,
                                         }
