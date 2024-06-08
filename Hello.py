@@ -1705,7 +1705,10 @@ def run():
 
 
                                         params = {
-                                            'url': 'http://ip-api.com/json',
+                                            'data[]': [
+                                                'url', 'http://ip-api.com/json'
+                                            ],
+                                            #'url': 'http://ip-api.com/json',
                                             'x-api-key': '270269b10ca74f8d918852baed658eb3',
                                             'proxy_country': 'DE',
                                             'browser': 'false',
