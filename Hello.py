@@ -1363,24 +1363,25 @@ def run():
         from torrequest import TorRequest
 
         with TorRequest() as tr:
-            # Case 1: GET method
-            tr.reset_identity()  # Reset Tor every request
-            response = tr.get('http://ip-api.com/json')
-            st.write(response.json())
-            
-            # Reset Tor identity for the next request
-            tr.reset_identity()  # Reset Tor every request       
-            # Case 2: POST method
-            response = tr.post(
-                url, #url_space+'/queue/join' - https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join               
-                params=params,
-                json=json_data,
-                #cookies=cookies,
-                #headers=headers,
-                #proxies=proxies,
-                #verify=False, # skips SSL verification
-            )
-            st.write(response.text)
+            with tr.get_session() as sess:
+                # Case 1: GET method
+                #tr.reset_identity()  # Reset Tor every request
+                response = sess.get('http://ip-api.com/json')
+                st.write(response.json())
+                
+                # Reset Tor identity for the next request
+                #tr.reset_identity()  # Reset Tor every request       
+                # Case 2: POST method
+                response = sess.post(
+                    url, #url_space+'/queue/join' - https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join               
+                    params=params,
+                    json=json_data,
+                    #cookies=cookies,
+                    #headers=headers,
+                    #proxies=proxies,
+                    #verify=False, # skips SSL verification
+                )
+                st.write(response.text)
 
 
     with st.container(border=True): 
