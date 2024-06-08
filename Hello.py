@@ -1711,22 +1711,16 @@ def run():
                                         st.write(response.json())
                                         """
 
-                                        from torpy.http.requests import TorRequests
-
-                                        st.write('start')
-                                        with TorRequests() as tor_requests:
-
-                                            # We do a first request to ipify.org with a Tor proxy
-                                            st.write("build circuit #1")
-                                            with tor_requests.get_session() as sess:
-                                                st.write(sess.get("http://ip-api.com/json").text)
-
-                                            # We do a second request to ipify.org with a Tor proxy
-                                            #st.write("build circuit #2")
-                                            #with tor_requests.get_session() as sess:
-                                            #    st.write(sess.get("https://api.ipify.org/").text)
-
-                                        st.write('~~success')                                      
+                                        #import requests
+                                        #import json
+                                        from datetime import datetime
+                                        PROXIES = {
+                                            'http': 'socks5://127.0.0.1:9050',
+                                            'https': 'socks5://127.0.0.1:9050'
+                                        }
+                                        response = requests.get("http://ip-api.com/json/", proxies=PROXIES)
+                                        result = json.loads(response.content)
+                                        st.write('TOR IP [%s]: %s %s'%(datetime.now().strftime("%d-%m-%Y %H:%M:%S"), result["query"], result["country"]))                                   
 
 
 
