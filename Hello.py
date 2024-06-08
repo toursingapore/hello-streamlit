@@ -1700,18 +1700,22 @@ def run():
                                         #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month – automatically renew every month
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
 
-                                        proxies = {
-                                            http: 'http://scrapingant&proxy_country=US&browser=false:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:8080',
-                                            https: 'https://scrapingant&proxy_country=US&browser=false:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:443'
+
+
+
+
+                                        params = {
+                                            'url': 'http://ip-api.com/json',
+                                            'x-api-key': '270269b10ca74f8d918852baed658eb3',
+                                            'proxy_country': 'DE',
+                                            'browser': 'false',
                                         }
-                                        #Site 1 the check proxy IP
-                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+
+                                        response = s.get('https://api.scrapingant.com/v2/general', params=params)
                                         st.write(response.json())
                                         #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
-                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
-                                        st.markdown(response.text, unsafe_allow_html=True)
-
-
+                                        #response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
+                                        #st.markdown(response.text, unsafe_allow_html=True)
 
                                         #Site 2 using the same proxy IP
                                         response = s.post(
