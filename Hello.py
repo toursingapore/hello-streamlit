@@ -1354,7 +1354,7 @@ def run():
     #B9:-- IMAGE - EXTRACT MASKS FROM IMAGE --                                  
     def session_hash_generator():
         characters = string.ascii_lowercase + string.digits
-        session_hash = ''.join(random.choice(characters) for _ in range(11))
+        session_hash = ''.join(random.choice(characters) for _ in range(11)) #Generate 11 characters
         return session_hash
 
     with st.container(border=True): 
