@@ -1721,22 +1721,6 @@ def run():
                                             response = tr.get('http://ip-api.com/json')
                                             st.write(response.json())
 
-                                            #Case2; POST method with json data
-                                            tr.reset_identity()  # Reset Tor every request
-                                            headers = {
-                                                'accept': 'application/json',
-                                            }                                            
-                                            json_data={
-                                                "Id": 78912,
-                                                "Customer": "Jason Sweet",
-                                                "Quantity": 1,
-                                                "Price": 18.00
-                                            }
-                                            response = tr.post('https://httpbin.org/post', headers=headers, json=json_data)
-                                            st.write(response.status_code)
-                                            st.write(response.json())
-                                            st.write(response.text)
-
                                             #Site 2 using the same proxy IP
                                             response = tr.post(
                                                 url_space+'/queue/join',
