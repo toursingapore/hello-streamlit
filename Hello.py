@@ -1582,7 +1582,7 @@ def run():
                                                 if match:
                                                     root_url = match.group(1)
                                                     break
-                                        st.write(f"Extracted URL: {root_url}")
+                                        #st.write(f"Extracted URL: {root_url}")
 
 
                                         #B2; Post request dùng proxy tại đây là đủ để get event_id
