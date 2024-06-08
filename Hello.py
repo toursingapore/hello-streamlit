@@ -1740,7 +1740,7 @@ def run():
                                             }
                                             response = s.get('http://ip-api.com/json', proxies=proxies, verify=False)
                                             st.write(response.json())     
-
+                                            """
 
                                             #Site 2 using the same proxy IP
                                             response = s.post(
@@ -1753,7 +1753,7 @@ def run():
                                                 verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
                                             )
                                             st.write(response.text)                                                                                  
-                                            """
+
                                         else:
                                             response = scraper.post(
                                                 url_space+'/queue/join',
