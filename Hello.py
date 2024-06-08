@@ -1460,357 +1460,360 @@ def run():
                         img_path_arr.append(img_path)
 
                     case "Generate image from reference image":
-                        try:
-                            for user_input in user_input_arr:
-                                #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
-                                #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
-                                #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
-                                with st.spinner('Wait for it...'): 
+                        if user_input_prompt and user_input_nagativePrompt:
+                            try:
+                                for user_input in user_input_arr:
+                                    #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
+                                    #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
+                                    #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
+                                    with st.spinner('Wait for it...'): 
 
-                                    #B1; Get url space, nó sẽ auto change random code mỗi ngày
-                                    space_HF_url = "https://tencentarc-photomaker.hf.space/"
-                                    #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
-                                    st.write(user_input)
-                                    st.image(user_input)
-                                    url_image_model = user_input            
-                                    #prompt = "instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain", #Default Prompt
-                                    prompt = user_input_prompt
-                                    #negativePrompt = "(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth", #Default Negative prompt
-                                    negativePrompt = user_input_nagativePrompt
-                                    #styleTemplate = "Photographic (Default)" #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
-                                    styleTemplate = selected_style
-
-
-                                    devices = [
-                                        "Mobile - Android",
-                                        "Mobile - iOS",
-                                        "Desktop - Windows",
-                                        "Desktop - Linux",
-                                        "Desktop - macOS"
-                                    ]
-
-                                    # Randomly select a device from the array
-                                    selected_device = random.choice(devices)
-                                    st.write(selected_device)
-
-                                    # Configure cloudscraper based on the selected device
-                                    if selected_device == "Mobile - Android":
-                                        scraper = cloudscraper.create_scraper(
-                                            browser={
-                                                'browser': 'chrome',  # options: 'firefox' or 'chrome'
-                                                'platform': 'android',  # 'linux', 'windows', 'darwin', 'android', 'ios'
-                                                'desktop': False
-                                            },
-                                            disableCloudflareV1=True  # Disable sites with Cloudflare
-                                        )
-                                    elif selected_device == "Mobile - iOS":
-                                        scraper = cloudscraper.create_scraper(
-                                            browser={
-                                                'browser': 'chrome',
-                                                'platform': 'ios',
-                                                'desktop': False
-                                            },
-                                            disableCloudflareV1=True
-                                        )
-                                    elif selected_device == "Desktop - Windows":
-                                        scraper = cloudscraper.create_scraper(
-                                            browser={
-                                                'browser': 'chrome',
-                                                'platform': 'windows',
-                                                'desktop': True
-                                            },
-                                            disableCloudflareV1=True
-                                        )
-                                    elif selected_device == "Desktop - Linux":
-                                        scraper = cloudscraper.create_scraper(
-                                            browser={
-                                                'browser': 'chrome',
-                                                'platform': 'linux',
-                                                'desktop': True
-                                            },
-                                            disableCloudflareV1=True
-                                        )
-                                    else:  # "Desktop - macOS"
-                                        scraper = cloudscraper.create_scraper(
-                                            browser={
-                                                'browser': 'chrome',
-                                                'platform': 'darwin',
-                                                'desktop': True
-                                            },
-                                            disableCloudflareV1=True
-                                        )                                
-                                    response = scraper.get(space_HF_url)
-                                    if response.status_code == 200:
-                                        html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
-                                        #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
-                                        #Đưa vào BeautifulSoup cho dễ scrape elements
-                                        soup = BeautifulSoup(html,'html.parser')
-                                        scripts = soup.findAll('script')
-                                        pattern = r'"root":\s*"(https?://[^"]+)"'
-                                        for script in scripts:
-                                            script_content = script.string                                            
-                                            #st.write(script_content)     
-                                            match = re.search(pattern, script_content)
-                                            if match:
-                                                root_url = match.group(1)
-                                                break
-                                    st.write(f"Extracted URL: {root_url}")
+                                        #B1; Get url space, nó sẽ auto change random code mỗi ngày
+                                        space_HF_url = "https://tencentarc-photomaker.hf.space/"
+                                        #url_image_model = 'https://img.freepik.com/free-photo/man-white-shirt-jeans-casual-wear-fashion-full-body_53876-111175.jpg'
+                                        st.write(user_input)
+                                        st.image(user_input)
+                                        url_image_model = user_input            
+                                        #prompt = "instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain", #Default Prompt
+                                        prompt = user_input_prompt
+                                        #negativePrompt = "(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth", #Default Negative prompt
+                                        negativePrompt = user_input_nagativePrompt
+                                        #styleTemplate = "Photographic (Default)" #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
+                                        styleTemplate = selected_style
 
 
-                                    #B2; Post request dùng proxy tại đây là đủ để get event_id
-                                    #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #code 'qb7za' auto change random mỗi ngày
-                                    url_space = root_url
-                                    #session_hash = 'f58zw7qt0zk' #tự cho random 11 ký tự ngẫu nhiên nào cũng được
-                                    session_hash = session_hash_generator()
+                                        devices = [
+                                            "Mobile - Android",
+                                            "Mobile - iOS",
+                                            "Desktop - Windows",
+                                            "Desktop - Linux",
+                                            "Desktop - macOS"
+                                        ]
 
-                                    cookies = {
-                                        '_gid': 'GA1.2.1748695530.1717638365',
-                                        '_ga_R1FN4KJKJH': 'GS1.1.1717646415.2.1.1717646438.0.0.0',
-                                        '_ga': 'GA1.1.1146802884.1717638365',
-                                    }
+                                        # Randomly select a device from the array
+                                        selected_device = random.choice(devices)
+                                        st.write(selected_device)
 
-                                    headers = {
-                                        'authority': 'tencentarc-photomaker.hf.space',
-                                        'accept': '*/*',
-                                        'accept-language': 'en-US,en;q=0.9',
-                                        'content-type': 'application/json',
-                                        # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
-                                        'dnt': '1',
-                                        'origin': 'https://tencentarc-photomaker.hf.space',
-                                        'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
-                                        'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                        'sec-ch-ua-mobile': '?0',
-                                        'sec-ch-ua-platform': '"Windows"',
-                                        'sec-fetch-dest': 'empty',
-                                        'sec-fetch-mode': 'cors',
-                                        'sec-fetch-site': 'same-origin',
-                                        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                    }
-
-                                    params = {
-                                        '__theme': 'light',                                     
-                                    }                                     
-
-                                    json_data = {
-                                        'data': [
-                                            [
-                                                {
-                                                    #'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                                    #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                                    'path': url_image_model,
-                                                    'url': url_space+'/file='+url_image_model,
-                                                    'orig_name': 'model_1.png',
-                                                    'size': None,
-                                                    'mime_type': None,
+                                        # Configure cloudscraper based on the selected device
+                                        if selected_device == "Mobile - Android":
+                                            scraper = cloudscraper.create_scraper(
+                                                browser={
+                                                    'browser': 'chrome',  # options: 'firefox' or 'chrome'
+                                                    'platform': 'android',  # 'linux', 'windows', 'darwin', 'android', 'ios'
+                                                    'desktop': False
                                                 },
-                                                #{
-                                                    #Có thể add max 4 ảnh append vào là mảng array, nó tự mix thánh 1 face có nét các ảnh này
-                                                    #'path': 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
-                                                    #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
-                                                    #'path': url_image_model,
-                                                    #'url': url_space+'/file='+url_image_model,
-                                                    #'orig_name': 'model_1.png',
-                                                    #'size': None,
-                                                    #'mime_type': None,
-                                                #},                                                
+                                                disableCloudflareV1=True  # Disable sites with Cloudflare
+                                            )
+                                        elif selected_device == "Mobile - iOS":
+                                            scraper = cloudscraper.create_scraper(
+                                                browser={
+                                                    'browser': 'chrome',
+                                                    'platform': 'ios',
+                                                    'desktop': False
+                                                },
+                                                disableCloudflareV1=True
+                                            )
+                                        elif selected_device == "Desktop - Windows":
+                                            scraper = cloudscraper.create_scraper(
+                                                browser={
+                                                    'browser': 'chrome',
+                                                    'platform': 'windows',
+                                                    'desktop': True
+                                                },
+                                                disableCloudflareV1=True
+                                            )
+                                        elif selected_device == "Desktop - Linux":
+                                            scraper = cloudscraper.create_scraper(
+                                                browser={
+                                                    'browser': 'chrome',
+                                                    'platform': 'linux',
+                                                    'desktop': True
+                                                },
+                                                disableCloudflareV1=True
+                                            )
+                                        else:  # "Desktop - macOS"
+                                            scraper = cloudscraper.create_scraper(
+                                                browser={
+                                                    'browser': 'chrome',
+                                                    'platform': 'darwin',
+                                                    'desktop': True
+                                                },
+                                                disableCloudflareV1=True
+                                            )                                
+                                        response = scraper.get(space_HF_url)
+                                        if response.status_code == 200:
+                                            html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
+                                            #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                                            #Đưa vào BeautifulSoup cho dễ scrape elements
+                                            soup = BeautifulSoup(html,'html.parser')
+                                            scripts = soup.findAll('script')
+                                            pattern = r'"root":\s*"(https?://[^"]+)"'
+                                            for script in scripts:
+                                                script_content = script.string                                            
+                                                #st.write(script_content)     
+                                                match = re.search(pattern, script_content)
+                                                if match:
+                                                    root_url = match.group(1)
+                                                    break
+                                        st.write(f"Extracted URL: {root_url}")
+
+
+                                        #B2; Post request dùng proxy tại đây là đủ để get event_id
+                                        #url_space = 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za' #code 'qb7za' auto change random mỗi ngày
+                                        url_space = root_url
+                                        #session_hash = 'f58zw7qt0zk' #tự cho random 11 ký tự ngẫu nhiên nào cũng được
+                                        session_hash = session_hash_generator()
+
+                                        cookies = {
+                                            '_gid': 'GA1.2.1748695530.1717638365',
+                                            '_ga_R1FN4KJKJH': 'GS1.1.1717646415.2.1.1717646438.0.0.0',
+                                            '_ga': 'GA1.1.1146802884.1717638365',
+                                        }
+
+                                        headers = {
+                                            'authority': 'tencentarc-photomaker.hf.space',
+                                            'accept': '*/*',
+                                            'accept-language': 'en-US,en;q=0.9',
+                                            'content-type': 'application/json',
+                                            # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
+                                            'dnt': '1',
+                                            'origin': 'https://tencentarc-photomaker.hf.space',
+                                            'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
+                                            'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                            'sec-ch-ua-mobile': '?0',
+                                            'sec-ch-ua-platform': '"Windows"',
+                                            'sec-fetch-dest': 'empty',
+                                            'sec-fetch-mode': 'cors',
+                                            'sec-fetch-site': 'same-origin',
+                                            'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                        }
+
+                                        params = {
+                                            '__theme': 'light',                                     
+                                        }                                     
+
+                                        json_data = {
+                                            'data': [
+                                                [
+                                                    {
+                                                        #'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                                        #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                                        'path': url_image_model,
+                                                        'url': url_space+'/file='+url_image_model,
+                                                        'orig_name': 'model_1.png',
+                                                        'size': None,
+                                                        'mime_type': None,
+                                                    },
+                                                    #{
+                                                        #Có thể add max 4 ảnh append vào là mảng array, nó tự mix thánh 1 face có nét các ảnh này
+                                                        #'path': 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
+                                                        #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
+                                                        #'path': url_image_model,
+                                                        #'url': url_space+'/file='+url_image_model,
+                                                        #'orig_name': 'model_1.png',
+                                                        #'size': None,
+                                                        #'mime_type': None,
+                                                    #},                                                
+                                                ],
+                                                #'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', #Default Prompt
+                                                prompt,
+                                                #'(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', #Default Negative prompt
+                                                negativePrompt,
+                                                #'(No style)', #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
+                                                styleTemplate,
+                                                50,
+                                                20,
+                                                2,
+                                                5,
+                                                665256543,
                                             ],
-                                            #'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', #Default Prompt
-                                            prompt,
-                                            #'(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', #Default Negative prompt
-                                            negativePrompt,
-                                            #'(No style)', #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
-                                            styleTemplate,
-                                            50,
-                                            20,
-                                            2,
-                                            5,
-                                            665256543,
-                                        ],
-                                        'event_data': None,
-                                        'fn_index': 5,
-                                        'trigger_id': 12,
-                                        'session_hash': session_hash,
-                                    }
-                                    #Dùng session requests và các site free proxies below
-                                    if use_proxy:
-                                        _ = """  
-                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
-
-                                        #Site proxy 1: https://scrape.do/pricing/ - Free 1000 proxies per month & automatically renew every month
-                                        SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
-                                        #Proxy Mode - Set custom proxy IP
-                                        sessionId = 1234
-                                        super = 'true'
-                                        regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
-                                        #geoCode = 'us' #specific IP proxy, yêu cầu PRO PLAN
-
-                                        proxyModeUrl = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"
-                                        proxies = {
-                                            "http": proxyModeUrl,
-                                            "https": proxyModeUrl,
+                                            'event_data': None,
+                                            'fn_index': 5,
+                                            'trigger_id': 12,
+                                            'session_hash': session_hash,
                                         }
-                                        #URL 1 the check proxy IP
-                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
-                                        st.write(response.json())
+                                        #Dùng session requests và các site free proxies below
+                                        if use_proxy:
+                                            _ = """  
+                                            s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
+                                            #Site proxy 1: https://scrape.do/pricing/ - Free 1000 proxies per month & automatically renew every month
+                                            SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                                            #Proxy Mode - Set custom proxy IP
+                                            sessionId = 1234
+                                            super = 'true'
+                                            regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
+                                            #geoCode = 'us' #specific IP proxy, yêu cầu PRO PLAN
 
-                                        #Site proxy 2: https://scrapeops.io/app/register/proxy - Free 1000 proxies per month
-                                        SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
-                                        country='uk' #br Brazil, ca Canada, cn China, in India, it Italy, jp Japan, fr France, de Germany, ru Russian, es Spain, us United States, uk United Kingdom
-                                        #render_js=True #Turn on javascript tốn 10 credit dùng cho site khó vd - &country=fr&render_js=True
-                                        proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country={country}@proxy.scrapeops.io:5353'
-                                        proxies = {
-                                            'http': proxyModeUrl,
-                                            'https': proxyModeUrl,
-                                        }
-                                        #URL 1 the check proxy IP
-                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
-                                        st.write(response.json())
-
-
-                                        #Site proxy 3: https://www.scraperapi.com/pricing/ - Free 1000 proxies per month
-                                        SCRAPERAPI_API_KEY = '0c8cc4d8101c74aa7c5f7d363ea1e476'
-                                        #country_code='eu' #Free plan chỉ support us, uk, eu - List all country_code here - https://docs.scraperapi.com/making-requests/customizing-requests/geographic-location
-                                        #proxyModeUrl = f'http://scraperapi:{SCRAPERAPI_API_KEY}&country_code={country_code}@proxy-server.scraperapi.com:8001'
-                                        
-                                        session_number = 123456 #Dùng session_number=123456 tương đương 'IP US 142.147.106.203' random 0-1000000, mỗi số tương đương với 1 IP US khác cho nhiều requests để tiết kiệm, nhưng default chị IP US
-                                        proxyModeUrl = f'http://scraperapi.session_number={session_number}:{SCRAPERAPI_API_KEY}&@proxy-server.scraperapi.com:8001'
-                                        proxies = {
-                                            'http': proxyModeUrl,
-                                            'https': proxyModeUrl,
-                                        }
-                                        #URL 1 the check proxy IP
-                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
-                                        st.write(response.json())
-                                        #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
-                                        #response = s.get("https://ip-api.io", proxies=proxies, verify=False)
-                                        #st.markdown(response.text, unsafe_allow_html=True)
-
-
-                                        #Site proxy 4: https://www.scrapingbee.com/ - Free 1000 proxies for 2 weeks trial only
-                                        SCRAPINGBEE_API_KEY = 'FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG'
-                                        country_code = 'de' #Để change IP proxy theo country thì phải đi them cụm premium_proxy=True&country_code=de or nếu premium_proxy=False nó tự động random IP proxy
-                                        proxies = {
-                                            'http': f'http://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True&country_code={country_code}@proxy.scrapingbee.com:8886',
-                                            'https': f'https://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True&country_code={country_code}@proxy.scrapingbee.com:8887',
-                                        }
-                                        #URL 1 the check proxy IP
-                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
-                                        st.write(response.json())
-
-
-                                        #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month & automatically renew every month
-                                        SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
-                                        #Change IP country Germany thì add thêm tham số proxy_country=DE cho 2 url dưới như này - http://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY} , bỏ này đi nó sẽ default random IP
-                                        proxies = {
-                                            'http': f'http://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080',
-                                            'https': f'https://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:443',
-                                        }
-                                        response = s.get('http://ip-api.com/json', proxies=proxies, verify=False)
-                                        st.write(response.json())     
-
-
-                                        #Site 2 using the same proxy IP
-                                        response = s.post(
-                                            url_space+'/queue/join',
-                                            params=params,
-                                            json=json_data,
-                                            #cookies=cookies,
-                                            #headers=headers,
-                                            proxies=proxies,
-                                            verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
-                                        )
-                                        st.write(response.text)                                                                                  
-                                        """
-                                                                    
-                                        #Use TOR free random proxy cho nhanh
-                                        from torrequest import TorRequest
-
-                                        with TorRequest() as tr:
-                                            #Case1; GET method
-                                            tr.reset_identity()  # Reset Tor every request
-                                            response = tr.get('http://ip-api.com/json')
+                                            proxyModeUrl = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"
+                                            proxies = {
+                                                "http": proxyModeUrl,
+                                                "https": proxyModeUrl,
+                                            }
+                                            #URL 1 the check proxy IP
+                                            response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                             st.write(response.json())
 
-                                            tr.reset_identity()  # Reset Tor every request
+
+                                            #Site proxy 2: https://scrapeops.io/app/register/proxy - Free 1000 proxies per month
+                                            SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
+                                            country='uk' #br Brazil, ca Canada, cn China, in India, it Italy, jp Japan, fr France, de Germany, ru Russian, es Spain, us United States, uk United Kingdom
+                                            #render_js=True #Turn on javascript tốn 10 credit dùng cho site khó vd - &country=fr&render_js=True
+                                            proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country={country}@proxy.scrapeops.io:5353'
+                                            proxies = {
+                                                'http': proxyModeUrl,
+                                                'https': proxyModeUrl,
+                                            }
+                                            #URL 1 the check proxy IP
+                                            response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                            st.write(response.json())
+
+
+                                            #Site proxy 3: https://www.scraperapi.com/pricing/ - Free 1000 proxies per month
+                                            SCRAPERAPI_API_KEY = '0c8cc4d8101c74aa7c5f7d363ea1e476'
+                                            #country_code='eu' #Free plan chỉ support us, uk, eu - List all country_code here - https://docs.scraperapi.com/making-requests/customizing-requests/geographic-location
+                                            #proxyModeUrl = f'http://scraperapi:{SCRAPERAPI_API_KEY}&country_code={country_code}@proxy-server.scraperapi.com:8001'
+                                            
+                                            session_number = 123456 #Dùng session_number=123456 tương đương 'IP US 142.147.106.203' random 0-1000000, mỗi số tương đương với 1 IP US khác cho nhiều requests để tiết kiệm, nhưng default chị IP US
+                                            proxyModeUrl = f'http://scraperapi.session_number={session_number}:{SCRAPERAPI_API_KEY}&@proxy-server.scraperapi.com:8001'
+                                            proxies = {
+                                                'http': proxyModeUrl,
+                                                'https': proxyModeUrl,
+                                            }
+                                            #URL 1 the check proxy IP
+                                            response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                            st.write(response.json())
+                                            #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
+                                            #response = s.get("https://ip-api.io", proxies=proxies, verify=False)
+                                            #st.markdown(response.text, unsafe_allow_html=True)
+
+
+                                            #Site proxy 4: https://www.scrapingbee.com/ - Free 1000 proxies for 2 weeks trial only
+                                            SCRAPINGBEE_API_KEY = 'FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG'
+                                            country_code = 'de' #Để change IP proxy theo country thì phải đi them cụm premium_proxy=True&country_code=de or nếu premium_proxy=False nó tự động random IP proxy
+                                            proxies = {
+                                                'http': f'http://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True&country_code={country_code}@proxy.scrapingbee.com:8886',
+                                                'https': f'https://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True&country_code={country_code}@proxy.scrapingbee.com:8887',
+                                            }
+                                            #URL 1 the check proxy IP
+                                            response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                            st.write(response.json())
+
+
+                                            #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month & automatically renew every month
+                                            SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
+                                            #Change IP country Germany thì add thêm tham số proxy_country=DE cho 2 url dưới như này - http://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY} , bỏ này đi nó sẽ default random IP
+                                            proxies = {
+                                                'http': f'http://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080',
+                                                'https': f'https://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:443',
+                                            }
+                                            response = s.get('http://ip-api.com/json', proxies=proxies, verify=False)
+                                            st.write(response.json())     
+
+
                                             #Site 2 using the same proxy IP
-                                            response = tr.post(
+                                            response = s.post(
                                                 url_space+'/queue/join',
                                                 params=params,
                                                 json=json_data,
                                                 #cookies=cookies,
                                                 #headers=headers,
-                                                #proxies=proxies,
-                                                #verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
+                                                proxies=proxies,
+                                                verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
                                             )
-                                            st.write(response.text)                                    
-                                    else:
-                                        response = scraper.post(
-                                            url_space+'/queue/join',
-                                            params=params,
-                                            json=json_data,
-                                            #cookies=cookies,
-                                            #headers=headers,                                                                    
-                                        )
-                                        st.write(response.text)
+                                            st.write(response.text)                                                                                  
+                                            """
+                                                                        
+                                            #Use TOR free random proxy cho nhanh
+                                            from torrequest import TorRequest
+
+                                            with TorRequest() as tr:
+                                                #Case1; GET method
+                                                tr.reset_identity()  # Reset Tor every request
+                                                response = tr.get('http://ip-api.com/json')
+                                                st.write(response.json())
+
+                                                tr.reset_identity()  # Reset Tor every request
+                                                #Site 2 using the same proxy IP
+                                                response = tr.post(
+                                                    url_space+'/queue/join',
+                                                    params=params,
+                                                    json=json_data,
+                                                    #cookies=cookies,
+                                                    #headers=headers,
+                                                    #proxies=proxies,
+                                                    #verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
+                                                )
+                                                st.write(response.text)                                    
+                                        else:
+                                            response = scraper.post(
+                                                url_space+'/queue/join',
+                                                params=params,
+                                                json=json_data,
+                                                #cookies=cookies,
+                                                #headers=headers,                                                                    
+                                            )
+                                            st.write(response.text)
 
 
-                                    #B3; Use Cloudscraper tương tự requests read event-stream dễ dàng
-                                    headers = {
-                                        'authority': 'tencentarc-photomaker.hf.space',
-                                        'accept': 'text/event-stream',
-                                        'accept-language': 'en-US,en;q=0.9',
-                                        'cache-control': 'no-cache',
-                                        # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
-                                        'dnt': '1',
-                                        'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
-                                        'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                                        'sec-ch-ua-mobile': '?0',
-                                        'sec-ch-ua-platform': '"Windows"',
-                                        'sec-fetch-dest': 'empty',
-                                        'sec-fetch-mode': 'cors',
-                                        'sec-fetch-site': 'same-origin',
-                                        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
-                                    }
+                                        #B3; Use Cloudscraper tương tự requests read event-stream dễ dàng
+                                        headers = {
+                                            'authority': 'tencentarc-photomaker.hf.space',
+                                            'accept': 'text/event-stream',
+                                            'accept-language': 'en-US,en;q=0.9',
+                                            'cache-control': 'no-cache',
+                                            # 'cookie': '_gid=GA1.2.1748695530.1717638365; _ga_R1FN4KJKJH=GS1.1.1717646415.2.1.1717646438.0.0.0; _ga=GA1.1.1146802884.1717638365',
+                                            'dnt': '1',
+                                            'referer': 'https://tencentarc-photomaker.hf.space/?__theme=light',
+                                            'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                                            'sec-ch-ua-mobile': '?0',
+                                            'sec-ch-ua-platform': '"Windows"',
+                                            'sec-fetch-dest': 'empty',
+                                            'sec-fetch-mode': 'cors',
+                                            'sec-fetch-site': 'same-origin',
+                                            'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
+                                        }
 
-                                    params = {
-                                        'session_hash': session_hash,
-                                    }
-                                    #Use Cloudscraper tương tự requests 
-                                    url_image_process_completed_arr = []
-                                    response = scraper.get(url_space+'/queue/data', params=params)
-                                    #st.write(response.text) #Auto show all response stream=True and iter_lines                              
-                                    line_EventStream = response.text
-                                    if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
-                                        #st.write('You have exceeded your GPU quota')
-                                        pattern = r'"error":\s*"(.*?)"'
-                                        match = re.search(pattern, line_EventStream)
-                                        if match:
-                                            error_message = match.group(1)
-                                            st.write(error_message)     
-                                    else:
-                                        pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
-                                        matches = re.findall(pattern, line_EventStream)
-                                        for match in matches:
+                                        params = {
+                                            'session_hash': session_hash,
+                                        }
+                                        #Use Cloudscraper tương tự requests 
+                                        url_image_process_completed_arr = []
+                                        response = scraper.get(url_space+'/queue/data', params=params)
+                                        #st.write(response.text) #Auto show all response stream=True and iter_lines                              
+                                        line_EventStream = response.text
+                                        if 'process_completed' and 'You have exceeded your GPU quota' in line_EventStream:
+                                            #st.write('You have exceeded your GPU quota')
+                                            pattern = r'"error":\s*"(.*?)"'
+                                            match = re.search(pattern, line_EventStream)
                                             if match:
-                                                #Show 2 kết quả nên add vào array                                                    
-                                                url_image_process_completed_arr.append(f'{url_space}/file={match}')
-                                            else:
-                                                st.write(line_EventStream) 
-                                                break  
-                  
-                                    #Default image to get is 768x1024
-                                    for url_image_process_completed in url_image_process_completed_arr:
-                                        st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="auto") 
-                                        time.sleep(3)
+                                                error_message = match.group(1)
+                                                st.write(error_message)     
+                                        else:
+                                            pattern = r'\/tmp\/gradio\/[a-f0-9]{40}\/image\.png'                                                 
+                                            matches = re.findall(pattern, line_EventStream)
+                                            for match in matches:
+                                                if match:
+                                                    #Show 2 kết quả nên add vào array                                                    
+                                                    url_image_process_completed_arr.append(f'{url_space}/file={match}')
+                                                else:
+                                                    st.write(line_EventStream) 
+                                                    break  
+                    
+                                        #Default image to get is 768x1024
+                                        for url_image_process_completed in url_image_process_completed_arr:
+                                            st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="auto") 
+                                            time.sleep(3)
 
-                            time.sleep(5) 
+                                time.sleep(5) 
 
-                        except Exception as e:
-                            exc_type, exc_obj, exc_tb = sys.exc_info()
-                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                            #st.write(exc_type, fname, exc_tb.tb_lineno)
-                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")   
+                            except Exception as e:
+                                exc_type, exc_obj, exc_tb = sys.exc_info()
+                                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                                #st.write(exc_type, fname, exc_tb.tb_lineno)
+                                st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")   
+                        else:
+                            st.write('Please enter prompt and negative prompt!')
 
                     case "Change clothes from reference garment image":
                         try:
