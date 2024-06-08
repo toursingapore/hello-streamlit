@@ -1429,7 +1429,7 @@ def run():
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
             user_input_prompt = st.text_input("Enter prompt", value='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', placeholder='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain') 
-            user_input_nagativePrompt = st.text_input("Enter negative prompt", value='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', placeholder='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth') 
+            user_input_nagativePrompt = st.text_input("Enter negative prompt", value='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch, watermark, istock, icons, logo, gettyimage), open mouth', placeholder='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch, watermark, istock, icons, logo, gettyimage), open mouth') 
 
             #use_proxy = st.checkbox("Use proxy")
             #checks = st.columns(2)
@@ -1513,7 +1513,7 @@ def run():
                                         url_image_model = user_input            
                                         #prompt = "instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain", #Default Prompt
                                         prompt = user_input_prompt
-                                        #negativePrompt = "(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth", #Default Negative prompt
+                                        #negativePrompt = "(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch, watermark, istock, icons, logo, gettyimage), open mouth", #Default Negative prompt
                                         negativePrompt = user_input_nagativePrompt
                                         #styleTemplate = "Photographic (Default)" #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
                                         styleTemplate = selected_style
@@ -1654,7 +1654,7 @@ def run():
                                                 ],
                                                 #'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', #Default Prompt
                                                 prompt,
-                                                #'(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', #Default Negative prompt
+                                                #'(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch, watermark, istock, icons, logo, gettyimage), open mouth', #Default Negative prompt
                                                 negativePrompt,
                                                 #'(No style)', #Style template; "(No style)", "Cinematic", "Disney Charactor", "Digital Art", "Photographic (Default)", "Fantasy art", "Neonpunk", "Enhance", "Comic book", "Lowpoly", "Line art"
                                                 styleTemplate,
