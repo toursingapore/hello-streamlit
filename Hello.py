@@ -1432,11 +1432,16 @@ def run():
             user_input_nagativePrompt = st.text_input("Enter negative prompt", value='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', placeholder='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth') 
 
             #use_proxy = st.checkbox("Use proxy")
-            checks = st.columns(2)
-            with checks[0]:
-                use_proxy_tor = st.checkbox("Use proxy server1")
-            with checks[1]:
-                use_proxy_2 = st.checkbox("Use proxy server2")
+            #checks = st.columns(2)
+            #with checks[0]:
+            #    use_proxy_tor = st.checkbox("Use proxy server1")
+            #with checks[1]:
+            #    use_proxy_2 = st.checkbox("Use proxy server2")
+
+            use_proxy = st.selectbox(
+                "Select proxy server?",
+                ("No proxy", "Use proxy server1", "Use proxy server2"))
+            st.write("You selected:", use_proxy)                
 
         elif add_radio == "Change clothes from reference garment image":
             #user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
