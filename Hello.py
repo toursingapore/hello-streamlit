@@ -1661,6 +1661,9 @@ def run():
                                         }
                                         #Dùng session requests và các site free proxies below
                                         if use_proxy:
+                                            #Use TOR free random proxy cho nhanh
+                                            TOR_random_proxy_func(url_space+'/queue/join', params, json_data)
+                                                                                        
                                             _ = """  
                                             s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
@@ -1750,10 +1753,6 @@ def run():
                                             )
                                             st.write(response.text)                                                                                  
                                             """
-                                                                        
-                                            #Use TOR free random proxy cho nhanh
-                                            TOR_random_proxy_func(url_space+'/queue/join', params, json_data)
-
                                         else:
                                             response = scraper.post(
                                                 url_space+'/queue/join',
