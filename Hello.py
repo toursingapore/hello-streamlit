@@ -1630,9 +1630,9 @@ def run():
                                     }
                                     #Dùng session requests và các site free proxies below
                                     if use_proxy:
+                                        _ = """  
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
-                                        _ = """  
                                         #Site proxy 1: https://scrape.do/pricing/ - Free 1000 proxies per month & automatically renew every month
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                                         #Proxy Mode - Set custom proxy IP
@@ -1704,19 +1704,9 @@ def run():
                                             'https': f'https://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:443',
                                         }
                                         response = s.get('http://ip-api.com/json', proxies=proxies, verify=False)
-                                        st.write(response.json())                                        
-                                        """
+                                        st.write(response.json())     
 
 
-                                        from hideme.proxy_collector import ProxiesList
-                                        proxies_list = ProxiesList(country='India',https=True,port='80',google_support=False)
-                                        proxies = proxies_list.get()
-                                        st.write(proxies)
-
-
-
-
-                                    
                                         #Site 2 using the same proxy IP
                                         response = s.post(
                                             url_space+'/queue/join',
@@ -1727,10 +1717,9 @@ def run():
                                             proxies=proxies,
                                             verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
                                         )
-                                        st.write(response.text)                                        
-
-
-                                        _ = """ 
+                                        st.write(response.text)                                                                                  
+                                        """
+                                                                    
                                         #Use TOR free random proxy
                                         from torrequest import TorRequest
 
@@ -1751,9 +1740,7 @@ def run():
                                                 #proxies=proxies,
                                                 #verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
                                             )
-                                            st.write(response.text)
-                                        """
-                                        
+                                            st.write(response.text)                                    
                                     else:
                                         response = scraper.post(
                                             url_space+'/queue/join',
