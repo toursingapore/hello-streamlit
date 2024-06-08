@@ -1694,7 +1694,6 @@ def run():
                                         #URL 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
-                                        """
 
 
                                         #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month & automatically renew every month
@@ -1705,7 +1704,17 @@ def run():
                                             'https': f'https://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:443',
                                         }
                                         response = s.get('http://ip-api.com/json', proxies=proxies, verify=False)
+                                        st.write(response.json())                                        
+                                        """
+
+
+                                        proxies = {
+                                            'http': 'socks5h://socks.hide.me:1080',
+                                            'https': 'socks5h://socks.hide.me:1080',
+                                        }
+                                        response = requests.get('http://ip-api.com/json', proxies=proxies)
                                         st.write(response.json())
+
 
                                     
                                         #Site 2 using the same proxy IP
