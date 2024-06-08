@@ -1369,8 +1369,7 @@ def run():
             st.write(response.json())
             
             # Reset Tor identity for the next request
-            tr.reset_identity()  # Reset Tor every request
-            
+            tr.reset_identity()  # Reset Tor every request       
             # Case 2: POST method
             response = tr.post(
                 url, #url_space+'/queue/join' - https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join               
@@ -1432,7 +1431,12 @@ def run():
             user_input_prompt = st.text_input("Enter prompt", value='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', placeholder='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain') 
             user_input_nagativePrompt = st.text_input("Enter negative prompt", value='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', placeholder='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth') 
 
-            use_proxy = st.checkbox("Use proxy")
+            #use_proxy = st.checkbox("Use proxy")
+            checks = st.columns(4)
+            with checks[0]:
+                use_proxy = st.checkbox("Use proxy")
+            with checks[1]:
+                use_proxy_2 = st.checkbox("Use proxy server2")
 
         elif add_radio == "Change clothes from reference garment image":
             #user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
