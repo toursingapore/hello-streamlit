@@ -1357,8 +1357,8 @@ def run():
         session_hash = ''.join(random.choice(characters) for _ in range(11)) #Generate 11 characters
         return session_hash
 
-    #TOR_random_proxy(url_space+'/queue/join', params, json_data)
-    def TOR_random_proxy(url, params, json_data):
+    #TOR_random_proxy_func('https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join', params, json_data)
+    def TOR_random_proxy_func(url, params, json_data):
         #Use TOR free random proxy cho nhanh
         from torrequest import TorRequest
 
@@ -1373,7 +1373,7 @@ def run():
             
             # Case 2: POST method
             response = tr.post(
-                url, #url_space+'/queue/join',                
+                url, #url_space+'/queue/join' - https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join               
                 params=params,
                 json=json_data,
                 #cookies=cookies,
@@ -1752,7 +1752,7 @@ def run():
                                             """
                                                                         
                                             #Use TOR free random proxy cho nhanh
-                                            TOR_random_proxy(url_space+'/queue/join', params, json_data)
+                                            TOR_random_proxy_func(url_space+'/queue/join', params, json_data)
 
                                         else:
                                             response = scraper.post(
