@@ -1439,9 +1439,9 @@ def run():
             #    use_proxy_2 = st.checkbox("Use proxy server2")
 
             use_proxy = st.selectbox(
-                "Select proxy server?",
+                "Would you like to use proxy server?",
                 ("No proxy", "Use proxy server1", "Use proxy server2"))
-            st.write("You selected:", use_proxy)                
+            #st.write("You selected:", use_proxy)                
 
         elif add_radio == "Change clothes from reference garment image":
             #user_input = st.file_uploader("Choose a model image...", type=["jpg", "png", "jpeg"])
@@ -1669,12 +1669,12 @@ def run():
                                             'session_hash': session_hash,
                                         }
                                         #Dùng session requests và các site free proxies below
-                                        if use_proxy_tor:
+                                        if use_proxy == "Use proxy server1":
                                             #Use TOR free random proxy cho nhanh
                                             st.write('Using proxy server1')
                                             TOR_random_proxy_func(url_space+'/queue/join', params, json_data)
                                         
-                                        elif use_proxy_2:
+                                        elif use_proxy == "Use proxy server2":
                                             st.write('Using proxy server2')
                                             s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
 
