@@ -1718,12 +1718,14 @@ def run():
                                         with TorRequest() as tr:
                                             response = tr.get('http://ip-api.com/json')
                                             st.write(response.json())
+                                            tr.reset_identity()  # Reset Tor
 
                                             data={'foo': 'bar'}
                                             auth=('user', 'pass')
                                             # Send data. Use basic authentication.
                                             response = tr.post('https://api.example.com', data=data, auth=auth)
                                             st.write(response.json)
+                                            tr.reset_identity()  # Reset Tor
 
 
                                         #Site 2 using the same proxy IP
