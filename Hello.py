@@ -1699,9 +1699,11 @@ def run():
 
                                         #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month – automatically renew every month
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
+
+                                        proxyModeUrl = f'http://scrapingant:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080'
                                         proxies = {
-                                            'http': f'http://scrapingant:{SCRAPINGANT_API_KEY}&proxy_type=DE@proxy.scrapingant.com:8080',
-                                            'https': f'http://scrapingant:{SCRAPINGANT_API_KEY}&proxy_type=DE@proxy.scrapingant.com:8080',
+                                            'http': proxyModeUrl,
+                                            'https': proxyModeUrl,
                                         }
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
