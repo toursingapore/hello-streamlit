@@ -1712,7 +1712,7 @@ def run():
                                         #proxies_list = ProxiesList(country='Spain')
                                         proxies_list = ProxiesList(https=True)
                                         proxies = proxies_list.get()
-                                        st.write(proxies.json())
+                                        st.write(proxies)
 
 
 
