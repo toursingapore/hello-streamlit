@@ -1719,11 +1719,11 @@ def run():
                                         tor_proxy = 'socks5h://127.0.0.1:9050'
                                         
                                         # Configure the session to use the Tor proxy
-                                        session.proxies = {
+                                        proxies = {
                                             'http': tor_proxy,
                                             'https': tor_proxy,
                                         }                                        
-                                        response = session.get('http://ip-api.com/json')
+                                        response = session.get('http://ip-api.com/json', proxies=proxies)
                                         st.write(response.raise_for_status())  # Raise an HTTPError if the response was an HTTP error
                                         st.write(response.json())
 
