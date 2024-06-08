@@ -1432,7 +1432,7 @@ def run():
             user_input_nagativePrompt = st.text_input("Enter negative prompt", value='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth', placeholder='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth') 
 
             #use_proxy = st.checkbox("Use proxy")
-            checks = st.columns(4)
+            checks = st.columns(2)
             with checks[0]:
                 use_proxy = st.checkbox("Use proxy")
             with checks[1]:
