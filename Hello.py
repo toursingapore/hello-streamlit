@@ -1729,7 +1729,7 @@ def run():
                                                 "Quantity": 1,
                                                 "Price": 18.00
                                             }
-                                            response = tr.post('https://reqbin.com/echo/post/json', json=json_data)
+                                            response = tr.post('https://reqbin.com/echo/post/json', data=json_data)
                                             st.write(response.status_code)
 
 
