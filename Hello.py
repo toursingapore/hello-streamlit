@@ -1734,16 +1734,16 @@ def run():
 
 
                                         #Site 2 using the same proxy IP
-                                        response = s.post(
-                                            url_space+'/queue/join',
-                                            params=params,
-                                            json=json_data,
+                                        #response = s.post(
+                                        #    url_space+'/queue/join',
+                                        #    params=params,
+                                        #    json=json_data,
                                             #cookies=cookies,
                                             #headers=headers,
-                                            proxies=proxies,
-                                            verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
-                                        )
-                                        st.write(response.text)
+                                        #    proxies=proxies,
+                                        #    verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
+                                        #)
+                                        #st.write(response.text)
                                         
                                     else:
                                         response = scraper.post(
