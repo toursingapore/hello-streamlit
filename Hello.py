@@ -1381,7 +1381,7 @@ def run():
                 #proxies=proxies,
                 #verify=False, # skips SSL verification
             )
-            st.write(response.text)
+            #st.write(response.text) #show event_id đã post thành công
 
 
     with st.container(border=True): 
@@ -1519,7 +1519,7 @@ def run():
 
                                         # Randomly select a device from the array
                                         selected_device = random.choice(devices)
-                                        st.write(selected_device)
+                                        #st.write(selected_device)
 
                                         # Configure cloudscraper based on the selected device
                                         if selected_device == "Mobile - Android":
