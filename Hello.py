@@ -1722,14 +1722,9 @@ def run():
                                             st.write(response.json())
 
                                             #Case2; POST method with json data
-                                            tr.reset_identity()  # Reset Tor
-                                            json_data={
-                                                "Id": 78912,
-                                                "Customer": "Jason Sweet",
-                                                "Quantity": 1,
-                                                "Price": 18.00
-                                            }
-                                            response = tr.post('https://reqbin.com/echo/post/json', data=json_data)
+                                            #tr.reset_identity()  # Reset Tor
+                                            data = "key1=value1&key2=value2"
+                                            response = tr.post('https://reqbin.com/echo/post/form', data=data)
                                             st.write(response.status_code)
 
 
