@@ -1701,8 +1701,8 @@ def run():
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
 
                                         proxies = {
-                                            'http': 'http://scrapingant:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:8080',
-                                            'https': 'https://scrapingant:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:443',
+                                            'http': 'http://scrapingant&browser=false:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:8080',
+                                            'https': 'https://scrapingant&browser=false:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:443',
                                         }
 
                                         response = requests.get('http://ip-api.com/json', proxies=proxies, verify=False)
