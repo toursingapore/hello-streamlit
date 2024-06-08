@@ -1649,9 +1649,8 @@ def run():
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
-                                        """
 
-                                        _ = """ 
+
                                         #Site proxy 2: https://scrapeops.io/app/register/proxy - Free 1000 proxies per month
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
@@ -1666,9 +1665,8 @@ def run():
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
-                                        """
 
-                                        _ = """
+
                                         #Site proxy 3: https://www.scraperapi.com/pricing/ - Free 1000 proxies per month
                                         SCRAPERAPI_API_KEY = '0c8cc4d8101c74aa7c5f7d363ea1e476'
                                         s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
@@ -1688,7 +1686,7 @@ def run():
                                         #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
                                         #response = s.get("https://ip-api.io/", proxies=proxies, verify=False)
                                         #st.markdown(response.text, unsafe_allow_html=True)
-                                        """
+
 
                                         #Site proxy 4: https://www.scrapingbee.com/ - Free 1000 proxies for 2 weeks trial only
                                         SCRAPINGBEE_API_KEY = 'FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG'
@@ -1702,7 +1700,18 @@ def run():
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
+                                        """
 
+
+                                        #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month – automatically renew every month
+                                        SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
+                                        proxies = {
+                                            'http': f'http://scrapingant:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080',
+                                            'https': f'http://scrapingant:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080',
+                                        }
+                                        #Site 1 the check proxy IP
+                                        response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
+                                        st.write(response.json())
 
 
                                         #Site 2 using the same proxy IP
