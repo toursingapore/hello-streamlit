@@ -1716,8 +1716,8 @@ def run():
                                         from torrequest import TorRequest
 
                                         with TorRequest() as tr:
-                                            response = tr.get('http://ipecho.net/plain')
-                                            st.write(response.text)  # not your IP address
+                                            response = tr.get('http://ip-api.com/json')
+                                            st.write(response.json())  # not your IP address
 
 
 
