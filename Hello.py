@@ -1705,7 +1705,7 @@ def run():
                                             'https': 'http://scrapingant:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:8080',
                                         }
 
-                                        response = requests.get('http://ip-api.com/json', proxies=proxies, verify=False)
+                                        response = requests.get('http://ip-api.com/json', proxies=proxies)
                                         st.write(response.json())
 
                                     
