@@ -1725,16 +1725,14 @@ def run():
                                             tr.reset_identity()  # Reset Tor
                                             headers = {
                                                 'accept': 'application/json',
-                                            }
-                                            
-                                            json={
+                                            }                                            
+                                            json_data={
                                                 "Id": 78912,
                                                 "Customer": "Jason Sweet",
                                                 "Quantity": 1,
                                                 "Price": 18.00
                                             }
-
-                                            response = tr.post('https://httpbin.org/post', headers=headers, json=json)
+                                            response = tr.post('https://httpbin.org/post', headers=headers, json=json_data)
                                             st.write(response.status_code)
                                             st.write(response.json())
                                             st.write(response.text)
