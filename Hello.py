@@ -1360,6 +1360,8 @@ def run():
     #TOR_random_proxy(url_space+'/queue/join', params, json_data)
     def TOR_random_proxy(url, params, json_data):
         #Use TOR free random proxy cho nhanh
+        from torrequest import TorRequest
+
         with TorRequest() as tr:
             # Case 1: GET method
             tr.reset_identity()  # Reset Tor every request
