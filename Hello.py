@@ -1719,12 +1719,12 @@ def run():
                                             # We do a first request to ipify.org with a Tor proxy
                                             st.write("build circuit #1")
                                             with tor_requests.get_session() as sess:
-                                                st.write(sess.get("https://api.ipify.org/").text)
+                                                st.write(sess.get("http://ip-api.com/json").text)
 
                                             # We do a second request to ipify.org with a Tor proxy
-                                            st.write("build circuit #2")
-                                            with tor_requests.get_session() as sess:
-                                                st.write(sess.get("https://api.ipify.org/").text)
+                                            #st.write("build circuit #2")
+                                            #with tor_requests.get_session() as sess:
+                                            #    st.write(sess.get("https://api.ipify.org/").text)
 
                                         st.write('~~success')                                      
 
