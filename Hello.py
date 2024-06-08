@@ -1700,10 +1700,7 @@ def run():
                                         #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month – automatically renew every month
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
 
-
-
-
-
+                                        _ = """ 
                                         params = {
                                             'url': 'http://ip-api.com/json',
                                             'x-api-key': '270269b10ca74f8d918852baed658eb3',
@@ -1712,6 +1709,24 @@ def run():
                                         }
                                         response = s.get('https://api.scrapingant.com/v2/general', params=params)
                                         st.write(response.json())
+                                        """
+
+                                        def get_tor_session():
+                                            session = requests.session()
+                                            # Tor uses the 9050 port as the default socks port
+                                            session.proxies = {
+                                                'http':  'socks5://127.0.0.1:9050',
+                                                'https': 'socks5://127.0.0.1:9050'
+                                            }
+                                            return session
+
+                                        # Make a request through the Tor connection
+                                        # IP visible through Tor
+                                        session = get_tor_session()
+                                        st.write(session.get("http://httpbin.org/ip").text)
+                                        # Above should print an IP different than your public IP                                        
+
+
 
 
                                         #Site 2 using the same proxy IP
