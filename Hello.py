@@ -1355,7 +1355,7 @@ def run():
     def session_hash_generator():
         characters = string.ascii_lowercase + string.digits
         session_hash = ''.join(random.choice(characters) for _ in range(11))
-        #st.write(f'session_hash = {session_hash}')
+        return session_hash
 
     with st.container(border=True): 
         st.write(
