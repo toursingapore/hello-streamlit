@@ -1357,6 +1357,31 @@ def run():
         session_hash = ''.join(random.choice(characters) for _ in range(11)) #Generate 11 characters
         return session_hash
 
+    #TOR_random_proxy(url_space+'/queue/join', params, json_data)
+    def TOR_random_proxy(url: str, params: Optional[Dict[str, Any]] = None, json_data: Optional[Dict[str, Any]] = None):
+        #Use TOR free random proxy cho nhanh
+        with TorRequest() as tr:
+            # Case 1: GET method
+            tr.reset_identity()  # Reset Tor every request
+            response = tr.get('http://ip-api.com/json')
+            st.write(response.json())
+            
+            # Reset Tor identity for the next request
+            tr.reset_identity()  # Reset Tor every request
+            
+            # Case 2: POST method
+            response = tr.post(
+                url, #url_space+'/queue/join',                
+                params=params,
+                json=json_data,
+                #cookies=cookies,
+                #headers=headers,
+                #proxies=proxies,
+                #verify=False, # skips SSL verification
+            )
+            st.write(response.text)
+
+
     with st.container(border=True): 
         st.write(
         """ 
@@ -1725,26 +1750,8 @@ def run():
                                             """
                                                                         
                                             #Use TOR free random proxy cho nhanh
-                                            from torrequest import TorRequest
+                                            TOR_random_proxy(url_space+'/queue/join', params, json_data)
 
-                                            with TorRequest() as tr:
-                                                #Case1; GET method
-                                                tr.reset_identity()  # Reset Tor every request
-                                                response = tr.get('http://ip-api.com/json')
-                                                st.write(response.json())
-
-                                                tr.reset_identity()  # Reset Tor every request
-                                                #Site 2 using the same proxy IP
-                                                response = tr.post(
-                                                    url_space+'/queue/join',
-                                                    params=params,
-                                                    json=json_data,
-                                                    #cookies=cookies,
-                                                    #headers=headers,
-                                                    #proxies=proxies,
-                                                    #verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
-                                                )
-                                                st.write(response.text)                                    
                                         else:
                                             response = scraper.post(
                                                 url_space+'/queue/join',
