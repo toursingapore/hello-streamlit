@@ -1630,11 +1630,11 @@ def run():
                                     }
                                     #Dùng session requests và các site free proxies below
                                     if use_proxy:
+                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
+
                                         _ = """  
                                         #Site proxy 1: https://scrape.do/pricing/ - Free 1000 proxies per month & automatically renew every month
                                         SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
-                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
-
                                         #Proxy Mode - Set custom proxy IP
                                         sessionId = 1234
                                         super = 'true'
@@ -1653,8 +1653,6 @@ def run():
 
                                         #Site proxy 2: https://scrapeops.io/app/register/proxy - Free 1000 proxies per month
                                         SCRAPEOPS_API_KEY = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
-                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
-
                                         country='uk' #br Brazil, ca Canada, cn China, in India, it Italy, jp Japan, fr France, de Germany, ru Russian, es Spain, us United States, uk United Kingdom
                                         #render_js=True #Turn on javascript tốn 10 credit dùng cho site khó vd - &country=fr&render_js=True
                                         proxyModeUrl = f'http://scrapeops:{SCRAPEOPS_API_KEY}&country={country}@proxy.scrapeops.io:5353'
@@ -1669,8 +1667,6 @@ def run():
 
                                         #Site proxy 3: https://www.scraperapi.com/pricing/ - Free 1000 proxies per month
                                         SCRAPERAPI_API_KEY = '0c8cc4d8101c74aa7c5f7d363ea1e476'
-                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được
-
                                         #country_code='eu' #Free plan chỉ support us, uk, eu - List all country_code here - https://docs.scraperapi.com/making-requests/customizing-requests/geographic-location
                                         #proxyModeUrl = f'http://scraperapi:{SCRAPERAPI_API_KEY}&country_code={country_code}@proxy-server.scraperapi.com:8001'
                                         
@@ -1690,8 +1686,6 @@ def run():
 
                                         #Site proxy 4: https://www.scrapingbee.com/ - Free 1000 proxies for 2 weeks trial only
                                         SCRAPINGBEE_API_KEY = 'FSO4SX1HTJQVNTCX5VKC5NGPZ8AH9FI5REP5QCSX6XVZPHJKLKHNZTJ4KBSDWM4FOVUIMM7FTXH7F5QG'
-                                        s = requests.Session() #Dùng session requests mới từ 1 IP proxy access nhiều urls được                                        
-
                                         country_code = 'de' #Để change IP proxy theo country thì phải đi them cụm premium_proxy=True&country_code=de or nếu premium_proxy=False nó tự động random IP proxy
                                         proxies = {
                                             'http': f'http://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True&country_code={country_code}@proxy.scrapingbee.com:8886',
