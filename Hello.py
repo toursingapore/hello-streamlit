@@ -1730,7 +1730,7 @@ def run():
                                                 "Price": 18.00
                                             }
                                             response = tr.post('https://reqbin.com/echo/post/json', json=json_data)
-                                            st.write(response.json)
+                                            st.write(response.status_code)
 
 
                                             #Case3; POST method with data and auth
