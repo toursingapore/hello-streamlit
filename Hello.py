@@ -1713,18 +1713,15 @@ def run():
 
 
 
-                                        from torpy import TorClient
+                                        from multiprocessing.pool import ThreadPool
+                                        from torpy.http.requests import tor_requests_session
 
-                                        hostname = 'ifconfig.me'  # It's possible use onion hostname here as well
-                                        with TorClient() as tor:
-                                            # Choose random guard node and create 3-hops circuit
-                                            with tor.create_circuit(3) as circuit:
-                                                # Create tor stream to host
-                                                with circuit.create_stream((hostname, 80)) as stream:
-                                                    # Now we can communicate with host
-                                                    stream.send(b'GET / HTTP/1.0\r\nHost: %s\r\n\r\n' % hostname.encode())
-                                                    recv = stream.recv(1024)
-                                                    st.write(recv)
+                                        with tor_requests_session() as s:  # returns requests.Session() object
+                                            links = ['http://nzxj65x32vh2fkhk.onion', 'http://facebookcorewwwi.onion'] * 2
+
+                                            with ThreadPool(3) as pool:
+                                                a = pool.map(s.get, links)
+                                                st.write(a)
 
 
 
