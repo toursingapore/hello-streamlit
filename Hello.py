@@ -1646,7 +1646,7 @@ def run():
                                             "http": proxyModeUrl,
                                             "https": proxyModeUrl,
                                         }
-                                        #Site 1 the check proxy IP
+                                        #URL 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
 
@@ -1660,7 +1660,7 @@ def run():
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
                                         }
-                                        #Site 1 the check proxy IP
+                                        #URL 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
 
@@ -1676,7 +1676,7 @@ def run():
                                             'http': proxyModeUrl,
                                             'https': proxyModeUrl,
                                         }
-                                        #Site 1 the check proxy IP
+                                        #URL 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
                                         #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
@@ -1691,7 +1691,7 @@ def run():
                                             'http': f'http://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True&country_code={country_code}@proxy.scrapingbee.com:8886',
                                             'https': f'https://{SCRAPINGBEE_API_KEY}:render_js=False&premium_proxy=True&country_code={country_code}@proxy.scrapingbee.com:8887',
                                         }
-                                        #Site 1 the check proxy IP
+                                        #URL 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
                                         """
@@ -1699,13 +1699,11 @@ def run():
 
                                         #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month & automatically renew every month
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
-
-                                        #Change IP country Germany thì add thêm tham số proxy_country=DE cho 2 url dưới như này - http://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}
+                                        #Change IP country Germany thì add thêm tham số proxy_country=DE cho 2 url dưới như này - http://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY} , bỏ này đi nó sẽ default random IP
                                         proxies = {
                                             'http': f'http://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080',
                                             'https': f'https://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:443',
                                         }
-
                                         response = s.get('http://ip-api.com/json', proxies=proxies, verify=False)
                                         st.write(response.json())
 
