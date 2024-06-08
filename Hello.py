@@ -1700,7 +1700,6 @@ def run():
                                         #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month – automatically renew every month
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
 
-                                        proxyModeUrl = f'http://scrapingant:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080'
                                         proxies = {
                                             http: 'http://scrapingant&proxy_country=US&browser=false:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:8080',
                                             https: 'https://scrapingant&proxy_country=US&browser=false:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:443'
