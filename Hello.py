@@ -1720,7 +1720,7 @@ def run():
                                         st.write(response.text)                                                                                  
                                         """
                                                                     
-                                        #Use TOR free random proxy
+                                        #Use TOR free random proxy cho nhanh
                                         from torrequest import TorRequest
 
                                         with TorRequest() as tr:
