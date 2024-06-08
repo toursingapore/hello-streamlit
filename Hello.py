@@ -1713,14 +1713,11 @@ def run():
 
 
 
-                                        from multiprocessing.pool import ThreadPool
-                                        from torpy.http.requests import tor_requests_session
+                                        from torrequest import TorRequest
 
-                                        with tor_requests_session() as s:  # returns requests.Session() object     
-                                            links = ['http://ip-api.com/json', 'http://facebookcorewwwi.onion'] * 2
-                                            with ThreadPool(3) as pool:
-                                                a = pool.map(s.get, links)
-                                                st.write(a)
+                                        with TorRequest() as tr:
+                                            response = tr.get('http://ipecho.net/plain')
+                                            st.write(response.text)  # not your IP address
 
 
 
