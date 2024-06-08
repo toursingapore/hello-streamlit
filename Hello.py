@@ -1363,15 +1363,13 @@ def run():
         from torrequest import TorRequest
 
         with TorRequest() as tr:
-            # Case 1: GET method
+            #Case 1: GET method
             tr.reset_identity()  # Reset Tor every request
             response = tr.get('http://ip-api.com/json')
             st.write(response.json())
-            
-            # Reset Tor identity for the next request
-            tr.reset_identity()  # Reset Tor every request
-            
-            # Case 2: POST method
+
+            #Case 2: POST method
+            tr.reset_identity()  # Reset Tor every request         
             response = tr.post(
                 url, #url_space+'/queue/join' - https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/queue/join               
                 params=params,
@@ -1381,7 +1379,12 @@ def run():
                 #proxies=proxies,
                 #verify=False, # skips SSL verification
             )
-            #st.write(response.text) #show event_id đã post thành công
+            st.write(response.text) #show event_id đã post thành công
+
+            #Case 3: GET method
+            tr.reset_identity()  # Reset Tor every request
+            response = tr.get('https://tencentarc-photomaker.hf.space/queue/data')
+            st.write(response.text)
 
 
     with st.container(border=True): 
@@ -1624,7 +1627,7 @@ def run():
                                                 [
                                                     {
                                                         #'path': 'https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
-                                                        #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
+                                                        #'url': 'https://tencentarc-photomaker.hf.space/--replicas/qb7za/file=https://media1.nguoiduatin.vn/media/ha-thi-kim-dung/2020/02/14/p.jpg',
                                                         'path': url_image_model,
                                                         'url': url_space+'/file='+url_image_model,
                                                         'orig_name': 'model_1.png',
@@ -1634,7 +1637,7 @@ def run():
                                                     #{
                                                         #Có thể add max 4 ảnh append vào là mảng array, nó tự mix thánh 1 face có nét các ảnh này
                                                         #'path': 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
-                                                        #'url': 'https://levihsu-ootdiffusion.hf.space/--replicas/qb7za/file=https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
+                                                        #'url': 'https://tencentarc-photomaker.hf.space/--replicas/qb7za/file=https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/1/12/1137231/Vpaawards3.jpg',
                                                         #'path': url_image_model,
                                                         #'url': url_space+'/file='+url_image_model,
                                                         #'orig_name': 'model_1.png',
@@ -1781,7 +1784,6 @@ def run():
                                             'sec-fetch-site': 'same-origin',
                                             'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42',
                                         }
-
                                         params = {
                                             'session_hash': session_hash,
                                         }
