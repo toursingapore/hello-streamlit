@@ -1727,7 +1727,9 @@ def run():
                                                 'accept': 'application/json',
                                             }
                                             response = tr.post('https://httpbin.org/post', headers=headers)
-                                            st.write(response.status_code)                                         
+                                            st.write(response.status_code)
+                                            st.write(response.json())
+                                            st.write(response.text)
 
 
                                             #Case3; POST method with data and auth
