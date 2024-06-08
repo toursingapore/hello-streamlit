@@ -1705,18 +1705,14 @@ def run():
 
 
                                         params = {
-                                            'url[]': ['http://ip-api.com/json', 'https://browserleaks.com/ip'],
-                                            #'url': 'http://ip-api.com/json',
+                                            'url': 'http://ip-api.com/json',
                                             'x-api-key': '270269b10ca74f8d918852baed658eb3',
                                             'proxy_country': 'DE',
                                             'browser': 'false',
                                         }
-
                                         response = s.get('https://api.scrapingant.com/v2/general', params=params)
                                         st.write(response.json())
-                                        #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
-                                        #response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
-                                        #st.markdown(response.text, unsafe_allow_html=True)
+
 
                                         #Site 2 using the same proxy IP
                                         response = s.post(
