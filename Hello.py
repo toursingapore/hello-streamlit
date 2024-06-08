@@ -1427,7 +1427,7 @@ def run():
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
         button = st.button("SUBMIT", type="primary", key="27")
-        if button and user_input and user_input_prompt and user_input_nagativePrompt:              
+        if button and user_input:              
             try:
                 client = InferenceClient(
                     token=f"{HF_API_TOKEN}"
