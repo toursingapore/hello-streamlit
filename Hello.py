@@ -1708,12 +1708,12 @@ def run():
                                         """
 
 
-                                        proxies = {
-                                            'http': 'http://socks5h://socks.hide.me:1080',
-                                            'https': 'http://socks5h://socks.hide.me:1080',
-                                        }
-                                        response = requests.get('http://ip-api.com/json', proxies=proxies)
-                                        st.write(response.json())
+                                        from hideme.proxy_collector import ProxiesList
+                                        proxies_list = ProxiesList(country='Spain')
+                                        proxies = proxies_list.get()
+                                        st.write(proxies.json())
+
+
 
 
                                     
