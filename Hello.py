@@ -1713,15 +1713,13 @@ def run():
 
                                         #import requests
                                         #import json
-                                        from datetime import datetime
-                                        PROXIES = {
-                                            'http': 'socks5://127.0.0.1:9050',
-                                            'https': 'socks5://127.0.0.1:9050'
+                                        torport = 9050
+                                        proxies = {
+                                            'http': "socks5h://localhost:{}".format(torport),
+                                            'https': "socks5h://localhost:{}".format(torport)
                                         }
-                                        response = requests.get("http://ip-api.com/json/", proxies=PROXIES, verify=False)
-                                        st.write(response.json())
-                                        result = json.loads(response.content)
-                                        st.write('TOR IP [%s]: %s %s'%(datetime.now().strftime("%d-%m-%Y %H:%M:%S"), result["query"], result["country"]))                                 
+
+                                        st.write(requests.get('http://icanhazip.com', proxies=proxies).content)                              
 
 
 
