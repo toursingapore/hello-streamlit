@@ -1717,12 +1717,17 @@ def run():
 
                                         with TorRequest() as tr:
                                             #Case1; GET method
-                                            tr.reset_identity()  # Reset Tor                                            
+                                            tr.reset_identity()  # Reset Tor every request
+                                            response = tr.get('http://ip-api.com/json')
+                                            st.write(response.json())
+
+                                            #Case1; GET method
+                                            tr.reset_identity()  # Reset Tor every request
                                             response = tr.get('http://ip-api.com/json')
                                             st.write(response.json())
 
                                             #Case2; POST method with json data
-                                            tr.reset_identity()  # Reset Tor
+                                            tr.reset_identity()  # Reset Tor every request
                                             headers = {
                                                 'accept': 'application/json',
                                             }                                            
@@ -1736,15 +1741,6 @@ def run():
                                             st.write(response.status_code)
                                             st.write(response.json())
                                             st.write(response.text)
-
-
-                                            #Case3; POST method with data and auth
-                                            #tr.reset_identity()  # Reset Tor
-                                            #data={'foo': 'bar'}
-                                            #auth=('user', 'pass')
-                                            # Send data. Use basic authentication.
-                                            #response = tr.post('https://api.example.com', data=data, auth=auth)
-                                            #st.write(response.json)
 
 
 
