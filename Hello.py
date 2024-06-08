@@ -1358,7 +1358,7 @@ def run():
         return session_hash
 
     #TOR_random_proxy(url_space+'/queue/join', params, json_data)
-    def TOR_random_proxy(url: str, params: Optional[Dict[str, Any]] = None, json_data: Optional[Dict[str, Any]] = None):
+    def TOR_random_proxy(url, params=None, json_data=None):
         #Use TOR free random proxy cho nhanh
         with TorRequest() as tr:
             # Case 1: GET method
