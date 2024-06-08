@@ -1716,7 +1716,7 @@ def run():
                                         session = requests.Session()
                                         
                                         # Tor uses the 9050 port as the default socks port
-                                        tor_proxy = 'socks5h://127.0.0.1:9050'
+                                        tor_proxy = 'socks5h://127.0.0.1:9051'
                                         
                                         # Configure the session to use the Tor proxy
                                         session.proxies = {
