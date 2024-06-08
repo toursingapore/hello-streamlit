@@ -1699,13 +1699,13 @@ def run():
 
                                         #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month & automatically renew every month
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
-                                        params = {
-                                            'url': 'http://ip-api.com/json',
-                                            'x-api-key': '270269b10ca74f8d918852baed658eb3',
-                                            'proxy_country': 'DE',
-                                            'browser': 'false',
+
+                                        proxies = {
+                                            'http': 'http://scrapingant:YOUR-API-KEY@proxy.scrapingant.com:8080',
+                                            'https': 'http://scrapingant:YOUR-API-KEY@proxy.scrapingant.com:8080',
                                         }
-                                        response = s.get('https://api.scrapingant.com/v2/general', params=params)
+
+                                        response = requests.get('http://ip-api.com/json', proxies=proxies, verify=False)
                                         st.write(response.json())
 
                                     
