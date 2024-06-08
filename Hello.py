@@ -1734,12 +1734,12 @@ def run():
 
 
                                             #Case3; POST method with data and auth
-                                            tr.reset_identity()  # Reset Tor
-                                            data={'foo': 'bar'}
-                                            auth=('user', 'pass')
+                                            #tr.reset_identity()  # Reset Tor
+                                            #data={'foo': 'bar'}
+                                            #auth=('user', 'pass')
                                             # Send data. Use basic authentication.
-                                            response = tr.post('https://api.example.com', data=data, auth=auth)
-                                            st.write(response.json)
+                                            #response = tr.post('https://api.example.com', data=data, auth=auth)
+                                            #st.write(response.json)
 
 
 
