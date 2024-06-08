@@ -1696,8 +1696,8 @@ def run():
                                         st.write(response.json())
                                         """
 
-                                        _ = """ 
-                                        #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month – automatically renew every month
+
+                                        #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month & automatically renew every month
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
                                         params = {
                                             'url': 'http://ip-api.com/json',
@@ -1707,10 +1707,23 @@ def run():
                                         }
                                         response = s.get('https://api.scrapingant.com/v2/general', params=params)
                                         st.write(response.json())
-                                        """
+
+                                    
+                                        #Site 2 using the same proxy IP
+                                        response = s.post(
+                                            url_space+'/queue/join',
+                                            params=params,
+                                            json=json_data,
+                                            #cookies=cookies,
+                                            #headers=headers,
+                                            proxies=proxies,
+                                            verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
+                                        )
+                                        st.write(response.text)                                        
 
 
-                                        #Use TOR free proxy
+                                        _ = """ 
+                                        #Use TOR free random proxy
                                         from torrequest import TorRequest
 
                                         with TorRequest() as tr:
@@ -1731,19 +1744,7 @@ def run():
                                                 #verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
                                             )
                                             st.write(response.text)
-
-
-                                        #Site 2 using the same proxy IP
-                                        #response = s.post(
-                                        #    url_space+'/queue/join',
-                                        #    params=params,
-                                        #    json=json_data,
-                                            #cookies=cookies,
-                                            #headers=headers,
-                                        #    proxies=proxies,
-                                        #    verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
-                                        #)
-                                        #st.write(response.text)
+                                        """
                                         
                                     else:
                                         response = scraper.post(
