@@ -1709,8 +1709,7 @@ def run():
 
 
                                         from hideme.proxy_collector import ProxiesList
-                                        #proxies_list = ProxiesList(country='Spain')
-                                        proxies_list = ProxiesList(https=True)
+                                        proxies_list = ProxiesList(country='India',https=True,port='80',google_support=False)
                                         proxies = proxies_list.get()
                                         st.write(proxies)
 
