@@ -1721,11 +1721,6 @@ def run():
                                             response = tr.get('http://ip-api.com/json')
                                             st.write(response.json())
 
-                                            #Case1; GET method
-                                            tr.reset_identity()  # Reset Tor every request
-                                            response = tr.get('http://ip-api.com/json')
-                                            st.write(response.json())
-
                                             #Case2; POST method with json data
                                             tr.reset_identity()  # Reset Tor every request
                                             headers = {
@@ -1742,19 +1737,30 @@ def run():
                                             st.write(response.json())
                                             st.write(response.text)
 
+                                            #Site 2 using the same proxy IP
+                                            response = tr.post(
+                                                url_space+'/queue/join',
+                                                params=params,
+                                                json=json_data,
+                                                #cookies=cookies,
+                                                #headers=headers,
+                                                proxies=proxies,
+                                                verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
+                                            )
+                                            st.write(response.text)
 
 
                                         #Site 2 using the same proxy IP
-                                        response = s.post(
-                                            url_space+'/queue/join',
-                                            params=params,
-                                            json=json_data,
+                                        #response = s.post(
+                                        #    url_space+'/queue/join',
+                                        #    params=params,
+                                        #    json=json_data,
                                             #cookies=cookies,
                                             #headers=headers,
-                                            proxies=proxies,
-                                            verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
-                                        )
-                                        st.write(response.text)
+                                        #    proxies=proxies,
+                                        #    verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
+                                        #)
+                                        #st.write(response.text)
                                         
                                     else:
                                         response = scraper.post(
