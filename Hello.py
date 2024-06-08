@@ -1725,7 +1725,7 @@ def run():
                                             #tr.reset_identity()  # Reset Tor
                                             headers["Content-Type"] = "application/x-www-form-urlencoded"
                                             data = "key1=value1&key2=value2"
-                                            response = tr.post('https://reqbin.com/echo/post/form', headers=headers, data=data)
+                                            response = tr.post('https://reqbin.com/echo/post/form', headers=headers, data=data, verify=False)
                                             st.write(response.status_code)
 
 
