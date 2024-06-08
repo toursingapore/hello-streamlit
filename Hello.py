@@ -1437,10 +1437,11 @@ def run():
             #    use_proxy_tor = st.checkbox("Use proxy server1")
             #with checks[1]:
             #    use_proxy_2 = st.checkbox("Use proxy server2")
-
             use_proxy = st.selectbox(
                 "Would you like to use proxy server?",
-                ("No proxy", "Use proxy server1", "Use proxy server2"))
+                ("No proxy", "Use proxy server1", "Use proxy server2"),
+                index=0
+            )
             #st.write("You selected:", use_proxy)                
 
         elif add_radio == "Change clothes from reference garment image":
