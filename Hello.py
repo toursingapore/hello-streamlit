@@ -1702,8 +1702,8 @@ def run():
 
                                         proxyModeUrl = f'http://scrapingant:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080'
                                         proxies = {
-                                            http: 'scrapingant:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:8080',
-                                            https: 'scrapingant:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:443'
+                                            http: 'http://scrapingant:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:8080',
+                                            https: 'https://scrapingant:270269b10ca74f8d918852baed658eb3@proxy.scrapingant.com:443'
                                         }
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
