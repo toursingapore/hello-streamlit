@@ -1716,16 +1716,31 @@ def run():
                                         from torrequest import TorRequest
 
                                         with TorRequest() as tr:
+                                            #Case1; GET method
+                                            tr.reset_identity()  # Reset Tor                                            
                                             response = tr.get('http://ip-api.com/json')
                                             st.write(response.json())
-                                            tr.reset_identity()  # Reset Tor
 
+                                            #Case2; POST method with json data
+                                            tr.reset_identity()  # Reset Tor
+                                            json_data={
+                                                "Id": 78912,
+                                                "Customer": "Jason Sweet",
+                                                "Quantity": 1,
+                                                "Price": 18.00
+                                            }
+                                            response = tr.post('https://reqbin.com/echo/post/json', json=json_data)
+                                            st.write(response.json)
+
+
+                                            #Case3; POST method with data and auth
+                                            tr.reset_identity()  # Reset Tor
                                             data={'foo': 'bar'}
                                             auth=('user', 'pass')
                                             # Send data. Use basic authentication.
                                             response = tr.post('https://api.example.com', data=data, auth=auth)
                                             st.write(response.json)
-                                            tr.reset_identity()  # Reset Tor
+
 
 
                                         #Site 2 using the same proxy IP
