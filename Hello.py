@@ -1723,8 +1723,9 @@ def run():
 
                                             #Case2; POST method with json data
                                             #tr.reset_identity()  # Reset Tor
+                                            headers["Content-Type"] = "application/x-www-form-urlencoded"
                                             data = "key1=value1&key2=value2"
-                                            response = tr.post('https://reqbin.com/echo/post/form', data=data)
+                                            response = tr.post('https://reqbin.com/echo/post/form', headers=headers, data=data)
                                             st.write(response.status_code)
 
 
