@@ -1700,10 +1700,10 @@ def run():
                                         #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month & automatically renew every month
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
 
-                                        #Change IP country thì add thêm tham số - browser=false:{SCRAPINGANT_API_KEY}&proxy_country=DE
+                                        #Change IP country Germany thì add thêm tham số proxy_country=DE cho 2 url dưới như này - http://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}
                                         proxies = {
-                                            'http': f'http://scrapingant&browser=false:{SCRAPINGANT_API_KEY}&proxy_country=DE@proxy.scrapingant.com:8080',
-                                            'https': f'https://scrapingant&browser=false:{SCRAPINGANT_API_KEY}&proxy_country=DE@proxy.scrapingant.com:443',
+                                            'http': f'http://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080',
+                                            'https': f'https://scrapingant&browser=false&proxy_country=DE:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:443',
                                         }
 
                                         response = s.get('http://ip-api.com/json', proxies=proxies, verify=False)
