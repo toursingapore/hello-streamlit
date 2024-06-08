@@ -1363,7 +1363,7 @@ def run():
         from torrequest import TorRequest
 
         #with TorRequest() as tr:
-        with TorRequest(proxy_port=9051, ctrl_port=9051, password=None) as tr:            
+        with TorRequest(proxy_port=9050, ctrl_port=9051, password=None) as tr:            
             # Case 1: GET method
             tr.reset_identity()  # Reset Tor every request
             response = tr.get('http://ip-api.com/json')
