@@ -1528,7 +1528,7 @@ def run():
 
                                         # Randomly select a device from the array
                                         selected_device = random.choice(devices)
-                                        st.write(selected_device)
+                                        #st.write(selected_device)
 
                                         # Configure cloudscraper based on the selected device
                                         if selected_device == "Mobile - Android":
