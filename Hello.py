@@ -1721,6 +1721,7 @@ def run():
                                             response = tr.get('http://ip-api.com/json')
                                             st.write(response.json())
 
+                                            tr.reset_identity()  # Reset Tor every request
                                             #Site 2 using the same proxy IP
                                             response = tr.post(
                                                 url_space+'/queue/join',
@@ -1728,8 +1729,8 @@ def run():
                                                 json=json_data,
                                                 #cookies=cookies,
                                                 #headers=headers,
-                                                proxies=proxies,
-                                                verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
+                                                #proxies=proxies,
+                                                #verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
                                             )
                                             st.write(response.text)
 
