@@ -1711,20 +1711,22 @@ def run():
                                         st.write(response.json())
                                         """
 
-                                        def get_tor_session():
-                                            session = requests.session()
-                                            # Tor uses the 9050 port as the default socks port
-                                            session.proxies = {
-                                                'http':  'socks5://127.0.0.1:9050',
-                                                'https': 'socks5://127.0.0.1:9050'
-                                            }
-                                            return session
+                                        from torpy.http.requests import TorRequests
 
-                                        # Make a request through the Tor connection
-                                        # IP visible through Tor
-                                        session = get_tor_session()
-                                        st.write(session.get("http://httpbin.org/ip").text)
-                                        # Above should print an IP different than your public IP                                        
+                                        st.write('start')
+                                        with TorRequests() as tor_requests:
+
+                                            # We do a first request to ipify.org with a Tor proxy
+                                            st.write("build circuit #1")
+                                            with tor_requests.get_session() as sess:
+                                                st.write(sess.get("https://api.ipify.org/").text)
+
+                                            # We do a second request to ipify.org with a Tor proxy
+                                            st.write("build circuit #2")
+                                            with tor_requests.get_session() as sess:
+                                                st.write(sess.get("https://api.ipify.org/").text)
+
+                                        st.write('~~success')                                      
 
 
 
