@@ -1715,8 +1715,8 @@ def run():
                                         #import json
                                         from datetime import datetime
                                         proxies = {
-                                            'http': 'socks5://127.0.0.1:9050',
-                                            'https': 'socks5://127.0.0.1:9050'
+                                            'http': 'http://socks5://127.0.0.1:9050',
+                                            'https': 'http://socks5://127.0.0.1:9050'
                                         }
                                         response = requests.get("http://ip-api.com/json/", proxies=proxies, verify=False)
                                         result = json.loads(response.content)
