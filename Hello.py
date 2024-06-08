@@ -1713,19 +1713,18 @@ def run():
 
 
 
-                                        session = requests.Session() 
-                                        
-                                        # Tor uses the 9050 port as the default socks port
-                                        tor_proxy = 'socks5h://127.0.0.1:9050'
-                                        
-                                        # Configure the session to use the Tor proxy
-                                        proxies = {
-                                            'http': tor_proxy,
-                                            'https': tor_proxy,
-                                        }                                        
-                                        response = session.get('http://ip-api.com/json', proxies=proxies, verify=False)
-                                        st.write(response.raise_for_status())  # Raise an HTTPError if the response was an HTTP error
-                                        st.write(response.json())
+                                        from torpy import TorClient
+
+                                        hostname = 'ifconfig.me'  # It's possible use onion hostname here as well
+                                        with TorClient() as tor:
+                                            # Choose random guard node and create 3-hops circuit
+                                            with tor.create_circuit(3) as circuit:
+                                                # Create tor stream to host
+                                                with circuit.create_stream((hostname, 80)) as stream:
+                                                    # Now we can communicate with host
+                                                    stream.send(b'GET / HTTP/1.0\r\nHost: %s\r\n\r\n' % hostname.encode())
+                                                    recv = stream.recv(1024)
+                                                    st.write(recv)
 
 
 
