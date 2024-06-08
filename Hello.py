@@ -1717,11 +1717,6 @@ def run():
                                         from torpy.http.requests import tor_requests_session
 
                                         with tor_requests_session() as s:  # returns requests.Session() object
-                                            s.proxies = {
-                                                'http':  'socks5://127.0.0.1:9050',
-                                                'https': 'socks5://127.0.0.1:9050'
-                                            }
-
                                             response = s.get('http://ip-api.com/json')
                                             st.write(response.json())      
 
