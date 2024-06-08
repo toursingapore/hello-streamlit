@@ -1723,7 +1723,7 @@ def run():
                                             'http': tor_proxy,
                                             'https': tor_proxy,
                                         }                                        
-                                        response = session.get('http://ip-api.com/json', proxies=proxies)
+                                        response = session.get('ip-api.com/json', proxies=proxies)
                                         st.write(response.raise_for_status())  # Raise an HTTPError if the response was an HTTP error
                                         st.write(response.json())
 
