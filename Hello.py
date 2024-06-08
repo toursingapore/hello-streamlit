@@ -1684,7 +1684,7 @@ def run():
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
                                         #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
-                                        #response = s.get("https://ip-api.io/", proxies=proxies, verify=False)
+                                        #response = s.get("https://ip-api.io", proxies=proxies, verify=False)
                                         #st.markdown(response.text, unsafe_allow_html=True)
 
 
@@ -1706,12 +1706,16 @@ def run():
                                         #Site proxy 5: ttps://scrapingant.com/ - Free 10000 proxies per month – automatically renew every month
                                         SCRAPINGANT_API_KEY = '270269b10ca74f8d918852baed658eb3'
                                         proxies = {
-                                            'http': f'http://scrapingant:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080',
-                                            'https': f'http://scrapingant:{SCRAPINGANT_API_KEY}@proxy.scrapingant.com:8080',
+                                            'http': f'http://scrapingant:{SCRAPINGANT_API_KEY}&proxy_type=DE@proxy.scrapingant.com:8080',
+                                            'https': f'http://scrapingant:{SCRAPINGANT_API_KEY}&proxy_type=DE@proxy.scrapingant.com:8080',
                                         }
                                         #Site 1 the check proxy IP
                                         response = s.get("http://ip-api.com/json", proxies=proxies, verify=False)
                                         st.write(response.json())
+                                        #Site 2 different proxy IP (site này cùng session mỗi request nó vẫn lấy khác IP, nhưng the same country)
+                                        response = s.get("https://browserleaks.com/ip", proxies=proxies, verify=False)
+                                        st.markdown(response.text, unsafe_allow_html=True)
+
 
 
                                         #Site 2 using the same proxy IP
