@@ -1709,8 +1709,8 @@ def run():
 
 
                                         proxies = {
-                                            'http': 'socks5h://socks.hide.me:1080',
-                                            'https': 'socks5h://socks.hide.me:1080',
+                                            'http': 'http://socks5h://socks.hide.me:1080',
+                                            'https': 'http://socks5h://socks.hide.me:1080',
                                         }
                                         response = requests.get('http://ip-api.com/json', proxies=proxies)
                                         st.write(response.json())
