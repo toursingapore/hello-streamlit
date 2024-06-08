@@ -1726,8 +1726,15 @@ def run():
                                             headers = {
                                                 'accept': 'application/json',
                                             }
-                                            data={'foo': 'bar'}
-                                            response = tr.post('https://httpbin.org/post', headers=headers, data=data)
+                                            
+                                            json={
+                                                "Id": 78912,
+                                                "Customer": "Jason Sweet",
+                                                "Quantity": 1,
+                                                "Price": 18.00
+                                            }
+
+                                            response = tr.post('https://httpbin.org/post', headers=headers, json=json)
                                             st.write(response.status_code)
                                             st.write(response.json())
                                             st.write(response.text)
