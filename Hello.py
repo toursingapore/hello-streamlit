@@ -934,7 +934,7 @@ def run():
                     options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
                     options.add_experimental_option("prefs",
                         {
-                            "profile.default_content_setting_values.geolocation": 2 #Block detect geolocation - 1:allow 2:block
+                            "profile.default_content_setting_values.geolocation": 1 #Block detect geolocation - 1:allow 2:block
                         }
                     )
 
