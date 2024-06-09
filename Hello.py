@@ -1478,7 +1478,8 @@ def run():
         elif add_radio == "Generate image from reference image":
             st.info("""
                     Enter: reference_image_URL \n
-                    Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg](#)
+                    Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg](#) \n
+                    Examples of Prompt: photo of a man img sitting on a bench in front of mansion and wearing black suit and looking at camera, age 40, colorful, perfect face, natural skin, hard shadows, film grain
                 """)
 
             styles = [
