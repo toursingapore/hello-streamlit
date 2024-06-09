@@ -912,12 +912,17 @@ def run():
                     options.add_argument("--disable-gpu")
                     options.add_argument("--headless=new")
                     options.add_argument('--no-sandbox')
-                    options.add_argument('--disable-infobars')
                     options.add_argument('--disable-dev-shm-usage')
-                    if user_input:
-                        options.add_argument("--enable-javascript")
-                    else:
-                        options.add_argument("--disable-javascript")
+                    options.add_argument("--enable-javascript")
+                    options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
+                    options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
+                    options.add_experimental_option(
+                    "prefs",
+                        {
+                            'profile.managed_default_content_settings.javascript':2 #Disable javascript
+                        }
+                    )
+
                     options.add_argument("user-agent=Mozilla/5.0 (Linux; Android 13; SAMSUNG SM-G988B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/20.0 Chrome/106.0.5249.126 Mobile Safari/537.36")
                     #proxy = '23.23.23.23:3128'
                     #options.add_argument('--proxy-server='+proxy) #use proxy with --proxy-server=23.23.23.23:3128
