@@ -887,8 +887,6 @@ def run():
     with st.container(border=True): 
         st.write(
         """ 
-            ## KEYWORD DENSITY CHECKER 
-            Use check density of keywords. \n
             Site check disable javascript - https://www.enable-javascript.com \n
             Site check bypass anti-bot - https://bot.sannysoft.com
         """
