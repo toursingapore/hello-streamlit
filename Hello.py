@@ -937,10 +937,10 @@ def run():
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])
                         #Get the whole content of body tag
-                        content_body = soup.body                        
+                        #content_body = soup.body                        
                         # Print each string recursively
-                        for string in content_body.strings:
-                            st.write(string.strip())
+                        #for string in content_body.strings:
+                        #    st.write(string.strip())
 
                         #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/
                         
