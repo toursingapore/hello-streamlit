@@ -974,15 +974,6 @@ def run():
                         #st.code(html) #show code html để user nhìn thấy
                         st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
 
-
-                        iframe = driver.find_element(By.CSS_SELECTOR, "iframe")
-                        driver.switch_to.frame(iframe)
-                        #hyperlink = driver.find_element(By.LINK_TEXT, "More information...").get_attribute("href")
-                        hyperlink = driver.find_element(By.CSS_SELECTOR, "p").getText()                       
-                        time.sleep(5)
-                        st.write(hyperlink)
-
-
                         #Đưa vào BeautifulSoup để extract chỉ text in tag html, sau đó translate chúng rồi bỏ ngược lại vào trong tag html để được text đã translated và đặt trong code html
                         soup = BeautifulSoup(html,'html.parser')
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
