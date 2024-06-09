@@ -913,7 +913,7 @@ def run():
                     options.add_argument("--headless=new")
                     options.add_argument('--no-sandbox')
                     options.add_argument('--disable-dev-shm-usage')
-                    options.add_argument("--enable-javascript")
+                    #options.add_argument("--enable-javascript")
                     options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
                     options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
                     options.add_experimental_option(
