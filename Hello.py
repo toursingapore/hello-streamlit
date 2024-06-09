@@ -937,7 +937,7 @@ def run():
 
                     options.add_experimental_option("prefs",{"profile.default_content_setting_values.geolocation": 2}) #Disable geolocation 'Know your lpcation' - 0:Default, 1:Allow, 2:Block
                     options.add_experimental_option("prefs",{"profile.default_content_setting_values.notifications": 2}) #Disable 'Show Notification' - 0:Default, 1:Allow, 2:Block
-                    #options.add_experimental_option("excludeSwitches",Arrays.asList("disable-popup-blocking"))
+                    options.add_experimental_option("excludeSwitches",["disable-popup-blocking"]) #Disable open pop-up windows
                     options.add_argument("--block-third-party-cookies")
                     options.add_argument('--disable-notifications')
 
