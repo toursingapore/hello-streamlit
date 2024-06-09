@@ -925,7 +925,7 @@ def run():
                     if user_input_js:
                         options.add_experimental_option("prefs",
                             {
-                                'profile.managed_default_content_settings.javascript':2 #2 is Disable javascript, 1 is Enable javascript or Default đã bật javascript khi crawl rồi
+                                'profile.managed_default_content_settings.javascript':2 #Disable Javascript - 1:Enable javascript, 2:Disable javascript or Default đã bật javascript khi crawl rồi
                             }
                         )
                     
@@ -934,12 +934,12 @@ def run():
                     options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
                     options.add_experimental_option("prefs",
                         {
-                            "profile.default_content_setting_values.geolocation": 2 #Disable detect geolocation - 0:Default, 1:Allow, 2:Block
+                            "profile.default_content_setting_values.geolocation": 2 #Disable geolocation 'Know your lcation' - 0:Default, 1:Allow, 2:Block
                         }
                     )
                     options.add_experimental_option("prefs",
                         {
-                            "profile.default_content_setting_values.notifications": 2 #Disable Show Notification - 0:Default, 1:Allow, 2:Block
+                            "profile.default_content_setting_values.notifications": 2 #Disable 'Show Notification' - 0:Default, 1:Allow, 2:Block
                         }
                     )                                    
 
