@@ -929,7 +929,7 @@ def run():
                             }
                         )
                     
-                    #HD config chrome option, hay - https://www.browserstack.com/docs/automate/selenium/handle-permission-pop-ups#BrowserStack_SDK                    
+                    #HD config chrome option, hay - https://peter.sh/experiments/chromium-command-line-switches/ or https://www.browserstack.com/docs/automate/selenium/handle-permission-pop-ups#BrowserStack_SDK                    
                     options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
                     options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
                     options.add_experimental_option("prefs",
