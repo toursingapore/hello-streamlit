@@ -930,7 +930,15 @@ def run():
 
                         html = driver.page_source
                         #st.code(html) #show code html để user nhìn thấy
-                        st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                        #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+
+                        #Đưa vào BeautifulSoup để extract chỉ text in tag html, sau đó translate chúng rồi bỏ ngược lại vào trong tag html để được text đã translated và đặt trong code html
+                        soup = BeautifulSoup(html,'html.parser')
+                        #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
+                        #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])
+                        body = soup.find('body')
+                        contents_of_body_without_body_tags = body.findChildren(recursive=False)                        
+                        st.write(f"Page Loaded: {contents_of_body_without_body_tags}")                        
 
     st.divider()
 
