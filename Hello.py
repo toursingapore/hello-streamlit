@@ -985,9 +985,11 @@ def run():
                         content_body_arr = soup.body                   
                         for string in content_body_arr.strings:
                             #st.write(string.strip('\t\r\n'))
-                            #st.write(string.replace("\n\n", "\n"))
-                            other_string += string.strip()
+                            #other_string += string.strip('\t\r\n')
 
+                            #st.write(string.replace("\n\n", "\n"))
+                            other_string += string.replace("\n\n", "\n")
+                            
                         st.write(other_string)                         
 
                         _ = """
