@@ -939,7 +939,7 @@ def run():
                     )
                     options.add_experimental_option("prefs",
                         {
-                            "googlegeolocationaccess.enabled": 1
+                            "googlegeolocationaccess.enabled": True
                         }
                     )
                     options.add_experimental_option("prefs",
