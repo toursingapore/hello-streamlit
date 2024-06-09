@@ -979,9 +979,10 @@ def run():
                         soup = BeautifulSoup(html,'html.parser')
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])
-                        st.write("### CONTENT BODY BELOW")                        
+                        st.write("### CONTENT BODY BELOW")
+                        other_string = ''                      
                         #Get the whole content of body tag
-                        content_body_arr = soup.body                        
+                        content_body_arr = soup.body                   
                         for string in content_body_arr.strings:
                             #st.write(string.strip('\t\r\n'))
                             #st.write(string.replace("\n\n", "\n"))
