@@ -929,7 +929,7 @@ def run():
                                     'profile.managed_default_content_settings.javascript':2 #2 is Disable javascript, 1 is Enable javascript or Default đã bật javascript khi crawl rồi
                                 }
                         )
-                    options.addArguments("--disable-notifications")                                        
+                    options.add_argument("--disable-popup-blocking")                                        
                     options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
                     options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
 
