@@ -960,8 +960,6 @@ def run():
                     driver = get_driver()
                     driver.get(website) #driver.get("https://vnexpress.net")
 
-                    driver.execute_script('window.onbeforeunload = function(e){};')
-
                     def wait_for_page_load(driver): 
                         return driver.execute_script('return document.readyState') == 'complete'             
                     
