@@ -948,7 +948,7 @@ def run():
                             }
                         )
                     if user_input_anti_bot:                    
-                        #Cụm Disabling the Automation Indicator WebDriver Flags để tránh site detect selenium browser
+                        #Cụm Disabling the Automation Indicator WebDriver Flags để bypass detect selenium browser
                         #Adding argument to disable the AutomationControlled flag 
                         options.add_argument("--disable-blink-features=AutomationControlled")                     
                         #Exclude the collection of enable-automation switches 
