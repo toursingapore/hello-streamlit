@@ -986,7 +986,7 @@ def run():
                         for string in content_body_arr.strings:
                             #st.write(string.strip('\t\r\n'))
                             #st.write(string.replace("\n\n", "\n"))
-                            other_string += string.strip('\t\r\n')
+                            other_string += string.strip()
 
                         st.write(other_string)                         
 
