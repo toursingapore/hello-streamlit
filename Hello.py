@@ -893,7 +893,7 @@ def run():
         )
 
         website = st.text_input("Enter your website to crawl", value="https://bot.sannysoft.com/", placeholder="https://whoer.net/", key="14")
-        user_input = st.checkbox("Enable Javascript")    
+        user_input = st.checkbox("Disable Javascript")    
         button = st.button("SUBMIT", type="primary" , key="15")
         if button:
             st.write(f"your website is {website}")  
@@ -914,12 +914,13 @@ def run():
                     options.add_argument('--no-sandbox')
                     options.add_argument('--disable-dev-shm-usage')
                     #options.add_argument("--enable-javascript") #Default đã bật javascript khi crawl rồi
-                    options.add_experimental_option(
-                        "prefs",
-                            {
-                                'profile.managed_default_content_settings.javascript':1 #2 is Disable javascript, 1 is Enable javascript or Default đã bật javascript khi crawl rồi
-                            }
-                    )                    
+                    if user_input:
+                        options.add_experimental_option(
+                            "prefs",
+                                {
+                                    'profile.managed_default_content_settings.javascript':2 #2 is Disable javascript, 1 is Enable javascript or Default đã bật javascript khi crawl rồi
+                                }
+                        )                    
                     options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
                     options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
                     
