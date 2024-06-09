@@ -892,7 +892,7 @@ def run():
         """
         )
 
-        website = st.text_input("Enter your website to crawl", placeholder="https://whoer.net/", key="14")
+        website = st.text_input("Enter your website to crawl", value="https://bot.sannysoft.com/", placeholder="https://whoer.net/", key="14")
         user_input = st.checkbox("Enable Javascript")    
         button = st.button("SUBMIT", type="primary" , key="15")
         if button:
@@ -924,11 +924,11 @@ def run():
                     options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
                     
                     #Cụm Disabling the Automation Indicator WebDriver Flags để tránh site detect selenium browser
-                    # Adding argument to disable the AutomationControlled flag 
+                    #Adding argument to disable the AutomationControlled flag 
                     options.add_argument("--disable-blink-features=AutomationControlled")                     
-                    # Exclude the collection of enable-automation switches 
+                    #Exclude the collection of enable-automation switches 
                     options.add_experimental_option("excludeSwitches", ["enable-automation"])                     
-                    # Turn-off userAutomationExtension 
+                    #Turn-off userAutomationExtension 
                     options.add_experimental_option("useAutomationExtension", False) 
 
                     options.add_argument("user-agent=Mozilla/5.0 (Linux; Android 13; SAMSUNG SM-G988B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/20.0 Chrome/106.0.5249.126 Mobile Safari/537.36")
