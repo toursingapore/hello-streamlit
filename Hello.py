@@ -956,9 +956,12 @@ def run():
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])
                         st.write("### CONTENT BODY BELOW")
                         #Get the whole content of body tag
-                        content_body = soup.body                        
-                        for string in content_body.strings:
-                            st.write(string.strip())
+                        content_body_arr = soup.body                        
+                        for string in content_body_arr.strings:
+                            #st.write(string.strip())
+                            content = '\n'.join(string.strip())
+
+                        st.write(content)
 
                         #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/
                         
