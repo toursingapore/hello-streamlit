@@ -921,6 +921,12 @@ def run():
                     options.add_argument("--headless=new")
                     options.add_argument('--no-sandbox')
                     options.add_argument('--disable-dev-shm-usage')
+                    #Cụm bypass message-"your connection is not private"
+                    options.add_argument('--ignore-ssl-errors=yes')
+                    options.add_argument('--ignore-certificate-errors')
+                    #Cụm Disable web security and allow access it
+                    options.add_argument("--disable-web-security")
+                    options.add_argument("--allow-running-insecure-content")                    
                     #options.add_argument("--enable-javascript") #Default đã bật javascript khi crawl rồi
                     if user_input_js:
                         options.add_experimental_option("prefs",
@@ -929,13 +935,11 @@ def run():
                             }
                         )
 
-                    options.add_experimental_option("prefs",{"profile.default_content_setting_values.geolocation": 2}) #Disable geolocation 'Know your lcation' - 0:Default, 1:Allow, 2:Block
+                    options.add_experimental_option("prefs",{"profile.default_content_setting_values.geolocation": 2}) #Disable geolocation 'Know your lpcation' - 0:Default, 1:Allow, 2:Block
                     options.add_experimental_option("prefs",{"profile.default_content_setting_values.notifications": 2}) #Disable 'Show Notification' - 0:Default, 1:Allow, 2:Block
                     #HD config chrome option, hay - https://peter.sh/experiments/chromium-command-line-switches/ or https://www.browserstack.com/docs/automate/selenium/handle-permission-pop-ups#BrowserStack_SDK                    
                     options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
-                    options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
-                    options.add_argument("--disable-web-security");
-                    options.add_argument("--allow-running-insecure-content");                                                      
+                    options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl                                                    
 
                     if user_input_anti_bot:                    
                         #Cụm Disabling the Automation Indicator WebDriver Flags để tránh site detect selenium browser
