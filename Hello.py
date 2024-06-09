@@ -970,6 +970,20 @@ def run():
                     if Page_Loaded:
                         #st.write(f"Page Loaded: {Page_Loaded}")
 
+
+                        try:
+                            # Wait until the popup is visible and find the "I do not agree" button
+                            wait = WebDriverWait(driver, 10)
+                            disagree_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="I do not agree"]')))
+
+                            # Click the "I do not agree" button
+                            disagree_button.click()
+
+                            # Additional actions after disabling the popup can be added here
+
+                        except Exception as e:
+                            st.write(f"An error occurred: {e}")
+
                         html = driver.page_source
                         #st.code(html) #show code html để user nhìn thấy
                         st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
