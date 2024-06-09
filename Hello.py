@@ -966,6 +966,7 @@ def run():
                     Page_Loaded = wait_for_page_load(driver)
                     if Page_Loaded:
                         #st.write(f"Page Loaded: {Page_Loaded}")
+                        driver.execute_script('window.onbeforeunload = function(e){};')
 
                         html = driver.page_source
                         #st.code(html) #show code html để user nhìn thấy
