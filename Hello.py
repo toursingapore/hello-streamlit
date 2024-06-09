@@ -987,7 +987,7 @@ def run():
                         content_body_arr = soup.body                        
                         for string in content_body_arr.strings:
                             #st.write(string.strip('\t\r\n'))
-                            st.write(string.strip('\t\r\n').replace("\n\n", ""))
+                            st.write(string.strip('\t\r\n').replace("\n\n", "\n"))
 
                             #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/ - https://youtu.be/O43XPHC_DEs?si=3WfCe961C3X7jYl5 
                             # Uses stopwords for english from NLTK, and all puntuation characters by
