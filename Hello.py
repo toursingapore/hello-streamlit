@@ -939,7 +939,7 @@ def run():
                     )
                     options.add_experimental_option("prefs",
                         {
-                            "profile.default_content_setting_values.notifications": 2 #Disable detect geolocation - 0:Default, 1:Allow, 2:Block
+                            "profile.default_content_setting_values.notifications": 2 #Disable Show Notification - 0:Default, 1:Allow, 2:Block
                         }
                     )                                    
 
