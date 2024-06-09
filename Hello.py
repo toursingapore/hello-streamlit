@@ -984,7 +984,7 @@ def run():
                         content_body_arr = soup.body                        
                         for string in content_body_arr.strings:
                             #st.write(string.strip('\t\r\n'))
-                            st.write(string.strip('\t\r\n').replace("\n\n", "\n"))
+                            st.write(string.replace("\n\n", "\n"))
 
                         _ = """
                         #Auto click elements
