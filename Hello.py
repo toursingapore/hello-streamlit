@@ -941,8 +941,8 @@ def run():
                         st.write(f"Page Loaded: {content}")
                         
                         # Print each string recursively
-                        #for string in body.strings:
-                        #    print(string)
+                        for string in body.strings:
+                            print(string)
 
                         #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/
                         
