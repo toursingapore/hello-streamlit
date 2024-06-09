@@ -987,7 +987,7 @@ def run():
 
                         html = driver.page_source
                         #st.code(html) #show code html để user nhìn thấy
-                        st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                        #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
 
                         #Đưa vào BeautifulSoup để extract chỉ text in tag html, sau đó translate chúng rồi bỏ ngược lại vào trong tag html để được text đã translated và đặt trong code html
                         soup = BeautifulSoup(html,'html.parser')
