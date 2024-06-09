@@ -1577,7 +1577,7 @@ def run():
                         if user_input_prompt and user_input_nagativePrompt:
                             try:
                                 for user_input in user_input_arr:
-                                    #compute vision for image description - https://astica.ai/vision/describe-images/
+                                    #compute vision for image description or Image Captioning Pytorch - https://astica.ai/vision/describe-images/
                                     #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
                                     #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
                                     #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
