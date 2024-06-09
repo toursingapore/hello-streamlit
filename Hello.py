@@ -937,8 +937,15 @@ def run():
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])
                         body = soup.find('body')
-                        contents_of_body_without_body_tags = body.findChildren(recursive=False)                        
-                        st.write(f"Page Loaded: {contents_of_body_without_body_tags}")                        
+                        content = body.strings
+                        st.write(f"Page Loaded: {content}")
+                        
+                        # Print each string recursively
+                        #for string in body.strings:
+                        #    print(string)
+
+                        #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/
+                        
 
     st.divider()
 
