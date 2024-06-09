@@ -888,8 +888,8 @@ def run():
         st.write(
         """ 
             ## KEYWORD DENSITY CHECKER 
-            Use check density of keywords.
-            Site check disable javascript - https://www.whatismybrowser.com/detect/is-javascript-enabled
+            Use check density of keywords. \n
+            Site check disable javascript - https://www.whatismybrowser.com/detect/is-javascript-enabled \n
             Site check bypass anti-bot - https://bot.sannysoft.com
         """
         )
