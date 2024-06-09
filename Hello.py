@@ -977,7 +977,8 @@ def run():
 
                         iframe = driver.find_element(By.CSS_SELECTOR, "iframe")
                         driver.switch_to.frame(iframe)
-                        hyperlink = driver.find_element(By.LINK_TEXT, "More information...").get_attribute("href")
+                        #hyperlink = driver.find_element(By.LINK_TEXT, "More information...").get_attribute("href")
+                        hyperlink = driver.find_element(By.CSS_SELECTOR, "p").getText()                       
                         time.sleep(5)
                         st.write(hyperlink)
 
