@@ -954,6 +954,7 @@ def run():
                         soup = BeautifulSoup(html,'html.parser')
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])
+                        st.write("### CONTENT BODY BELOW")
                         #Get the whole content of body tag
                         content_body = soup.body                        
                         for string in content_body.strings:
