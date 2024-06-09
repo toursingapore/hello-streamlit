@@ -956,7 +956,6 @@ def run():
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])
                         #Get the whole content of body tag
                         content_body = soup.body                        
-                        # Print each string recursively
                         for string in content_body.strings:
                             st.write(string.strip())
 
