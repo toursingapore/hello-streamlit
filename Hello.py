@@ -980,11 +980,23 @@ def run():
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
                         #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])
                         st.write("### CONTENT BODY BELOW")
+                        
+                        from rake_nltk import Rake
+
                         #Get the whole content of body tag
                         content_body_arr = soup.body                        
                         for string in content_body_arr.strings:
                             #st.write(string.strip('\t\r\n'))
                             st.write(string.strip('\t\r\n').replace("\n\n", ""))
+
+                            #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/ - https://youtu.be/O43XPHC_DEs?si=3WfCe961C3X7jYl5 
+                            # Uses stopwords for english from NLTK, and all puntuation characters by
+                            r = Rake()
+                            # Extraction given the text.
+                            s = r.extract_keywords_from_text(string.strip('\t\r\n'))
+                            st.write(s)
+
+
 
                         _ = """
                         #Auto click elements
@@ -999,7 +1011,6 @@ def run():
                             st.write(f"An error occurred: {e}")
                         """
 
-                        #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/
                         
 
     st.divider()
