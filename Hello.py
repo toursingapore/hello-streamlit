@@ -942,7 +942,7 @@ def run():
                         
                         # Print each string recursively
                         for string in body.strings:
-                            print(string)
+                            st.write(string)
 
                         #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/
                         
