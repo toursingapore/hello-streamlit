@@ -958,7 +958,7 @@ def run():
                         #Get the whole content of body tag
                         content_body_arr = soup.body                        
                         for string in content_body_arr.strings:
-                            st.write(string.strip('\t\r\n'))
+                            st.write(string.strip('\t\r\n\n'))
 
                         #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/
                         
