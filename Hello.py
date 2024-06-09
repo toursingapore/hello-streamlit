@@ -970,6 +970,15 @@ def run():
                     if Page_Loaded:
                         #st.write(f"Page Loaded: {Page_Loaded}")
 
+                        try:
+                            WebDriverWait(browser, 3).until(EC.alert_is_present(),'Timed out waiting for PA creation ' +'confirmation popup to appear.')
+
+                            alert = browser.switch_to.alert
+                            alert.accept()
+                            st.write("alert accepted")
+                        except TimeoutException:
+                            st.write("no alert")
+
                         html = driver.page_source
                         #st.code(html) #show code html để user nhìn thấy
                         st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
