@@ -912,6 +912,7 @@ def run():
                     options.add_argument("--disable-gpu")
                     options.add_argument("--headless=new")
                     options.add_argument('--no-sandbox')
+                    options.add_argument('--disable-infobars')
                     options.add_argument('--disable-dev-shm-usage')
                     if user_input:
                         options.add_argument("--enable-javascript")
