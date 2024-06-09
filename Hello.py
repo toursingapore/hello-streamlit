@@ -1578,7 +1578,7 @@ def run():
                             try:
                                 for user_input in user_input_arr:
                                     #compute vision for image description or Image Captioning Pytorch - https://astica.ai/vision/describe-images/
-                                    #HF space image to text or image description - https://huggingface.co/spaces/tonyassi/blip-image-captioning-large
+                                    #HF space image to text or image description - https://huggingface.co/spaces/tonyassi/blip-image-captioning-large or soure code github - https://github.com/simonw/blip-caption
                                     #HF space ReplaceAnything - https://huggingface.co/spaces/modelscope/ReplaceAnything
                                     #HF space iopaint - https://huggingface.co/spaces/Sanster/iopaint-lama
                                     #HF space PhotoMaker - https://huggingface.co/spaces/TencentARC/PhotoMaker
