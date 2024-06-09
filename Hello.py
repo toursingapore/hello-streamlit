@@ -992,9 +992,10 @@ def run():
                             #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/ - https://youtu.be/O43XPHC_DEs?si=3WfCe961C3X7jYl5 
                             # Uses stopwords for english from NLTK, and all puntuation characters by
                             r = Rake()
+
                             # Extraction given the text.
-                            s = r.extract_keywords_from_text(string.strip('\t\r\n'))
-                            st.write(s)
+                            rake.extract_keywords_from_text("RAKE is used for extracting the keywords from the text,It words irrespective of the text Domain")
+                            st.write(rake.get_ranked_phrases())
 
 
 
