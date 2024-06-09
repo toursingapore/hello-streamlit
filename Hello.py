@@ -1527,7 +1527,7 @@ def run():
                     Note: model_image_URL and garment_image_URL with a white background will change clothes more accurately \n
                     Ex: [https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg](#)
                 """)
-            user_input = st.text_area("Enter image URL", value='https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg', placeholder='model_image_URL|garment_image_URL', height=200)
+            user_input = st.text_area("Enter image URL", value='https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg', placeholder='model_image_URL|garment_image_URL', height=100)
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
         elif add_radio == "Extract masks from uploaded image":
