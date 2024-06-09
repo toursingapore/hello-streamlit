@@ -964,16 +964,6 @@ def run():
                     driver = get_driver()
                     driver.get(website) #driver.get("https://vnexpress.net")
 
-                    try:
-                        # Wait until the popup is visible and find the "I do not agree" button
-                        wait = WebDriverWait(driver, 10)
-                        disagree_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="I do not agree"]')))
-                        # Click the "I do not agree" button
-                        disagree_button.click()
-                        # Additional actions after disabling the popup can be added here
-                    except Exception as e:
-                        st.write(f"An error occurred: {e}")
-
                     def wait_for_page_load(driver): 
                         return driver.execute_script('return document.readyState') == 'complete'             
                     
@@ -995,6 +985,19 @@ def run():
                         for string in content_body_arr.strings:
                             #st.write(string.strip('\t\r\n'))
                             st.write(string.strip('\t\r\n').replace("\n\n", ""))
+
+                        _ = """
+                        #Auto click elements
+                        try:
+                            # Wait until the popup is visible and find the "I do not agree" button
+                            wait = WebDriverWait(driver, 10)
+                            disagree_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="I do not agree"]')))
+                            # Click the "I do not agree" button
+                            disagree_button.click()
+                            # Additional actions after disabling the popup can be added here
+                        except Exception as e:
+                            st.write(f"An error occurred: {e}")
+                        """
 
                         #Dùng rake-nltk để count các target words hiển thị bao nhiêu lần trong bài viết - https://pypi.org/project/rake-nltk/
                         
