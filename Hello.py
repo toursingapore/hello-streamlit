@@ -964,26 +964,22 @@ def run():
                     driver = get_driver()
                     driver.get(website) #driver.get("https://vnexpress.net")
 
+                    try:
+                        # Wait until the popup is visible and find the "I do not agree" button
+                        wait = WebDriverWait(driver, 10)
+                        disagree_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="I do not agree"]')))
+                        # Click the "I do not agree" button
+                        disagree_button.click()
+                        # Additional actions after disabling the popup can be added here
+                    except Exception as e:
+                        st.write(f"An error occurred: {e}")
+
                     def wait_for_page_load(driver): 
                         return driver.execute_script('return document.readyState') == 'complete'             
                     
                     Page_Loaded = wait_for_page_load(driver)
                     if Page_Loaded:
                         #st.write(f"Page Loaded: {Page_Loaded}")
-
-
-                        try:
-                            # Wait until the popup is visible and find the "I do not agree" button
-                            wait = WebDriverWait(driver, 10)
-                            disagree_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="I do not agree"]')))
-
-                            # Click the "I do not agree" button
-                            disagree_button.click()
-
-                            # Additional actions after disabling the popup can be added here
-
-                        except Exception as e:
-                            st.write(f"An error occurred: {e}")
 
                         html = driver.page_source
                         #st.code(html) #show code html để user nhìn thấy
