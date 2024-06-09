@@ -937,7 +937,16 @@ def run():
                             "profile.default_content_setting_values.geolocation": 1 #Block detect geolocation - 1:allow 2:block
                         }
                     )
-
+                    options.add_experimental_option("prefs",
+                        {
+                            "googlegeolocationaccess.enabled": 1
+                        }
+                    )
+                    options.add_experimental_option("prefs",
+                        {
+                            "profile.default_content_setting_values.notifications", 1
+                        }
+                    )                    
 
                     if user_input_anti_bot:                    
                         #Cụm Disabling the Automation Indicator WebDriver Flags để tránh site detect selenium browser
