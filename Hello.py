@@ -9,7 +9,6 @@ import pygwalker as pyg
 import json
 import uuid
 import random
-import string
 import gspread 
 from oauth2client.service_account import ServiceAccountCredentials
 from googleapiclient.discovery import build
@@ -1427,6 +1426,7 @@ def run():
 
     #B9:-- IMAGE - EXTRACT MASKS FROM IMAGE --                                  
     def session_hash_generator():
+        import string
         characters = string.ascii_lowercase + string.digits
         session_hash = ''.join(random.choice(characters) for _ in range(11)) #Generate 11 characters
         return session_hash
