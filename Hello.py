@@ -893,7 +893,7 @@ def run():
         )
 
         website = st.text_input("Enter your website to crawl", placeholder="https://whoer.net/", key="14")
-        user_input = st.checkbox("I agree")    
+        user_input = st.checkbox("Enable Javascript")    
         button = st.button("SUBMIT", type="primary" , key="15")
         if button:
             st.write(f"your website is {website}")  
@@ -915,6 +915,8 @@ def run():
                     options.add_argument('--disable-dev-shm-usage')
                     if user_input:
                         options.add_argument("--enable-javascript")
+                    else:
+                        options.add_argument("--disable-javascript")
                     options.add_argument("user-agent=Mozilla/5.0 (Linux; Android 13; SAMSUNG SM-G988B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/20.0 Chrome/106.0.5249.126 Mobile Safari/537.36")
                     #proxy = '23.23.23.23:3128'
                     #options.add_argument('--proxy-server='+proxy) #use proxy with --proxy-server=23.23.23.23:3128
