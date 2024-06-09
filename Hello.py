@@ -923,11 +923,10 @@ def run():
                     options.add_argument('--disable-dev-shm-usage')
                     #options.add_argument("--enable-javascript") #Default đã bật javascript khi crawl rồi
                     if user_input_js:
-                        options.add_experimental_option(
-                            "prefs",
-                                {
-                                    'profile.managed_default_content_settings.javascript':2 #2 is Disable javascript, 1 is Enable javascript or Default đã bật javascript khi crawl rồi
-                                }
+                        options.add_experimental_option("prefs",
+                            {
+                                'profile.managed_default_content_settings.javascript':2 #2 is Disable javascript, 1 is Enable javascript or Default đã bật javascript khi crawl rồi
+                            }
                         )
 
                     options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
@@ -935,11 +934,6 @@ def run():
                     options.add_experimental_option("prefs",
                         {
                             "profile.default_content_setting_values.geolocation": 1 #Block detect geolocation - 1:allow 2:block
-                        }
-                    )
-                    options.add_experimental_option("prefs",
-                        {
-                            "googlegeolocationaccess.enabled": True
                         }
                     )
                     options.add_experimental_option("prefs",
