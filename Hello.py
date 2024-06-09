@@ -971,7 +971,7 @@ def run():
                         #st.write(f"Page Loaded: {Page_Loaded}")
 
                         try:
-                            WebDriverWait(browser, 3).until(EC.alert_is_present(),'Timed out waiting for PA creation ' +'confirmation popup to appear.')
+                            WebDriverWait(driver, 3).until(EC.alert_is_present(),'Timed out waiting for PA creation ' +'confirmation popup to appear.')
 
                             alert = browser.switch_to.alert
                             alert.accept()
