@@ -928,12 +928,16 @@ def run():
                                 'profile.managed_default_content_settings.javascript':2 #2 is Disable javascript, 1 is Enable javascript or Default đã bật javascript khi crawl rồi
                             }
                         )
-
-                    options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
-                    options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
+                    
+                    #HD config chrome option, hay - https://www.browserstack.com/docs/automate/selenium/handle-permission-pop-ups#BrowserStack_SDK
+                    #Disable thanh thông báo hiển thị on chrome
+                    options.add_argument('--disable-infobars') 
+                    #Disable load image on chrome để tránh nặng khi crawl
+                    options.add_argument('--blink-settings=imagesEnabled=false')
+                    #Block detect geolocation - 0:Default, 1:Allow, 2:Block
                     options.add_experimental_option("prefs",
                         {
-                            "profile.default_content_setting_values.geolocation": 2 #Block detect geolocation - 1:allow 2:block
+                            "profile.default_content_setting_values.geolocation": 2
                         }
                     )                 
 
