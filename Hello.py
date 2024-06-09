@@ -930,7 +930,7 @@ def run():
 
                         html = driver.page_source
                         #st.code(html) #show code html để user nhìn thấy
-                        #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                        st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
 
     st.divider()
 
