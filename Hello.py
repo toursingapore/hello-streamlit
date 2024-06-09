@@ -919,6 +919,7 @@ def run():
                     options = Options()
                     options.add_argument("--disable-gpu")
                     options.add_argument("--headless=new")
+                    options.add_argument("--incognito") #private browser
                     options.add_argument('--no-sandbox')
                     options.add_argument('--disable-dev-shm-usage')
                     #Cụm bypass message-"your connection is not private"
@@ -939,7 +940,6 @@ def run():
                     options.add_experimental_option("prefs",{"profile.default_content_setting_values.notifications": 2}) #Disable 'Show Notification' - 0:Default, 1:Allow, 2:Block
                     options.add_experimental_option("excludeSwitches",["disable-popup-blocking"]) #Disable open pop-up windows
                     options.add_argument("--block-third-party-cookies") #Disable third party cookies
-                    options.add_argument("--disable-cookies") #Disable cookies
                     options.add_argument('--disable-notifications')
 
                     #HD config chrome option, hay - https://peter.sh/experiments/chromium-command-line-switches/ or https://www.browserstack.com/docs/automate/selenium/handle-permission-pop-ups#BrowserStack_SDK                    
