@@ -934,9 +934,14 @@ def run():
                     options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
                     options.add_experimental_option("prefs",
                         {
-                            "profile.default_content_setting_values.geolocation": 2 #Block detect geolocation - 0:Default, 1:Allow, 2:Block
+                            "profile.default_content_setting_values.geolocation": 2 #Disable detect geolocation - 0:Default, 1:Allow, 2:Block
                         }
-                    )                 
+                    )
+                    options.add_experimental_option("prefs",
+                        {
+                            "profile.default_content_setting_values.notifications": 2 #Disable detect geolocation - 0:Default, 1:Allow, 2:Block
+                        }
+                    )                                    
 
                     if user_input_anti_bot:                    
                         #Cụm Disabling the Automation Indicator WebDriver Flags để tránh site detect selenium browser
