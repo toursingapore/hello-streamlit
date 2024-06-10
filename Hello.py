@@ -1585,6 +1585,7 @@ def run():
                                     # https://openxlab.org.cn/apps/detail/InstantX/InstantID ; app test website online – hay
                                     # https://huggingface.co/spaces/InstantX/InstantID ; HF space test website online – hay
                                     # https://huggingface.co/spaces/anurag629/deepfake ; HF space test website online – Face Swapper video - hay
+                                    # https://www.picsi.ai/ ; convert image to short video or gif động
 
                                     with st.spinner('Wait for it...'): 
 
