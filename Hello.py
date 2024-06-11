@@ -2107,8 +2107,8 @@ def run():
                             st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")                              
 
                     case "Read text in image by OCR":
-                        OCRSPACE_API_KEY = 'helloworld' #default for test OCRSPACE_API_KEY
-                        #OCRSPACE_API_KEY = 'K84608526388957' 
+                        #OCRSPACE_API_KEY = 'helloworld' #default for test OCRSPACE_API_KEY
+                        OCRSPACE_API_KEY = 'K84608526388957' 
                         language='en'
                         overlay=True #default overlay=False
 
