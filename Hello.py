@@ -2171,16 +2171,18 @@ def run():
                                 #response = requests.get(url)
                                 #img = Image.open(BytesIO(response.content))
 
-                                temp_dir_path = tempfile.mkdtemp()+".jpg"
-                                #st.write(temp_dir_path) 
+                                #temp_dir_path = tempfile.mkdtemp()+".jpg"
+                                with tempfile.NamedTemporaryFile(dir='/tmp', delete=False) as tmpfile:
+                                    temp_file_path = tmpfile.name                                
+                                st.write(temp_file_path) 
                                 response = requests.get(user_input)
                                 if response.status_code == 200:
-                                    with open(temp_dir_path, 'wb') as f:
+                                    with open(temp_file_path, 'wb') as f:
                                         f.write(response.content)
 
                                 # Use examples: 
                                 #result = ocr_space_file(filename='example_image.png', language='pol')
-                                result = ocr_space_file(filename=temp_dir_path)
+                                result = ocr_space_file(filename=temp_file_path)
                                 #result = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
                                 #result = ocr_space_url(url=user_input)
                                 #st.write(result)
