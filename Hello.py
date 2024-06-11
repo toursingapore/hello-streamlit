@@ -1535,7 +1535,7 @@ def run():
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
         elif add_radio == "Read text in image by OCR":
-            user_input = st.text_area("Enter image URL", value='https://cdn.imgpile.com/f/9rxB2j.jpg\nhttps://nogood.io/wp-content/uploads/2023/07/NG_0728SEO_SEM_Cover_1600x800.png', placeholder='https://cdn.imgpile.com/f/9rxB2j.jpg', height=200)
+            user_input = st.text_area("Enter image URL", value='https://cdn.imgpile.com/f/9rxB2j.jpg\nhttps://i.ytimg.com/vi/oW6m7fABIGs/maxresdefault.jpg', placeholder='https://cdn.imgpile.com/f/9rxB2j.jpg', height=200)
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]            
 
