@@ -2135,7 +2135,6 @@ def run():
                                                 )
                             return r.content.decode()
 
-
                         def ocr_space_url(url, overlay=overlay, api_key=OCRSPACE_API_KEY, language=language):
                             """ OCR.space API request with remote file.
                                 Python3.5 - not tested on 2.7
