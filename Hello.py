@@ -2174,11 +2174,12 @@ def run():
                                 #temp_dir_path = tempfile.mkdtemp()+".jpg"
                                 with tempfile.NamedTemporaryFile(dir='/tmp', delete=False) as tmpfile:
                                     temp_file_path = tmpfile.name                                
-                                st.write(temp_file_path) 
-                                response = requests.get(user_input)
-                                if response.status_code == 200:
-                                    with open(temp_file_path, 'wb') as f:
-                                        f.write(response.content)
+                                    st.write(temp_file_path) 
+                                    
+                                    response = requests.get(user_input)
+                                    if response.status_code == 200:
+                                        with open(temp_file_path, 'wb') as f:
+                                            f.write(response.content)
 
                                 # Use examples: 
                                 #result = ocr_space_file(filename='example_image.png', language='pol')
