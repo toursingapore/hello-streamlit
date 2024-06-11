@@ -2111,7 +2111,7 @@ def run():
                         language='eng'
                         overlay=True
 
-                        def ocr_space_file(filename, overlay=overlay, api_key=OCRSPACE_API_KEY, language=language):
+                        def ocr_space_file(filename, overlay=True, api_key=OCRSPACE_API_KEY, language=language):
                             """ OCR.space API request with local file.
                                 Python3.5 - not tested on 2.7
                             :param filename: Your file path & name.
@@ -2136,7 +2136,7 @@ def run():
                             return r.content.decode()
 
 
-                        def ocr_space_url(url, overlay=overlay, api_key=OCRSPACE_API_KEY, language=language):
+                        def ocr_space_url(url, overlay=True, api_key=OCRSPACE_API_KEY, language=language):
                             """ OCR.space API request with remote file.
                                 Python3.5 - not tested on 2.7
                             :param url: Image url.
