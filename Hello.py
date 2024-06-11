@@ -1469,7 +1469,7 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt", "Generate image from reference image", "Change clothes from reference garment image", "Extract masks from uploaded image", "Extract masks from image URL"],
+            ["Generate image from prompt", "Generate image from reference image", "Change clothes from reference garment image", "Read text in image by OCR", "Extract masks from uploaded image", "Extract masks from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
@@ -1533,6 +1533,10 @@ def run():
             user_input = st.text_area("Enter image URL", value='https://i.pinimg.com/736x/5e/21/10/5e21102daac5ef0ddb01d6fa7d6d0400.jpg|https://assets.vogue.com/photos/624dca5af06f807ba60e3e30/3:4/w_748%2Cc_limit/slide_2.jpg', placeholder='model_image_URL|garment_image_URL', height=200)
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
+
+        elif add_radio == "Read text in image by OCR":
+            st.write("Hello world")
+
         elif add_radio == "Extract masks from uploaded image":
             user_input = st.file_uploader("Choose images...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
         else:
