@@ -2174,8 +2174,8 @@ def run():
                                 st.write(json_data) 
                                 if json_data["OCRExitCode"] == 1:
                                     st.write(json_data["ParsedResults"][0]["ParsedText"])
-                                #else:
-                                    #st.write(json_data["IsErroredOnProcessing"]["ErrorMessage"])
+                                else:
+                                    st.write(json_data["IsErroredOnProcessing"]["ErrorMessage"])
 
                                 time.sleep(5)                            
 
