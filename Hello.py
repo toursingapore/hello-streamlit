@@ -2172,7 +2172,7 @@ def run():
                                 #response = requests.get(url)
                                 #img = Image.open(BytesIO(response.content))
 
-                                temp_dir_path = tempfile.mkdtemp()
+                                temp_dir_path = tempfile.mkdtemp()+".jpg"
                                 #st.write(temp_dir_path) 
                                 response = requests.get(user_input)
                                 if response.status_code == 200:
