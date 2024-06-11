@@ -2157,12 +2157,32 @@ def run():
                                             data=payload,
                                             )
                             return r.content.decode()
-  
+
+
+                        import keras_ocr
+                        import matplotlib.pyplot as plt
+                        def detect_and_draw_boxes(image_path):
+                            """Function returns detected text from image and draws bounding boxes around it"""
+                        
+                            # Initialize pipeline
+                            pipeline = keras_ocr.pipeline.Pipeline()
+                            # Read in image path
+                            read_image = keras_ocr.tools.read(image_path)
+                            # prediction_groups is a list of (word, box) tuples
+                            prediction_groups = pipeline.recognize([read_image])
+                            
+                            # Draw the image and the predictions
+                            fig, ax = plt.subplots(figsize=(10, 10))
+                            keras_ocr.tools.drawAnnotations(image=read_image, predictions=prediction_groups[0], ax=ax)
+                            plt.show()                           
+                            return prediction_groups[0]
+
                         try:
                             for user_input in user_input_arr:
                                 st.write(user_input)
                                 st.image(user_input)
 
+                                _ = """
                                 #result = ocr_space_file(filename='example_image.png', language='pol')
                                 #result = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
                                 result = ocr_space_url(url=user_input)
@@ -2173,6 +2193,14 @@ def run():
                                     st.markdown(f':red[Found text in the image]: {json_data["ParsedResults"][0]["ParsedText"]}')
                                 else:
                                     st.write(json_data) 
+                                """
+
+                                # Example usage
+                                imgURL = 'https://images.ctfassets.net/h6goo9gw1hh6/WWx8XcSPytOJhKkbObzji/f45f5bf4cea58365651ea9c3fcb9f118/clipping-mask-01.jpg?w=1600&h=1024&fl=progressive&q=70&fm=jpg'
+                                detect_and_draw_boxes(imgURL)
+
+
+
 
                                 time.sleep(5)                            
 
