@@ -2173,7 +2173,8 @@ def run():
                                 json_data = json.loads(result) #convet string to json data
                                 st.write(json_data) 
                                 st.write(json_data["ParsedResults"][0]["ParsedText"])
-                            
+
+                                time.sleep(5)                            
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
