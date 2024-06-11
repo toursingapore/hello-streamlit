@@ -2172,7 +2172,7 @@ def run():
                                 json_data = json.loads(result) #convet string to json data
                                 #st.write(json_data) 
                                 if json_data["OCRExitCode"] == 1:
-                                    st.write(f'Found text in the image:\n{json_data["ParsedResults"][0]["ParsedText"]}')
+                                    st.write(f'Found text in the image:\{json_data["ParsedResults"][0]["ParsedText"]}')
                                 else:
                                     st.write(json_data) 
 
