@@ -2171,11 +2171,12 @@ def run():
                                 result = ocr_space_url(url=user_input)
                                 #st.write(result)
                                 json_data = json.loads(result) #convet string to json data
-                                st.write(json_data) 
+                                #st.write(json_data) 
                                 if json_data["OCRExitCode"] == 1:
-                                    st.write(json_data["ParsedResults"][0]["ParsedText"])
+                                    st.write(f'Found text: {json_data["ParsedResults"][0]["ParsedText"]}')
                                 else:
-                                    st.write(json_data["IsErroredOnProcessing"]["ErrorMessage"])
+                                    st.write(json_data) 
+                                    #st.write(json_data["IsErroredOnProcessing"]["ErrorMessage"])
 
                                 time.sleep(5)                            
 
