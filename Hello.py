@@ -2172,7 +2172,10 @@ def run():
                                 #st.write(result)
                                 json_data = json.loads(result) #convet string to json data
                                 st.write(json_data) 
-                                st.write(json_data["ParsedResults"][0]["ParsedText"])
+                                if json_data["IsErroredOnProcessing"] == "false":
+                                    st.write(json_data["ParsedResults"][0]["ParsedText"])
+                                else:
+                                    st.write(json_data["IsErroredOnProcessing"]["ErrorMessage"])
 
                                 time.sleep(5)                            
 
