@@ -2160,7 +2160,6 @@ def run():
 
 
                         import keras_ocr
-                        import matplotlib.pyplot as plt
                         def detect_and_draw_boxes(image_path):
                             """Function returns detected text from image and draws bounding boxes around it"""
                         
