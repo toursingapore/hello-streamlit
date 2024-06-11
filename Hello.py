@@ -2167,11 +2167,11 @@ def run():
 
                                 # Use examples:
                                 #test_file = ocr_space_file(filename='example_image.png', language='pol')
-                                test_url = ocr_space_url(url='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/CAPTCHA_test.png/640px-CAPTCHA_test.png') 
+                                test_url = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg') 
                                 st.write(test_url) 
 
                                 import ocrspace
-                                test_url = api.ocr_url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/CAPTCHA_test.png/640px-CAPTCHA_test.png')
+                                test_url = api.ocr_url('https://cdn.imgpile.com/f/9rxB2j.jpg')
                                 st.write(test_url) 
                             
 
