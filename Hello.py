@@ -2176,6 +2176,8 @@ def run():
                                     st.write(json_data) 
                                 """
 
+                                import keras_ocr
+
                                 # Initialize pipeline
                                 pipeline = keras_ocr.pipeline.Pipeline()
                                 # Read in image path
