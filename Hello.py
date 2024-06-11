@@ -2109,9 +2109,9 @@ def run():
                     case "Read text in image by OCR":
                         OCRSPACE_API_KEY = 'K84608526388957'
                         language='eng'
-                        overlay=True
+                        overlay=False  #Default là False, có thể chuyển thành True để hiển thị tọa độ text nó read được
 
-                        def ocr_space_file(filename, overlay=True, api_key=OCRSPACE_API_KEY, language=language):
+                        def ocr_space_file(filename, overlay=overlay, api_key=OCRSPACE_API_KEY, language=language):
                             """ OCR.space API request with local file.
                                 Python3.5 - not tested on 2.7
                             :param filename: Your file path & name.
@@ -2136,7 +2136,7 @@ def run():
                             return r.content.decode()
 
 
-                        def ocr_space_url(url, overlay=True, api_key=OCRSPACE_API_KEY, language=language):
+                        def ocr_space_url(url, overlay=overlay, api_key=OCRSPACE_API_KEY, language=language):
                             """ OCR.space API request with remote file.
                                 Python3.5 - not tested on 2.7
                             :param url: Image url.
@@ -2171,7 +2171,7 @@ def run():
                                 result = ocr_space_url(url=user_input)
                                 #st.write(result)
                                 json_data = json.loads(result) #convet string to json data
-                                st.write(json_data) 
+                                #st.write(json_data) 
                                 if json_data["OCRExitCode"] == 1:
                                     st.write(f'Found text: {json_data["ParsedResults"][0]["ParsedText"]}')
                                 else:
