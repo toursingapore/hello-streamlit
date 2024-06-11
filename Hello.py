@@ -2170,7 +2170,7 @@ def run():
                                 #result = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
                                 result = ocr_space_url(url=user_input) 
                                 st.json(result) 
-                                st.write(result["ParsedResults"][0]) 
+                                st.write(result[0]) 
                             
 
                         except Exception as e:
