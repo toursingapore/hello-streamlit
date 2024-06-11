@@ -2163,7 +2163,6 @@ def run():
                                 st.write(user_input)
                                 st.image(user_input)
 
-                                _ = """
                                 #result = ocr_space_file(filename='example_image.png', language='pol')
                                 #result = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
                                 result = ocr_space_url(url=user_input)
@@ -2174,15 +2173,6 @@ def run():
                                     st.markdown(f':red[Found text in the image]: {json_data["ParsedResults"][0]["ParsedText"]}')
                                 else:
                                     st.write(json_data) 
-                                """
-
-                                import keras_ocr
-
-                                # Initialize pipeline
-                                pipeline = keras_ocr.pipeline.Pipeline()
-                                # Read in image path
-                                read_image = keras_ocr.tools.read(user_input)
-                                st.write(read_image) 
 
                                 time.sleep(5)                            
 
