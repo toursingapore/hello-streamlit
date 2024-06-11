@@ -2169,7 +2169,7 @@ def run():
                                 #test_file = ocr_space_file(filename='example_image.png', language='pol')
                                 #test_url = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
                                 test_url = ocr_space_url(url=user_input) 
-                                st.write(test_url) 
+                                st.json(test_url) 
                             
 
                         except Exception as e:
