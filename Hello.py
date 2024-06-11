@@ -2164,30 +2164,10 @@ def run():
                                 st.image(user_input)
 
 
-                                #from PIL import Image
-                                #import requests
-                                #from io import BytesIO
-
-                                #response = requests.get(url)
-                                #img = Image.open(BytesIO(response.content))
-
-                                #temp_dir_path = tempfile.mkdtemp()+".jpg"
-                                temp_file_path = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
-                                temp_file_path.close()                                
-
-                                temp_file_path = tmpfile.name                                
-                                st.write(temp_file_path) 
-                                
-                                response = requests.get(user_input)
-                                if response.status_code == 200:
-                                    with open(temp_file_path, 'wb') as f:
-                                        f.write(response.content)
-
                                 # Use examples: 
                                 #result = ocr_space_file(filename='example_image.png', language='pol')
-                                result = ocr_space_file(filename=temp_file_path)
                                 #result = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
-                                #result = ocr_space_url(url=user_input)
+                                result = ocr_space_url(url=user_input)
                                 #st.write(result)
                                 json_data = json.loads(result) #convet string to json data
                                 #st.write(json_data) 
