@@ -2163,8 +2163,6 @@ def run():
                                 st.write(user_input)
                                 st.image(user_input)
 
-
-                                # Use examples: 
                                 #result = ocr_space_file(filename='example_image.png', language='pol')
                                 #result = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
                                 result = ocr_space_url(url=user_input)
