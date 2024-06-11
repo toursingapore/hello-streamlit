@@ -2178,7 +2178,7 @@ def run():
                                     with open(temp_dir_path, 'wb') as f:
                                         f.write(response.content)
 
-                                # Use examples:
+                                # Use examples: 
                                 #result = ocr_space_file(filename='example_image.png', language='pol')
                                 result = ocr_space_file(filename=temp_dir_path)
                                 #result = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
