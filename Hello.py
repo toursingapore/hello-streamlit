@@ -2148,7 +2148,6 @@ def run():
                                             Defaults to 'en'.
                             :return: Result in JSON format.
                             """
-
                             payload = {'url': url,
                                     'isOverlayRequired': overlay,
                                     'apikey': api_key,
