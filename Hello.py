@@ -2171,7 +2171,7 @@ def run():
                                 result = ocr_space_url(url=user_input)
                                 st.write(result)
                                 data = json.loads(result)
-                                #st.json(result) 
+                                st.json(data) 
                                 st.write(data["ParsedResults"][0]["ParsedText"])
                             
 
