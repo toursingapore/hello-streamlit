@@ -2167,7 +2167,7 @@ def run():
 
                             # Use examples:
                             #test_file = ocr_space_file(filename='example_image.png', language='pol')
-                            test_url = ocr_space_url(url='http://i.imgur.com/31d5L5y.jpg') 
+                            test_url = ocr_space_url(url='https://i.imgur.com/31d5L5y.jpeg') 
                             st.write(test_url) 
                             
 
