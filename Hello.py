@@ -1535,7 +1535,7 @@ def run():
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
         elif add_radio == "Read text in image by OCR":
-            user_input = st.text_area("Enter image URL", value='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/CAPTCHA_test.png/640px-CAPTCHA_test.png', placeholder='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/CAPTCHA_test.png/640px-CAPTCHA_test.png', height=200)
+            user_input = st.text_area("Enter image URL", value='https://cdn.imgpile.com/f/9rxB2j.jpg', placeholder='https://cdn.imgpile.com/f/9rxB2j.jpg', height=200)
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]            
 
@@ -2167,11 +2167,8 @@ def run():
 
                                 # Use examples:
                                 #test_file = ocr_space_file(filename='example_image.png', language='pol')
-                                test_url = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg') 
-                                st.write(test_url) 
-
-                                import ocrspace
-                                test_url = api.ocr_url('https://cdn.imgpile.com/f/9rxB2j.jpg')
+                                #test_url = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
+                                test_url = ocr_space_url(url=user_input) 
                                 st.write(test_url) 
                             
 
