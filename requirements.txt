@@ -46,5 +46,3 @@ transformers==4.41.2
 huggingface_hub
 websocket-client
 torrequest
-keras_ocr
-tensorflow==2.16.1
