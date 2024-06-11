@@ -2107,12 +2107,10 @@ def run():
                             st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")                              
 
                     case "Read text in image by OCR":
-                        #OCRSPACE_API_KEY = 'helloworld' #default for test OCRSPACE_API_KEY
-                        OCRSPACE_API_KEY = 'K84608526388957' 
+                        OCRSPACE_API_KEY = 'K84608526388957'
                         language='en'
-                        overlay=False #default overlay=False
 
-                        def ocr_space_file(filename, overlay=overlay, api_key=OCRSPACE_API_KEY, language=language):
+                        def ocr_space_file(filename, overlay=False, api_key=OCRSPACE_API_KEY, language=language):
                             """ OCR.space API request with local file.
                                 Python3.5 - not tested on 2.7
                             :param filename: Your file path & name.
@@ -2137,7 +2135,7 @@ def run():
                             return r.content.decode()
 
 
-                        def ocr_space_url(url, overlay=overlay, api_key=OCRSPACE_API_KEY, language=language):
+                        def ocr_space_url(url, overlay=False, api_key=OCRSPACE_API_KEY, language=language):
                             """ OCR.space API request with remote file.
                                 Python3.5 - not tested on 2.7
                             :param url: Image url.
@@ -2150,12 +2148,15 @@ def run():
                                             Defaults to 'en'.
                             :return: Result in JSON format.
                             """
+
                             payload = {'url': url,
                                     'isOverlayRequired': overlay,
                                     'apikey': api_key,
                                     'language': language,
                                     }
-                            r = requests.post('https://api.ocr.space/parse/imageurl',data=payload,)
+                            r = requests.post('https://api.ocr.space/parse/image',
+                                            data=payload,
+                                            )
                             return r.content.decode()
   
                         try:
@@ -2169,7 +2170,7 @@ def run():
                                 result = ocr_space_url(url=user_input)
                                 #st.write(result)
                                 json_data = json.loads(result) #convet string to json data
-                                st.write(json_data) 
+                                #st.write(json_data) 
                                 if json_data["OCRExitCode"] == 1:
                                     st.write(f'Found text: {json_data["ParsedResults"][0]["ParsedText"]}')
                                 else:
