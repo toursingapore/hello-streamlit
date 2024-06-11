@@ -2169,7 +2169,7 @@ def run():
                                 #result = ocr_space_file(filename='example_image.png', language='pol')
                                 #result = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
                                 result = ocr_space_url(url=user_input)
-                                st.write(result)
+                                #st.write(result)
                                 json_data = json.loads(result) #convet string to json data
                                 st.write(json_data) 
                                 st.write(json_data["ParsedResults"][0]["ParsedText"])
