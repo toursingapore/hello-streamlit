@@ -2168,9 +2168,11 @@ def run():
                                 # Use examples:
                                 #result = ocr_space_file(filename='example_image.png', language='pol')
                                 #result = ocr_space_url(url='https://cdn.imgpile.com/f/9rxB2j.jpg')
-                                result = ocr_space_url(url=user_input) 
-                                st.json(result) 
-                                st.write(result["ParsedResults"][0]["ParsedText"])  
+                                result = ocr_space_url(url=user_input)
+                                st.write(result)
+                                data = json.loads(result)
+                                #st.json(result) 
+                                st.write(data["ParsedResults"][0]["ParsedText"])
                             
 
                         except Exception as e:
