@@ -2165,10 +2165,14 @@ def run():
                                 st.write(user_input)
                                 st.image(user_input)
 
-                            # Use examples:
-                            #test_file = ocr_space_file(filename='example_image.png', language='pol')
-                            test_url = ocr_space_url(url='https://i.imgur.com/31d5L5y.jpeg') 
-                            st.write(test_url) 
+                                # Use examples:
+                                #test_file = ocr_space_file(filename='example_image.png', language='pol')
+                                test_url = ocr_space_url(url='https://i.imgur.com/31d5L5y.jpeg') 
+                                st.write(test_url) 
+
+                                import ocrspace
+                                test_url = api.ocr_url('URL of image goes here')
+                                st.write(test_url) 
                             
 
                         except Exception as e:
