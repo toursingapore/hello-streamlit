@@ -2152,7 +2152,7 @@ def run():
 
                             payload = {'url': url,
                                     'isOverlayRequired': overlay,
-                                    'filetype': 'PDF', #[Optional] String value: PDF, GIF, PNG, JPG, TIF, BMP 
+                                    'filetype': 'application/pdf', #[Optional] String value: PDF, GIF, PNG, JPG, TIF, BMP 
                                     'apikey': api_key,
                                     'language': language,
                                     }
