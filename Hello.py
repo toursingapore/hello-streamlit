@@ -2171,7 +2171,7 @@ def run():
                                 st.write(test_url) 
 
                                 import ocrspace
-                                test_url = api.ocr_url('URL of image goes here')
+                                test_url = api.ocr_url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/CAPTCHA_test.png/640px-CAPTCHA_test.png')
                                 st.write(test_url) 
                             
 
