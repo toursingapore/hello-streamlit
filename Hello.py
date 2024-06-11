@@ -2176,7 +2176,6 @@ def run():
                                     st.write(f'Found text: {json_data["ParsedResults"][0]["ParsedText"]}')
                                 else:
                                     st.write(json_data) 
-                                    #st.write(json_data["IsErroredOnProcessing"]["ErrorMessage"])
 
                                 time.sleep(5)                            
 
