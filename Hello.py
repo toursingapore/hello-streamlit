@@ -1535,7 +1535,9 @@ def run():
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
         elif add_radio == "Read text in image by OCR":
-            st.write("Hello world")
+            user_input = st.text_area("Enter image URL", value='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/CAPTCHA_test.png/640px-CAPTCHA_test.png', placeholder='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/CAPTCHA_test.png/640px-CAPTCHA_test.png', height=200)
+            #Append keywords to array and remove whitespace dư, empty line
+            user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]            
 
         elif add_radio == "Extract masks from uploaded image":
             user_input = st.file_uploader("Choose images...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
