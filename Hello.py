@@ -2195,7 +2195,7 @@ def run():
                                 """
 
                                 # Example usage
-                                imgURL = 'https://images.ctfassets.net/h6goo9gw1hh6/WWx8XcSPytOJhKkbObzji/f45f5bf4cea58365651ea9c3fcb9f118/clipping-mask-01.jpg?w=1600&h=1024&fl=progressive&q=70&fm=jpg'
+                                imgURL = 'https://cdn.imgpile.com/f/9rxB2j.jpg'
                                 detect_and_draw_boxes(imgURL)
 
 
