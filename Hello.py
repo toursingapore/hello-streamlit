@@ -2173,7 +2173,8 @@ def run():
                             # Draw the image and the predictions
                             fig, ax = plt.subplots(figsize=(10, 10))
                             keras_ocr.tools.drawAnnotations(image=read_image, predictions=prediction_groups[0], ax=ax)
-                            plt.show()                           
+                            st.pyplot(fig)  # Use Streamlit to display the plot
+                            
                             return prediction_groups[0]
 
                         try:
@@ -2195,8 +2196,8 @@ def run():
                                 """
 
                                 # Example usage
-                                imgURL = 'https://cdn.imgpile.com/f/9rxB2j.jpg'
-                                detect_and_draw_boxes(imgURL)
+                                x = detect_and_draw_boxes('https://cdn.imgpile.com/f/9rxB2j.jpg')
+                                st.write(x)
 
 
 
