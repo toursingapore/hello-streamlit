@@ -2110,7 +2110,7 @@ def run():
                         #OCRSPACE_API_KEY = 'helloworld' #default for test OCRSPACE_API_KEY
                         OCRSPACE_API_KEY = 'K84608526388957' 
                         language='en'
-                        overlay=True #default overlay=False
+                        overlay=False #default overlay=False
 
                         def ocr_space_file(filename, overlay=overlay, api_key=OCRSPACE_API_KEY, language=language):
                             """ OCR.space API request with local file.
