@@ -2155,7 +2155,7 @@ def run():
                                     'apikey': api_key,
                                     'language': language,
                                     }
-                            r = requests.post('https://api.ocr.space/parse/imageurl',data=payload)
+                            r = requests.post('https://api.ocr.space/parse/imageurl',data=payload,)
                             return r.content.decode()
   
                         try:
