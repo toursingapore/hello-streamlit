@@ -981,16 +981,14 @@ def run():
                             #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
                             #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])                            
 
-                            LOGGER.info('hello world')
-
                             if user_input_bypass_recaptcha:
                                 #Check if site has g-recaptcha
-                                pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
-                                match = re.search(pattern, line_EventStream)
+                                pattern = r'g-recaptcha'
+                                match = re.search(pattern, soup)
                                 if match:
                                     # Extract the matched string and remove the surrounding quotes
                                     path = match.group(0).strip('"')
-                                    #st.write(path)
+                                    st.write(path)
                             
                             else:
                                 st.write("### CONTENT BODY BELOW")
