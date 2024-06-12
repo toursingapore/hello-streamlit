@@ -1009,9 +1009,10 @@ def run():
                                             st.write(child_frame_src)
 
                                     #B3; Switch to iframe recaptcha
-                                    driver.switch_to.frame(driver.find_element(By.XPATH, '//iframe[1]'))
-                                    src = driver.get_attribute("src")
-                                    st.write(src)
+                                    iframe1 = driver.find_element(By.XPATH, '//iframe[1]')
+                                    driver.switch_to.frame(iframe1)
+                                    #src = driver.get_attribute("src")
+                                    #st.write(src)
 
 
 
