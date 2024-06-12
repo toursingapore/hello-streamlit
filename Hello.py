@@ -1012,9 +1012,10 @@ def run():
                             #save screenshot                        
                             time.sleep(3)
                             driver.save_screenshot(temp_jpg_path)
-                            st.image(temp_jpg_path)                            
-                        except TimeoutException as ex:
-                            st.write("Exception has been thrown. " + str(ex))
+                            st.image(temp_jpg_path)
+                                                      
+                        except Exception as e:
+                            st.write(f"An error occurred: {e}")
 
 
                         _ = """
