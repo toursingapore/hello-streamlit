@@ -1002,11 +1002,11 @@ def run():
                                     all_iframes = driver.find_elements(By.XPATH, '//iframe')
                                     st.write(f'Total iframe found: {len(all_iframes)}')
 
-                                    #for child_frame in all_iframes:
-                                    #    child_frame_src = child_frame.get_attribute("src")
-                                    #    if 'recaptcha/api2/anchor' in child_frame_src:
-                                    #        st.write('Found iframe recaptcha')
-                                    #        st.write(child_frame_src)
+                                    for child_frame in all_iframes:
+                                        child_frame_src = child_frame.get_attribute("src")
+                                        if 'recaptcha/api2/anchor' in child_frame_src:
+                                            st.write('Found iframe recaptcha')
+                                            st.write(child_frame_src)
 
                                     #B3; Wait iframe ready and Switch
                                     #WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/api2/anchor")]')))                                    
