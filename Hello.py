@@ -999,7 +999,7 @@ def run():
                                     st.image(temp_jpg_path)
 
                                     #B2; Click button to display all images in reCAPTCHA
-                                    for child_frame in browser.find_elements_by_tag_name('frame'):
+                                    for child_frame in driver.find_elements_by_tag_name('frame'):
                                         child_frame_name = child_frame.get_attribute('name')
                                         st.write('child_frame_name')                                 
 
