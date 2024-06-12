@@ -999,9 +999,10 @@ def run():
                                     st.image(temp_jpg_path)
 
                                     #B2; Click button to display all images in reCAPTCHA
-                                    for child_frame in driver.find_elements_by_tag_name('frame'):
+                                    for child_frame in WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//iframe'))):
                                         child_frame_name = child_frame.get_attribute('name')
                                         st.write('child_frame_name')                                 
+
 
 
 
@@ -1029,8 +1030,7 @@ def run():
 
                                 #Auto click elements                   
                                 # Wait element visible and click text
-                                wait = WebDriverWait(driver, 10)
-                                text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[text()="Fingerprint Scanner"]')))
+                                text1 = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[text()="Fingerprint Scanner"]')))
                                 # Click text nó sẽ auto open in new tab
                                 text1.click()
 
