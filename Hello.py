@@ -899,11 +899,13 @@ def run():
 
         website = st.text_input("Enter your website to crawl", value="https://bot.sannysoft.com/", placeholder="https://whoer.net/", key="14")
         #user_input = st.checkbox("Disable Javascript")
-        checks = st.columns(2)
+        checks = st.columns(3)
         with checks[0]:
             user_input_js = st.checkbox("Disable Javascrip")
         with checks[1]:
             user_input_anti_bot = st.checkbox("Bypass to detect anti-bot")
+        with checks[2]:
+            user_input_bypass_recaptcha = st.checkbox("Bypass reCAPTCHA v3")            
 
         button = st.button("SUBMIT", type="primary" , key="15")
         if button:
@@ -968,7 +970,9 @@ def run():
                     
                     Page_Loaded = wait_for_page_load(driver)
                     if Page_Loaded:
-                        #st.write(f"Page Loaded: {Page_Loaded}")
+                        #st.write(f"Page Loaded: {Page_Loaded}")                        
+                        if user_input_bypass_recaptcha:
+                            pass
 
                         html = driver.page_source
                         #st.code(html) #show code html để user nhìn thấy
