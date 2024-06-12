@@ -1004,7 +1004,7 @@ def run():
 
                                     for child_frame in all_iframes:
                                         child_frame_src = child_frame.get_attribute("src")
-                                        st.write(child_frame_name)                                 
+                                        st.write(child_frame_src)                                 
 
 
 
