@@ -1009,11 +1009,21 @@ def run():
                                             st.write(child_frame_src)
 
                                     #B3; Switch to iframe recaptcha
-                                    iframe1 = driver.find_element(By.XPATH, '//iframe[1]')
-                                    driver.switch_to.frame(iframe1)
-                                    st.write('Accessed iframe')
-                                    src = iframe1.get_attribute("src")
-                                    st.write(src)
+                                    iframe1 = driver.find_elements(By.XPATH, '//iframe[contains(@src, "recaptcha/api2/anchor")]')
+                                    # Check if any iframes were found
+                                    if iframe1:
+                                        # Switch to the first iframe found
+                                        driver.switch_to.frame(iframe_elements[0])
+                                        st.write('Accessed iframe')
+
+                                        # Get the src attribute of the iframe
+                                        src = iframe_elements[0].get_attribute("src")
+                                        st.write(src)
+
+                                        # Switch back to the default content
+                                        driver.switch_to.default_content()
+                                    else:
+                                        st.write('No matching iframe found')                                    
                                     
 
 
