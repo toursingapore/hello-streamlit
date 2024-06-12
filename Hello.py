@@ -1004,8 +1004,11 @@ def run():
 
                                     for child_frame in all_iframes:
                                         child_frame_src = child_frame.get_attribute("src")
-                                        st.write(child_frame_src)                                 
+                                        if 'recaptcha/api2/anchor' in child_frame_src:
+                                            st.write('Found iframe recaptcha')
+                                            st.write(child_frame_src)                                
 
+                                    iframe_recaptcha = driver.switch_to.frame(all_iframes[0])
 
 
 
