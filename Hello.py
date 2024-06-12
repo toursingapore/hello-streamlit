@@ -1003,7 +1003,7 @@ def run():
                                     st.write(f'Total iframe found: {len(all_iframes)}')
 
                                     #B3; Switch to iframe recaptcha
-                                    iframe_recaptcha = driver.switch_to.frame(all_iframes[0])
+                                    iframe_recaptcha = driver.switch_to.frame(all_iframes[1])
                                     st.write(f'{iframe_recaptcha}')
 
 
