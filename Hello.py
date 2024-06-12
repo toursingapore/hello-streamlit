@@ -994,6 +994,7 @@ def run():
                         temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
                         temp_jpg_file.close()
                         temp_jpg_path = temp_jpg_file.name
+                        st.write(temp_jpg_path)
                         time.sleep(3)
                         #save screenshot
                         driver.save_screenshot(temp_jpg_path)
