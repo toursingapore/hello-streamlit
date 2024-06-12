@@ -987,7 +987,7 @@ def run():
                                 if search_text in html:
                                     st.write(f"Found reCAPTCHA in website")
                                 else:
-                                    st.write(f"not found in the HTML content.")
+                                    st.write(f"Not find reCAPTCHA in website")
 
                             
                             else:
