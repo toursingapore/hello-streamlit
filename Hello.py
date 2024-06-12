@@ -999,9 +999,10 @@ def run():
                                     st.image(temp_jpg_path)
 
                                     #B2; Click button to display all images in reCAPTCHA
-                                    for child_frame in WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//iframe'))):
+                                    for child_frame in driver.find_element_by_xpath("//iframe]"):
                                         child_frame_name = child_frame.get_attribute('name')
                                         st.write('child_frame_name')                                 
+
 
 
 
