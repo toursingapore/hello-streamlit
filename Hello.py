@@ -999,6 +999,9 @@ def run():
                                     st.image(temp_jpg_path)
 
                                     #B2; Click button to display all images in reCAPTCHA
+                                    count = len(driver.find_elements(By.XPATH, '//iframe'))
+                                    st.write(count)
+
                                     for child_frame in driver.find_elements(By.XPATH, '//iframe'):
                                         child_frame_name = child_frame.get_attribute("name")
                                         st.write(child_frame_name)                                 
