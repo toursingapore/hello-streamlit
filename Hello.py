@@ -994,7 +994,7 @@ def run():
                                     st.write("Found reCAPTCHA in website")
 
                                     #save screenshot                        
-                                    time.sleep(3)
+                                    time.sleep(5)
                                     driver.save_screenshot(temp_jpg_path)
                                     st.image(temp_jpg_path)
 
