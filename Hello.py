@@ -1009,18 +1009,24 @@ def run():
                                     #        st.write(child_frame_src)
 
                                     #B3; Wait iframe ready and Switch
-                                    WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/api2/anchor")]')))                                    
-                                    WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))).click()
-                                    #Click by JS 
-                                    #driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
-                                    time.sleep(5)
+                                    #WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/api2/anchor")]')))                                    
+                                    iframe_element = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/api2/anchor")]')
+                                    if iframe_element:
+                                        # Switch to the first iframe found
+                                        driver.switch_to.frame(iframe_element)
+                                        st.write('Accessed iframe')
 
-                                    driver.switch_to.default_content()
+                                        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))).click()
+                                        #Click by JS 
+                                        #driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
+                                        time.sleep(5)
 
-                                    #save screenshot                        
-                                    time.sleep(5)
-                                    driver.save_screenshot(temp_jpg_path)
-                                    st.image(temp_jpg_path)                                   
+                                        driver.switch_to.default_content()
+
+                                        #save screenshot                        
+                                        time.sleep(5)
+                                        driver.save_screenshot(temp_jpg_path)
+                                        st.image(temp_jpg_path)                                   
 
                                 else:
                                     st.write("Not find reCAPTCHA in website")
