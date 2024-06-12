@@ -1015,10 +1015,6 @@ def run():
                                     driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
 
                                    
-                                    
-                                 
-                                    
-
 
                                 else:
                                     st.write("Not find reCAPTCHA in website")
