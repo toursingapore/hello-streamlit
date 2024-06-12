@@ -1010,7 +1010,7 @@ def run():
                             text1.click()
                         except TimeoutException as ex:
                             isrunning = 0
-                            print("Exception has been thrown. " + str(ex))
+                            st.write("Exception has been thrown. " + str(ex))
 
                         #save screenshot                        
                         time.sleep(3)
