@@ -1009,7 +1009,6 @@ def run():
                             # Click the "I do not agree" button
                             text1.click()
                         except TimeoutException as ex:
-                            isrunning = 0
                             st.write("Exception has been thrown. " + str(ex))
 
                         #save screenshot                        
