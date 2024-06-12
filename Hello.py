@@ -1013,7 +1013,11 @@ def run():
                         """
 
                     #close browser
-                    driver.close()                 
+                    driver.close()
+
+                    #Delete temp folder
+                    import shutil    
+                    shutil.rmtree(temp_jpg_path)                                   
 
     st.divider()
 
