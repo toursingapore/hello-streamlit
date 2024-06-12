@@ -1017,7 +1017,7 @@ def run():
                                         st.write('Accessed iframe')
 
                                         # Get the src attribute of the iframe
-                                        src = iframe_elements[0].get_attribute("src")
+                                        src = iframe_elements[0].get_attribute("title")
                                         st.write(src)
 
                                         # Switch back to the default content
