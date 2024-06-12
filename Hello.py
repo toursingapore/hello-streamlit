@@ -1015,7 +1015,10 @@ def run():
                             st.image(temp_jpg_path)
                                                       
                         except Exception as e:
-                            st.write(f"An error occurred: {e}")
+                            exc_type, exc_obj, exc_tb = sys.exc_info()
+                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                            #st.write(exc_type, fname, exc_tb.tb_lineno)
+                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")   
 
 
                         _ = """
