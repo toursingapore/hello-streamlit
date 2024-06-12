@@ -1003,7 +1003,7 @@ def run():
                                     st.write(f'Total iframe found: {len(all_iframes)}')
 
                                     for child_frame in all_iframes:
-                                        child_frame_name = child_frame.get_attribute("src")
+                                        child_frame_src = child_frame.get_attribute("src")
                                         st.write(child_frame_name)                                 
 
 
