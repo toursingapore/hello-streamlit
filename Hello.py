@@ -995,8 +995,21 @@ def run():
                         temp_jpg_file.close()
                         temp_jpg_path = temp_jpg_file.name
                         st.write(temp_jpg_path)
+                        #save screenshot                        
                         time.sleep(3)
-                        #save screenshot
+                        driver.save_screenshot(temp_jpg_path)
+                        st.image(temp_jpg_path)
+
+
+                        #Auto click elements
+                        # Wait element visible and click text
+                        wait = WebDriverWait(driver, 10)
+                        text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="I do not agree"]')))
+                        # Click the "I do not agree" button
+                        text1.click()
+
+                        #save screenshot                        
+                        time.sleep(3)
                         driver.save_screenshot(temp_jpg_path)
                         st.image(temp_jpg_path)
 
