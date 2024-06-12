@@ -1005,16 +1005,17 @@ def run():
                         try:                        
                             # Wait element visible and click text
                             wait = WebDriverWait(driver, 10)
-                            text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="I do not agree"]')))
+                            text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="Fingerprint Scanner"]')))
                             # Click the "I do not agree" button
                             text1.click()
+
+                            #save screenshot                        
+                            time.sleep(3)
+                            driver.save_screenshot(temp_jpg_path)
+                            st.image(temp_jpg_path)                            
                         except TimeoutException as ex:
                             st.write("Exception has been thrown. " + str(ex))
 
-                        #save screenshot                        
-                        time.sleep(3)
-                        driver.save_screenshot(temp_jpg_path)
-                        st.image(temp_jpg_path)
 
                         _ = """
                         #Auto click elements
