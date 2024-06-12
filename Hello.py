@@ -1005,13 +1005,17 @@ def run():
                         try:                        
                             # Wait element visible and click text
                             wait = WebDriverWait(driver, 10)
-                            text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[text()="Fingerprint Scanner"]')))
-                            # Click the "I do not agree" button
+                            text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[text()="Fingerprint Scanner"]'))).click()
+                            # Click text nó sẽ auto open in new tab
                             text1.click()
 
-                            #Switch new tab
+                            #Switch new tab (second tab)
                             time.sleep(3)
                             driver.switch_to.window(driver.window_handles[1])
+
+                            #Switch back first tab
+                            time.sleep(3)
+                            driver.switch_to.window(driver.window_handles[0])
 
                             #save screenshot                        
                             time.sleep(3)
