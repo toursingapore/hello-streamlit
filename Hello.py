@@ -1000,7 +1000,6 @@ def run():
 
                                     #B2; Click button to display all images in reCAPTCHA
                                     for child_frame in driver.find_elements(By.XPATH, '//iframe'):
-                                        #child_frame_name = child_frame.find_elements(By.XPATH, '@title')
                                         child_frame_name = child_frame.get_attribute("name")
                                         st.write(child_frame_name)                                 
 
