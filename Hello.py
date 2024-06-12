@@ -1013,6 +1013,11 @@ def run():
                             time.sleep(3)
                             driver.switch_to.window(driver.window_handles[1])
 
+                            #save screenshot                        
+                            time.sleep(3)
+                            driver.save_screenshot(temp_jpg_path)
+                            st.image(temp_jpg_path)
+                            
                             #Switch back first tab
                             time.sleep(3)
                             driver.switch_to.window(driver.window_handles[0])
