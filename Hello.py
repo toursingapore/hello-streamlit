@@ -1014,7 +1014,10 @@ def run():
                                     #Click by JS 
                                     driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
 
-                                   
+                                    #save screenshot                        
+                                    time.sleep(5)
+                                    driver.save_screenshot(temp_jpg_path)
+                                    st.image(temp_jpg_path)                                   
 
                                 else:
                                     st.write("Not find reCAPTCHA in website")
