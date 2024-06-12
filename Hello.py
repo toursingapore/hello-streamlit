@@ -999,7 +999,7 @@ def run():
                                     st.image(temp_jpg_path)
 
                                     #B2; Click button to display all images in reCAPTCHA
-                                    all_iframes = driver.find_elements(By.XPATH, '//iframe')                                    
+                                    all_iframes = driver.find_elements(By.XPATH, '//iframe')
                                     st.write(f'Total iframe found: {len(all_iframes)}')
 
                                     for child_frame in all_iframes:
@@ -1018,19 +1018,17 @@ def run():
                                         st.write('Accessed iframe')
 
                                         # Get the src attribute of the iframe
-                                        src = iframe_element.get_attribute("title")
-                                        st.write(src)
+                                        iframe_element.find_element(By.XPATH, '//*[@id="recaptcha-anchor"]').click()
+                                        #save screenshot                        
+                                        time.sleep(3)
+                                        driver.save_screenshot(temp_jpg_path)
+                                        st.image(temp_jpg_path)
 
                                         # Switch back to the default content
                                         driver.switch_to.default_content()
                                     else:
                                         st.write('No matching iframe found')                                    
                                     
-
-
-
-
-
 
 
                                 else:
