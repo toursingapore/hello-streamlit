@@ -985,7 +985,7 @@ def run():
                                 search_text = 'g-recaptcha'
                                 # Check if the search text is present in the HTML content
                                 if search_text in html:
-                                    st.write(f"found in the HTML content.")
+                                    st.write(f"Found reCAPTCHA")
                                 else:
                                     st.write(f"not found in the HTML content.")
 
