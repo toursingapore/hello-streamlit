@@ -990,6 +990,15 @@ def run():
                             
                         st.write(other_string)                         
 
+
+                        temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+                        temp_jpg_file.close()
+                        temp_jpg_path = temp_jpg_file.name
+                        time.sleep(3)
+                        #save screenshot
+                        driver.save_screenshot(temp_jpg_path)
+                        st.image(temp_jpg_path)
+
                         _ = """
                         #Auto click elements
                         try:
@@ -1003,7 +1012,8 @@ def run():
                             st.write(f"An error occurred: {e}")
                         """
 
-                        
+                    #close browser
+                    driver.close()                 
 
     st.divider()
 
