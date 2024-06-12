@@ -1013,6 +1013,9 @@ def run():
                                     #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))).click()
                                     #Click by JS 
                                     driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
+                                    time.sleep(5)
+
+                                    driver.switch_to.default_content()
 
                                     #save screenshot                        
                                     time.sleep(5)
