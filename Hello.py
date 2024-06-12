@@ -1010,7 +1010,7 @@ def run():
 
                                     #B3; Switch to iframe recaptcha
                                     #iframe_element = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/api2/anchor")]')
-                                    iframe_element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//iframe[contains(@title, "recaptcha/api2/anchor")]')))                                    
+                                    iframe_element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//iframe[contains(@src, "recaptcha/api2/anchor")]')))                                    
                                     # Check if any iframes were found
                                     if iframe_element:
                                         # Switch to the first iframe found
