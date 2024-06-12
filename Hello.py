@@ -1015,7 +1015,7 @@ def run():
                                     if iframe_element:
                                         # Switch to the first iframe found
                                         driver.switch_to.frame(iframe_element)
-                                        st.write('Accessed iframe')
+                                        st.write(iframe_element)
 
                                         # Get the src attribute of the iframe
                                         iframe_element.find_element(By.XPATH, '//*[@id="recaptcha-anchor"]/div[2]').click()
