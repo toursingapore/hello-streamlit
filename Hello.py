@@ -970,66 +970,75 @@ def run():
                     
                     Page_Loaded = wait_for_page_load(driver)
                     if Page_Loaded:
-                        #st.write(f"Page Loaded: {Page_Loaded}")                        
-                        if user_input_bypass_recaptcha:
-                            pass
+                        try:                         
+                            #st.write(f"Page Loaded: {Page_Loaded}")     
+                            html = driver.page_source
+                            #st.code(html) #show code html để user nhìn thấy
+                            #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
 
-                        html = driver.page_source
-                        #st.code(html) #show code html để user nhìn thấy
-                        #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                            #Đưa vào BeautifulSoup để extract chỉ text in tag html, sau đó translate chúng rồi bỏ ngược lại vào trong tag html để được text đã translated và đặt trong code html
+                            soup = BeautifulSoup(html,'html.parser')
+                            #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
+                            #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])                            
 
-                        #Đưa vào BeautifulSoup để extract chỉ text in tag html, sau đó translate chúng rồi bỏ ngược lại vào trong tag html để được text đã translated và đặt trong code html
-                        soup = BeautifulSoup(html,'html.parser')
-                        #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "b", "strong", "i", "em", "li"])     
-                        #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])
-                        st.write("### CONTENT BODY BELOW")
-                        other_string = ''                      
-                        #Get the whole content of body tag
-                        content_body_arr = soup.body                   
-                        for string in content_body_arr.strings:
-                            #st.write(string.strip('\t\r\n'))
-                            #other_string += string.strip('\t\r\n')
-                            #st.write(string.replace("\n\n", "\n"))
-                            other_string += string.replace("\n\n", "\n")
+                            LOGGER.info('hello world')
+
+                            if user_input_bypass_recaptcha:
+                                #Check if site has g-recaptcha
+                                pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
+                                match = re.search(pattern, line_EventStream)
+                                if match:
+                                    # Extract the matched string and remove the surrounding quotes
+                                    path = match.group(0).strip('"')
+                                    #st.write(path)
                             
-                        st.write(other_string)                         
+                            else:
+                                st.write("### CONTENT BODY BELOW")
+                                other_string = ''                      
+                                #Get the whole content of body tag
+                                content_body_arr = soup.body                   
+                                for string in content_body_arr.strings:
+                                    #st.write(string.strip('\t\r\n'))
+                                    #other_string += string.strip('\t\r\n')
+                                    #st.write(string.replace("\n\n", "\n"))
+                                    other_string += string.replace("\n\n", "\n")
+                                    
+                                st.write(other_string)                         
 
-                        #Create temp folder 
-                        temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
-                        temp_jpg_file.close()
-                        temp_jpg_path = temp_jpg_file.name
-                        st.write(temp_jpg_path)
-                        #save screenshot                        
-                        time.sleep(3)
-                        driver.save_screenshot(temp_jpg_path)
-                        st.image(temp_jpg_path)
+                                #Create temp folder 
+                                temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+                                temp_jpg_file.close()
+                                temp_jpg_path = temp_jpg_file.name
+                                st.write(temp_jpg_path)
+                                #save screenshot                        
+                                time.sleep(3)
+                                driver.save_screenshot(temp_jpg_path)
+                                st.image(temp_jpg_path)
 
+                                #Auto click elements                   
+                                # Wait element visible and click text
+                                wait = WebDriverWait(driver, 10)
+                                text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[text()="Fingerprint Scanner"]')))
+                                # Click text nó sẽ auto open in new tab
+                                text1.click()
 
-                        #Auto click elements
-                        try:                        
-                            # Wait element visible and click text
-                            wait = WebDriverWait(driver, 10)
-                            text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[text()="Fingerprint Scanner"]')))
-                            # Click text nó sẽ auto open in new tab
-                            text1.click()
+                                #Switch new tab (second tab)
+                                time.sleep(3)
+                                driver.switch_to.window(driver.window_handles[1])
 
-                            #Switch new tab (second tab)
-                            time.sleep(3)
-                            driver.switch_to.window(driver.window_handles[1])
+                                #save screenshot                        
+                                time.sleep(3)
+                                driver.save_screenshot(temp_jpg_path)
+                                st.image(temp_jpg_path)
 
-                            #save screenshot                        
-                            time.sleep(3)
-                            driver.save_screenshot(temp_jpg_path)
-                            st.image(temp_jpg_path)
+                                #Switch back first tab
+                                time.sleep(3)
+                                driver.switch_to.window(driver.window_handles[0])
 
-                            #Switch back first tab
-                            time.sleep(3)
-                            driver.switch_to.window(driver.window_handles[0])
-
-                            #save screenshot                        
-                            time.sleep(3)
-                            driver.save_screenshot(temp_jpg_path)
-                            st.image(temp_jpg_path)
+                                #save screenshot                        
+                                time.sleep(3)
+                                driver.save_screenshot(temp_jpg_path)
+                                st.image(temp_jpg_path)
                                                       
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
