@@ -1018,14 +1018,15 @@ def run():
                                         st.write('Accessed iframe')
 
                                         # Get the src attribute of the iframe
-                                        iframe_element.find_element(By.XPATH, '//*[@id="recaptcha-anchor"]').click()
+                                        iframe_element.find_element(By.XPATH, '//*[@id="recaptcha-anchor"]/div[2]').click()
+                                        
                                         #save screenshot                        
                                         time.sleep(3)
                                         driver.save_screenshot(temp_jpg_path)
                                         st.image(temp_jpg_path)
 
                                         # Switch back to the default content
-                                        driver.switch_to.default_content()
+                                        #driver.switch_to.default_content()
                                     else:
                                         st.write('No matching iframe found')                                    
                                     
