@@ -990,7 +990,7 @@ def run():
                             
                         st.write(other_string)                         
 
-
+                        #Create temp folder
                         temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
                         temp_jpg_file.close()
                         temp_jpg_path = temp_jpg_file.name
