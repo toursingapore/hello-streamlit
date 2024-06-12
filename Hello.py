@@ -1017,8 +1017,7 @@ def run():
                     driver.close()
 
                     #Delete temp folder
-                    import shutil    
-                    shutil.rmtree(temp_jpg_path)                                   
+                    os.remove(temp_jpg_path)                                  
 
     st.divider()
 
