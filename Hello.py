@@ -970,6 +970,12 @@ def run():
                     
                     Page_Loaded = wait_for_page_load(driver)
                     if Page_Loaded:
+                        #Create temp folder 
+                        temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+                        temp_jpg_file.close()
+                        temp_jpg_path = temp_jpg_file.name
+                        #st.write(temp_jpg_path)
+
                         try:                         
                             #st.write(f"Page Loaded: {Page_Loaded}")     
                             html = driver.page_source
@@ -986,6 +992,11 @@ def run():
                                 # Check if the search text is present in the HTML content
                                 if search_text in html:
                                     st.write(f"Found reCAPTCHA in website")
+
+                                    #save screenshot                        
+                                    time.sleep(3)
+                                    driver.save_screenshot(temp_jpg_path)
+                                    st.image(temp_jpg_path)                                    
                                 else:
                                     st.write(f"Not find reCAPTCHA in website")
 
@@ -1003,11 +1014,6 @@ def run():
                                     
                                 st.write(other_string)                         
 
-                                #Create temp folder 
-                                temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
-                                temp_jpg_file.close()
-                                temp_jpg_path = temp_jpg_file.name
-                                st.write(temp_jpg_path)
                                 #save screenshot                        
                                 time.sleep(3)
                                 driver.save_screenshot(temp_jpg_path)
