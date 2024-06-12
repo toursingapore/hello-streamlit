@@ -1002,8 +1002,8 @@ def run():
                                     all_iframes = len(driver.find_elements(By.XPATH, '//iframe'))
                                     st.write(f'Total iframe found: {all_iframes}')
 
-                                    for child_frame in driver.find_elements(By.XPATH, '//iframe'):
-                                        child_frame_name = child_frame.get_attribute("title")
+                                    for child_frame in all_iframes:
+                                        child_frame_name = child_frame.get_attribute("src")
                                         st.write(child_frame_name)                                 
 
 
