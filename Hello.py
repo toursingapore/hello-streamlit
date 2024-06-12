@@ -1005,7 +1005,7 @@ def run():
                         try:                        
                             # Wait element visible and click text
                             wait = WebDriverWait(driver, 10)
-                            text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[text()="Fingerprint Scanner"]'))).click()
+                            text1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[text()="Fingerprint Scanner"]')))
                             # Click text nó sẽ auto open in new tab
                             text1.click()
 
