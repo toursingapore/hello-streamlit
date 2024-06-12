@@ -1036,13 +1036,11 @@ def run():
                     #close browser
                     driver.close()
 
-                    #Get list of files
+                    #Get list of files, then Delete temp file 
                     import glob
                     st.write(glob.glob('/tmp/*.png'))                    
-
-                    #Delete temp file                  
-                    #os.remove(temp_jpg_path)
-                    #st.write(glob.glob('/tmp/*.png'))                         
+                    for f in glob.glob('/tmp/*.png'):
+                        os.remove(f)                                                                
 
     st.divider()
 
