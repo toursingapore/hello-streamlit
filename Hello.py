@@ -1042,7 +1042,7 @@ def run():
 
                     #Delete temp file                  
                     os.remove(temp_jpg_path)
-                    st.write("/tmp")                           
+                    st.write(glob.glob('/tmp/*.png'))                         
 
     st.divider()
 
