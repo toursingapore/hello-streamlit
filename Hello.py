@@ -893,7 +893,8 @@ def run():
             ## KEYWORD DENSITY CHECKER 
             Use check density of keywords. \n
             Site check disable javascript - https://www.enable-javascript.com \n
-            Site check bypass anti-bot - https://bot.sannysoft.com
+            Site check bypass anti-bot - https://bot.sannysoft.com \n
+            Site check bypass reCAPTCHA - https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox-explicit.php \n
         """
         )
 
