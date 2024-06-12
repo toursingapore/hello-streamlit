@@ -1016,7 +1016,7 @@ def run():
                     #close browser
                     driver.close()
 
-                    #Delete temp folder
+                    #Delete temp file
                     os.remove(temp_jpg_path)                                  
 
     st.divider()
