@@ -1017,7 +1017,7 @@ def run():
                             time.sleep(3)
                             driver.save_screenshot(temp_jpg_path)
                             st.image(temp_jpg_path)
-                            
+
                             #Switch back first tab
                             time.sleep(3)
                             driver.switch_to.window(driver.window_handles[0])
@@ -1031,27 +1031,16 @@ def run():
                             exc_type, exc_obj, exc_tb = sys.exc_info()
                             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
                             #st.write(exc_type, fname, exc_tb.tb_lineno)
-                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")   
-
-
-                        _ = """
-                        #Auto click elements
-                        try:
-                            # Wait until the popup is visible and find the "I do not agree" button
-                            wait = WebDriverWait(driver, 10)
-                            disagree_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="I do not agree"]')))
-                            # Click the "I do not agree" button
-                            disagree_button.click()
-                            # Additional actions after disabling the popup can be added here
-                        except Exception as e:
-                            st.write(f"An error occurred: {e}")
-                        """
+                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}") 
 
                     #close browser
                     driver.close()
-
                     #Delete temp file
-                    os.remove(temp_jpg_path)                                  
+                    #Get list of files
+                    lst = os.listdir("/tmp")
+                    st.write("/tmp")                  
+                    os.remove(temp_jpg_path)
+                    st.write("/tmp")                           
 
     st.divider()
 
