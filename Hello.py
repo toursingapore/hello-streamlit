@@ -1041,8 +1041,8 @@ def run():
                     st.write(glob.glob('/tmp/*.png'))                    
 
                     #Delete temp file                  
-                    os.remove(temp_jpg_path)
-                    st.write(glob.glob('/tmp/*.png'))                         
+                    #os.remove(temp_jpg_path)
+                    #st.write(glob.glob('/tmp/*.png'))                         
 
     st.divider()
 
