@@ -1035,10 +1035,12 @@ def run():
 
                     #close browser
                     driver.close()
-                    #Delete temp file
+
                     #Get list of files
-                    lst = os.listdir("/tmp")
-                    st.write("/tmp")                  
+                    import glob
+                    st.write(glob.glob('/tmp/*.png'))                    
+
+                    #Delete temp file                  
                     os.remove(temp_jpg_path)
                     st.write("/tmp")                           
 
