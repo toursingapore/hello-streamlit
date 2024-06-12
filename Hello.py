@@ -1009,6 +1009,10 @@ def run():
                             # Click the "I do not agree" button
                             text1.click()
 
+                            #Switch new tab
+                            time.sleep(3)
+                            driver.switch_to.window(driver.window_handles[1])
+
                             #save screenshot                        
                             time.sleep(3)
                             driver.save_screenshot(temp_jpg_path)
