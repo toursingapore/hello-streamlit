@@ -989,17 +989,24 @@ def run():
                             #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])                            
 
                             if user_input_bypass_recaptcha:
-                                search_text = 'g-recaptcha'
-                                # Check if the search text is present in the HTML content
-                                if search_text in html:
-                                    st.write(f"Found reCAPTCHA in website")
+                                #B1; Check if reCAPTCHA exist in website
+                                if 'g-recaptcha' in html:
+                                    st.write("Found reCAPTCHA in website")
 
                                     #save screenshot                        
                                     time.sleep(3)
                                     driver.save_screenshot(temp_jpg_path)
-                                    st.image(temp_jpg_path)                                    
+                                    st.image(temp_jpg_path)
+
+                                    #B2; Click button to display all images in reCAPTCHA
+                                    for child_frame in browser.find_elements_by_tag_name('frame'):
+                                        child_frame_name = child_frame.get_attribute('name')
+                                        st.write('child_frame_name')                                 
+
+
+
                                 else:
-                                    st.write(f"Not find reCAPTCHA in website")
+                                    st.write("Not find reCAPTCHA in website")
 
                             
                             else:
