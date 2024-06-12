@@ -982,6 +982,7 @@ def run():
                             #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])                            
 
                             if user_input_bypass_recaptcha:
+                                search_text = 'g-recaptcha'
                                 # Check if the search text is present in the HTML content
                                 if search_text in html:
                                     st.write(f"'{search_text}' found in the HTML content.")
