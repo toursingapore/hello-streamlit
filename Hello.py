@@ -1011,8 +1011,10 @@ def run():
                                     #B3; Switch to iframe recaptcha
                                     iframe1 = driver.find_element(By.XPATH, '//iframe[1]')
                                     driver.switch_to.frame(iframe1)
-                                    #src = driver.get_attribute("src")
-                                    #st.write(src)
+                                    st.write('Accessed iframe')
+                                    src = iframe1.get_attribute("src")
+                                    st.write(src)
+                                    
 
 
 
