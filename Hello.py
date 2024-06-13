@@ -981,7 +981,8 @@ def run():
                         #options.add_argument('--proxy-server=socks5://'+proxy) #use socks5 with --proxy-server=socks5://23.23.23.23:3128
 
                         driver = get_driver()
-                        if user_input_anti_bot: 
+                        if user_input_anti_bot:
+                            st.write(user_input_anti_bot)
                             # Changing the property of the navigator value for webdriver to undefined 
                             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
 
