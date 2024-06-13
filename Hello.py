@@ -1011,12 +1011,12 @@ def run():
                                     #        st.write('Found iframe recaptcha')
                                     #        st.write(child_frame_src)
 
-                                    #B3; Wait iframe ready and Switch
+                                    #B3; Wait iframe 1 ready and Switch to it
                                     iframe_element = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/api2/anchor")]')
                                     if iframe_element:
                                         #Switch to the first iframe
                                         driver.switch_to.frame(iframe_element)
-                                        st.write('Accessed iframe')
+                                        st.write('Accessed iframe 1')
 
                                         #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))).click()
                                         #Click by JS 
@@ -1027,11 +1027,16 @@ def run():
                                         driver.save_screenshot(temp_jpg_path)
                                         st.image(temp_jpg_path)
 
-                                        WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
+
+                                        #B4; Wait iframe 2 ready and Switch to it
+                                        WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/enterprise/bframe")]')))
+                                        st.write('Accessed iframe 2')
+
+                                        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
                                         #WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
-                                        st.write('checkbox captcha showed')
-                                        text = driver.find_element(By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]/text()')
-                                        st.write(text)
+                                        #st.write('checkbox captcha showed')
+                                        #text = driver.find_element(By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]/text()')
+                                        #st.write(text)
 
 
                                         #Switch back to website
