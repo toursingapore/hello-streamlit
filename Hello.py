@@ -1012,7 +1012,7 @@ def run():
                                     #WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/api2/anchor")]')))                                    
                                     iframe_element = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/api2/anchor")]')
                                     if iframe_element:
-                                        # Switch to the first iframe found
+                                        #Switch to the first iframe
                                         driver.switch_to.frame(iframe_element)
                                         st.write('Accessed iframe')
 
@@ -1021,6 +1021,7 @@ def run():
                                         #driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
                                         time.sleep(10)
 
+                                        #Switch back to website
                                         driver.switch_to.default_content()
 
                                         #save screenshot                        
