@@ -963,7 +963,13 @@ def run():
                             options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên
                             options.add_argument("--mute-audio")
 
-                        options.add_argument("user-agent=Mozilla/5.0 (Linux; Android 13; SAMSUNG SM-G988B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/20.0 Chrome/106.0.5249.126 Mobile Safari/537.36")
+                        user_agents = [
+                            #add your list of user agents here
+                            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+                            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+                        ]
+                        user_agent = random.choice(user_agents)
+                        options.add_argument(f"user-agent={user_agent}")                        
                         #proxy = '23.23.23.23:3128'
                         #options.add_argument('--proxy-server='+proxy) #use proxy with --proxy-server=23.23.23.23:3128
                         #options.add_argument('--proxy-server=socks5://'+proxy) #use socks5 with --proxy-server=socks5://23.23.23.23:3128
