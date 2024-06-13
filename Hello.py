@@ -1029,7 +1029,9 @@ def run():
 
 
                                         #B4; Wait iframe 2 ready and Switch to it
-                                        WebDriverWait(driver, 20).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"//iframe[starts-with(@src, 'bframe')]")))
+                                        iframe_element_2 = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/enterprise/bframe")]')
+                                        driver.switch_to.frame(iframe_element_2)
+                                        #WebDriverWait(driver, 20).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"//iframe[starts-with(@src, 'bframe')]")))
                                         #element = driver.find_element(By.ID, "id")                                        
                                         #WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/enterprise/bframe")]')))
                                         st.write('Accessed iframe 2')
