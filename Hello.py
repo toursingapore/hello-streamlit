@@ -1085,7 +1085,6 @@ def run():
                     finally:
                         #close browser & chromedriver
                         driver.quit()
-                        driver.close()
 
                         #Get list of files im temp folder, then Delete all temp files
                         import glob
