@@ -1030,6 +1030,11 @@ def run():
 
                                         all_iframes_2 = driver.find_elements(By.XPATH, '//iframe')
                                         st.write(f'Total iframe found: {len(all_iframes_2)}')
+                                        for child_frame in all_iframes_2:
+                                            child_frame_src = child_frame.get_attribute("src")                                        
+
+
+
 
                                         #B4; Wait iframe 2 ready and Switch to it
                                         iframe_element_2 = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/enterprise/bframe")]')
