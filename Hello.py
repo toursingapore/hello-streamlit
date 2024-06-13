@@ -940,7 +940,10 @@ def run():
                         options.add_argument("--allow-running-insecure-content")                    
                         options.add_experimental_option("prefs",{"profile.default_content_setting_values.geolocation": 2}) #Disable geolocation 'Know your lpcation' - 0:Default, 1:Allow, 2:Block
                         options.add_experimental_option("prefs",{"profile.default_content_setting_values.notifications": 2}) #Disable 'Show Notification' - 0:Default, 1:Allow, 2:Block
-                        #options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên                
+                        
+                        options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên
+                        options.add_argument("--mute-audio")
+                        
                         options.add_experimental_option("excludeSwitches",["disable-popup-blocking"]) #Disable open pop-up windows
                         options.add_argument("--block-third-party-cookies") #Disable third party cookies
                         options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
