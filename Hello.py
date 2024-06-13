@@ -900,12 +900,14 @@ def run():
 
         website = st.text_input("Enter your website to crawl", value="https://bot.sannysoft.com/", placeholder="https://whoer.net/", key="14")
         #user_input = st.checkbox("Disable Javascript")
-        checks = st.columns(3)
+        checks = st.columns(4)
         with checks[0]:
             user_input_js = st.checkbox("Disable Javascrip")
         with checks[1]:
-            user_input_anti_bot = st.checkbox("Bypass to detect anti-bot")
+            user_input_load_img = st.checkbox("Disable loading images")            
         with checks[2]:
+            user_input_anti_bot = st.checkbox("Bypass to detect anti-bot")
+        with checks[3]:
             user_input_bypass_recaptcha = st.checkbox("Bypass reCAPTCHA v3")            
 
         button = st.button("SUBMIT", type="primary" , key="15")
@@ -942,7 +944,6 @@ def run():
                         options.add_experimental_option("excludeSwitches",["disable-popup-blocking"]) #Disable open pop-up windows
                         options.add_argument("--block-third-party-cookies") #Disable third party cookies
                         options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
-                        options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
                         #options.add_argument("--enable-javascript") #Default đã bật javascript khi crawl rồi
                         if user_input_js:
                             options.add_experimental_option("prefs",
@@ -950,6 +951,8 @@ def run():
                                     'profile.managed_default_content_settings.javascript':2 #Disable Javascript - 1:Enable javascript, 2:Disable javascript or Default đã bật javascript khi crawl rồi
                                 }
                             )
+                        if user_input_load_img:
+                            options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl                            
                         if user_input_anti_bot:                    
                             #Cụm Disabling the Automation Indicator WebDriver Flags để bypass detect selenium browser
                             #Adding argument to disable the AutomationControlled flag 
