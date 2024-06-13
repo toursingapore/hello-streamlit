@@ -1002,11 +1002,11 @@ def run():
                                     all_iframes = driver.find_elements(By.XPATH, '//iframe')
                                     st.write(f'Total iframe found: {len(all_iframes)}')
 
-                                    for child_frame in all_iframes:
-                                        child_frame_src = child_frame.get_attribute("src")
-                                        if 'recaptcha/api2/anchor' in child_frame_src:
-                                            st.write('Found iframe recaptcha')
-                                            st.write(child_frame_src)
+                                    #for child_frame in all_iframes:
+                                    #    child_frame_src = child_frame.get_attribute("src")
+                                    #    if 'recaptcha/api2/anchor' in child_frame_src:
+                                    #        st.write('Found iframe recaptcha')
+                                    #        st.write(child_frame_src)
 
                                     #B3; Wait iframe ready and Switch
                                     #WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/api2/anchor")]')))                                    
@@ -1016,9 +1016,9 @@ def run():
                                         driver.switch_to.frame(iframe_element)
                                         st.write('Accessed iframe')
 
-                                        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))).click()
+                                        #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))).click()
                                         #Click by JS 
-                                        #driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
+                                        driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
                                         time.sleep(10)
 
                                         #Switch back to website
