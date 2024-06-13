@@ -1020,6 +1020,9 @@ def run():
                                         driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
                                         time.sleep(10)
 
+                                        text = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]/strong/text()')))
+                                        st.write(text)
+
                                         #Switch back to website
                                         driver.switch_to.default_content()
 
