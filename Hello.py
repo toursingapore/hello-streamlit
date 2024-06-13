@@ -986,10 +986,14 @@ def run():
                             # Changing the property of the navigator value for webdriver to undefined 
                             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
 
+                            # Setting user agent iteratively as Chrome 108 and 107 
+                            driver.execute_cdp_cmd("Network.setUserAgentOverride", {"userAgent": user_agent}) 
+                            st.write(driver.execute_script("return navigator.userAgent;")) 
+
                             # Apply stealth settings to the driver
                             stealth(
                                 driver=driver,
-                                user_agent=user_agent,
+                                #user_agent=user_agent,
                                 languages=["en-US", "en"],
                                 vendor="Google Inc.",
                                 platform="Win32",
