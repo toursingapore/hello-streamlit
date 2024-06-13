@@ -1033,6 +1033,7 @@ def run():
                                             child_frame_src = child_frame.get_attribute("name")
                                             st.write(f"Got - {child_frame_src}")
 
+                                        st.write(driver.find_elements(By.XPATH, '//iframe/@name'))
 
 
 
