@@ -1026,6 +1026,9 @@ def run():
                                         driver.save_screenshot(temp_jpg_path)
                                         st.image(temp_jpg_path)
 
+                                        #Switch back to website
+                                        driver.switch_to.default_content()
+                                        time.sleep(2)                                        
 
                                         all_iframes_2 = driver.find_elements(By.XPATH, '//iframe')
                                         st.write(f'Total iframe found: {len(all_iframes_2)}')
