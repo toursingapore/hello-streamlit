@@ -981,7 +981,7 @@ def run():
                         #options.add_argument('--proxy-server=socks5://'+proxy) #use socks5 with --proxy-server=socks5://23.23.23.23:3128
 
                         import undetected_chromedriver as uc
-                        driver = uc.Chrome(headless=True,use_subprocess=False)
+                        driver = uc.Chrome(headless=True)
                         #driver = get_driver()
                         if user_input_anti_bot:
                             # Changing the property of the navigator value for webdriver to undefined 
