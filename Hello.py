@@ -1018,7 +1018,11 @@ def run():
                                         #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))).click()
                                         #Click by JS 
                                         driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
+
+                                        #save screenshot                        
                                         time.sleep(10)
+                                        driver.save_screenshot(temp_jpg_path)
+                                        st.image(temp_jpg_path)
 
                                         WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
                                         st.write('checkbox captcha showed')
@@ -1028,11 +1032,6 @@ def run():
 
                                         #Switch back to website
                                         driver.switch_to.default_content()
-
-                                        #save screenshot                        
-                                        time.sleep(5)
-                                        driver.save_screenshot(temp_jpg_path)
-                                        st.image(temp_jpg_path)
                                     else:
                                         st.write(iframe_element)
 
