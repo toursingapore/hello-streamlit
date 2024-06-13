@@ -913,71 +913,71 @@ def run():
             st.write(f"your website is {website}")  
             with st.container():
                 with st.spinner('Wait for it...'):
-                    time.sleep(5)
-                    def get_driver():
-                        return webdriver.Chrome(
-                            service=Service(
-                                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-                            ),
-                            options=options,
-                        )
+                    try:                       
+                        time.sleep(5)
+                        def get_driver():
+                            return webdriver.Chrome(
+                                service=Service(
+                                    ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+                                ),
+                                options=options,
+                            )
 
-                    #HD config chrome option, hay - https://peter.sh/experiments/chromium-command-line-switches/ or https://www.browserstack.com/docs/automate/selenium/handle-permission-pop-ups#BrowserStack_SDK
-                    options = Options()
-                    options.add_argument("--disable-gpu")
-                    options.add_argument("--headless=new")
-                    #options.add_argument("--incognito") #private browser
-                    options.add_argument('--no-sandbox')
-                    options.add_argument('--disable-dev-shm-usage')
-                    #Cụm bypass message-"your connection is not private"
-                    options.add_argument('--ignore-ssl-errors=yes')
-                    options.add_argument('--ignore-certificate-errors')
-                    #Cụm Disable web security and allow access it
-                    options.add_argument("--disable-web-security")
-                    options.add_argument("--allow-running-insecure-content")                    
-                    options.add_experimental_option("prefs",{"profile.default_content_setting_values.geolocation": 2}) #Disable geolocation 'Know your lpcation' - 0:Default, 1:Allow, 2:Block
-                    options.add_experimental_option("prefs",{"profile.default_content_setting_values.notifications": 2}) #Disable 'Show Notification' - 0:Default, 1:Allow, 2:Block
-                    #options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên                
-                    options.add_experimental_option("excludeSwitches",["disable-popup-blocking"]) #Disable open pop-up windows
-                    options.add_argument("--block-third-party-cookies") #Disable third party cookies
-                    options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
-                    options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
-                    #options.add_argument("--enable-javascript") #Default đã bật javascript khi crawl rồi
-                    if user_input_js:
-                        options.add_experimental_option("prefs",
-                            {
-                                'profile.managed_default_content_settings.javascript':2 #Disable Javascript - 1:Enable javascript, 2:Disable javascript or Default đã bật javascript khi crawl rồi
-                            }
-                        )
-                    if user_input_anti_bot:                    
-                        #Cụm Disabling the Automation Indicator WebDriver Flags để bypass detect selenium browser
-                        #Adding argument to disable the AutomationControlled flag 
-                        options.add_argument("--disable-blink-features=AutomationControlled")                     
-                        #Exclude the collection of enable-automation switches 
-                        options.add_experimental_option("excludeSwitches", ["enable-automation"])                     
-                        #Turn-off userAutomationExtension 
-                        options.add_experimental_option("useAutomationExtension", False) 
+                        #HD config chrome option, hay - https://peter.sh/experiments/chromium-command-line-switches/ or https://www.browserstack.com/docs/automate/selenium/handle-permission-pop-ups#BrowserStack_SDK
+                        options = Options()
+                        options.add_argument("--disable-gpu")
+                        options.add_argument("--headless=new")
+                        #options.add_argument("--incognito") #private browser
+                        options.add_argument('--no-sandbox')
+                        options.add_argument('--disable-dev-shm-usage')
+                        #Cụm bypass message-"your connection is not private"
+                        options.add_argument('--ignore-ssl-errors=yes')
+                        options.add_argument('--ignore-certificate-errors')
+                        #Cụm Disable web security and allow access it
+                        options.add_argument("--disable-web-security")
+                        options.add_argument("--allow-running-insecure-content")                    
+                        options.add_experimental_option("prefs",{"profile.default_content_setting_values.geolocation": 2}) #Disable geolocation 'Know your lpcation' - 0:Default, 1:Allow, 2:Block
+                        options.add_experimental_option("prefs",{"profile.default_content_setting_values.notifications": 2}) #Disable 'Show Notification' - 0:Default, 1:Allow, 2:Block
+                        #options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên                
+                        options.add_experimental_option("excludeSwitches",["disable-popup-blocking"]) #Disable open pop-up windows
+                        options.add_argument("--block-third-party-cookies") #Disable third party cookies
+                        options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
+                        options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl
+                        #options.add_argument("--enable-javascript") #Default đã bật javascript khi crawl rồi
+                        if user_input_js:
+                            options.add_experimental_option("prefs",
+                                {
+                                    'profile.managed_default_content_settings.javascript':2 #Disable Javascript - 1:Enable javascript, 2:Disable javascript or Default đã bật javascript khi crawl rồi
+                                }
+                            )
+                        if user_input_anti_bot:                    
+                            #Cụm Disabling the Automation Indicator WebDriver Flags để bypass detect selenium browser
+                            #Adding argument to disable the AutomationControlled flag 
+                            options.add_argument("--disable-blink-features=AutomationControlled")                     
+                            #Exclude the collection of enable-automation switches 
+                            options.add_experimental_option("excludeSwitches", ["enable-automation"])                     
+                            #Turn-off userAutomationExtension 
+                            options.add_experimental_option("useAutomationExtension", False) 
 
-                    options.add_argument("user-agent=Mozilla/5.0 (Linux; Android 13; SAMSUNG SM-G988B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/20.0 Chrome/106.0.5249.126 Mobile Safari/537.36")
-                    #proxy = '23.23.23.23:3128'
-                    #options.add_argument('--proxy-server='+proxy) #use proxy with --proxy-server=23.23.23.23:3128
-                    #options.add_argument('--proxy-server=socks5://'+proxy) #use socks5 with --proxy-server=socks5://23.23.23.23:3128
+                        options.add_argument("user-agent=Mozilla/5.0 (Linux; Android 13; SAMSUNG SM-G988B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/20.0 Chrome/106.0.5249.126 Mobile Safari/537.36")
+                        #proxy = '23.23.23.23:3128'
+                        #options.add_argument('--proxy-server='+proxy) #use proxy with --proxy-server=23.23.23.23:3128
+                        #options.add_argument('--proxy-server=socks5://'+proxy) #use socks5 with --proxy-server=socks5://23.23.23.23:3128
 
-                    driver = get_driver()
-                    driver.get(website) #driver.get("https://vnexpress.net")
+                        driver = get_driver()
+                        driver.get(website) #driver.get("https://vnexpress.net")
 
-                    def wait_for_page_load(driver): 
-                        return driver.execute_script('return document.readyState') == 'complete'             
-                    
-                    Page_Loaded = wait_for_page_load(driver)
-                    if Page_Loaded:
-                        #Create temp folder 
-                        temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
-                        temp_jpg_file.close()
-                        temp_jpg_path = temp_jpg_file.name
-                        #st.write(temp_jpg_path)
-
-                        try:                         
+                        def wait_for_page_load(driver): 
+                            return driver.execute_script('return document.readyState') == 'complete'             
+                        
+                        Page_Loaded = wait_for_page_load(driver)
+                        if Page_Loaded:
+                            #Create temp folder 
+                            temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+                            temp_jpg_file.close()
+                            temp_jpg_path = temp_jpg_file.name
+                            #st.write(temp_jpg_path)
+                      
                             #st.write(f"Page Loaded: {Page_Loaded}")     
                             html = driver.page_source
                             #st.code(html) #show code html để user nhìn thấy
@@ -1076,20 +1076,22 @@ def run():
                                 driver.save_screenshot(temp_jpg_path)
                                 st.image(temp_jpg_path)
                                                       
-                        except Exception as e:
-                            exc_type, exc_obj, exc_tb = sys.exc_info()
-                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                            #st.write(exc_type, fname, exc_tb.tb_lineno)
-                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}") 
+                    except Exception as e:
+                        exc_type, exc_obj, exc_tb = sys.exc_info()
+                        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                        #st.write(exc_type, fname, exc_tb.tb_lineno)
+                        st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}") 
 
-                    #close browser
-                    driver.close()
+                    finally:
+                        #close browser & chromedriver
+                        driver.quit()
+                        driver.close()
 
-                    #Get list of files im temp folder, then Delete all temp files
-                    import glob
-                    #st.write(glob.glob('/tmp/*.png'))                    
-                    for f in glob.glob('/tmp/*.png'):
-                        os.remove(f)                                                                
+                        #Get list of files im temp folder, then Delete all temp files
+                        import glob
+                        #st.write(glob.glob('/tmp/*.png'))                    
+                        for f in glob.glob('/tmp/*.png'):
+                            os.remove(f)                                                                
 
     st.divider()
 
