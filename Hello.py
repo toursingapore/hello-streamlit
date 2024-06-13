@@ -991,7 +991,7 @@ def run():
                                 platform="Win32",
                                 webgl_vendor="Intel Inc.",
                                 renderer="Intel Iris OpenGL Engine",
-                                fix_hairline=False,
+                                fix_hairline=True,
                                 run_on_insecure_origins=False,
                             )                        
                         driver.get(website) #driver.get("https://vnexpress.net")
