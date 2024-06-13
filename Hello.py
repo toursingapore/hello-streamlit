@@ -916,10 +916,13 @@ def run():
             st.write(f"your website is {website}")  
             with st.container():
                 with st.spinner('Wait for it...'):
-                    try:                       
+                    try:
+                        import undetected_chromedriver as uc
+
                         time.sleep(5)
                         def get_driver():
-                            return webdriver.Chrome(
+                            #return webdriver.Chrome(
+                            return uc.Chrome(
                                 service=Service(
                                     ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
                                 ),
@@ -983,7 +986,7 @@ def run():
                         driver = get_driver()
                         if user_input_anti_bot:
                             # Changing the property of the navigator value for webdriver to undefined 
-                            driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
+                            #driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
 
                             # Setting user agent iteratively as Chrome 108 and 107 
                             driver.execute_cdp_cmd("Network.setUserAgentOverride", {"userAgent": user_agent}) 
