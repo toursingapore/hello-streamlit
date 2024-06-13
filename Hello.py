@@ -1028,13 +1028,14 @@ def run():
 
                                         #Switch back to website (mỗi lần vào iframe phải switch back default rồi mới vào iframe khác được)
                                         driver.switch_to.default_content()
-                                        time.sleep(2)                                        
 
-                                        all_iframes_2 = driver.find_elements(By.XPATH, '//iframe')
-                                        st.write(f'Total iframe found: {len(all_iframes_2)}')
-                                        for child_frame in all_iframes_2:
-                                            child_frame_src = child_frame.get_attribute("title")
-                                            st.write(f"Got - {child_frame_src}")
+
+                                        #Check all iframes
+                                        #all_iframes_2 = driver.find_elements(By.XPATH, '//iframe')
+                                        #st.write(f'Total iframe found: {len(all_iframes_2)}')
+                                        #for child_frame in all_iframes_2:
+                                        #    child_frame_src = child_frame.get_attribute("title")
+                                        #    st.write(f"Got - {child_frame_src}")
 
                                         #st.write(driver.find_elements(By.XPATH, '//iframe/@name'))
 
@@ -1046,8 +1047,8 @@ def run():
                                         
                                         #WebDriverWait(driver, 20).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"//iframe[starts-with(@src, 'bframe')]")))
                                         #element = driver.find_element(By.ID, "id")                                        
-                                        #WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/enterprise/bframe")]')))
-                                        #st.write('Accessed iframe 2')
+                                        WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/enterprise/bframe")]')))
+                                        st.write('Accessed iframe 2')
 
                                         #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
                                         #WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
