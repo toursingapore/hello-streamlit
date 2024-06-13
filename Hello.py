@@ -894,12 +894,12 @@ def run():
             ## KEYWORD DENSITY CHECKER 
             Use check density of keywords. \n
             Site check disable javascript - https://www.enable-javascript.com \n
-            Site check bypass anti-bot - https://bot.sannysoft.com \n
+            Site check bypass anti-bot - https://www.browserscan.net/bot-detection or https://bot.sannysoft.com \n
             Site check bypass reCAPTCHA - https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox-explicit.php
         """
         )
 
-        website = st.text_input("Enter your website to crawl", value="https://bot.sannysoft.com/", placeholder="https://whoer.net/", key="14")
+        website = st.text_input("Enter your website to crawl", value="https://www.browserscan.net/bot-detection", placeholder="https://whoer.net/", key="14")
         #user_input = st.checkbox("Disable Javascript")
         checks = st.columns(4)
         with checks[0]:
