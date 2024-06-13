@@ -1009,13 +1009,6 @@ def run():
                                     #        st.write(child_frame_src)
 
                                     #B3; Wait iframe ready and Switch
-                                    WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/api2/anchor")]')))                                    
-                                    WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))).click()
-                                    text = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]/strong/text()')))
-                                    st.write(text)
-
-
-                                    _ = """
                                     iframe_element = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/api2/anchor")]')
                                     if iframe_element:
                                         #Switch to the first iframe
@@ -1036,7 +1029,6 @@ def run():
                                         st.image(temp_jpg_path)
                                     else:
                                         st.write(iframe_element)
-                                    """                         
 
                                 else:
                                     st.write("Not find reCAPTCHA in website")
