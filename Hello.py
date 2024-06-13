@@ -975,7 +975,7 @@ def run():
                             'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
                         ]
                         user_agent = random.choice(user_agents)
-                        options.add_argument(f"user-agent={user_agent}")                        
+                        #options.add_argument(f"user-agent={user_agent}")                        
                         #proxy = '23.23.23.23:3128'
                         #options.add_argument('--proxy-server='+proxy) #use proxy with --proxy-server=23.23.23.23:3128
                         #options.add_argument('--proxy-server=socks5://'+proxy) #use socks5 with --proxy-server=socks5://23.23.23.23:3128
@@ -983,14 +983,17 @@ def run():
                         driver = get_driver()
                         if user_input_anti_bot: 
                             # Apply stealth settings to the driver
-                            stealth(driver,
+                            stealth(
+                                driver=driver,
+                                user_agent=user_agent,
                                 languages=["en-US", "en"],
                                 vendor="Google Inc.",
                                 platform="Win32",
                                 webgl_vendor="Intel Inc.",
                                 renderer="Intel Iris OpenGL Engine",
-                                fix_hairline=True,
-                                )                        
+                                fix_hairline=False,
+                                run_on_insecure_origins=False,
+                            )                        
                         driver.get(website) #driver.get("https://vnexpress.net")
 
                         def wait_for_page_load(driver): 
