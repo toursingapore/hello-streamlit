@@ -25,6 +25,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.os_manager import ChromeType
+from selenium_stealth import stealth
 import cloudscraper 
 from bs4 import BeautifulSoup
 import time
@@ -964,9 +965,14 @@ def run():
                             options.add_argument("--mute-audio")
 
                         user_agents = [
-                            #add your list of user agents here
+                            # Add your list of user agents here
                             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
                             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+                            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+                            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+                            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+                            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
+                            'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
                         ]
                         user_agent = random.choice(user_agents)
                         options.add_argument(f"user-agent={user_agent}")                        
@@ -975,6 +981,15 @@ def run():
                         #options.add_argument('--proxy-server=socks5://'+proxy) #use socks5 with --proxy-server=socks5://23.23.23.23:3128
 
                         driver = get_driver()
+                        # Apply stealth settings to the driver
+                        stealth(driver,
+                                languages=["en-US", "en"],
+                                vendor="Google Inc.",
+                                platform="Win32",
+                                webgl_vendor="Intel Inc.",
+                                renderer="Intel Iris OpenGL Engine",
+                                fix_hairline=True,
+                                )                        
                         driver.get(website) #driver.get("https://vnexpress.net")
 
                         def wait_for_page_load(driver): 
