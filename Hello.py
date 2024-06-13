@@ -1049,6 +1049,9 @@ def run():
                                         #element = driver.find_element(By.ID, "id")                                        
                                         WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/enterprise/bframe")]')))
                                         st.write('Accessed iframe 2')
+                                        imagesFromIframe = driver.find_element(By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div/strong/text()')
+                                        st.write(imagesFromIframe)
+
 
                                         #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
                                         #WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
