@@ -1028,6 +1028,8 @@ def run():
                                         st.image(temp_jpg_path)
 
 
+                                        st.write(f'Total iframe found: {len(driver.find_elements(By.XPATH, '//iframe'))}')
+
                                         #B4; Wait iframe 2 ready and Switch to it
                                         iframe_element_2 = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/enterprise/bframe")]')
                                         driver.switch_to.frame(iframe_element_2)
