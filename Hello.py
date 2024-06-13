@@ -1034,12 +1034,13 @@ def run():
                                         class_image_select = driver.find_element(By.XPATH, '//*[@id="rc-imageselect"]//strong').text
                                         st.write(f"Select images - {class_image_select}")
 
+                                        #Click audio
+                                        driver.find_element(By.XPATH, '//button[contains(@id, "audio")]').click()
 
-                                        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
-                                        #WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]')))
-                                        #st.write('checkbox captcha showed')
-                                        #text = driver.find_element(By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div[2]/text()')
-                                        #st.write(text)
+                                        #save screenshot                      
+                                        time.sleep(5)
+                                        driver.save_screenshot(temp_jpg_path)
+                                        st.image(temp_jpg_path)
 
 
                                         #Switch back to website
