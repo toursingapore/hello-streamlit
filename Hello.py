@@ -1026,17 +1026,17 @@ def run():
                                         driver.save_screenshot(temp_jpg_path)
                                         st.image(temp_jpg_path)
 
-                                        #Switch back to website
+                                        #Switch back to website (mỗi lần vào iframe phải switch back default rồi mới vào iframe khác được)
                                         driver.switch_to.default_content()
                                         time.sleep(2)                                        
 
                                         all_iframes_2 = driver.find_elements(By.XPATH, '//iframe')
                                         st.write(f'Total iframe found: {len(all_iframes_2)}')
                                         for child_frame in all_iframes_2:
-                                            child_frame_src = child_frame.get_attribute("name")
+                                            child_frame_src = child_frame.get_attribute("title")
                                             st.write(f"Got - {child_frame_src}")
 
-                                        st.write(driver.find_elements(By.XPATH, '//iframe/@name'))
+                                        #st.write(driver.find_elements(By.XPATH, '//iframe/@name'))
 
 
 
