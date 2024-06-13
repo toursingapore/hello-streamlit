@@ -939,11 +939,7 @@ def run():
                         options.add_argument("--disable-web-security")
                         options.add_argument("--allow-running-insecure-content")                    
                         options.add_experimental_option("prefs",{"profile.default_content_setting_values.geolocation": 2}) #Disable geolocation 'Know your lpcation' - 0:Default, 1:Allow, 2:Block
-                        options.add_experimental_option("prefs",{"profile.default_content_setting_values.notifications": 2}) #Disable 'Show Notification' - 0:Default, 1:Allow, 2:Block
-                        
-                        options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên
-                        options.add_argument("--mute-audio")
-                        
+                        options.add_experimental_option("prefs",{"profile.default_content_setting_values.notifications": 2}) #Disable 'Show Notification' - 0:Default, 1:Allow, 2:Block                                                
                         options.add_experimental_option("excludeSwitches",["disable-popup-blocking"]) #Disable open pop-up windows
                         options.add_argument("--block-third-party-cookies") #Disable third party cookies
                         options.add_argument('--disable-infobars') #Disable thanh thông báo hiển thị on chrome
@@ -963,7 +959,9 @@ def run():
                             #Exclude the collection of enable-automation switches 
                             options.add_experimental_option("excludeSwitches", ["enable-automation"])                     
                             #Turn-off userAutomationExtension 
-                            options.add_experimental_option("useAutomationExtension", False) 
+                            options.add_experimental_option("useAutomationExtension", False)
+                            options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên
+                            options.add_argument("--mute-audio")
 
                         options.add_argument("user-agent=Mozilla/5.0 (Linux; Android 13; SAMSUNG SM-G988B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/20.0 Chrome/106.0.5249.126 Mobile Safari/537.36")
                         #proxy = '23.23.23.23:3128'
