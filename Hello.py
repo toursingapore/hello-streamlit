@@ -982,6 +982,9 @@ def run():
 
                         driver = get_driver()
                         if user_input_anti_bot: 
+                            # Changing the property of the navigator value for webdriver to undefined 
+                            driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
+
                             # Apply stealth settings to the driver
                             stealth(
                                 driver=driver,
@@ -993,7 +996,7 @@ def run():
                                 renderer="Intel Iris OpenGL Engine",
                                 fix_hairline=True,
                                 run_on_insecure_origins=False,
-                            )                        
+                            )
                         driver.get(website) #driver.get("https://vnexpress.net")
 
                         def wait_for_page_load(driver): 
