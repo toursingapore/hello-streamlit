@@ -986,7 +986,6 @@ def run():
                         if user_input_anti_bot:
                             # Changing the property of the navigator value for webdriver to undefined 
                             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => false})") #tương đương set value navigator.webdriver = false để hide value là webdriver đi
-                            driver.execute_script("Object.defineProperty(navigator, 'platform', {get: () => Win32})")                            
                             # Setting user agent iteratively as Chrome 108 and 107 
                             driver.execute_cdp_cmd("Network.setUserAgentOverride", {"userAgent": user_agent}) 
 
@@ -1002,7 +1001,7 @@ def run():
                                 #user_agent=user_agent,
                                 languages=["en-US", "en"],
                                 vendor="Google Inc.",
-                                platform="Win32",
+                                #platform="Win32",
                                 webgl_vendor="Google Inc.",
                                 renderer="Intel Iris OpenGL Engine",
                                 fix_hairline=True,
