@@ -988,6 +988,7 @@ def run():
                             # Setting user agent iteratively as Chrome 108 and 107 
                             driver.execute_cdp_cmd("Network.setUserAgentOverride", {"userAgent": user_agent}) 
                             st.write(driver.execute_script("return navigator.userAgent;")) 
+                            st.write(driver.execute_script("return navigator.webdriver;")) 
 
                             # Apply stealth settings to the driver
                             stealth(
