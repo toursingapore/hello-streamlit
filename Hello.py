@@ -963,6 +963,8 @@ def run():
                             options.add_experimental_option("useAutomationExtension", False)
                             options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên
                             options.add_argument("--mute-audio")
+                            options.add_argument("--start-maximized")
+                            options.add_argument("--disable-extensions")                            
 
                         user_agents = [
                             # Add your list of user agents here
