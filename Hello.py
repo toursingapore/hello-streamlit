@@ -969,7 +969,7 @@ def run():
                             options.add_argument("--disable-extensions")                            
 
                         user_agents = [
-                            # Add your list of user agents here
+                            #B2;Bypass anti-bot - random useragent Macintosh - list of user agents here - https://gist.github.com/pzb/b4b6f57144aea7827ae4
                             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
                             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
                             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
@@ -986,7 +986,7 @@ def run():
 
                         driver = get_driver()
                         if user_input_anti_bot:
-                            #B2; Bypass anti-bot - thực hiện js code in console tab để setup - navigator.webdriver = false
+                            #B3; Bypass anti-bot - thực hiện js code in console tab để setup - navigator.webdriver = false
                             # Changing the property of the navigator value for webdriver to undefined 
                             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => false})") #tương đương set value navigator.webdriver = false để hide value là webdriver đi
                             # Setting user agent iteratively as Chrome 108 and 107 
@@ -998,7 +998,7 @@ def run():
                             st.write(f'navigator.platform = {driver.execute_script("return navigator.platform;")}') #tương đương check command in console log: navigator.webdriver
                             st.write(f'navigator.vendor = {driver.execute_script("return navigator.vendor;")}') #tương đương check command in console log: navigator.webdriver
 
-                            #B3; Bypass anti-bot - Apply stealth settings to the driver to bypass fingerprints
+                            #B4; Bypass anti-bot - Apply stealth settings to the driver to bypass fingerprints
                             stealth(
                                 driver=driver,
                                 user_agent=user_agent,
@@ -1012,7 +1012,7 @@ def run():
                             )
                         driver.get(website) #driver.get("https://vnexpress.net")
 
-                        #B4; Bypass anti-bot - Random delay rất quan trong - đây là yếu tố chính bị site check và biết là bot or not vì human thời gian delay ko thể giống nhau được, chỉ có bot thời gian delay mới như nhau
+                        #B5; Bypass anti-bot - Random delay rất quan trong - đây là yếu tố chính bị site check và biết là bot or not vì human thời gian delay ko thể giống nhau được, chỉ có bot thời gian delay mới như nhau
                         def random_delay(min_delay=1, max_delay=3):
                             time.sleep(random.uniform(min_delay, max_delay))
 
