@@ -1030,7 +1030,7 @@ def run():
                             #st.write(f"Page Loaded: {Page_Loaded}")     
                             html = driver.page_source
                             #st.code(html) #show code html để user nhìn thấy
-                            st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
+                            #st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page
 
                             #Đưa vào BeautifulSoup để extract chỉ text in tag html, sau đó translate chúng rồi bỏ ngược lại vào trong tag html để được text đã translated và đặt trong code html
                             soup = BeautifulSoup(html,'html.parser')
@@ -1085,11 +1085,16 @@ def run():
                                         random_delay(2, 5)
                                         driver.find_element(By.XPATH, '//button[contains(@id, "audio")]').click()
 
+                                        #save screenshot                      
+                                        time.sleep(5)
+                                        driver.save_screenshot(temp_jpg_path)
+                                        st.image(temp_jpg_pat
+
                                         #Extract audio link
                                         random_delay(2, 5)
                                         audio_url = driver.find_element(By.XPATH, '//*[@id="rc-audio"]/div[7]/a/@href')
                                         st.write(audio_url)
-                                        
+
 
                                         #save screenshot                      
                                         time.sleep(5)
