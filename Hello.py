@@ -989,9 +989,10 @@ def run():
                             # Setting user agent iteratively as Chrome 108 and 107 
                             driver.execute_cdp_cmd("Network.setUserAgentOverride", {"userAgent": user_agent}) 
 
-                            #Command js để check tương đương trong tab console của chrome
+                            #Command js để check tương đương trong tab console của chrome - list all fingerprints scanner tại site này - https://bot.sannysoft.com
                             st.write(f'navigator.userAgent = {driver.execute_script("return navigator.userAgent;")}')
                             st.write(f'navigator.webdriver = {driver.execute_script("return navigator.webdriver;")}') #tương đương check command in console log: navigator.webdriver
+                            st.write(f'navigator.platform = {driver.execute_script("return navigator.platform;")}') #tương đương check command in console log: navigator.webdriver
 
                             # Apply stealth settings to the driver to bypass fingerprints
                             stealth(
