@@ -893,7 +893,7 @@ def run():
         """ 
             ## KEYWORD DENSITY CHECKER 
             Use check density of keywords. \n
-            Disable or enable javascript detection - https://www.enable-javascript.com \n
+            Disable javascript detection - https://www.enable-javascript.com \n
             Anti-bot detection - https://www.browserscan.net/bot-detection or https://bot.sannysoft.com \n
             Anti-bot detection by cloudflare - https://nowsecure.nl/ \n
             fingerprintjs detection - https://fingerprintjs.github.io/fingerprintjs/ \n
