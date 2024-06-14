@@ -998,11 +998,11 @@ def run():
                             # Apply stealth settings to the driver to bypass fingerprints
                             stealth(
                                 driver=driver,
-                                #user_agent=user_agent,
+                                user_agent=user_agent,
                                 languages=["en-US", "en"],
                                 vendor="Google Inc.",
                                 platform="MacIntel", #random "Win32", "Linux", or "MacIntel"
-                                webgl_vendor="Google Inc.",
+                                webgl_vendor="Intel Inc.",
                                 renderer="Intel Iris OpenGL Engine",
                                 fix_hairline=True,
                                 run_on_insecure_origins=False,
