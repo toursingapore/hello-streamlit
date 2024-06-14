@@ -1001,7 +1001,7 @@ def run():
                                 #user_agent=user_agent,
                                 languages=["en-US", "en"],
                                 vendor="Google Inc.",
-                                #platform="Win32",
+                                platform="MacIntel", #random "Win32", "Linux", or "MacIntel"
                                 webgl_vendor="Google Inc.",
                                 renderer="Intel Iris OpenGL Engine",
                                 fix_hairline=True,
