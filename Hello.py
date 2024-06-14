@@ -1088,7 +1088,7 @@ def run():
                                         #save screenshot                      
                                         time.sleep(5)
                                         driver.save_screenshot(temp_jpg_path)
-                                        st.image(temp_jpg_pat
+                                        st.image(temp_jpg_path)
 
                                         #Extract audio link
                                         random_delay(2, 5)
