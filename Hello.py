@@ -1085,6 +1085,12 @@ def run():
                                         random_delay(2, 5)
                                         driver.find_element(By.XPATH, '//button[contains(@id, "audio")]').click()
 
+                                        #Extract audio link
+                                        random_delay(2, 5)
+                                        audio_url = driver.find_element(By.XPATH, '//*[@id="rc-audio"]/div[7]/a/@href')
+                                        st.write(audio_url)
+                                        
+
                                         #save screenshot                      
                                         time.sleep(5)
                                         driver.save_screenshot(temp_jpg_path)
