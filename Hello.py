@@ -893,17 +893,11 @@ def run():
         """ 
             ## KEYWORD DENSITY CHECKER 
             Use check density of keywords. \n
-            Site check disable javascript - https://www.enable-javascript.com \n
-            Site check bypass anti-bot - https://www.browserscan.net/bot-detection or https://bot.sannysoft.com \n
-            https://nowsecure.nl/ \n
-            https://bot.sannysoft.com \n
-            https://browserleaks.com/ \n
-            https://bot.incolumitas.com/ \n
-            https://fingerprintjs.github.io/fingerprintjs/ \n
-            https://antoinevastel.com/bots/ \n
-            https://www.google.com/recaptcha/api2/demo \n
-            https://recaptcha-demo.appspot.com/ \n          
-            Site check bypass reCAPTCHA - https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox-explicit.php
+            Disable or enable javascript detection - https://www.enable-javascript.com \n
+            Anti-bot detection - https://www.browserscan.net/bot-detection or https://bot.sannysoft.com \n
+            Anti-bot detection by cloudflare - https://nowsecure.nl/ \n
+            fingerprintjs detection - https://fingerprintjs.github.io/fingerprintjs/ \n
+            reCAPTCHA demo - https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox-explicit.php
         """
         )
 
