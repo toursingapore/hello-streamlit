@@ -961,8 +961,8 @@ def run():
                             )
                         if user_input_load_img:
                             options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl                            
-                        if user_input_anti_bot:                    
-                            #Cụm Disabling the Automation Indicator WebDriver Flags để bypass detect selenium browser
+                        if user_input_anti_bot:  
+                            #B1;Bypass anti-bot - Disabling the Automation Indicator WebDriver Flags
                             #Adding argument to disable the AutomationControlled flag 
                             options.add_argument("--disable-blink-features=AutomationControlled")                     
                             #Exclude the collection of enable-automation switches 
@@ -992,6 +992,7 @@ def run():
 
                         driver = get_driver()
                         if user_input_anti_bot:
+                            #B2; Bypass anti-bot - thực hiện js code in console tab để setup - navigator.webdriver = false
                             # Changing the property of the navigator value for webdriver to undefined 
                             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => false})") #tương đương set value navigator.webdriver = false để hide value là webdriver đi
                             # Setting user agent iteratively as Chrome 108 and 107 
@@ -1003,7 +1004,7 @@ def run():
                             st.write(f'navigator.platform = {driver.execute_script("return navigator.platform;")}') #tương đương check command in console log: navigator.webdriver
                             st.write(f'navigator.vendor = {driver.execute_script("return navigator.vendor;")}') #tương đương check command in console log: navigator.webdriver
 
-                            # Apply stealth settings to the driver to bypass fingerprints
+                            #B3; Bypass anti-bot - Apply stealth settings to the driver to bypass fingerprints
                             stealth(
                                 driver=driver,
                                 user_agent=user_agent,
@@ -1017,7 +1018,7 @@ def run():
                             )
                         driver.get(website) #driver.get("https://vnexpress.net")
 
-                        #Random delay rất quan trong - đây là yếu tố chính site check để biết bot or not
+                        #B4; Bypass anti-bot - Random delay rất quan trong - đây là yếu tố chính bị site check và biết là bot or not vì human thời gian delay ko thể giống nhau được, chỉ có bot thời gian delay mới như nhau
                         def random_delay(min_delay=1, max_delay=3):
                             time.sleep(random.uniform(min_delay, max_delay))
 
