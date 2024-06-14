@@ -1048,6 +1048,7 @@ def run():
                                     st.image(temp_jpg_path)
 
                                     #B2; Click button to display all images in reCAPTCHA
+                                    random_delay(2, 5)
                                     all_iframes = driver.find_elements(By.XPATH, '//iframe')
                                     st.write(f'Total iframe found: {len(all_iframes)}')
                                     #for child_frame in all_iframes:
@@ -1057,9 +1058,11 @@ def run():
                                     #        st.write(child_frame_src)
 
                                     #B3; Wait iframe 1 ready and Switch to it
+                                    random_delay(2, 5)
                                     iframe_element = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/api2/anchor")]')
                                     if iframe_element:
                                         #Switch to the first iframe
+                                        random_delay(2, 5)
                                         driver.switch_to.frame(iframe_element)
                                         st.write('Accessed iframe 1')
 
@@ -1076,6 +1079,7 @@ def run():
                                         driver.switch_to.default_content()
 
                                         #B4; Wait iframe 2 ready and Switch to it
+                                        random_delay(2, 5)
                                         WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/enterprise/bframe")]')))
                                         st.write('Accessed iframe 2')
                                         class_image_select = driver.find_element(By.XPATH, '//*[@id="rc-imageselect"]//strong').text
