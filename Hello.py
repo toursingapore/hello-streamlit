@@ -1003,6 +1003,10 @@ def run():
                             )
                         driver.get(website) #driver.get("https://vnexpress.net")
 
+                        # Function to add random delay
+                        def random_delay(min_delay=1, max_delay=3):
+                            time.sleep(random.uniform(min_delay, max_delay))
+
                         def wait_for_page_load(driver): 
                             return driver.execute_script('return document.readyState') == 'complete'             
                         
@@ -1051,6 +1055,7 @@ def run():
                                         st.write('Accessed iframe 1')
 
                                         #Click by JS 
+                                        random_delay(2, 5)                                        
                                         driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-anchor"]'))))
 
                                         #save screenshot                      
@@ -1066,8 +1071,9 @@ def run():
                                         st.write('Accessed iframe 2')
                                         class_image_select = driver.find_element(By.XPATH, '//*[@id="rc-imageselect"]//strong').text
                                         st.write(f"Select images - {class_image_select}")
-
+                                        
                                         #Click audio
+                                        random_delay(2, 5)
                                         driver.find_element(By.XPATH, '//button[contains(@id, "audio")]').click()
 
                                         #save screenshot                      
