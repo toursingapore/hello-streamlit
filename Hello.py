@@ -909,7 +909,7 @@ def run():
         with checks[1]:
             user_input_load_img = st.checkbox("Disable loading images")            
         with checks[2]:
-            user_input_anti_bot = st.checkbox("Bypass to detect anti-bot")
+            user_input_anti_bot = st.checkbox("Bypass anti-bot & cloudflare")
         with checks[3]:
             user_input_bypass_recaptcha = st.checkbox("Bypass reCAPTCHA v2")            
 
