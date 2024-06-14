@@ -993,6 +993,7 @@ def run():
                             st.write(f'navigator.userAgent = {driver.execute_script("return navigator.userAgent;")}')
                             st.write(f'navigator.webdriver = {driver.execute_script("return navigator.webdriver;")}') #tương đương check command in console log: navigator.webdriver
                             st.write(f'navigator.platform = {driver.execute_script("return navigator.platform;")}') #tương đương check command in console log: navigator.webdriver
+                            st.write(f'navigator.vendor = {driver.execute_script("return navigator.vendor;")}') #tương đương check command in console log: navigator.webdriver
 
                             # Apply stealth settings to the driver to bypass fingerprints
                             stealth(
@@ -1001,7 +1002,7 @@ def run():
                                 languages=["en-US", "en"],
                                 vendor="Google Inc.",
                                 platform="Win32",
-                                webgl_vendor="Intel Inc.",
+                                webgl_vendor="Google Inc.",
                                 renderer="Intel Iris OpenGL Engine",
                                 fix_hairline=True,
                                 run_on_insecure_origins=False,
