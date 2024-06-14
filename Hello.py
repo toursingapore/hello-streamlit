@@ -992,7 +992,7 @@ def run():
                             st.write(driver.execute_script("return navigator.userAgent;")) 
                             st.write(f'navigator.webdriver={driver.execute_script("return navigator.webdriver;")}') #tương đương check command in console log: navigator.webdriver
 
-                            # Apply stealth settings to the driver
+                            # Apply stealth settings to the driver to bypass fingerprints
                             stealth(
                                 driver=driver,
                                 #user_agent=user_agent,
@@ -1006,7 +1006,7 @@ def run():
                             )
                         driver.get(website) #driver.get("https://vnexpress.net")
 
-                        # Function to add random delay
+                        #Random delay rất quan trong - đây là yếu tố chính site check để biết bot or not
                         def random_delay(min_delay=1, max_delay=3):
                             time.sleep(random.uniform(min_delay, max_delay))
 
