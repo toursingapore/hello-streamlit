@@ -1154,6 +1154,10 @@ def run():
 
                                 else:
                                     st.write("Not find reCAPTCHA in website")
+                                    #save screenshot                      
+                                    time.sleep(5)
+                                    driver.save_screenshot(temp_jpg_path)
+                                    st.image(temp_jpg_path)                                    
                             
                             else:
                                 st.write("### CONTENT BODY BELOW")
