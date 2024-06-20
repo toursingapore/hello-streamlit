@@ -1010,9 +1010,7 @@ def run():
                                 fix_hairline=True,
                                 run_on_insecure_origins=False,
                             )
-                        #driver.get(website) #driver.get("https://vnexpress.net")
-                        driver.get(f'https://api.scrape.do?token=1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6&url={website}')
-                        
+                        driver.get(website) #driver.get("https://vnexpress.net")
 
                         #B5; Bypass anti-bot - Random delay rất quan trong - đây là yếu tố chính bị site check và biết là bot or not vì human thời gian delay ko thể giống nhau được, chỉ có bot thời gian delay mới như nhau
                         def random_delay(min_delay=1, max_delay=3):
