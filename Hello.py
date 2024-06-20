@@ -1114,7 +1114,6 @@ def run():
 
                                 else:
                                     st.write("Not find reCAPTCHA in website")
-
                             
                             else:
                                 st.write("### CONTENT BODY BELOW")
