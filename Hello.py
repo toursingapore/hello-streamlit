@@ -1042,14 +1042,6 @@ def run():
                                 if 'g-recaptcha' in html:
                                     st.write("Found reCAPTCHA in website")
 
-                                    from impulse import Solver
-                                    #driver = webdriver.Chrome()
-                                    #driver.get("http://democaptcha.com/demo-form-eng/hcaptcha.html")
-                                    solver = Solver(driver)
-                                    result = solver.run()
-                                    st.write(result)
-
-                                    _ = """
                                     #save screenshot                        
                                     time.sleep(10)
                                     driver.save_screenshot(temp_jpg_path)
@@ -1119,7 +1111,6 @@ def run():
                                                                         
                                     else:
                                         st.write(iframe_element)
-                                    """
 
                                 else:
                                     st.write("Not find reCAPTCHA in website")
