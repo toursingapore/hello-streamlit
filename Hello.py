@@ -1078,7 +1078,7 @@ def run():
                                         #Switch back off first iframe to website (mỗi lần vào iframe phải switch back default rồi mới vào iframe khác được)
                                         driver.switch_to.default_content()
 
-                                        #B4; Wait iframe available and Switch to the second iframe
+                                        #B4; Switch to the second iframe
                                         random_delay(2, 5)
                                         WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/enterprise/bframe")]')))                                       
                                         st.write('Accessed iframe 2')
