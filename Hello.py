@@ -981,7 +981,8 @@ def run():
                         ]
                         user_agent = random.choice(user_agents)
                         options.add_argument(f"user-agent={user_agent}")
-                                              
+
+                        # https://www.scrapingbee.com/blog/selenium-python/ ; chưa được, xem dùng seleniumwire here
                         #proxy = '23.23.23.23:3128'
                         #SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
                         #sessionId = 1234 #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
