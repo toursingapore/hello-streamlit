@@ -2252,7 +2252,7 @@ def run():
                                             if line_EventStream:
                                                 #st.write(line_EventStream)
                                                 if 'process_completed' in line_EventStream:
-                                                    st.write('Found process_completed!')
+                                                    #st.write('Found process_completed!')
                                                     pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.[a-zA-Z0-9]+"'
                                                     match = re.search(pattern, line_EventStream)
                                                     if match:
@@ -2266,7 +2266,6 @@ def run():
                                                         break                                            
                                     
                                     #Default image to get is 768x1024
-                                    st.write('toi day')
                                     st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")                
 
                         except Exception as e:
