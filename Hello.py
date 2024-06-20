@@ -1673,7 +1673,7 @@ def run():
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]
 
-            user_input_prompt = st.text_input("Enter prompt", value='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', placeholder='instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain') 
+            user_input_prompt = st.text_input("Enter prompt", value='instagram photo, portrait photo of a man img, colorful, perfect face, natural skin, hard shadows, film grain', placeholder='instagram photo, portrait photo of a man img, colorful, perfect face, natural skin, hard shadows, film grain') 
             user_input_nagativePrompt = st.text_input("Enter negative prompt", value='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch, watermark, istock, icons, logo, gettyimage), open mouth', placeholder='(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch, watermark, istock, icons, logo, gettyimage), open mouth') 
 
             #use_proxy = st.checkbox("Use proxy")
@@ -1769,7 +1769,7 @@ def run():
                                         st.write(user_input)
                                         st.image(user_input)
                                         url_image_model = user_input            
-                                        #prompt = "instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain", #Default Prompt
+                                        #prompt = "instagram photo, portrait photo of a man img, colorful, perfect face, natural skin, hard shadows, film grain", #Default Prompt
                                         prompt = user_input_prompt
                                         #negativePrompt = "(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch, watermark, istock, icons, logo, gettyimage), open mouth", #Default Negative prompt
                                         negativePrompt = user_input_nagativePrompt
@@ -1910,7 +1910,7 @@ def run():
                                                         #'mime_type': None,
                                                     #},                                                
                                                 ],
-                                                #'instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain', #Default Prompt
+                                                #'instagram photo, portrait photo of a man img, colorful, perfect face, natural skin, hard shadows, film grain', #Default Prompt
                                                 prompt,
                                                 #'(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch, watermark, istock, icons, logo, gettyimage), open mouth', #Default Negative prompt
                                                 negativePrompt,
@@ -2021,7 +2021,7 @@ def run():
                                                 proxies=proxies,
                                                 verify=False, #skips SSL verification  - nó vẫn phát hiện được cùng headers, xem lại
                                             )
-                                            st.write(response.text)                                                                                  
+                                            #st.write(response.text) #show {"event_id":"f2e18c66426c40c5a1121e4eef7a5130"}
 
                                         else:
                                             response = scraper.post(
