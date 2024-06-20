@@ -2252,7 +2252,7 @@ def run():
                                             if line_EventStream:
                                                 #st.write(line_EventStream)
                                                 if 'process_completed' in line_EventStream:
-                                                    #st.write('Found process_completed!')
+                                                    st.write('Found process_completed!')
                                                     pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
                                                     match = re.search(pattern, line_EventStream)
                                                     if match:
