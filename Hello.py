@@ -1642,6 +1642,7 @@ def run():
         #st.write("You selected:", add_radio)
         if add_radio == "Generate image from prompt":
             user_input = st.text_input("Enter prompt", value='An astronaut riding a horse on the moon.', placeholder='your prompt') 
+        
         elif add_radio == "Generate image from reference image":
             st.info("""
                     Enter: reference_image_URL \n
@@ -2030,7 +2031,7 @@ def run():
                                                 #cookies=cookies,
                                                 #headers=headers,                                                                    
                                             )
-                                            st.write(response.text)
+                                            #st.write(response.text) #show {"event_id":"f2e18c66426c40c5a1121e4eef7a5130"}
 
 
                                         #B3; Use Cloudscraper tương tự requests read event-stream dễ dàng
