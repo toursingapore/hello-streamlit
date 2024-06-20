@@ -1622,8 +1622,7 @@ def run():
                 #proxies=proxies,
                 #verify=False, # skips SSL verification
             )
-            st.write(response.text)
-
+            st.write(response.text) #vd {"event_id":"f2e18c66426c40c5a1121e4eef7a5130"}
 
     with st.container(border=True): 
         st.write(
