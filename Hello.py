@@ -1101,11 +1101,41 @@ def run():
                                         audio_url = driver.find_element(By.XPATH, '//*[@id="rc-audio"]/div[7]/a').get_attribute('href')
                                         st.write(audio_url)
 
+
+                                        import assemblyai as aai
+
+                                        # Replace with your API key
+                                        aai.settings.api_key = "f347c56fac5b4d9199aa963c818aa34f"
+
+                                        # URL of the file to transcribe
+                                        #FILE_URL = "https://github.com/AssemblyAI-Examples/audio-examples/raw/main/20230607_me_canadian_wildfires.mp3"
+                                        FILE_URL = audio_url
+
+                                        transcriber = aai.Transcriber()
+                                        transcript = transcriber.transcribe(FILE_URL)
+
+                                        audio_text = ''
+                                        if transcript.status == aai.TranscriptStatus.error:
+                                            st.write(transcript.error)
+                                        else:
+                                            audio_text = transcript.text
+                                            st.write(audio_text)
+
+                                        #Click by JS 
+                                        random_delay(2, 5)
+                                        driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="audio-response"]'))))
+                                        random_delay(2, 5)
+                                        driver.find_element(By.XPATH, '//*[@id="audio-response"]').sendKeys(audio_text)
+
+                                        #Click verify
+                                        random_delay(2, 5)
+                                        driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-verify-button"]'))))
+
+
                                         #save screenshot                      
                                         time.sleep(5)
                                         driver.save_screenshot(temp_jpg_path)
                                         st.image(temp_jpg_path)
-
 
                                         #Switch back to website
                                         driver.switch_to.default_content()
