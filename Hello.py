@@ -1042,6 +1042,13 @@ def run():
                                 if 'g-recaptcha' in html:
                                     st.write("Found reCAPTCHA in website")
 
+                                    #driver = webdriver.Chrome()
+                                    #driver.get("http://democaptcha.com/demo-form-eng/hcaptcha.html")
+                                    solver = Solver(driver)
+                                    result = solver.run()
+                                    st.write(result)
+
+                                    _ = """
                                     #save screenshot                        
                                     time.sleep(10)
                                     driver.save_screenshot(temp_jpg_path)
@@ -1108,6 +1115,8 @@ def run():
 
                                         #Switch back to website
                                         driver.switch_to.default_content()
+                                    
+                                    """
                                     else:
                                         st.write(iframe_element)
 
