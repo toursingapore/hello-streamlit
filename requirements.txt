@@ -48,4 +48,4 @@ websocket-client
 torrequest
 selenium-stealth==1.0.6
 git+https://github.com/MainSilent/Impulse.git
-python-utils
+git+https://github.com/ultralytics/yolov5.git
