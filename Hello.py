@@ -1098,7 +1098,7 @@ def run():
 
                                         #Extract audio link
                                         random_delay(5, 10)
-                                        audio_url = driver.find_element(By.XPATH, '//*[@id="rc-audio"]/div[7]/a/@href')
+                                        audio_url = driver.find_element(By.XPATH, '//*[@id="rc-audio"]/div[7]/a/@href').get_attribute('href')
                                         st.write(audio_url)
 
                                         #save screenshot                      
