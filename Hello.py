@@ -938,8 +938,6 @@ def run():
                         #Cụm bypass message-"your connection is not private"
                         options.add_argument('--ignore-ssl-errors=yes')
                         options.add_argument('--ignore-certificate-errors')
-                        options.add_argument('--allow-insecure-localhost')
-                        options.add_argument('--disable-site-isolation-trials')
                         #Cụm Disable web security and allow access it
                         options.add_argument("--disable-web-security")
                         options.add_argument("--allow-running-insecure-content")                    
@@ -983,17 +981,13 @@ def run():
                         ]
                         user_agent = random.choice(user_agents)
                         options.add_argument(f"user-agent={user_agent}")
-
-                        from selenium.webdriver.common.proxy import Proxy, ProxyType
-
+                                              
                         #proxy = '23.23.23.23:3128'
-                        SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
-                        sessionId = 1234 #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
-                        super = 'true'
-                        regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
-                        proxy_string = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"
-                        options.add_argument('--proxy-server=http://' + proxy_string)
-
+                        #SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                        #sessionId = 1234 #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
+                        #super = 'true'
+                        #regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
+                        #proxy = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"
                         #options.add_argument('--proxy-server='+proxy) #use proxy with --proxy-server=23.23.23.23:3128
                         #options.add_argument('--proxy-server=socks5://'+proxy) #use socks5 with --proxy-server=socks5://23.23.23.23:3128
 
