@@ -2253,21 +2253,20 @@ def run():
                                                 #st.write(line_EventStream)
                                                 if 'process_completed' in line_EventStream:
                                                     #st.write('Found process_completed!')
-                                                    pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.[a-f]{3}"'
+                                                    pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
                                                     match = re.search(pattern, line_EventStream)
                                                     if match:
                                                         # Extract the matched string and remove the surrounding quotes
                                                         path = match.group(0).strip('"')
                                                         #st.write(path)
                                                         url_image_process_completed = '\n'.join(f'{url_space}/file={path}')
-                                                        st.write(url_image_process_completed)                                                        
                                                         break
                                                     else:
                                                         st.write(line_EventStream) 
                                                         break                                            
                                     
                                     #Default image to get is 768x1024
-                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")                
+                                    //st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")                
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
