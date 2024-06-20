@@ -48,4 +48,4 @@ websocket-client
 torrequest
 selenium-stealth==1.0.6
 git+https://github.com/MainSilent/Impulse.git
-datasets
+dataset-utils
