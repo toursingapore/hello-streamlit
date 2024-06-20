@@ -1018,9 +1018,9 @@ def run():
                                 fix_hairline=True,
                                 run_on_insecure_origins=False,
                             )
-                        driver.get(website) #driver.get("https://vnexpress.net")
+                        #driver.get(website) 
+                        driver.get("'http://ip-api.com/json'")
                         
-
                         #B5; Bypass anti-bot - Random delay rất quan trong - đây là yếu tố chính bị site check và biết là bot or not vì human thời gian delay ko thể giống nhau được, chỉ có bot thời gian delay mới như nhau
                         def random_delay(min_delay=1, max_delay=3):
                             time.sleep(random.uniform(min_delay, max_delay))
