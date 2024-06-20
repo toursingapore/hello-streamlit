@@ -966,6 +966,7 @@ def run():
                             options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên
                             options.add_argument("--mute-audio")
                             options.add_argument("--start-maximized")
+                            #options.add_argument("--window-size=1920,1200") #Define the window size of the browser
                             options.add_argument("--disable-extensions")                            
 
                         user_agents = [
@@ -1011,6 +1012,7 @@ def run():
                                 run_on_insecure_origins=False,
                             )
                         driver.get(website) #driver.get("https://vnexpress.net")
+                        
 
                         #B5; Bypass anti-bot - Random delay rất quan trong - đây là yếu tố chính bị site check và biết là bot or not vì human thời gian delay ko thể giống nhau được, chỉ có bot thời gian delay mới như nhau
                         def random_delay(min_delay=1, max_delay=3):
