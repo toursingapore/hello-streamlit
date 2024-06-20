@@ -1075,13 +1075,16 @@ def run():
                                         driver.save_screenshot(temp_jpg_path)
                                         st.image(temp_jpg_path)
 
-                                        #Switch back to website (mỗi lần vào iframe phải switch back default rồi mới vào iframe khác được)
+                                        #Switch back off first iframe to website (mỗi lần vào iframe phải switch back default rồi mới vào iframe khác được)
                                         driver.switch_to.default_content()
 
-                                        #B4; Wait iframe 2 ready and Switch to it
+                                        #B4; Wait iframe available and Switch to the second iframe
                                         random_delay(2, 5)
-                                        WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/enterprise/bframe")]')))
+                                        #WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[contains(@src, "recaptcha/enterprise/bframe")]')))
+                                        iframe_element_2 = driver.find_element(By.XPATH, '//iframe[contains(@src, "recaptcha/enterprise/bframe')
+                                        driver.switch_to.frame(iframe_element_2)                                        
                                         st.write('Accessed iframe 2')
+
                                         class_image_select = driver.find_element(By.XPATH, '//*[@id="rc-imageselect"]//strong').text
                                         st.write(f"Select images - {class_image_select}")
                                         
@@ -1089,13 +1092,8 @@ def run():
                                         random_delay(2, 5)
                                         driver.find_element(By.XPATH, '//button[contains(@id, "audio")]').click()
 
-                                        #save screenshot                      
-                                        time.sleep(5)
-                                        driver.save_screenshot(temp_jpg_path)
-                                        st.image(temp_jpg_path)
-
                                         #Extract audio link
-                                        random_delay(2, 5)
+                                        random_delay(5, 10)
                                         audio_url = driver.find_element(By.XPATH, '//*[@id="rc-audio"]/div[7]/a/@href')
                                         st.write(audio_url)
 
