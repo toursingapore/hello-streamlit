@@ -2253,7 +2253,7 @@ def run():
                                                 #st.write(line_EventStream)
                                                 if 'process_completed' in line_EventStream:
                                                     st.write('Found process_completed!')
-                                                    pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.png"'
+                                                    pattern = r'"/tmp/gradio/[a-f0-9]{40}/image\.[a-zA-Z0-9]+"'
                                                     match = re.search(pattern, line_EventStream)
                                                     if match:
                                                         # Extract the matched string and remove the surrounding quotes
