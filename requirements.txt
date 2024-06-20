@@ -47,4 +47,4 @@ huggingface_hub
 websocket-client
 torrequest
 selenium-stealth==1.0.6
-Captcha-Impulse
+git+https://github.com/MainSilent/Impulse.git
