@@ -1115,10 +1115,10 @@ def run():
 
                                         #Switch back to website
                                         driver.switch_to.default_content()
-                                    
-                                    """
+                                                                        
                                     else:
                                         st.write(iframe_element)
+                                    """
 
                                 else:
                                     st.write("Not find reCAPTCHA in website")
