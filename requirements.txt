@@ -47,20 +47,3 @@ huggingface_hub
 websocket-client
 torrequest
 selenium-stealth==1.0.6
-git+https://github.com/MainSilent/Impulse.git
-# YOLOv5 requirements
-# Usage: pip install -r requirements.txt
-# Base ------------------------------------------------------------------------
-gitpython>=3.1.30
-opencv-python>=4.1.1
-pillow>=10.3.0
-psutil  # system resources
-PyYAML>=5.3.1
-scipy>=1.4.1
-thop>=0.1.1  # FLOPs computation
-tqdm>=4.64.0
-# Plotting --------------------------------------------------------------------
-seaborn>=0.11.0
-# Deploy ----------------------------------------------------------------------
-setuptools>=65.5.1 # Snyk vulnerability fix
-# tritonclient[all]~=2.24.0
