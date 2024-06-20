@@ -1042,6 +1042,7 @@ def run():
                                 if 'g-recaptcha' in html:
                                     st.write("Found reCAPTCHA in website")
 
+                                    from impulse import Solver
                                     #driver = webdriver.Chrome()
                                     #driver.get("http://democaptcha.com/demo-form-eng/hcaptcha.html")
                                     solver = Solver(driver)
