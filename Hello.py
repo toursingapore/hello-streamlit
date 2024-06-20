@@ -2266,7 +2266,8 @@ def run():
                                                         break                                            
                                     
                                     #Default image to get is 768x1024
-                                    //st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")                
+                                    st.write('toi day')
+                                    st.image(url_image_process_completed, caption="Processed image", use_column_width="auto", output_format="JPEG")                
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
