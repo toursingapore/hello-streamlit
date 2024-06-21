@@ -988,6 +988,7 @@ def run():
                         regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
                         proxy = f"http://1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"                        
                         options.add_argument('--proxy-server=http://%s' % proxy)
+                        options.add_argument('--proxy-server=https://%s' % proxy)
 
 
 
