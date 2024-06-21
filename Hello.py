@@ -966,7 +966,7 @@ def run():
                             options.add_argument("--window-size=800,600") #Define the window size of the browser - window-size=1366,625 or 800,600
                             #options.add_argument("--start-maximized")
                             #options.add_argument("--start-fullscreen") #View toàn màn hinh và dùng kèm với --start-maximized ở trên
-                            options.add_argument("--disable-extensions")
+                            #options.add_argument("--disable-extensions")
                             #options.add_extension("D:\\extension_3_1_3_0.crx") #add extension .crx                     
 
                         user_agents = [
@@ -985,15 +985,76 @@ def run():
 
                         from selenium.webdriver.common.proxy import Proxy, ProxyType
                         # Proxy details
-                        proxy = 'http://1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6:customHeaders=false@proxy.scrape.do:8080'
+                        proxy_host = 'proxy.scrapeops.io'
+                        proxy_port = '5353'
+                        proxy_user = 'scrapeops'
+                        proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
 
-                        # Set up Proxy
-                        proxy_obj = Proxy()
-                        proxy_obj.proxy_type = ProxyType.MANUAL
-                        proxy_obj.http_proxy = proxy
-                        proxy_obj.ssl_proxy = proxy
-                        options.Proxy = proxy_obj
-                        options.add_argument('--proxy-server=%s' % proxy)
+                        # Create a Chrome extension to handle proxy authentication
+                        def create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass):
+                            manifest_json = """
+                            {
+                                "version": "1.0.0",
+                                "manifest_version": 2,
+                                "name": "Chrome Proxy",
+                                "permissions": [
+                                    "proxy",
+                                    "tabs",
+                                    "unlimitedStorage",
+                                    "storage",
+                                    "<all_urls>",
+                                    "webRequest",
+                                    "webRequestBlocking"
+                                ],
+                                "background": {
+                                    "scripts": ["background.js"]
+                                },
+                                "minimum_chrome_version":"22.0.0"
+                            }
+                            """
+
+                            background_js = f"""
+                            var config = {{
+                                    mode: "fixed_servers",
+                                    rules: {{
+                                    singleProxy: {{
+                                        scheme: "http",
+                                        host: "{proxy_host}",
+                                        port: parseInt({proxy_port})
+                                    }},
+                                    bypassList: ["localhost"]
+                                    }}
+                                }};
+                            chrome.proxy.settings.set({{value: config, scope: "regular"}}, function() {{}});
+                            function callbackFn(details) {{
+                                return {{
+                                    authCredentials: {{
+                                        username: "{proxy_user}",
+                                        password: "{proxy_pass}"
+                                    }}
+                                }};
+                            }}
+                            chrome.webRequest.onAuthRequired.addListener(
+                                        callbackFn,
+                                        {{urls: ["<all_urls>"]}},
+                                        ['blocking']
+                            );
+                            """
+
+                            pluginfile = 'proxy_auth_plugin.zip'
+
+                            with zipfile.ZipFile(pluginfile, 'w') as zp:
+                                zp.writestr("manifest.json", manifest_json)
+                                zp.writestr("background.js", background_js)
+
+                            return pluginfile
+
+                        proxy_auth_plugin_path = create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass)
+
+                        # Set up Chrome options
+                        options = webdriver.ChromeOptions()
+                        options.add_extension(proxy_auth_plugin_path)
+
 
 
 
