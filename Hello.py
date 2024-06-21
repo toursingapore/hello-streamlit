@@ -1118,7 +1118,7 @@ def run():
                                             st.write(transcript.error)
                                         else:
                                             audio_text = transcript.text
-                                            st.write(audio_text)
+                                            st.write(f'audio_text: {audio_text}')
 
                                         #Click by JS 
                                         random_delay(2, 5)
