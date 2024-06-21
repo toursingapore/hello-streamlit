@@ -1053,7 +1053,7 @@ def run():
                                 return extension
 
 
-                            # Check if the file exists
+                            # Check if the file extension exists
                             proxies_extension = ''
                             if os.path.exists(extension_zip_file_path):
                                 st.write(f"{extension_zip_file_path} already exists.")
