@@ -1071,8 +1071,13 @@ def run():
                             # Construct the URL for the extension download
                             URL = f'https://clients2.google.com/service/update2/crx?response=redirect&x=id%3D{currentEXTId}%26uc&prodversion=32'
 
-                            # Send a GET request to the URL
-                            response = requests.get(URL, stream=True)
+                            # Define headers to mimic a browser request
+                            headers = {
+                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                            }
+
+                            # Send a GET request to the URL with headers
+                            response = requests.get(URL, headers=headers, stream=True)                            
 
                             # Check if the request was successful
                             if response.status_code == 200:
