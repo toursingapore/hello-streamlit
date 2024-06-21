@@ -1133,6 +1133,7 @@ def run():
                                             .click_and_hold()\
                                             .pause(1)\
                                             .send_keys(f"{audio_text}")\
+                                            .send_keys(Keys.ENTER)\
                                             .perform()
                                         ActionBuilder(driver).clear_actions() #Release All Actions
 
@@ -1142,13 +1143,13 @@ def run():
                                         st.image(temp_jpg_path)
 
                                         #Click verify
-                                        random_delay(2, 5)
-                                        driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-verify-button"]'))))
+                                        #random_delay(2, 5)
+                                        #driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-verify-button"]'))))
 
                                         #save screenshot                      
-                                        time.sleep(5)
-                                        driver.save_screenshot(temp_jpg_path)
-                                        st.image(temp_jpg_path)
+                                        #time.sleep(5)
+                                        #driver.save_screenshot(temp_jpg_path)
+                                        #st.image(temp_jpg_path)
 
                                         #Switch back to website
                                         driver.switch_to.default_content()
