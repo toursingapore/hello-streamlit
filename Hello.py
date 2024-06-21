@@ -1056,10 +1056,10 @@ def run():
                                 return extension
                                 
                             # Proxy details
-                            proxy_host = 'proxy.scrape.do'
-                            proxy_port = '8080'
-                            proxy_user = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
-                            proxy_pass = 'customHeaders=false&render=true' 
+                            proxy_host = 'proxy-server.scraperapi.com'
+                            proxy_port = '8001'
+                            proxy_user = 'scraperapi'
+                            proxy_pass = '0c8cc4d8101c74aa7c5f7d363ea1e476'
                             proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                          
                             options.add_extension(proxies_extension) #add chrome extension
 
