@@ -48,4 +48,4 @@ websocket-client
 torrequest
 selenium-stealth==1.0.6
 assemblyai
-selenium-wire
+selenium-wire==5.1.0
