@@ -983,8 +983,17 @@ def run():
                         options.add_argument(f"user-agent={user_agent}") 
 
 
+                        from selenium.webdriver.common.proxy import Proxy, ProxyType
+                        # Proxy details
                         proxy = 'http://scrapeops:c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk@proxy.scrapeops.io:5353'
-                        options.add_argument('--proxy-server=' + proxy)
+
+                        # Set up Proxy
+                        proxy_obj = Proxy()
+                        proxy_obj.proxy_type = ProxyType.MANUAL
+                        proxy_obj.http_proxy = proxy
+                        proxy_obj.ssl_proxy = proxy
+                        options.Proxy = proxy_obj
+                        options.add_argument('--proxy-server=%s' % proxy)
 
 
 
