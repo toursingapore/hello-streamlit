@@ -983,7 +983,7 @@ def run():
                         options.add_argument(f"user-agent={user_agent}") 
 
 
-                        # Create a Chrome extension to handle proxy authentication - https://gist.github.com/rajat-np/5d901702a33e7b4b5132b1acee5d778e
+                        #Chrome default ko cho nhập user, pass auth proxy nên phải Create a Chrome extension to handle proxy authentication - https://github.com/Smartproxy/Selenium-proxy-authentication - HD https://youtu.be/T3l9V8LTwBo?si=fx2QqAjLGw-kzuOb
                         from selenium.webdriver.common.proxy import Proxy, ProxyType
                         import zipfile
 
@@ -1040,13 +1040,10 @@ def run():
                                         ['blocking']
                             );
                             """ % (endpoint, port, username, password)
-
                             extension = '/tmp/proxies_extension.zip'
-
                             with zipfile.ZipFile(extension, 'w') as zp:
                                 zp.writestr("manifest.json", manifest_json)
                                 zp.writestr("background.js", background_js)
-
                             return extension
 
                         # Proxy details
@@ -1303,7 +1300,7 @@ def run():
                         #Get list of files im temp folder, then Delete all temp files
                         import glob
                         st.write(glob.glob('/tmp/*.*'))                    
-                        for f in glob.glob('/tmp/*.png'):
+                        for f in glob.glob('/tmp/*.*'):
                             os.remove(f)                                                                
 
     st.divider()
