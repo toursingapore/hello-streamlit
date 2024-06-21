@@ -983,8 +983,8 @@ def run():
                         options.add_argument(f"user-agent={user_agent}") 
 
 
-                        proxy = 'http://scrapeops:c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk@proxy.scrapeops.io:5353'                        
-                        options.add_argument('--proxy-server='+proxy) 
+                        proxy = 'http://scrapeops:c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk@proxy.scrapeops.io:5353'
+                        options.add_argument('--proxy-server=' + proxy)
 
 
 
