@@ -1105,7 +1105,6 @@ def run():
 
                                         #B5; Use assemblyai to convert audio or speech to text via API
                                         aai.settings.api_key = ASSEMBLYAI_API_KEY 
-
                                         # URL of the file to transcribe
                                         #FILE_URL = "https://github.com/AssemblyAI-Examples/audio-examples/raw/main/20230607_me_canadian_wildfires.mp3"
                                         FILE_URL = audio_url
