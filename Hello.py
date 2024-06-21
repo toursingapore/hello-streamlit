@@ -987,6 +987,13 @@ def run():
                         from selenium.webdriver.common.proxy import Proxy, ProxyType
                         import zipfile
 
+                        # Proxy details
+                        proxy_host = 'proxy.scrapeops.io'
+                        proxy_port = '5353'
+                        proxy_user = 'scrapeops'
+                        proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk'
+
+                        # Create a Chrome extension to handle proxy authentication
                         def create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass):
                             manifest_json = """
                             {
@@ -1045,14 +1052,7 @@ def run():
 
                             return pluginfile
 
-                        # Proxy details
-                        proxy_host = 'proxy.scrapeops.io'
-                        proxy_port = '5353'
-                        proxy_user = 'scrapeops'
-                        proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
-
                         proxy_auth_plugin_path = create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass)
-
                         options.add_extension(proxy_auth_plugin_path)
 
 
