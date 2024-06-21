@@ -1060,14 +1060,14 @@ def run():
                                 proxies_extension = extension_zip_file_path
                             else:
                                 st.write(f"{extension_zip_file_path} not exists and create a chrome extension zip file")
-                                proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                                
                                 
-                            # Proxy details
-                            proxy_host = 'proxy.scrapeops.io'
-                            proxy_port = '5353'
-                            proxy_user = 'scrapeops'
-                            proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459' #or use: c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk
-                            options.add_extension(proxies_extension)
+                                # Proxy details
+                                proxy_host = 'proxy.scrapeops.io'
+                                proxy_port = '5353'
+                                proxy_user = 'scrapeops'
+                                proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459' #or use: c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk
+                                proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)
+                                options.add_extension(proxies_extension)
 
 
                         def get_driver():
