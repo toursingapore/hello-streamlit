@@ -987,9 +987,7 @@ def run():
                         super = 'true'
                         regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
                         proxy = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"                        
-                        options.add_argument('--proxy-server=http://%s' % proxy)
-                        options.add_argument('--proxy-server=https://%s' % proxy)
-
+                        options.add_argument('--proxy-server='+proxy)
 
 
 
