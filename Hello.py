@@ -65,6 +65,7 @@ from youtube_transcript_api.formatters import SRTFormatter
 import openai
 import httpx 
 import websocket
+import assemblyai as aai
 
 LOGGER = get_logger(__name__)
 
@@ -72,6 +73,7 @@ HF_API_TOKEN = "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" #scope for read
 HUB_ULTRALYTICS_API_KEY = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
 LEPTON_API_TOKEN = "Idts8YzDtSJSFXrpOlwbxJr7Y1Gx60Os"
 ROBOFLOW_API_KEY = 'Fh4GjyJACeJLvWa4r2vN'
+ASSEMBLYAI_API_KEY = "f347c56fac5b4d9199aa963c818aa34f"
 
 # Function to authorize credentials
 def authorize_credentials(API_Path):
@@ -1101,10 +1103,8 @@ def run():
                                         st.write(audio_url)
 
 
-                                        import assemblyai as aai
-
-                                        # Replace with your API key
-                                        aai.settings.api_key = "f347c56fac5b4d9199aa963c818aa34f"
+                                        #B5; Use assemblyai to convert audio or speech to text via API
+                                        aai.settings.api_key = ASSEMBLYAI_API_KEY 
 
                                         # URL of the file to transcribe
                                         #FILE_URL = "https://github.com/AssemblyAI-Examples/audio-examples/raw/main/20230607_me_canadian_wildfires.mp3"
