@@ -925,13 +925,6 @@ def run():
                 with st.spinner('Wait for it...'):
                     try:                    
                         time.sleep(5)
-                        def get_driver():
-                            return webdriver.Chrome(
-                                service=Service(
-                                    ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-                                ),
-                                options=options,
-                            )
 
                         #HD config chrome option, hay - https://peter.sh/experiments/chromium-command-line-switches/ or https://www.browserstack.com/docs/automate/selenium/handle-permission-pop-ups#BrowserStack_SDK
                         options = Options()
@@ -987,7 +980,15 @@ def run():
                         user_agent = random.choice(user_agents)
                         options.add_argument(f"user-agent={user_agent}")                      
 
+                        def get_driver():
+                            return webdriver.Chrome(
+                                service=Service(
+                                    ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+                                ),
+                                options=options,
+                            )
                         driver = get_driver()
+                        
                         if user_input_anti_bot:
                             #B3; Bypass anti-bot - thực hiện js code in console tab để setup - navigator.webdriver = false
                             # Changing the property of the navigator value for webdriver to undefined 
