@@ -993,7 +993,7 @@ def run():
 
                             extension_zip_file_path = '/tmp/proxies_extension.zip'
 
-                            #remove file này trước mới được
+                            #Phải remove file này if exist trước mới được, vì mỗi lần nhập auth user,pass nó sẽ nhớ trong extension
                             os.remove(extension_zip_file_path) 
 
                             # Create a Chrome extension to handle proxy authentication
@@ -1056,7 +1056,7 @@ def run():
                             proxy_host = 'proxy.scrape.do'
                             proxy_port = '8080'
                             proxy_user = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
-                            proxy_pass = 'customHeaders=false'
+                            proxy_pass = ''
                             proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                          
                             options.add_extension(proxies_extension) #add chrome extension
 
