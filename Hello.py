@@ -16,7 +16,8 @@ import httplib2
 import os, sys
 from json2table import convert
 
-from selenium import webdriver
+#from selenium import webdriver
+from seleniumwire import webdriver #bản upgrade của selenium ở trên và có thể chức năng proxy with user and pass 
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
