@@ -1043,9 +1043,7 @@ def run():
                                         ['blocking']
                             );
                             """
-
-                            pluginfile = 'proxy_auth_plugin.zip'
-
+                            pluginfile = '/tmp/proxy_auth_plugin.zip'
                             with zipfile.ZipFile(pluginfile, 'w') as zp:
                                 zp.writestr("manifest.json", manifest_json)
                                 zp.writestr("background.js", background_js)
@@ -1300,7 +1298,7 @@ def run():
                         #Get list of files im temp folder, then Delete all temp files
                         import glob
                         #st.write(glob.glob('/tmp/*.png'))                    
-                        for f in glob.glob('/tmp/*.png'):
+                        for f in glob.glob('/tmp/*.*'):
                             os.remove(f)                                                                
 
     st.divider()
