@@ -902,7 +902,7 @@ def run():
             Anti-bot detection - https://www.browserscan.net/bot-detection or https://bot.sannysoft.com \n
             Anti-bot detection by cloudflare - https://nowsecure.nl/ \n
             fingerprintjs detection - https://fingerprintjs.github.io/fingerprintjs/ \n
-            reCAPTCHA demo - https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox-explicit.php
+            reCAPTCHA demo - https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox-explicit.php or https://www.ipinfodb.com
         """
         )
 
