@@ -963,8 +963,10 @@ def run():
                             options.add_experimental_option("useAutomationExtension", False)
                             options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên
                             options.add_argument("--mute-audio")
-                            #options.add_argument("--start-maximized")
-                            options.add_argument("--window-size=1366,625") #Define the window size of the browser - window-size=1366,625 or 800,600
+                            #options.add_argument("--window-size=1366,625") #Define the window size of the browser - window-size=1366,625 or 800,600
+                            options.add_argument("--start-maximized")
+                            options.add_argument("--start-fullscreen")
+                            options.add_argument("--single-process")
                             options.add_argument("--disable-extensions")                            
 
                         user_agents = [
