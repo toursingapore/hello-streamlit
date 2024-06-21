@@ -986,7 +986,9 @@ def run():
                         sessionId = 1234 #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
                         super = 'true'
                         regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
-                        proxy = f"http://1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"                        
+
+                        proxy = f'http://scrapeops:c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk@proxy.scrapeops.io:5353'
+                        
                         options.add_argument('--proxy-server=http://%s' % proxy)
                         options.add_argument('--proxy-server=https://%s' % proxy)
 
