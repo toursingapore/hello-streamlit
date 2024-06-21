@@ -971,7 +971,7 @@ def run():
                             #options.add_argument("--start-maximized")
                             #options.add_argument("--start-fullscreen") #View toàn màn hinh và dùng kèm với --start-maximized ở trên
                             #options.add_argument("--disable-extensions")
-                            #options.add_extension("D:\\extension_3_1_3_0.crx") #add extension .crx                     
+                            #options.add_extension("D:\\extension_3_1_3_0.crx") #add extension .crx or zip file , xem bên dưới                 
 
                         user_agents = [
                             #B2;Bypass anti-bot - random useragent Macintosh - list of user agents here - https://gist.github.com/pzb/b4b6f57144aea7827ae4
@@ -1014,7 +1014,6 @@ def run():
                                     "minimum_chrome_version":"22.0.0"
                                 }
                                 """
-
                                 background_js = """
                                 var config = {
                                         mode: "fixed_servers",
@@ -1027,9 +1026,7 @@ def run():
                                         bypassList: ["localhost"]
                                         }
                                     };
-
                                 chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
-
                                 function callbackFn(details) {
                                     return {
                                         authCredentials: {
@@ -1038,7 +1035,6 @@ def run():
                                         }
                                     };
                                 }
-
                                 chrome.webRequest.onAuthRequired.addListener(
                                             callbackFn,
                                             {urls: ["<all_urls>"]},
@@ -1051,7 +1047,6 @@ def run():
                                     zp.writestr("manifest.json", manifest_json)
                                     zp.writestr("background.js", background_js)
                                 return extension
-
 
                             # Check if the file extension exists
                             proxies_extension = ''
@@ -1066,10 +1061,8 @@ def run():
                                 proxy_port = '5353'
                                 proxy_user = 'scrapeops'
                                 proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459' #or use: c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk
-                                proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)
-                            
-                            options.add_extension(proxies_extension)
-
+                                proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                          
+                            options.add_extension(proxies_extension) #add chrome extension
 
                         def get_driver():
                             return webdriver.Chrome(
