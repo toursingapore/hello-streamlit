@@ -979,7 +979,7 @@ def run():
 
                             if os.path.exists(output_filename):
                                 st.write(f"{output_filename} already exists.")
-                                chrome_extension = output_filename
+                                options.add_extension(output_filename) #add chrome extension 
                             else:
                                 st.write(f"{output_filename} not exists and download chrome extension crx file")
 
@@ -1003,10 +1003,10 @@ def run():
                                                 file.write(chunk)
                                     st.write(f'Extension downloaded successfully and saved as {output_filename}')
                                     chrome_extension = output_filename
+                                    options.add_extension(chrome_extension) #add chrome extension   
                                 else:
                                     st.write(f'Failed to download the extension. Status code: {response.status_code}')
-
-                            options.add_extension(chrome_extension) #add chrome extension                            
+                                                     
 
                         user_agents = [
                             #B2;Bypass anti-bot - random useragent Macintosh - list of user agents here - https://gist.github.com/pzb/b4b6f57144aea7827ae4
