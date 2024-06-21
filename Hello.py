@@ -1057,10 +1057,10 @@ def run():
                                 #st.write(f"{extension_zip_file_path} not exists and create a chrome extension zip file")
                                 
                                 # Proxy details
-                                proxy_host = 'proxy.scrapeops.io'
-                                proxy_port = '5353'
-                                proxy_user = 'scrapeops'
-                                proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk' #or use: c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk
+                                proxy_host = 'proxy.scrape.do'
+                                proxy_port = '8080'
+                                proxy_user = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                                proxy_pass = 'customHeaders=false' #or use: c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk
                                 proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                          
                             options.add_extension(proxies_extension) #add chrome extension
 
