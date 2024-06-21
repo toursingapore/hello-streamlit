@@ -1045,7 +1045,7 @@ def run():
                                 );
                                 """ % (host, port, username, password)
                                 extension = '/tmp/proxies_extension.zip'
-                                with zipfile.ZipFile(extension, 'r') as zp:
+                                with zipfile.ZipFile(extension, 'w') as zp:
                                     zp.writestr("manifest.json", manifest_json)
                                     zp.writestr("background.js", background_js)
                                 return extension
@@ -1056,6 +1056,7 @@ def run():
                             proxy_user = 'scrapeops'
                             proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk'
                             proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)
+                            options.add_extension(proxies_extension)
 
 
                         def get_driver():
