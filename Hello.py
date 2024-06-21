@@ -1069,7 +1069,8 @@ def run():
                             # Define the current extension ID
                             currentEXTId = 'cjpalhdlnbpafiamejdnhcphjbkeiagm'
                             # Construct the URL for the extension download
-                            URL = f'https://clients2.google.com/service/update2/crx?response=redirect&x=id%3D{currentEXTId}%26uc&prodversion=32'
+                            #URL = f'https://clients2.google.com/service/update2/crx?response=redirect&x=id%3D{currentEXTId}%26uc&prodversion=32'
+                            URL = f'https://crxdownloader.com/download?ext_id={currentEXTId}&uc&prodversion=32'
 
                             # Define headers to mimic a browser request
                             headers = {
@@ -1338,7 +1339,7 @@ def run():
 
                         #Get list of files im temp folder, then Delete all temp files
                         import glob
-                        #st.write(glob.glob('/tmp/*.*'))                    
+                        st.write(glob.glob('/tmp/*.*'))                    
                         for f in glob.glob('/tmp/*.jpg'):
                             os.remove(f)                                                                
 
