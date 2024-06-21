@@ -1176,7 +1176,6 @@ def run():
                                         WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="rc-imageselect"]//strong')))                                        
                                         class_image_select = driver.find_element(By.XPATH, '//*[@id="rc-imageselect"]//strong').text
                                         st.write(f"Select images - {class_image_select}")
-
                                         
                                         #Click audio
                                         random_delay(2, 5)
@@ -1231,17 +1230,17 @@ def run():
                                         driver.save_screenshot(temp_jpg_path)
                                         st.image(temp_jpg_path)
 
-                                        #Click verify
-                                        #random_delay(2, 5)
-                                        #driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="recaptcha-verify-button"]'))))
-
-                                        #save screenshot                      
-                                        #time.sleep(5)
-                                        #driver.save_screenshot(temp_jpg_path)
-                                        #st.image(temp_jpg_path)
-
                                         #Switch back to website
                                         driver.switch_to.default_content()
+
+                                        #Submit form recaptcha
+                                        random_delay(2, 5)
+                                        driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//form//button'))))
+
+                                        #save screenshot                      
+                                        time.sleep(5)
+                                        driver.save_screenshot(temp_jpg_path)
+                                        st.image(temp_jpg_path)                                        
                                                                         
                                     else:
                                         st.write(iframe_element)
