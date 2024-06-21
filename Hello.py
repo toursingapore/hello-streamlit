@@ -936,7 +936,7 @@ def run():
                         #Cụm bypass message-"your connection is not private"
                         options.add_argument('--ignore-ssl-errors=yes')
                         options.add_argument('--ignore-certificate-errors')
-                        options.add_argument("disable-quic")
+                        options.add_argument("--disable-quic")
                         #Cụm Disable web security and allow access it
                         options.add_argument("--disable-web-security")
                         options.add_argument("--allow-running-insecure-content")                    
