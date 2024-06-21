@@ -983,10 +983,10 @@ def run():
                         options.add_argument(f"user-agent={user_agent}") 
 
 
+                        # Create a Chrome extension to handle proxy authentication - https://gist.github.com/rajat-np/5d901702a33e7b4b5132b1acee5d778e
                         from selenium.webdriver.common.proxy import Proxy, ProxyType
                         import zipfile
 
-                        # Create a Chrome extension to handle proxy authentication
                         def create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass):
                             manifest_json = """
                             {
@@ -1050,7 +1050,7 @@ def run():
                         proxy_port = '5353'
                         proxy_user = 'scrapeops'
                         proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
-                        
+
                         proxy_auth_plugin_path = create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass)
 
                         options.add_extension(proxy_auth_plugin_path)
