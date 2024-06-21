@@ -1127,9 +1127,19 @@ def run():
                                         #driver.execute_script(f"arguments[0].value = {audio_text};", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="audio-response"]'))))                                                                              
                                         element2 = driver.find_element(By.XPATH, '//*[@id="audio-response"]')
                                         if element2:
-                                            element2.sendKeys(audio_text)
+                                            #element2.sendKeys(audio_text)
+                                            st.write(f'available element2: {element2}')
                                         else:
                                             st.write(f'error element2: {element2}')
+
+                                        clickable = driver.find_element(By.ID, "audio-response")
+                                        ActionChains(driver)\
+                                            .move_to_element(clickable)\
+                                            .pause(1)\
+                                            .click_and_hold()\
+                                            .pause(1)\
+                                            .send_keys(f"abc {audio_text}")\
+                                            .perform()
 
 
                                         #Click verify
