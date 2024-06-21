@@ -1123,8 +1123,10 @@ def run():
                                         #Click by JS 
                                         random_delay(2, 5)
                                         driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="audio-response"]'))))
+                                        
                                         random_delay(2, 5)
-                                        driver.find_element(By.XPATH, '//*[@id="audio-response"]').sendKeys(audio_text)
+                                        driver.execute_script(f"arguments[0].value = {audio_text};", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="audio-response"]'))))                                                                              
+                                        #driver.find_element(By.XPATH, '//*[@id="audio-response"]').sendKeys(audio_text)
 
                                         #Click verify
                                         random_delay(2, 5)
