@@ -1312,7 +1312,7 @@ def run():
                         #Get list of files im temp folder, then Delete all temp files
                         import glob
                         st.write(glob.glob('/tmp/*.*'))                    
-                        for f in glob.glob('/tmp/*.zip'):
+                        for f in glob.glob('/tmp/*.png'):
                             os.remove(f)                                                                
 
     st.divider()
