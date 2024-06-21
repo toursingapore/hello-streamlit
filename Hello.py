@@ -993,6 +993,7 @@ def run():
 
                             extension_zip_file_path = '/tmp/proxies_extension.zip'
 
+                            import glob
                             st.write(glob.glob('/tmp/*.*')) 
                             #Phải remove file này if exist trước mới được, vì mỗi lần nhập auth user,pass nó sẽ nhớ trong extension
                             os.remove(extension_zip_file_path) 
