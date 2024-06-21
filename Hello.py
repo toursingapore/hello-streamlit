@@ -972,7 +972,7 @@ def run():
                             #options.add_argument("--start-fullscreen") #View toàn màn hinh và dùng kèm với --start-maximized ở trên
                             #options.add_argument("--disable-extensions")
                             #options.add_extension("D:\\extension_3_1_3_0.crx") #add extension .crx or zip file , xem bên dưới
-
+                            options.add_extension('/tmp/cjpalhdlnbpafiamejdnhcphjbkeiagm.crx') #add chrome extension   
 
 
                                                      
