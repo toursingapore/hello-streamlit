@@ -990,10 +990,10 @@ def run():
                             extension_zip_file_path = '/tmp/proxies_extension.zip'
 
                             # Check if the file exists
-                            if os.path.exists(extension):
-                                st.write(f"{extension} already exists.")
+                            if os.path.exists(extension_zip_file_path):
+                                st.write(f"{extension_zip_file_path} already exists.")
                             else:
-                                st.write(f"{extension} not exists.")
+                                st.write(f"{extension_zip_file_path} not exists.")
 
                                 #Chromedrive default chỉ nhập được proxy:port, ko cho nhập user, pass auth proxy nên phải Create a Chrome extension to handle proxy authentication - https://github.com/Smartproxy/Selenium-proxy-authentication - HD https://youtu.be/T3l9V8LTwBo?si=fx2QqAjLGw-kzuOb
                                 from selenium.webdriver.common.proxy import Proxy, ProxyType
