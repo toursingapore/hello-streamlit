@@ -987,19 +987,13 @@ def run():
                         from selenium.webdriver.common.proxy import Proxy, ProxyType
                         import zipfile
 
-                        # Proxy details
-                        proxy_host = 'proxy.scrapeops.io'
-                        proxy_port = '5353'
-                        proxy_user = 'scrapeops'
-                        proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk'
-
                         # Create a Chrome extension to handle proxy authentication
-                        def create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass):
+                        def proxies(username, password, endpoint, port):
                             manifest_json = """
                             {
                                 "version": "1.0.0",
                                 "manifest_version": 2,
-                                "name": "Chrome Proxy",
+                                "name": "Proxies",
                                 "permissions": [
                                     "proxy",
                                     "tabs",
@@ -1016,42 +1010,53 @@ def run():
                             }
                             """
 
-                            background_js = f"""
-                            var config = {{
+                            background_js = """
+                            var config = {
                                     mode: "fixed_servers",
-                                    rules: {{
-                                    singleProxy: {{
+                                    rules: {
+                                    singleProxy: {
                                         scheme: "http",
-                                        host: "{proxy_host}",
-                                        port: parseInt({proxy_port})
-                                    }},
+                                        host: "%s",
+                                        port: parseInt(%s)
+                                    },
                                     bypassList: ["localhost"]
-                                    }}
-                                }};
-                            chrome.proxy.settings.set({{value: config, scope: "regular"}}, function() {{}});
-                            function callbackFn(details) {{
-                                return {{
-                                    authCredentials: {{
-                                        username: "{proxy_user}",
-                                        password: "{proxy_pass}"
-                                    }}
-                                }};
-                            }}
+                                    }
+                                };
+
+                            chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
+
+                            function callbackFn(details) {
+                                return {
+                                    authCredentials: {
+                                        username: "%s",
+                                        password: "%s"
+                                    }
+                                };
+                            }
+
                             chrome.webRequest.onAuthRequired.addListener(
                                         callbackFn,
-                                        {{urls: ["<all_urls>"]}},
+                                        {urls: ["<all_urls>"]},
                                         ['blocking']
                             );
-                            """
-                            pluginfile = '/tmp/proxy_auth_plugin.zip'
-                            with zipfile.ZipFile(pluginfile, 'w') as zp:
+                            """ % (endpoint, port, username, password)
+
+                            extension = 'proxies_extension.zip'
+
+                            with zipfile.ZipFile(extension, 'w') as zp:
                                 zp.writestr("manifest.json", manifest_json)
                                 zp.writestr("background.js", background_js)
 
-                            return pluginfile
+                            return extension
 
-                        proxy_auth_plugin_path = create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass)
-                        options.add_extension(proxy_auth_plugin_path)
+                        # Proxy details
+                        proxy_host = 'proxy.scrapeops.io'
+                        proxy_port = '5353'
+                        proxy_user = 'scrapeops'
+                        proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk'
+
+                        proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)
+                        options.add_extension(proxies_extension)
 
 
 
