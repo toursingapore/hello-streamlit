@@ -999,8 +999,8 @@ def run():
                             #Command js để check tương đương trong tab console của chrome - list all fingerprints scanner tại site này - https://bot.sannysoft.com
                             st.write(f'navigator.userAgent = {driver.execute_script("return navigator.userAgent;")}')
                             st.write(f'navigator.webdriver = {driver.execute_script("return navigator.webdriver;")}') #tương đương check command in console log: navigator.webdriver
-                            st.write(f'navigator.platform = {driver.execute_script("return navigator.platform;")}') #tương đương check command in console log: navigator.webdriver
-                            st.write(f'navigator.vendor = {driver.execute_script("return navigator.vendor;")}') #tương đương check command in console log: navigator.webdriver
+                            st.write(f'navigator.platform = {driver.execute_script("return navigator.platform;")}') #tương đương check command in console log: navigator.platform
+                            st.write(f'navigator.vendor = {driver.execute_script("return navigator.vendor;")}') #tương đương check command in console log: navigator.vendor
 
                             #B4; Bypass anti-bot - Apply stealth settings to the driver to bypass fingerprints
                             stealth(
