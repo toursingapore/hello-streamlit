@@ -991,6 +991,7 @@ def run():
                             from selenium.webdriver.common.proxy import Proxy, ProxyType
                             import zipfile
 
+                            extension_zip_file_path = '/tmp/proxies_extension.zip'
                             # Create a Chrome extension to handle proxy authentication
                             def proxies(username, password, host, port):
                                 manifest_json = """
@@ -1051,8 +1052,6 @@ def run():
                                     zp.writestr("background.js", background_js)
                                 return extension
 
-
-                            extension_zip_file_path = '/tmp/proxies_extension.zip'
 
                             # Check if the file exists
                             if os.path.exists(extension_zip_file_path):
