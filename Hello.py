@@ -992,7 +992,7 @@ def run():
                         if user_input_anti_bot:
                             #B3; Bypass anti-bot - thực hiện js code in console tab để setup - navigator.webdriver = false
                             # Changing the property of the navigator value for webdriver to undefined 
-                            driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") #tương đương set value navigator.webdriver = false để hide value là webdriver đi
+                            driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => false})") #tương đương set value navigator.webdriver = false để hide value là webdriver đi
                             # Setting user agent iteratively as Chrome 108 and 107 
                             driver.execute_cdp_cmd("Network.setUserAgentOverride", {"userAgent": user_agent}) 
 
