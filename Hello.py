@@ -965,7 +965,7 @@ def run():
                             options.add_argument("--mute-audio")
                             options.add_argument("--window-size=800,600") #Define the window size of the browser - window-size=1366,625 or 800,600
                             #options.add_argument("--start-maximized")
-                            options.add_argument("--start-fullscreen") #View toàn màn hinh và dùng kèm với --start-maximized ở trên
+                            #options.add_argument("--start-fullscreen") #View toàn màn hinh và dùng kèm với --start-maximized ở trên
                             options.add_argument("--disable-extensions")
                             #options.add_extension("D:\\extension_3_1_3_0.crx") #add extension .crx                     
 
