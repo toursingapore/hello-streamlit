@@ -2,3 +2,4 @@ chromium
 ffmpeg
 python3-opencv
 tor
+openssl
