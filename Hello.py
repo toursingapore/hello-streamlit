@@ -985,7 +985,7 @@ def run():
 
                         from selenium.webdriver.common.proxy import Proxy, ProxyType
                         # Proxy details
-                        proxy = 'http://scrapeops:c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk@proxy.scrapeops.io:5353'
+                        proxy = 'http://1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6:customHeaders=false@proxy.scrape.do:8080'
 
                         # Set up Proxy
                         proxy_obj = Proxy()
