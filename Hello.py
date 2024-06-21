@@ -1051,10 +1051,10 @@ def run():
                             # Check if the file extension exists
                             proxies_extension = ''
                             if os.path.exists(extension_zip_file_path):
-                                st.write(f"{extension_zip_file_path} already exists.")
+                                #st.write(f"{extension_zip_file_path} already exists.")
                                 proxies_extension = extension_zip_file_path
                             else:
-                                st.write(f"{extension_zip_file_path} not exists and create a chrome extension zip file")
+                                #st.write(f"{extension_zip_file_path} not exists and create a chrome extension zip file")
                                 
                                 # Proxy details
                                 proxy_host = 'proxy.scrapeops.io'
@@ -1305,7 +1305,7 @@ def run():
 
                         #Get list of files im temp folder, then Delete all temp files
                         import glob
-                        st.write(glob.glob('/tmp/*.*'))                    
+                        #st.write(glob.glob('/tmp/*.*'))                    
                         for f in glob.glob('/tmp/*.png'):
                             os.remove(f)                                                                
 
