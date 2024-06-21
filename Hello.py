@@ -1041,7 +1041,7 @@ def run():
                             );
                             """ % (endpoint, port, username, password)
 
-                            extension = 'proxies_extension.zip'
+                            extension = '/tmp/proxies_extension.zip'
 
                             with zipfile.ZipFile(extension, 'w') as zp:
                                 zp.writestr("manifest.json", manifest_json)
