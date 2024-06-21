@@ -1054,8 +1054,10 @@ def run():
 
 
                             # Check if the file exists
+                            proxies_extension = ''
                             if os.path.exists(extension_zip_file_path):
                                 st.write(f"{extension_zip_file_path} already exists.")
+                                proxies_extension = extension_zip_file_path
                             else:
                                 st.write(f"{extension_zip_file_path} not exists.")
                                 proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                                
