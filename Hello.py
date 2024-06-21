@@ -983,22 +983,7 @@ def run():
                         options.add_argument(f"user-agent={user_agent}") 
 
 
-                        from selenium.webdriver.common.proxy import Proxy, ProxyType
-                        
-                        SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
-                        sessionId = 1234 #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
-                        super = 'true'
-                        regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
-                        proxyModeUrl = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"
-                        
-                        prox = Proxy()
-                        prox.proxy_type = ProxyType.MANUAL
-                        prox.http_proxy = proxyModeUrl
-                        prox.ssl_proxy = proxyModeUrl                        
-                        #prox.socks_proxy = "ip_addr:port"
 
-                        capabilities = webdriver.DesiredCapabilities.CHROME
-                        prox.add_to_capabilities(capabilities)
 
 
                         def get_driver():
@@ -1007,7 +992,6 @@ def run():
                                     ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
                                 ),
                                 options=options,
-                                desired_capabilities=capabilities,
                             )
                         driver = get_driver()
                         
