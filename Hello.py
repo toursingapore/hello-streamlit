@@ -1064,6 +1064,33 @@ def run():
                                 proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                          
                             options.add_extension(proxies_extension) #add chrome extension
 
+
+
+                            # Define the current extension ID
+                            currentEXTId = 'cjpalhdlnbpafiamejdnhcphjbkeiagm'
+                            # Construct the URL for the extension download
+                            URL = f'https://clients2.google.com/service/update2/crx?response=redirect&x=id%3D{currentEXTId}%26uc&prodversion=32'
+
+                            # Send a GET request to the URL
+                            response = requests.get(URL, stream=True)
+
+                            # Check if the request was successful
+                            if response.status_code == 200:
+                                # Define the output filename
+                                output_filename = f'/tmp/{currentEXTId}.crx'
+
+                                # Open the file in write-binary mode and write the content
+                                with open(output_filename, 'wb') as file:
+                                    for chunk in response.iter_content(chunk_size=1024):
+                                        if chunk:  # Filter out keep-alive new chunks
+                                            file.write(chunk)
+
+                                st.write(f'Extension downloaded successfully and saved as {output_filename}')
+                            else:
+                                st.write(f'Failed to download the extension. Status code: {response.status_code}')
+
+                            options.add_extension(proxies_extension) #add chrome extension
+
                         def get_driver():
                             return webdriver.Chrome(
                                 service=Service(
