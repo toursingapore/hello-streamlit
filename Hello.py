@@ -982,6 +982,13 @@ def run():
                         user_agent = random.choice(user_agents)
                         options.add_argument(f"user-agent={user_agent}") 
 
+                        SCRAPEDO_API_KEY = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                        sessionId = 1234 #Dùng sessionid giúp ip tồn tại trong 5 phút, sau 5 phút nó tự tạo new proxy
+                        super = 'true'
+                        regionalGeoCode = 'asia' #europe, asia, africa, oceania, northamerica, southamerica  
+                        proxy = f"http://{SCRAPEDO_API_KEY}:customHeaders=false&sessionId={sessionId}&super={super}&regionalGeoCode={regionalGeoCode}@proxy.scrape.do:8080"                        
+                        options.add_argument('--proxy-server=http://%s' % proxy)
+                        options.add_argument('--proxy-server=https://%s' % proxy)
 
 
 
