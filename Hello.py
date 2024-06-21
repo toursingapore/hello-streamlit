@@ -984,6 +984,8 @@ def run():
 
 
                         from selenium.webdriver.common.proxy import Proxy, ProxyType
+                        import zipfile
+
                         # Proxy details
                         proxy_host = 'proxy.scrapeops.io'
                         proxy_port = '5353'
