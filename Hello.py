@@ -974,38 +974,7 @@ def run():
                             #options.add_extension("D:\\extension_3_1_3_0.crx") #add extension .crx or zip file , xem bên dưới
 
 
-                            # Check if the file extension exists
-                            output_filename = f'/tmp/ublock-origin.crx'
 
-                            if os.path.exists(output_filename):
-                                st.write(f"{output_filename} already exists.")
-                                options.add_extension(output_filename) #add chrome extension 
-                            else:
-                                st.write(f"{output_filename} not exists and download chrome extension crx file")
-
-                                #Download chrome extension ublock-origin .crx , giúp bypass cloudflare and remove ads
-                                currentEXTId = 'cjpalhdlnbpafiamejdnhcphjbkeiagm'
-                                URL = f'https://crxdownloader.com/download?ext_id={currentEXTId}&uc&prodversion=32'
-                                # Define headers to mimic a browser request
-                                headers = {
-                                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-                                }
-                                # Send a GET request to the URL with headers
-                                response = requests.get(URL, headers=headers, stream=True)                            
-                                # Check if the request was successful
-                                if response.status_code == 200:
-                                    # Define the output filename
-                                    #output_filename = f'/tmp/ublock-origin.crx'
-                                    # Open the file in write-binary mode and write the content
-                                    with open(output_filename, 'wb') as file:
-                                        for chunk in response.iter_content(chunk_size=1024):
-                                            if chunk:  # Filter out keep-alive new chunks
-                                                file.write(chunk)
-                                    st.write(f'Extension downloaded successfully and saved as {output_filename}')
-                                    chrome_extension = output_filename
-                                    options.add_extension(chrome_extension) #add chrome extension   
-                                else:
-                                    st.write(f'Failed to download the extension. Status code: {response.status_code}')
                                                      
 
                         user_agents = [
