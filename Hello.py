@@ -984,7 +984,6 @@ def run():
 
 
                         from selenium.webdriver.common.proxy import Proxy, ProxyType
-                        from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
                         import zipfile
 
                         # Proxy details
@@ -993,69 +992,68 @@ def run():
                         proxy_user = 'scrapeops'
                         proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459'
 
-
-                        manifest_json = """
-                                {
-                                    "version": "1.0.0",
-                                    "manifest_version": 2,
-                                    "name": "Chrome Proxy",
-                                    "permissions": [
-                                        "proxy",
-                                        "tabs",
-                                        "unlimitedStorage",
-                                        "storage",
-                                        "<all_urls>",
-                                        "webRequest",
-                                        "webRequestBlocking"
-                                    ],
-                                    "background": {
-                                        "scripts": ["background.js"]
-                                    },
-                                    "minimum_chrome_version":"22.0.0"
-                                }
-                                """
-
-                        background_js = """
-                        var config = {
-                                mode: "fixed_servers",
-                                rules: {
-                                singleProxy: {
-                                    scheme: "http",
-                                    host: "%(host)s",
-                                    port: parseInt(%(port)d)
+                        # Create a Chrome extension to handle proxy authentication
+                        def create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass):
+                            manifest_json = """
+                            {
+                                "version": "1.0.0",
+                                "manifest_version": 2,
+                                "name": "Chrome Proxy",
+                                "permissions": [
+                                    "proxy",
+                                    "tabs",
+                                    "unlimitedStorage",
+                                    "storage",
+                                    "<all_urls>",
+                                    "webRequest",
+                                    "webRequestBlocking"
+                                ],
+                                "background": {
+                                    "scripts": ["background.js"]
                                 },
-                                bypassList: ["foobar.com"]
-                                }
-                            };
-                        chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
-                        function callbackFn(details) {
-                            return {
-                                authCredentials: {
-                                    username: "%(user)s",
-                                    password: "%(pass)s"
-                                }
-                            };
-                        }
-                        chrome.webRequest.onAuthRequired.addListener(
-                                    callbackFn,
-                                    {urls: ["<all_urls>"]},
-                                    ['blocking']
-                        );
-                            """ % {
-                                "host": proxy_host,
-                                "port": proxy_port,
-                                "user": proxy_user,
-                                "pass": proxy_pass,
+                                "minimum_chrome_version":"22.0.0"
                             }
+                            """
 
+                            background_js = f"""
+                            var config = {{
+                                    mode: "fixed_servers",
+                                    rules: {{
+                                    singleProxy: {{
+                                        scheme: "http",
+                                        host: "{proxy_host}",
+                                        port: parseInt({proxy_port})
+                                    }},
+                                    bypassList: ["localhost"]
+                                    }}
+                                }};
+                            chrome.proxy.settings.set({{value: config, scope: "regular"}}, function() {{}});
+                            function callbackFn(details) {{
+                                return {{
+                                    authCredentials: {{
+                                        username: "{proxy_user}",
+                                        password: "{proxy_pass}"
+                                    }}
+                                }};
+                            }}
+                            chrome.webRequest.onAuthRequired.addListener(
+                                        callbackFn,
+                                        {{urls: ["<all_urls>"]}},
+                                        ['blocking']
+                            );
+                            """
 
-                        pluginfile = 'extension/proxy_auth_plugin.zip'
+                            pluginfile = 'proxy_auth_plugin.zip'
 
-                        with zipfile.ZipFile(pluginfile, 'w') as zp:
-                            zp.writestr("manifest.json", manifest_json)
-                            zp.writestr("background.js", background_js)
+                            with zipfile.ZipFile(pluginfile, 'w') as zp:
+                                zp.writestr("manifest.json", manifest_json)
+                                zp.writestr("background.js", background_js)
 
-                        options.add_extension(pluginfile)
+                            return pluginfile
+
+                        proxy_auth_plugin_path = create_proxy_auth_extension(proxy_host, proxy_port, proxy_user, proxy_pass)
+
+                        options.add_extension(proxy_auth_plugin_path)
 
 
 
