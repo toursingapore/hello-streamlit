@@ -928,8 +928,7 @@ def run():
                         def get_driver():
                             return webdriver.Chrome(
                                 service=Service(
-                                    #ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-                                    ChromeDriverManager(chrome_type=ChromeType.BRAVE).install()
+                                    ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
                                 ),
                                 options=options,
                             )
