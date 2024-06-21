@@ -1059,7 +1059,7 @@ def run():
                                 st.write(f"{extension_zip_file_path} already exists.")
                                 proxies_extension = extension_zip_file_path
                             else:
-                                st.write(f"{extension_zip_file_path} not exists.")
+                                st.write(f"{extension_zip_file_path} not exists and create a chrome extension zip file")
                                 proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                                
                                 
                             # Proxy details
@@ -1312,7 +1312,7 @@ def run():
                         #Get list of files im temp folder, then Delete all temp files
                         import glob
                         st.write(glob.glob('/tmp/*.*'))                    
-                        for f in glob.glob('/tmp/*.png'):
+                        for f in glob.glob('/tmp/*.zip'):
                             os.remove(f)                                                                
 
     st.divider()
