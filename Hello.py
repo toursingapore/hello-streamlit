@@ -928,7 +928,8 @@ def run():
                         def get_driver():
                             return webdriver.Chrome(
                                 service=Service(
-                                    ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+                                    #ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+                                    ChromeDriverManager(chrome_type=ChromeType.BRAVE).install()
                                 ),
                                 options=options,
                             )
@@ -985,7 +986,7 @@ def run():
                             'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
                         ]
                         user_agent = random.choice(user_agents)
-                        options.add_argument(f"user-agent={user_agent}")
+                        options.add_argument(f"user-agent={user_agent}")                      
 
                         driver = get_driver()
                         if user_input_anti_bot:
