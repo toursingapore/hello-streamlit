@@ -989,9 +989,13 @@ def run():
                         if user_input_using_proxy_with_authentication:
                             #Chromedrive default chỉ nhập được proxy:port, ko cho nhập user, pass auth proxy nên phải Create a Chrome extension to handle proxy authentication - https://github.com/Smartproxy/Selenium-proxy-authentication - HD https://youtu.be/T3l9V8LTwBo?si=fx2QqAjLGw-kzuOb
                             from selenium.webdriver.common.proxy import Proxy, ProxyType
-                            import zipfile
+                            import zipfile       
 
                             extension_zip_file_path = '/tmp/proxies_extension.zip'
+
+                            #remove file này trước mới được
+                            os.remove(extension_zip_file_path) 
+
                             # Create a Chrome extension to handle proxy authentication
                             def proxies(username, password, host, port):
                                 manifest_json = """
@@ -1047,22 +1051,15 @@ def run():
                                     zp.writestr("manifest.json", manifest_json)
                                     zp.writestr("background.js", background_js)
                                 return extension
-
-                            # Check if the file extension exists
-                            proxies_extension = ''
-                            if os.path.exists(extension_zip_file_path):
-                                #st.write(f"{extension_zip_file_path} already exists.")
-                                proxies_extension = extension_zip_file_path
-                            else:
-                                #st.write(f"{extension_zip_file_path} not exists and create a chrome extension zip file")
                                 
-                                # Proxy details
-                                proxy_host = 'proxy-server.scraperapi.com'
-                                proxy_port = '8001'
-                                proxy_user = 'scraperapi'
-                                proxy_pass = '0c8cc4d8101c74aa7c5f7d363ea1e476'
-                                proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                          
+                            # Proxy details
+                            proxy_host = 'proxy.scrape.do'
+                            proxy_port = '8080'
+                            proxy_user = '1ffbd1b82d2343e8ab454583e7bcbf9fe021d739cd6'
+                            proxy_pass = 'customHeaders=false'
+                            proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)                          
                             options.add_extension(proxies_extension) #add chrome extension
+
 
                         def get_driver():
                             return webdriver.Chrome(
