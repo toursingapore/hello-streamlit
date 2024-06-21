@@ -933,7 +933,7 @@ def run():
                         #options.add_argument("--incognito") #private browser
                         options.add_argument('--no-sandbox')
                         options.add_argument('--disable-dev-shm-usage')
-                        #Cụm bypass message-"your connection is not private"
+                        #Cụm bypass message "Your connection isn't private" - vd; https://cacert.org/
                         options.add_argument('--ignore-ssl-errors=yes')
                         options.add_argument('--ignore-certificate-errors')
                         #Cụm Disable web security and allow access it
