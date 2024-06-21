@@ -1111,7 +1111,7 @@ def run():
                         Page_Loaded = wait_for_page_load(driver)
                         if Page_Loaded:
                             #Create temp folder 
-                            temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+                            temp_jpg_file = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
                             temp_jpg_file.close()
                             temp_jpg_path = temp_jpg_file.name
                             #st.write(temp_jpg_path)
@@ -1307,7 +1307,7 @@ def run():
                         #Get list of files im temp folder, then Delete all temp files
                         import glob
                         #st.write(glob.glob('/tmp/*.*'))                    
-                        for f in glob.glob('/tmp/*.png'):
+                        for f in glob.glob('/tmp/*.jpg'):
                             os.remove(f)                                                                
 
     st.divider()
