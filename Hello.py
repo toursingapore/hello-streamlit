@@ -908,7 +908,7 @@ def run():
 
         website = st.text_input("Enter your website to crawl", value="https://www.browserscan.net/bot-detection", placeholder="https://whoer.net/", key="14")
         #user_input = st.checkbox("Disable Javascript")
-        checks = st.columns(4)
+        checks = st.columns(5)
         with checks[0]:
             user_input_js = st.checkbox("Disable Javascrip")
         with checks[1]:
@@ -916,7 +916,9 @@ def run():
         with checks[2]:
             user_input_anti_bot = st.checkbox("Bypass anti-bot & cloudflare")
         with checks[3]:
-            user_input_bypass_recaptcha = st.checkbox("Bypass reCAPTCHA v2")            
+            user_input_bypass_recaptcha = st.checkbox("Bypass reCAPTCHA v2")    
+        with checks[4]:
+            user_input_using_proxy_with_authentication = st.checkbox("Using Proxy with Auth")                     
 
         button = st.button("SUBMIT", type="primary" , key="15")
         if button:
@@ -951,8 +953,10 @@ def run():
                                     'profile.managed_default_content_settings.javascript':2 #Disable Javascript - 1:Enable javascript, 2:Disable javascript or Default đã bật javascript khi crawl rồi
                                 }
                             )
+                        
                         if user_input_load_img:
                             options.add_argument('--blink-settings=imagesEnabled=false') #Disable load image on chrome để tránh nặng khi crawl                            
+                        
                         if user_input_anti_bot:  
                             #B1;Bypass anti-bot - Disabling the Automation Indicator WebDriver Flags
                             #Adding argument to disable the AutomationControlled flag 
@@ -982,80 +986,76 @@ def run():
                         user_agent = random.choice(user_agents)
                         options.add_argument(f"user-agent={user_agent}") 
 
+                        if user_input_using_proxy_with_authentication:
+                            #Chromedrive default chỉ nhập được proxy:port, ko cho nhập user, pass auth proxy nên phải Create a Chrome extension to handle proxy authentication - https://github.com/Smartproxy/Selenium-proxy-authentication - HD https://youtu.be/T3l9V8LTwBo?si=fx2QqAjLGw-kzuOb
+                            from selenium.webdriver.common.proxy import Proxy, ProxyType
+                            import zipfile
 
-                        #Chrome default ko cho nhập user, pass auth proxy nên phải Create a Chrome extension to handle proxy authentication - https://github.com/Smartproxy/Selenium-proxy-authentication - HD https://youtu.be/T3l9V8LTwBo?si=fx2QqAjLGw-kzuOb
-                        from selenium.webdriver.common.proxy import Proxy, ProxyType
-                        import zipfile
-
-                        # Create a Chrome extension to handle proxy authentication
-                        def proxies(username, password, endpoint, port):
-                            manifest_json = """
-                            {
-                                "version": "1.0.0",
-                                "manifest_version": 2,
-                                "name": "Proxies",
-                                "permissions": [
-                                    "proxy",
-                                    "tabs",
-                                    "unlimitedStorage",
-                                    "storage",
-                                    "<all_urls>",
-                                    "webRequest",
-                                    "webRequestBlocking"
-                                ],
-                                "background": {
-                                    "scripts": ["background.js"]
-                                },
-                                "minimum_chrome_version":"22.0.0"
-                            }
-                            """
-
-                            background_js = """
-                            var config = {
-                                    mode: "fixed_servers",
-                                    rules: {
-                                    singleProxy: {
-                                        scheme: "http",
-                                        host: "%s",
-                                        port: parseInt(%s)
+                            # Create a Chrome extension to handle proxy authentication
+                            def proxies(username, password, host, port):
+                                manifest_json = """
+                                {
+                                    "version": "1.0.0",
+                                    "manifest_version": 2,
+                                    "name": "Proxies",
+                                    "permissions": [
+                                        "proxy",
+                                        "tabs",
+                                        "unlimitedStorage",
+                                        "storage",
+                                        "<all_urls>",
+                                        "webRequest",
+                                        "webRequestBlocking"
+                                    ],
+                                    "background": {
+                                        "scripts": ["background.js"]
                                     },
-                                    bypassList: ["localhost"]
-                                    }
-                                };
+                                    "minimum_chrome_version":"22.0.0"
+                                }
+                                """
 
-                            chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
+                                background_js = """
+                                var config = {
+                                        mode: "fixed_servers",
+                                        rules: {
+                                        singleProxy: {
+                                            scheme: "http",
+                                            host: "%s",
+                                            port: parseInt(%s)
+                                        },
+                                        bypassList: ["localhost"]
+                                        }
+                                    };
 
-                            function callbackFn(details) {
-                                return {
-                                    authCredentials: {
-                                        username: "%s",
-                                        password: "%s"
-                                    }
-                                };
-                            }
+                                chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
 
-                            chrome.webRequest.onAuthRequired.addListener(
-                                        callbackFn,
-                                        {urls: ["<all_urls>"]},
-                                        ['blocking']
-                            );
-                            """ % (endpoint, port, username, password)
-                            extension = '/tmp/proxies_extension.zip'
-                            with zipfile.ZipFile(extension, 'w') as zp:
-                                zp.writestr("manifest.json", manifest_json)
-                                zp.writestr("background.js", background_js)
-                            return extension
+                                function callbackFn(details) {
+                                    return {
+                                        authCredentials: {
+                                            username: "%s",
+                                            password: "%s"
+                                        }
+                                    };
+                                }
 
-                        # Proxy details
-                        proxy_host = 'proxy.scrapeops.io'
-                        proxy_port = '5353'
-                        proxy_user = 'scrapeops'
-                        proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk'
-
-                        proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)
-                        options.add_extension(proxies_extension)
-
-
+                                chrome.webRequest.onAuthRequired.addListener(
+                                            callbackFn,
+                                            {urls: ["<all_urls>"]},
+                                            ['blocking']
+                                );
+                                """ % (host, port, username, password)
+                                extension = '/tmp/proxies_extension.zip'
+                                with zipfile.ZipFile(extension, 'w') as zp:
+                                    zp.writestr("manifest.json", manifest_json)
+                                    zp.writestr("background.js", background_js)
+                                return extension
+                            # Proxy details
+                            proxy_host = 'proxy.scrapeops.io'
+                            proxy_port = '5353'
+                            proxy_user = 'scrapeops'
+                            proxy_pass = 'c516c1f4-7a79-4c2c-b3ad-3ceec2bf5459&country=uk'
+                            proxies_extension = proxies(proxy_user, proxy_pass, proxy_host, proxy_port)
+                            options.add_extension(proxies_extension)
 
 
                         def get_driver():
