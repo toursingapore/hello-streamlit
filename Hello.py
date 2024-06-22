@@ -1185,7 +1185,7 @@ def run():
                                         #Extract audio link
                                         random_delay(5, 10)
                                         audio_url = driver.find_element(By.XPATH, '//*[@id="rc-audio"]/div[7]/a').get_attribute('href')
-                                        st.write(audio_url)
+                                        st.write(f'audio_url: {audio_url}')
 
 
                                         #B5; Use assemblyai to convert audio or speech to text via API
@@ -1236,7 +1236,7 @@ def run():
                                         """
                                         driver.execute_script(js_script)
                                         g_recaptcha_response_token = driver.execute_script("return arguments[0].value;", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'g-recaptcha-response'))))
-                                        st.write(g_recaptcha_response_token) 
+                                        st.write(f'g_recaptcha_response_token: {g_recaptcha_response_token}')
 
                                         #save screenshot                      
                                         time.sleep(5)
