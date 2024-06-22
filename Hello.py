@@ -1230,14 +1230,20 @@ def run():
                                         driver.switch_to.default_content()
 
                                         #Display and get g-recaptcha-response token
-                                        #js_script = """
-                                        #    return window.document.getElementById('g-recaptcha-response').value;
-                                        #"""
-                                        #g_recaptcha_response_token = driver.execute_script(js_script)
+                                        random_delay(2, 5)
+                                        js_script = """
+                                            document.getElementById('g-recaptcha-response').style.display = 'block';
+                                        """
+                                        g_recaptcha_response_token = driver.execute_script(js_script)
 
-                                        driver.execute_script("arguments[0].style.display = 'block';", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'g-recaptcha-response'))))
+                                        #driver.execute_script("arguments[0].style.display = 'block';", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'g-recaptcha-response'))))
                                         g_recaptcha_response_token = driver.execute_script("arguments[0].value;", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'g-recaptcha-response'))))
                                         st.write(g_recaptcha_response_token) 
+
+                                        #save screenshot                      
+                                        time.sleep(5)
+                                        driver.save_screenshot(temp_jpg_path)
+                                        st.image(temp_jpg_path) 
 
                                         #Submit form
                                         random_delay(2, 5)
