@@ -1229,6 +1229,16 @@ def run():
                                         #Switch back to website
                                         driver.switch_to.default_content()
 
+                                        #Display and get g-recaptcha-response token
+                                        #js_script = """
+                                        #    return window.document.getElementById('g-recaptcha-response').value;
+                                        #"""
+                                        #g_recaptcha_response_token = driver.execute_script(js_script)
+
+                                        driver.execute_script("arguments[0].style.display = 'block';", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'g-recaptcha-response'))))
+                                        g_recaptcha_response_token = driver.execute_script("arguments[0].value;", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'g-recaptcha-response'))))
+                                        st.write(g_recaptcha_response_token) 
+
                                         #Submit form
                                         random_delay(2, 5)
                                         driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//form//button'))))
