@@ -1234,10 +1234,8 @@ def run():
                                         js_script = """
                                             document.getElementById('g-recaptcha-response').style.display = 'block';
                                         """
-                                        g_recaptcha_response_token = driver.execute_script(js_script)
-
-                                        #driver.execute_script("arguments[0].style.display = 'block';", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'g-recaptcha-response'))))
-                                        g_recaptcha_response_token = driver.execute_script("arguments[0].value;", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'g-recaptcha-response'))))
+                                        driver.execute_script(js_script)
+                                        g_recaptcha_response_token = driver.execute_script("return arguments[0].value;", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'g-recaptcha-response'))))
                                         st.write(g_recaptcha_response_token) 
 
                                         #save screenshot                      
