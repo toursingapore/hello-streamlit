@@ -617,7 +617,6 @@ def run():
                     #response = scraper.get("https://whoer.net/")
                     response = scraper.get(f"https://www.google.com/search?q={keyword}&gws_rd=ssl&gl={countries[selected_country]}&num=100")
                     html = response.text  # => scraper.get("https://bot.sannysoft.com/").text "<!DOCTYPE html><html><head>..."                    
-                    #st.write(response.status_code) #status code với reCAPTCHA 429, còn 200 là OK
                     
                     if response.status_code == 200:
                         #Đưa vào BeautifulSoup cho dễ scrape elements
@@ -662,15 +661,15 @@ def run():
                                     st.write(str(count) + ". " + urllib.parse.unquote(url)) 
 
                     else:
-                        st.write("Displayed GOOGLE reCAPTCHA, xem get free 1000 proxy per month here - https://scrape.do/pricing/")
+                        st.write("Displayed GOOGLE CAPTCHA, xem get free 1000 proxy per month here - https://scrape.do/pricing/")
                         with st.expander("Click here to see more"):  
-                            st.write(response.status_code) #status code 429 là reCAPTCHA 
+                            st.write(response.status_code)
                             #st.code(html)  #bỏ vào html online mới lấy đúng element
                             st.markdown(html, unsafe_allow_html=True) #load html and render it in streamlit page                   
                         #continue #bypass tới keyword tiếp theo
                         break   #exit for loop luôn                          
 
-                time.sleep(10) #phải sleep mới hạn chế dính recaptcha
+                time.sleep(10) #phải sleep mới hạn chế dính anti-bot và captcha
                 keywords_data.append([datetime.date.today().strftime("%Y-%m-%d"),urllib.parse.unquote(keyword),myrank,mywebsite,device,selected_country])                            
                 #keywords_data.append([date,keyword,rank,url,type])  
 
@@ -1124,7 +1123,7 @@ def run():
                             #headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "img"])                            
 
                             if user_input_bypass_recaptcha:
-                                #B1; Check if reCAPTCHA exist in website
+                                #B1; Check if exist in website
                                 if 'g-recaptcha' in html:
                                     st.write("Found reCAPTCHA in website")
 
@@ -1133,7 +1132,7 @@ def run():
                                     driver.save_screenshot(temp_jpg_path)
                                     st.image(temp_jpg_path)
 
-                                    #B2; Click button to display all images in reCAPTCHA
+                                    #B2; Click button to display all images
                                     random_delay(2, 5)
                                     all_iframes = driver.find_elements(By.XPATH, '//iframe')
                                     st.write(f'Total iframe found: {len(all_iframes)}')
@@ -1230,7 +1229,7 @@ def run():
                                         #Switch back to website
                                         driver.switch_to.default_content()
 
-                                        #Submit form recaptcha
+                                        #Submit form
                                         random_delay(2, 5)
                                         driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//form//button'))))
 
@@ -1243,7 +1242,7 @@ def run():
                                         st.write(iframe_element)
 
                                 else:
-                                    st.write("Not find reCAPTCHA in website")
+                                    st.write("Not find GOOGLE CAPTCHA in website")
                                     #save screenshot                      
                                     time.sleep(5)
                                     driver.save_screenshot(temp_jpg_path)
