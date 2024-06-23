@@ -1307,7 +1307,7 @@ def run():
                                         st.write(text_request)
 
                                         random_delay(2, 5)
-                                        if 'Select the images' or 'Click on the images' in text_request:
+                                        if 'Select the images' in text_request or 'Click on the images' in text_request:
                                             st.write('Found image link')
                                             break      
 
