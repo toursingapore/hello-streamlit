@@ -1301,8 +1301,14 @@ def run():
                                     st.write('Accessed iframe 2')
 
                                     #Get text in element, tương đương element.text                                 
-                                    select_picture = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerHTML")
-                                    st.write(select_picture)
+                                    text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerHTML")
+                                    st.write(text_request)
+
+                                    #Get image_urls
+                                    image_urls = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[2]/div[9]/div[2]/div/div[1]"))).get_attribute("style")
+                                    st.write(image_urls)                                    
+
+
 
                                     #save screenshot                        
                                     time.sleep(10)
