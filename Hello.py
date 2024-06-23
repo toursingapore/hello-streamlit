@@ -1309,14 +1309,13 @@ def run():
                                     image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[2]/div[9]/div[2]/div/div[1]"))).get_attribute("style")
                                     st.write(image_urls_style)
 
-                                    pattern = r'url("https://imgs3.hcaptcha.com/tip/[a-zA-Z0-9]+/[a-zA-Z0-9]+.[a-zA-Z0-9]+")'
-                                    match = re.search(pattern, image_urls_style)
+                                    pattern = r'url\("([^"]+)"\)'
+                                    match = re.search(pattern, text)
                                     if match:
-                                        # Extract the matched string and remove the surrounding quotes
-                                        path = match.group(0).strip('"')
-                                        st.write(path)
-                                        #url_image_process_completed = '\n'.join(f'{url_space}/file={path}')
-
+                                        extracted_url = match.group(1)
+                                        st.write(f'Extracted URL: {extracted_url}')
+                                    else:
+                                        st.write('URL not found')
 
 
 
