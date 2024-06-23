@@ -1266,7 +1266,7 @@ def run():
                             
                             if user_input_bypass_hcaptcha:
                                 #B1; Check if exist in website
-                                if 'newassets.hcaptcha.com' in html:
+                                if 'hcaptcha' in html:
                                     st.write("Found hCAPTCHA in website")
 
                                     #save screenshot                        
