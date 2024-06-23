@@ -1319,7 +1319,7 @@ def run():
                                         driver.save_screenshot(temp_jpg_path)
                                         st.image(temp_jpg_path)
 
-                                    totalImages = driver.find_elements(By.XPATH, '//div[(contains(@class, "task-grid"))]').childElementCount
+                                    totalImages = driver.find_elements(By.XPATH, '//div[(contains(@class, "task-grid"))]/div')
                                     st.write(f'Total images found: {len(totalImages)}')                                    
 
                                     image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[2]/div[9]/div[2]/div/div[1]"))).get_attribute("style")
