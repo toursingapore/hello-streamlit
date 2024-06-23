@@ -1306,17 +1306,13 @@ def run():
                                         text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerText")
                                         st.write(text_request)
 
-                                        att_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/div[2]/div[4]"))).get_attribute("class")
-                                        st.write(att_request)
-
-                                        WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/div[2]/div[4]"))).click()
-
                                         random_delay(2, 5)
                                         if 'Select the images' in text_request:
                                             break      
-                                        
-                                     
-                                        
+
+                                        #Nếu ko tìm được như yêu cầu trên thì click refresh để show new capthca
+                                        WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/div[2]/div[4]"))).click()
+
                                         #save screenshot                        
                                         time.sleep(10)
                                         driver.save_screenshot(temp_jpg_path)
