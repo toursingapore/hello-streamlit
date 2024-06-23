@@ -1310,7 +1310,7 @@ def run():
                                     st.write(image_urls_style)
 
                                     pattern = r'url\("([^"]+)"\)'
-                                    match = re.search(pattern, text)
+                                    match = re.search(pattern, image_urls_style)
                                     if match:
                                         extracted_url = match.group(1)
                                         st.write(f'Extracted URL: {extracted_url}')
