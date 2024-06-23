@@ -1269,15 +1269,25 @@ def run():
                                 if 'hcaptcha.js' in html:
                                     st.write("Found hCAPTCHA in website")
 
-                                    #save screenshot                        
-                                    time.sleep(10)
-                                    driver.save_screenshot(temp_jpg_path)
-                                    st.image(temp_jpg_path)
-
                                     #B2; Wait iframe ready and Switch to it
                                     WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[@data-hcaptcha-widget-id]')))
                                     st.write('Accessed iframe 1')
 
+                                    random_delay(2, 5)
+                                    #Mô tả như người thật nhập text vào
+                                    clickable = driver.find_element(By.ID, "checkbox")
+                                    ActionChains(driver)\
+                                        .move_to_element(clickable)\
+                                        .pause(1)\
+                                        .click_and_hold()\
+                                        .perform()
+                                    ActionBuilder(driver).clear_actions() #Release All Actions
+
+
+                                    #save screenshot                        
+                                    time.sleep(10)
+                                    driver.save_screenshot(temp_jpg_path)
+                                    st.image(temp_jpg_path)
 
                                 else:
                                     st.write("Not find hCAPTCHA in website")
