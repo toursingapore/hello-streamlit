@@ -1304,23 +1304,16 @@ def run():
                                         #Get text in element, tương đương element.text                                 
                                         #text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerHTML")
                                         text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerText")
-                                        st.write(text_request)                                        
+                                        st.write(text_request)
+
+                                        att_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/div[2]/div[4]"))).get_attribute("class")
+                                        st.write(att_request)
+
                                         random_delay(2, 5)
                                         if 'Select the images' in text_request:
                                             break      
                                         
-                                        try:
-                                            #Mô tả tương tác như người thật
-                                            clickable = driver.find_element(By.CSS_SELECTOR, 'body > div > div.interface-user > div.refresh.button > div.refresh-off > svg')
-                                            ActionChains(driver)\
-                                                .move_to_element(clickable)\
-                                                .pause(1)\
-                                                .click_and_hold()\
-                                                .perform()
-                                            ActionBuilder(driver).clear_actions() #Release All Actions 
-                                        except: #handle all exceptions in selenium
-                                            st.write('ERROR ROI DO')                                           
-                                            pass                                        
+                                     
                                         
                                         #save screenshot                        
                                         time.sleep(10)
