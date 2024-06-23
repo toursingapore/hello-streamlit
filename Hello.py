@@ -1352,6 +1352,8 @@ def run():
                                         json_data = response.json()
                                         st.write(json_data)
                                         st.write(json_data["data"])
+                                    else:
+                                        st.write('error here')
 
 
 
