@@ -908,7 +908,7 @@ def run():
 
         website = st.text_input("Enter your website to crawl", value="https://www.browserscan.net/bot-detection", placeholder="https://whoer.net/", key="14")
         #user_input = st.checkbox("Disable Javascript")
-        checks = st.columns(5)
+        checks = st.columns(6)
         with checks[0]:
             user_input_js = st.checkbox("Disable Javascrip")
         with checks[1]:
@@ -918,6 +918,8 @@ def run():
         with checks[3]:
             user_input_bypass_recaptcha = st.checkbox("Bypass reCAPTCHA v2")    
         with checks[4]:
+            user_input_bypass_recaptcha = st.checkbox("Bypass hCAPTCHA")             
+        with checks[5]:
             user_input_using_proxy_with_authentication = st.checkbox("Using Proxy with Auth")                     
 
         button = st.button("SUBMIT", type="primary" , key="15")
