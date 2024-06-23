@@ -1300,8 +1300,9 @@ def run():
                                     WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and not(@data-hcaptcha-widget-id)]')))
                                     st.write('Accessed iframe 2')
 
-                                    random_delay(2, 5)
-                                    select_picture = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div/div[1]/div/div/div[1]/h2')).get_attribute("textContent"))
+                                    WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div/div[1]/div/div/div[1]/h2')))
+                                    select_picture = driver.find_element(By.XPATH, "//div/div[1]/div/div/div[1]/h2").text
+
                                     st.write(select_picture)
 
                                     #save screenshot                        
