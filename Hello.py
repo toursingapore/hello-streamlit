@@ -2626,7 +2626,7 @@ def run():
                                 url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
                                 headers = {"x-api-key": HUB_ULTRALYTICS_API_KEY}
 
-                                image_url = 'https://static.javatpoint.com/top10-technologies/images/top-10-beautiful-girls-in-india7.png'
+                                image_url = 'https://bettervet.com/hs-fs/hubfs/small-dog-on-grass-excessively-panting.png'
                                 data = {"size": 640, "confidence": 0.25, "iou": 0.45, "url": image_url}                                
                                 response = requests.post(url, headers=headers, json=data)
 
