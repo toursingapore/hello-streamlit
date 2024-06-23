@@ -1353,7 +1353,7 @@ def run():
                                         # Parse JSON response
                                         json_data = response.json()
                                         st.write(json_data)
-                                        st.write(json_data["data"]["name"])
+                                        st.write(json_data["data"][0]["name"])
 
 
 
