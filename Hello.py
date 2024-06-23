@@ -1355,7 +1355,9 @@ def run():
                                                 if json_data["data"][0].get("name"):
                                                     st.write(json_data["data"][0]["name"])
                                                 else:
-                                                    st.write("Name field is empty.")                                        
+                                                    st.write("Name field is empty.") 
+                                            else:     
+                                                st.write("field is empty.")                                   
 
 
 
