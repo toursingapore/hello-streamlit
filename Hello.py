@@ -1305,13 +1305,21 @@ def run():
                                     text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerText")
                                     st.write(text_request)
 
-                                    #Get image_urls
-                                    try:
-                                        image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[2]/div[9]/div[2]/div/div[1]"))).get_attribute("style")
-                                        st.write(image_urls_style)
-                                    except:
-                                        st.write('not find image_urls_style')                                           
-                                        pass
+                                    while True:
+                                        random_delay(2, 5)
+                                        if 'Select the images' in text_request:
+                                            break      
+                                        #Mô tả như người thật nhập text vào
+                                        clickable = driver.find_element(By.XPATH, '//*[text()="Fingerprint Scanner"]')
+                                        ActionChains(driver)\
+                                            .move_to_element(clickable)\
+                                            .pause(1)\
+                                            .click_and_hold()\
+                                            .perform()
+                                        ActionBuilder(driver).clear_actions() #Release All Actions                                                                          
+
+                                    image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[2]/div[9]/div[2]/div/div[1]"))).get_attribute("style")
+                                    st.write(image_urls_style)
 
                                     pattern = r'url\("([^"]+)"\)'
                                     match = re.search(pattern, image_urls_style)
