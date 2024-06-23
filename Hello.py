@@ -1300,12 +1300,11 @@ def run():
                                     WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and not(@data-hcaptcha-widget-id)]')))
                                     st.write('Accessed iframe 2')
 
-                                    #Get text in element, tương đương element.text                                 
-                                    #text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerHTML")
-                                    text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerText")
-                                    st.write(text_request)
-
                                     while True:
+                                        #Get text in element, tương đương element.text                                 
+                                        #text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerHTML")
+                                        text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerText")
+                                        st.write(text_request)                                        
                                         random_delay(2, 5)
                                         if 'Select the images' in text_request:
                                             break      
@@ -1316,7 +1315,11 @@ def run():
                                             .pause(1)\
                                             .click_and_hold()\
                                             .perform()
-                                        ActionBuilder(driver).clear_actions() #Release All Actions                                                                          
+                                        ActionBuilder(driver).clear_actions() #Release All Actions 
+                                        #save screenshot                        
+                                        time.sleep(10)
+                                        driver.save_screenshot(temp_jpg_path)
+                                        st.image(temp_jpg_path)                                                                                                                  
 
                                     image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[2]/div[9]/div[2]/div/div[1]"))).get_attribute("style")
                                     st.write(image_urls_style)
@@ -1328,8 +1331,6 @@ def run():
                                         st.write(f'Extracted URL: {extracted_url}')
                                     else:
                                         st.write('URL not found')
-
-
 
                                     #save screenshot                        
                                     time.sleep(10)
