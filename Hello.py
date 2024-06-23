@@ -1307,11 +1307,11 @@ def run():
                                         st.write(text_request)
 
                                         random_delay(2, 5)
-                                        matches = ["Select the images", "Click on the images"]
+                                        matches = ["Select the images that are most related to the provided sample.", "Click on the images that best match the theme of the sample image."]
                                         if any(x in text_request for x in matches):                                        
                                             st.write('Found image link')
                                             break   
-                                             
+
                                         #Nếu ko tìm được như yêu cầu trên thì click refresh để show new capthca
                                         WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/div[2]/div[4]"))).click()
                                         #save screenshot                        
@@ -1353,7 +1353,7 @@ def run():
                                         # Parse JSON response
                                         json_data = response.json()
                                         st.write(json_data)
-                                        st.write(json_data["data"])
+                                        st.write(json_data["data"]["name"])
 
 
 
