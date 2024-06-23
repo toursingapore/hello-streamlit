@@ -1335,6 +1335,27 @@ def run():
                                     driver.save_screenshot(temp_jpg_path)
                                     st.image(temp_jpg_path)                                    
 
+
+
+                                    # Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
+                                    url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
+                                    hub_ultralytics_api_key = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
+                                    headers = {"x-api-key": hub_ultralytics_api_key}
+                                    data = {"size": 640, "confidence": 0.25, "iou": 0.45}
+                                    #image_bytes = uploaded_file.getvalue()
+                                    image_url = 'https://imgs3.hcaptcha.com/tip/7f50d21b4d6c1ec3510cdd330e806c6ceae76553c87a427b421c83d7c3146bd5/0631c9d3ca35f339b31ac71a37bb334a985a020fc5e47b3d38f75440cfa64d7d.jpeg'
+
+                                    response = requests.post(url, headers=headers, data=data, files={"url": image_url})
+                                    if response.status_code == 200:
+                                        #st.write(json.dumps(response.json(), indent=2))                
+                                        # Parse JSON response
+                                        json_data = response.json()
+                                        st.write(json_data)
+                                        st.write(json_data["data"])
+
+
+
+
                                     #Switch back to website
                                     driver.switch_to.default_content()
 
