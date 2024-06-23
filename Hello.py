@@ -1310,7 +1310,7 @@ def run():
                                             break      
                                         
                                         #Mô tả tương tác như người thật
-                                        clickable = driver.find_element(By.XPATH, '//div[2]/div[4]')
+                                        clickable = driver.find_element(By.XPATH, '/html/body/div/div[2]/div[4]')
                                         ActionChains(driver)\
                                             .move_to_element(clickable)\
                                             .pause(1)\
