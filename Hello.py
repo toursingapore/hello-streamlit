@@ -1307,7 +1307,7 @@ def run():
                                         st.write(text_request)
 
                                         random_delay(2, 5)
-                                        if 'Select the images' in text_request:
+                                        if 'Select the images' or 'Click on the images' in text_request:
                                             break      
 
                                         #Nếu ko tìm được như yêu cầu trên thì click refresh để show new capthca
