@@ -1309,14 +1309,18 @@ def run():
                                         if 'Select the images' in text_request:
                                             break      
                                         
-                                        #Mô tả tương tác như người thật
-                                        clickable = driver.find_element(By.XPATH, '/html/body/div/div[2]/div[4]')
-                                        ActionChains(driver)\
-                                            .move_to_element(clickable)\
-                                            .pause(1)\
-                                            .click_and_hold()\
-                                            .perform()
-                                        ActionBuilder(driver).clear_actions() #Release All Actions 
+                                        try:
+                                            #Mô tả tương tác như người thật
+                                            clickable = driver.find_element(By.XPATH, '/html/body/div/div[2]/div[4]')
+                                            ActionChains(driver)\
+                                                .move_to_element(clickable)\
+                                                .pause(1)\
+                                                .click_and_hold()\
+                                                .perform()
+                                            ActionBuilder(driver).clear_actions() #Release All Actions 
+                                        except: #handle all exceptions in selenium
+                                            st.write('ERROR ROI DO')                                           
+                                            pass                                        
                                         
                                         #save screenshot                        
                                         time.sleep(10)
