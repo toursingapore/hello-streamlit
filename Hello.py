@@ -1316,6 +1316,11 @@ def run():
                                         driver.save_screenshot(temp_jpg_path)
                                         st.image(temp_jpg_path)                                                                                                                  
 
+
+                                    allImgages = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, '//div[(contains(@class, "task-grid"))]')))
+                                    st.write(len(allImgages))
+
+
                                     image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[2]/div[9]/div[2]/div/div[1]"))).get_attribute("style")
                                     st.write(image_urls_style)
 
