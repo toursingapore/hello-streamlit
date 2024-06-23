@@ -1325,7 +1325,7 @@ def run():
                                     for i in range(len(totalImages)):
                                         #image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[2]/div[9]/div[2]/div/div[1]"))).get_attribute("style")
                                         image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, f"//div[2]/div[{i+1}]/div[2]/div/div[1]"))).get_attribute("style")
-                                        st.write(image_urls_style)
+                                        #st.write(image_urls_style)
 
                                         pattern = r'url\("([^"]+)"\)'
                                         match = re.search(pattern, image_urls_style)
@@ -1349,8 +1349,11 @@ def run():
                                             #st.write(json.dumps(response.json(), indent=2))                
                                             # Parse JSON response
                                             json_data = response.json()
-                                            st.write(json_data)
-                                            #st.write(json_data["data"][0]["name"])
+                                            #st.write(json_data)
+                                            if json_data["data"][0].get("name"):
+                                                st.write(json_data["data"][0]["name"])
+                                            else:
+                                                st.write("Empty.")                                            
 
 
 
