@@ -1307,7 +1307,11 @@ def run():
 
                                     #Get image_urls
                                     image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[2]/div[9]/div[2]/div/div[1]"))).get_attribute("style")
-                                    st.write(image_urls_style)
+                                    if len(image_urls_style) > 0:
+                                        st.write(image_urls_style)
+                                    else:
+                                        st.write('not find image_urls_style')                                                                               
+                                    
 
                                     pattern = r'url\("([^"]+)"\)'
                                     match = re.search(pattern, image_urls_style)
