@@ -1299,6 +1299,13 @@ def run():
                                     select_picture = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div/div[1]/div/div/div[1]/h2')))
                                     st.write(select_picture)
 
+                                    #save screenshot                        
+                                    time.sleep(10)
+                                    driver.save_screenshot(temp_jpg_path)
+                                    st.image(temp_jpg_path)                                    
+
+                                    #Switch back to website
+                                    driver.switch_to.default_content()
 
                                 else:
                                     st.write("Not find hCAPTCHA in website")
