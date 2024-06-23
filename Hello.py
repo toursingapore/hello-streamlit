@@ -918,7 +918,7 @@ def run():
         with checks[3]:
             user_input_bypass_recaptcha = st.checkbox("Bypass reCAPTCHA v2")    
         with checks[4]:
-            user_input_bypass_recaptcha = st.checkbox("Bypass hCAPTCHA")             
+            user_input_bypass_hcaptcha = st.checkbox("Bypass hCAPTCHA")             
         with checks[5]:
             user_input_using_proxy_with_authentication = st.checkbox("Using Proxy with Auth")                     
 
@@ -1071,7 +1071,14 @@ def run():
                                 options=options,
                             )
                         driver = get_driver()
-                        
+
+                        #B5; Bypass anti-bot - Random delay rất quan trong - đây là yếu tố chính bị site check và biết là bot or not vì human thời gian delay ko thể giống nhau được, chỉ có bot thời gian delay mới như nhau
+                        def random_delay(min_delay=1, max_delay=3):
+                            time.sleep(random.uniform(min_delay, max_delay))
+
+                        def wait_for_page_load(driver): 
+                            return driver.execute_script('return document.readyState') == 'complete'                            
+
                         if user_input_anti_bot:
                             #B3; Bypass anti-bot - thực hiện js code in console tab để setup - navigator.webdriver = false
                             # Changing the property of the navigator value for webdriver to undefined 
@@ -1097,15 +1104,7 @@ def run():
                                 fix_hairline=True,
                                 run_on_insecure_origins=False,
                             )
-                        driver.get(website) #driver.get("https://vnexpress.net")
-                        
-
-                        #B5; Bypass anti-bot - Random delay rất quan trong - đây là yếu tố chính bị site check và biết là bot or not vì human thời gian delay ko thể giống nhau được, chỉ có bot thời gian delay mới như nhau
-                        def random_delay(min_delay=1, max_delay=3):
-                            time.sleep(random.uniform(min_delay, max_delay))
-
-                        def wait_for_page_load(driver): 
-                            return driver.execute_script('return document.readyState') == 'complete'             
+                        driver.get(website) #driver.get("https://vnexpress.net")                        
                         
                         Page_Loaded = wait_for_page_load(driver)
                         if Page_Loaded:
@@ -1265,6 +1264,16 @@ def run():
                                     driver.save_screenshot(temp_jpg_path)
                                     st.image(temp_jpg_path)                                    
                             
+                            if user_input_bypass_hcaptcha:
+                                #B1; Check if exist in website
+                                if 'newassets.hcaptcha.com' in html:
+                                    st.write("Found hCAPTCHA in website")
+
+                                    #save screenshot                        
+                                    time.sleep(10)
+                                    driver.save_screenshot(temp_jpg_path)
+                                    st.image(temp_jpg_path)
+
                             else:
                                 st.write("### CONTENT BODY BELOW")
                                 other_string = ''                      
