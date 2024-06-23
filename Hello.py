@@ -1311,7 +1311,7 @@ def run():
                                         
                                         try:
                                             #Mô tả tương tác như người thật
-                                            clickable = driver.find_element(By.XPATH, '/html/body/div/div[2]/div[4]')
+                                            clickable = driver.find_element(By.CSS_SELECTOR, 'body > div > div.interface-user > div.refresh.button > div.refresh-off > svg')
                                             ActionChains(driver)\
                                                 .move_to_element(clickable)\
                                                 .pause(1)\
