@@ -1308,14 +1308,16 @@ def run():
                                         random_delay(2, 5)
                                         if 'Select the images' in text_request:
                                             break      
-                                        #Mô tả như người thật nhập text vào
-                                        clickable = driver.find_element(By.XPATH, '//*[text()="Fingerprint Scanner"]')
+                                        
+                                        #Mô tả tương tác như người thật
+                                        clickable = driver.find_element(By.XPATH, '//div[2]/div[4]')
                                         ActionChains(driver)\
                                             .move_to_element(clickable)\
                                             .pause(1)\
                                             .click_and_hold()\
                                             .perform()
                                         ActionBuilder(driver).clear_actions() #Release All Actions 
+                                        
                                         #save screenshot                        
                                         time.sleep(10)
                                         driver.save_screenshot(temp_jpg_path)
