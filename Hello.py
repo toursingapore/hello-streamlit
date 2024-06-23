@@ -2631,7 +2631,7 @@ def run():
 
                                 image_url = 'https://imgs3.hcaptcha.com/tip/7f50d21b4d6c1ec3510cdd330e806c6ceae76553c87a427b421c83d7c3146bd5/0631c9d3ca35f339b31ac71a37bb334a985a020fc5e47b3d38f75440cfa64d7d.jpeg'
                                 data = {"size": 640, "confidence": 0.25, "iou": 0.45, "url": image_url}                                
-                                response = requests.post(url, headers=headers, data=data)
+                                response = requests.post(url, headers=headers, json=data)
 
                                 if response.status_code == 200:
                                     #st.write(json.dumps(response.json(), indent=2))                
