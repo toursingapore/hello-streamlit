@@ -969,7 +969,7 @@ def run():
                             options.add_experimental_option("useAutomationExtension", False)
                             options.add_argument('--disable-notifications') #Disable 'Show Notification' tương tự trên
                             options.add_argument("--mute-audio")
-                            options.add_argument("--window-size=800,600") #Define the window size of the browser - window-size=1366,625 or 800,600
+                            options.add_argument("--window-size=1366,625") #Define the window size of the browser - window-size=1366,625 or 800,600
                             #options.add_argument("--start-maximized")
                             #options.add_argument("--start-fullscreen") #View toàn màn hinh và dùng kèm với --start-maximized ở trên
                             #options.add_argument("--disable-extensions")
@@ -1300,9 +1300,7 @@ def run():
                                     WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and not(@data-hcaptcha-widget-id)]')))
                                     st.write('Accessed iframe 2')
 
-                                    #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div/div[1]/div/div/div[1]/h2')))
-                                    #select_picture = driver.find_element(By.XPATH, "//div/div[1]/div/div/div[1]/h2").text
-                                    
+                                    #Get text in element, tương đương element.text                                 
                                     select_picture = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerHTML")
                                     st.write(select_picture)
 
