@@ -1306,7 +1306,7 @@ def run():
                                         text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerText")
                                         st.write(text_request)
                                         random_delay(2, 5)
-                                        if 'Select the images' in text_request or 'Click on the images' in text_request:
+                                        if ('Select the images' in text_request) or ('Click on the images' in text_request):
                                             st.write('Found image link')
                                             break    
                                         #Nếu ko tìm được như yêu cầu trên thì click refresh để show new capthca
