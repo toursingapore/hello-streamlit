@@ -1269,6 +1269,11 @@ def run():
                                 if 'hcaptcha.js' in html:
                                     st.write("Found hCAPTCHA in website")
 
+                                    #save screenshot                        
+                                    time.sleep(10)
+                                    driver.save_screenshot(temp_jpg_path)
+                                    st.image(temp_jpg_path)
+
                                     #B2; Wait iframe ready and Switch to it
                                     WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and (@data-hcaptcha-widget-id)]')))
                                     st.write('Accessed iframe 1')
