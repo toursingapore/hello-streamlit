@@ -1302,7 +1302,7 @@ def run():
 
                                     #Get text in element, tương đương element.text                                 
                                     #text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerHTML")
-                                    text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).getText()
+                                    text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerText")
                                     st.write(text_request)
 
                                     #Get image_urls
