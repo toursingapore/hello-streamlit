@@ -2625,13 +2625,14 @@ def run():
                                 # Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
                                 url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
                                 headers = {"x-api-key": HUB_ULTRALYTICS_API_KEY}
+
+                                image_url = 'https://images.news18.com/ibnlive/uploads/2023/12/untitled-design-2023-12-06t123949.502-2023-12-678b868288ea9125b617a845a406c646.png'
+                                data = {"size": 640, "confidence": 0.25, "iou": 0.45, "url": image_url}                                
+                                response = requests.post(url, headers=headers, json=data)
+
                                 #image_bytes = uploaded_file.getvalue()
                                 #data = {"size": 640, "confidence": 0.25, "iou": 0.45}                                
                                 #response = requests.post(url, headers=headers, data=data, files={"image": image_bytes})
-
-                                image_url = 'https://images.news18.com/ibnlive/uploads/2023/12/untitled-design-2023-12-06t123949.502-2023-12-678b868288ea9125b617a845a406c646.png'
-                                data = {"size": 640, "confidence": 0.25, "iou": 0.45}                                
-                                response = requests.post(url, headers=headers, data=data, files={"url": image_url})
 
                                 if response.status_code == 200:
                                     #st.write(json.dumps(response.json(), indent=2))                
