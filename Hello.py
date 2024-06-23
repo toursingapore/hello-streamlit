@@ -1331,13 +1331,14 @@ def run():
                                         extracted_url_image = match.group(1)
                                         st.write(f'Extracted URL Image: {extracted_url_image}')
                                     else:
-                                        st.write('URL not found')
+                                        st.write('Extracted URL Image not found')
 
                                     #save screenshot                        
                                     time.sleep(10)
                                     driver.save_screenshot(temp_jpg_path)
                                     st.image(temp_jpg_path)                                    
 
+                                    st.image(extracted_url_image)
 
                                     #B4; Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
                                     url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
