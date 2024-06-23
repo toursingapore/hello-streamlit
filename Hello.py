@@ -1309,6 +1309,8 @@ def run():
                                         att_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/div[2]/div[4]"))).get_attribute("class")
                                         st.write(att_request)
 
+                                        WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/div[2]/div[4]"))).click()
+
                                         random_delay(2, 5)
                                         if 'Select the images' in text_request:
                                             break      
