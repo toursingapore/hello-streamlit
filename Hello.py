@@ -1331,12 +1331,7 @@ def run():
                                         extracted_url_image = match.group(1)
                                         st.write(f'Extracted URL Image: {extracted_url_image}')
                                     else:
-                                        st.write('Extracted URL Image not found')
-
-                                    #save screenshot                        
-                                    time.sleep(10)
-                                    driver.save_screenshot(temp_jpg_path)
-                                    st.image(temp_jpg_path)                                    
+                                        st.write('Extracted URL Image not found')                               
 
                                     st.image(extracted_url_image)
 
