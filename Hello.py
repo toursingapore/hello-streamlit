@@ -1301,7 +1301,7 @@ def run():
                                     st.write('Accessed iframe 2')
 
                                     random_delay(2, 5)
-                                    select_picture = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div/div[1]/div/div/div[1]/h2')))
+                                    select_picture = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div/div[1]/div/div/div[1]/h2')).text)
                                     st.write(select_picture)
 
                                     #save screenshot                        
