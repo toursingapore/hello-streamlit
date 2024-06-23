@@ -1351,13 +1351,9 @@ def run():
                                             json_data = response.json()
                                             #st.write(json_data)
                                             if json_data["data"]:
-                                                # Check if the name field is empty
-                                                if json_data["data"][0].get("name"):
-                                                    st.write(json_data["data"][0]["name"])
-                                                else:
-                                                    st.write("Name field is empty.") 
+                                                st.write(json_data["data"][0]["name"])
                                             else:     
-                                                st.write("field is empty.")                                   
+                                                st.write("Not recognize image.")                                   
 
 
 
