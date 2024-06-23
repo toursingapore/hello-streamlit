@@ -1350,10 +1350,12 @@ def run():
                                             # Parse JSON response
                                             json_data = response.json()
                                             #st.write(json_data)
-                                            if json_data["data"][0].get("name"):
-                                                st.write(json_data["data"][0]["name"])
-                                            else:
-                                                st.write("Empty.")                                            
+                                            if json_data["data"]:
+                                                # Check if the name field is empty
+                                                if json_data["data"][0].get("name"):
+                                                    st.write(json_data["data"][0]["name"])
+                                                else:
+                                                    st.write("Name field is empty.")                                        
 
 
 
