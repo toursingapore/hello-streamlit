@@ -2629,7 +2629,7 @@ def run():
                                 #data = {"size": 640, "confidence": 0.25, "iou": 0.45}                                
                                 #response = requests.post(url, headers=headers, data=data, files={"image": image_bytes})
 
-                                image_url = 'https://imgs3.hcaptcha.com/tip/7f50d21b4d6c1ec3510cdd330e806c6ceae76553c87a427b421c83d7c3146bd5/0631c9d3ca35f339b31ac71a37bb334a985a020fc5e47b3d38f75440cfa64d7d.jpeg'
+                                image_url = 'https://images.news18.com/ibnlive/uploads/2023/12/untitled-design-2023-12-06t123949.502-2023-12-678b868288ea9125b617a845a406c646.png'
                                 data = {"size": 640, "confidence": 0.25, "iou": 0.45, "url": image_url}                                
                                 response = requests.post(url, headers=headers, json=data)
 
