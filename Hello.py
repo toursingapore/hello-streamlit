@@ -1296,7 +1296,7 @@ def run():
                                     #Switch back to website
                                     driver.switch_to.default_content()
 
-                                    #B2; Wait iframe ready and Switch to it
+                                    #B3; Wait iframe ready and Switch to it, then get all images
                                     WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and not(@data-hcaptcha-widget-id)]')))
                                     st.write('Accessed iframe 2')
 
@@ -1305,15 +1305,12 @@ def run():
                                         #text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerHTML")
                                         text_request = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div/div[1]/div/div/div[1]/h2"))).get_attribute("innerText")
                                         st.write(text_request)
-
                                         random_delay(2, 5)
                                         if 'Select the images' in text_request or 'Click on the images' in text_request:
                                             st.write('Found image link')
                                             break    
-
                                         #Nếu ko tìm được như yêu cầu trên thì click refresh để show new capthca
                                         WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/div[2]/div[4]"))).click()
-
                                         #save screenshot                        
                                         time.sleep(10)
                                         driver.save_screenshot(temp_jpg_path)
@@ -1336,25 +1333,20 @@ def run():
                                     st.image(temp_jpg_path)                                    
 
 
-
-                                    # Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
+                                    #B4; Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
                                     url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
                                     hub_ultralytics_api_key = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
                                     headers = {"x-api-key": hub_ultralytics_api_key}
-                                    data = {"size": 640, "confidence": 0.25, "iou": 0.45}
-                                    #image_bytes = uploaded_file.getvalue()
-                                    image_url = 'https://imgs3.hcaptcha.com/tip/7f50d21b4d6c1ec3510cdd330e806c6ceae76553c87a427b421c83d7c3146bd5/0631c9d3ca35f339b31ac71a37bb334a985a020fc5e47b3d38f75440cfa64d7d.jpeg'
-
-                                    response = requests.post(url, headers=headers, data=data, files={"url": image_url})
+                                    #image_url = 'https://bettervet.com/hs-fs/hubfs/small-dog-on-grass-excessively-panting.png'
+                                    image_url = extracted_url_image                                    
+                                    data = {"size": 640, "confidence": 0.25, "iou": 0.45, "url": image_url}                                
+                                    response = requests.post(url, headers=headers, json=data)
                                     if response.status_code == 200:
                                         #st.write(json.dumps(response.json(), indent=2))                
                                         # Parse JSON response
                                         json_data = response.json()
                                         st.write(json_data)
                                         st.write(json_data["data"])
-                                    else:
-                                        st.write('error here')
-
 
 
 
@@ -2626,13 +2618,12 @@ def run():
                                 url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
                                 headers = {"x-api-key": HUB_ULTRALYTICS_API_KEY}
 
-                                image_url = 'https://bettervet.com/hs-fs/hubfs/small-dog-on-grass-excessively-panting.png'
-                                data = {"size": 640, "confidence": 0.25, "iou": 0.45, "url": image_url}                                
-                                response = requests.post(url, headers=headers, json=data)
-
-                                #image_bytes = uploaded_file.getvalue()
-                                #data = {"size": 640, "confidence": 0.25, "iou": 0.45}                                
-                                #response = requests.post(url, headers=headers, data=data, files={"image": image_bytes})
+                                #image_url = 'https://bettervet.com/hs-fs/hubfs/small-dog-on-grass-excessively-panting.png'
+                                #data = {"size": 640, "confidence": 0.25, "iou": 0.45, "url": image_url}                                
+                                #response = requests.post(url, headers=headers, json=data)
+                                image_bytes = uploaded_file.getvalue()
+                                data = {"size": 640, "confidence": 0.25, "iou": 0.45}                                
+                                response = requests.post(url, headers=headers, data=data, files={"image": image_bytes})
 
                                 if response.status_code == 200:
                                     #st.write(json.dumps(response.json(), indent=2))                
