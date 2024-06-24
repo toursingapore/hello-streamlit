@@ -1907,7 +1907,7 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt", "Generate image from reference image", "Change clothes from reference garment image", "Read text in image by OCR", "Image recognition", "Extract masks from uploaded image", "Extract masks from image URL"],
+            ["Generate image from prompt", "Generate image from reference image", "Change clothes from reference garment image", "Read text in image by OCR", "Image Classification", "Extract masks from uploaded image", "Extract masks from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
@@ -1978,7 +1978,7 @@ def run():
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]            
 
-        elif add_radio == "Image recognition":
+        elif add_radio == "Image Classification":
             user_input = st.text_area("Enter image URL", value='https://imgs3.hcaptcha.com/tip/9ebf7f854b5b239ec1ba22428284f1ce93d4d3fd20ffb8761c5f145aa1e0a34f/6b126e9d94b2077bb9526a9fc6a635fc052ea47e93f3c3276efc0f3cc4533388.jpeg', placeholder='https://imgs3.hcaptcha.com/tip/9ebf7f854b5b239ec1ba22428284f1ce93d4d3fd20ffb8761c5f145aa1e0a34f/6b126e9d94b2077bb9526a9fc6a635fc052ea47e93f3c3276efc0f3cc4533388.jpeg', height=200)
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]   
@@ -2626,7 +2626,7 @@ def run():
                             #st.write(exc_type, fname, exc_tb.tb_lineno)
                             st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")
 
-                    case "Image recognition":
+                    case "Image Classification":
                         try:
                             for user_input in user_input_arr:
                                 st.write(user_input)
