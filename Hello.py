@@ -2600,7 +2600,7 @@ def run():
 
 
                                 
-                                url = 'https://prodapi.phot.ai/external/api/v2/user_activity/create-enhancer-2k'
+                                url = 'https://prodapi.phot.ai/external/api/v2/user_activity/create-upscaler-2k'
                                 headers = {
                                     'x-api-key': '6678eccd894378ae9ab10a2b_94398eb499684c73e163_apyhitools',
                                     'Content-Type': 'application/json'
