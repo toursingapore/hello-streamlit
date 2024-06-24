@@ -2614,10 +2614,28 @@ def run():
                                 if response.status_code == 200:
                                     st.write(response.json())
                                     st.write(response.json()['data']['2k']['url'])
+                                    extracted_url_image = response.json()['data']['2k']['url']
                                 else:
                                     st.write(f"Error: {response.status_code} - {response.text}")
 
 
+                                #B4; Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
+                                url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
+                                hub_ultralytics_api_key = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
+                                headers = {"x-api-key": hub_ultralytics_api_key}
+                                #image_url = 'https://bettervet.com/hs-fs/hubfs/small-dog-on-grass-excessively-panting.png'
+                                image_url = extracted_url_image                                    
+                                data = {"size": 640, "confidence": 0.25, "iou": 0.45, "url": image_url}                                
+                                response = requests.post(url, headers=headers, json=data)
+                                if response.status_code == 200:
+                                    #st.write(json.dumps(response.json(), indent=2))                
+                                    # Parse JSON response
+                                    json_data = response.json()
+                                    #st.write(json_data)
+                                    if json_data["data"]:
+                                        st.write(json_data["data"][0]["name"])
+                                    else:     
+                                        st.write("Not recognize image.")    
     
 
 
