@@ -1960,7 +1960,7 @@ def run():
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]            
 
         elif add_radio == "Image recognition":
-            user_input = st.text_area("Enter image URL", value='https://cdn.imgpile.com/f/9rxB2j.jpg\nhttps://i.ytimg.com/vi/oW6m7fABIGs/maxresdefault.jpg', placeholder='https://cdn.imgpile.com/f/9rxB2j.jpg', height=200)
+            user_input = st.text_area("Enter image URL", value='https://imgs3.hcaptcha.com/tip/9ebf7f854b5b239ec1ba22428284f1ce93d4d3fd20ffb8761c5f145aa1e0a34f/6b126e9d94b2077bb9526a9fc6a635fc052ea47e93f3c3276efc0f3cc4533388.jpeg', placeholder='https://imgs3.hcaptcha.com/tip/9ebf7f854b5b239ec1ba22428284f1ce93d4d3fd20ffb8761c5f145aa1e0a34f/6b126e9d94b2077bb9526a9fc6a635fc052ea47e93f3c3276efc0f3cc4533388.jpeg', height=200)
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]   
 
