@@ -2613,11 +2613,12 @@ def run():
                                 
                                 if response.status_code == 200:
                                     st.write(response.json())
+                                    st.write(response.json()['data']['2k']['url'])
                                 else:
                                     st.write(f"Error: {response.status_code} - {response.text}")
 
 
-  
+    
 
 
 
