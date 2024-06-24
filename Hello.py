@@ -2626,15 +2626,15 @@ def run():
                                 #model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
 
                                 model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
-                                    #image_url, input_type="image", output_config={"min_value": 0.98} #bỏ min_value nó sẽ lấy hết từ 0-1.0
+                                    #image_url, input_type="image", output_config={"min_value": 0.98} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
                                     image_url, input_type="image"
                                 )
                                 st.write(model_prediction)
 
                                 # Get the output
                                 for concept in model_prediction.outputs[0].data.concepts:
-                                    st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
-                                    #break #Get cái đầu tiên chính xác nhất , rồi exit
+                                    st.write(f"recognized: {concept.name:<5} - confidence: {round(concept.value, 3)}")
+                                    #break #thêm break sẽ lấy cái đầu tiên chính xác nhất rồi exit or có thể chọn tổng comcepts cần lấy qua concept.name:<5
 
 
 
