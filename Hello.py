@@ -1338,9 +1338,9 @@ def run():
                                         st.image(extracted_url_image)
                                         
                                         #What computer see
-                                        im = Image.open(requests.get(extracted_url_image, stream=True).raw)
-                                        pixel_value = list(img.getdata())
-                                        st.write(pixel_value) 
+                                        #im = Image.open(requests.get(extracted_url_image, stream=True).raw)
+                                        #pixel_value = list(img.getdata())
+                                        #st.write(pixel_value) 
 
 
                                         #B4; Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
