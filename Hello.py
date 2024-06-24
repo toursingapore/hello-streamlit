@@ -908,8 +908,9 @@ def run():
         #st.write(model_prediction)
         # Get the output
         for concept in model_prediction.outputs[0].data.concepts:
-            st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
+            #st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
             break #Get cái đầu tiên chính xác nhất , rồi exit
+        return concept.name
 
     with st.container(border=True): 
         st.write(
@@ -1340,7 +1341,8 @@ def run():
                                                 st.write('Extracted URL Image not found')     
 
                                             st.image(extracted_url_image_main)
-                                            image_recognition_clarifai_func(extracted_url_image_main)
+                                            object_recognized = image_recognition_clarifai_func(extracted_url_image_main)
+                                            st.write(f'main image recognized: {object_recognized}')
 
                                             st.write('Found image link')
                                             break   
@@ -1370,25 +1372,8 @@ def run():
 
                                         st.image(extracted_url_image)
 
-                                        #B4; Dùng image recognition với clarifai
-                                        model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
-                                        #image_url = "https://samples.clarifai.com/metro-north.jpg"
-                                        image_url = extracted_url_image
-                                        clarifai_Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
-
-                                        #Prediction through Filepath:
-                                        #model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
-
-                                        model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
-                                            image_url, input_type="image", output_config={"min_value": 0.97} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
-                                            #image_url, input_type="image"
-                                        )
-                                        #st.write(model_prediction)
-
-                                        # Get the output
-                                        for concept in model_prediction.outputs[0].data.concepts:
-                                            st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
-                                            break #Get cái đầu tiên chính xác nhất , rồi exit
+                                        object_recognized = image_recognition_clarifai_func(extracted_url_image)
+                                        st.write(f'recognized: {object_recognized}')
 
 
                                     #Switch back to website
