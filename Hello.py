@@ -1340,7 +1340,7 @@ def run():
                                         st.image(extracted_url_image)
 
 
-                                        #B4; Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
+                                        #B4; Dùng image recognition với clarifai
                                         model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
                                         #image_url = "https://samples.clarifai.com/metro-north.jpg"
                                         image_url = extracted_url_image
