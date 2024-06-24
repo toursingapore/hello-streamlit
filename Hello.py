@@ -1959,6 +1959,11 @@ def run():
             #Append keywords to array and remove whitespace dư, empty line
             user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]            
 
+        elif add_radio == "Image recognition":
+            user_input = st.text_area("Enter image URL", value='https://cdn.imgpile.com/f/9rxB2j.jpg\nhttps://i.ytimg.com/vi/oW6m7fABIGs/maxresdefault.jpg', placeholder='https://cdn.imgpile.com/f/9rxB2j.jpg', height=200)
+            #Append keywords to array and remove whitespace dư, empty line
+            user_input_arr = [line.strip() for line in user_input.split('\n') if line.strip()]   
+
         elif add_radio == "Extract masks from uploaded image":
             user_input = st.file_uploader("Choose images...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
         else:
