@@ -70,6 +70,8 @@ import httpx
 import websocket
 import assemblyai as aai
 
+from clarifai.client.model import Model
+
 LOGGER = get_logger(__name__)
 
 HF_API_TOKEN = "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" #scope for read
@@ -2599,10 +2601,20 @@ def run():
                                 else:
                                     st.write(json_data) 
 
-                                time.sleep(5)  
+                                time.sleep(5)                              
+    
+                        except Exception as e:
+                            exc_type, exc_obj, exc_tb = sys.exc_info()
+                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                            #st.write(exc_type, fname, exc_tb.tb_lineno)
+                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")
 
+                    case "Image recognition":
+                        try:
+                            for user_input in user_input_arr:
+                                st.write(user_input)
+                                st.image(user_input) 
                                 
-                                from clarifai.client.model import Model
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
                                 #image_url = "https://samples.clarifai.com/metro-north.jpg"
@@ -2621,20 +2633,9 @@ def run():
                                 for concept in model_prediction.outputs[0].data.concepts:
                                     st.write(f"concept: {concept.name:<20} - confidence: {round(concept.value, 3)}")
                                     #break #Get cái đầu tiên chính xác nhất , rồi exit
-    
-                        except Exception as e:
-                            exc_type, exc_obj, exc_tb = sys.exc_info()
-                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                            #st.write(exc_type, fname, exc_tb.tb_lineno)
-                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")
 
-                    case "Image recognition":
-                        try:
-                            for user_input in user_input_arr:
-                                st.write(user_input)
-                                st.image(user_input) 
-                                
-                                    
+
+
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
                             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
