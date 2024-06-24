@@ -2613,8 +2613,9 @@ def run():
                                 
                                 if response.status_code == 200:
                                     st.write(response.json())
-                                    st.write(response.json()['data']['2k']['url'])
                                     extracted_url_image = response.json()['data']['2k']['url']
+                                    st.write(extracted_url_image)
+                                    
                                 else:
                                     st.write(f"Error: {response.status_code} - {response.text}")
 
