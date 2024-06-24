@@ -2622,15 +2622,24 @@ def run():
                                     st.write(f"concept: {concept.name:<20} - confidence: {round(concept.value, 3)}")
                                     #break #Get cái đầu tiên chính xác nhất , rồi exit
     
-
-
-
-
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
                             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
                             #st.write(exc_type, fname, exc_tb.tb_lineno)
-                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}") 
+                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")
+
+                    case "Image recognition":
+                        try:
+                            for user_input in user_input_arr:
+                                st.write(user_input)
+                                st.image(user_input) 
+                                
+                                    
+                        except Exception as e:
+                            exc_type, exc_obj, exc_tb = sys.exc_info()
+                            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                            #st.write(exc_type, fname, exc_tb.tb_lineno)
+                            st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")                                                                          
 
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
