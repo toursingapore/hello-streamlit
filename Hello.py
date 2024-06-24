@@ -2613,6 +2613,7 @@ def run():
                                 model_prediction = Model(url=model_url, pat=Personal_Access_Token).predict_by_url(
                                     image_url, input_type="image"
                                 )
+                                st.write(model_prediction)
 
                                 # Get the output
                                 for concept in model_prediction.outputs[0].data.concepts:
