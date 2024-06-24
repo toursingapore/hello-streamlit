@@ -1342,6 +1342,16 @@ def run():
                                         #pixel_value = list(img.getdata())
                                         #st.write(pixel_value) 
 
+                                        # https://imagga.com/
+                                        response = requests.get(
+                                            #'https://api.imagga.com/v2/tags?image_url=https://imagga.com/static/images/tagging/wind-farm-538576_640.jpg',
+                                            f'https://api.imagga.com/v2/tags?image_url={extracted_url_image}',                                            
+                                            auth=('acc_7d299f9ab6c74e7', '49c701be528fdb4b59efa0bf61556fa9'),
+                                        )
+                                        if response.status_code == 200:
+                                            json_data = response.json()
+                                            st.write(json_data)                                            
+
 
                                         #B4; Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
                                         url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
