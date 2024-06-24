@@ -2603,7 +2603,8 @@ def run():
                                 from clarifai.client.model import Model
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
-                                image_url = "https://samples.clarifai.com/metro-north.jpg"
+                                #image_url = "https://samples.clarifai.com/metro-north.jpg"
+                                image_url = user_input
                                 Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
 
                                 # Example for prediction through Filepath:
