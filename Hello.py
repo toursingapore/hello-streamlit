@@ -1358,7 +1358,7 @@ def run():
                                         # Get the output
                                         for concept in model_prediction.outputs[0].data.concepts:
                                             st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
-                                            #break #Get cái đầu tiên chính xác nhất , rồi exit
+                                            break #Get cái đầu tiên chính xác nhất , rồi exit
 
 
                                     #Switch back to website
