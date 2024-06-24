@@ -1311,6 +1311,17 @@ def run():
                                         random_delay(2, 5)
                                         matches = ["select the images", "click on the images"]
                                         if any(x in text_request.lower() for x in matches):                                        
+                                            image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[1]/div[3]/div/div/div[1]/div[2]"))).get_attribute("style")
+                                            st.write(image_urls_style)
+
+                                            pattern = r'url\("([^"]+)"\)'
+                                            match = re.search(pattern, image_urls_style)
+                                            if match:
+                                                extracted_url_image_main = match.group(1)
+                                                st.write(f'Extracted URL Image: {extracted_url_image_main}')
+                                            else:
+                                                st.write('Extracted URL Image not found')     
+
                                             st.write('Found image link')
                                             break   
 
