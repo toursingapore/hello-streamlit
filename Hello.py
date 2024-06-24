@@ -1888,7 +1888,7 @@ def run():
 
         add_radio = st.radio(
             "Image type",
-            ["Generate image from prompt", "Generate image from reference image", "Change clothes from reference garment image", "Read text in image by OCR", "Extract masks from uploaded image", "Extract masks from image URL"],
+            ["Generate image from prompt", "Generate image from reference image", "Change clothes from reference garment image", "Read text in image by OCR", "Image recognition", "Extract masks from uploaded image", "Extract masks from image URL"],
             index=0,
         )
         #st.write("You selected:", add_radio)
