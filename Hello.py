@@ -2626,7 +2626,9 @@ def run():
                                 )
                                 if response.status_code == 200:
                                     json_data = response.json()
-                                    st.write(json_data)       
+                                    st.write(json_data)
+                                else:
+                                    st.write('Error')
     
 
 
