@@ -1350,14 +1350,14 @@ def run():
                                         #model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
 
                                         model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
-                                            image_url, input_type="image"
+                                            image_url, input_type="image", min_value=0.95
                                         )
                                         #st.write(model_prediction)
 
                                         # Get the output
                                         for concept in model_prediction.outputs[0].data.concepts:
                                             st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
-                                            break #Get cái đầu tiên chính xác nhất , rồi exit
+                                            #break #Get cái đầu tiên chính xác nhất , rồi exit
 
 
                                     #Switch back to website
