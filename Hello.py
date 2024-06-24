@@ -2627,7 +2627,7 @@ def run():
                                 #model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
 
                                 model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
-                                    [user_input[0],user_input[1]], input_type="image", output_config={"min_value": 0.99} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
+                                    image_url, input_type="image", output_config={"min_value": 0.99} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
                                     #image_url, input_type="image"
                                 )
                                 st.write(model_prediction)
