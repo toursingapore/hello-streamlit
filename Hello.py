@@ -1342,7 +1342,7 @@ def run():
 
                                             st.image(extracted_url_image_main)
                                             object_recognized = image_recognition_clarifai_func(extracted_url_image_main)
-                                            st.write(f'main image recognized: {object_recognized}')
+                                            st.write(f'Image need to select: {object_recognized}')
 
                                             st.write('Found image link')
                                             break   
