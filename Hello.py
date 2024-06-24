@@ -1339,24 +1339,27 @@ def run():
 
                                         st.image(extracted_url_image)
 
-                                        #B4; Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
-                                        url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
-                                        hub_ultralytics_api_key = "8f402dc7ca8f6866b12da635eb99dacc38c3ec6484"
-                                        headers = {"x-api-key": hub_ultralytics_api_key}
-                                        #image_url = 'https://bettervet.com/hs-fs/hubfs/small-dog-on-grass-excessively-panting.png'
-                                        image_url = extracted_url_image                                    
-                                        data = {"size": 640, "confidence": 0.25, "iou": 0.45, "url": image_url}                                
-                                        response = requests.post(url, headers=headers, json=data)
-                                        if response.status_code == 200:
-                                            #st.write(json.dumps(response.json(), indent=2))                
-                                            # Parse JSON response
-                                            json_data = response.json()
-                                            #st.write(json_data)
-                                            if json_data["data"]:
-                                                st.write(json_data["data"][0]["name"])
-                                            else:     
-                                                st.write("Not recognize image.")                                   
 
+                                        #B4; Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
+                                        model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
+                                        #image_url = "https://samples.clarifai.com/metro-north.jpg"
+                                        image_url = extracted_url_image
+                                        clarifai_Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
+
+                                        #Prediction through Filepath:
+                                        #model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
+
+                                        model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
+                                            image_url, input_type="image"
+                                        )
+                                        #st.write(model_prediction)
+
+                                        # Get the output
+                                        for concept in model_prediction.outputs[0].data.concepts:
+                                            st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
+                                            break #Get cái đầu tiên chính xác nhất , rồi exit                              
+
+                                        st.write(model_prediction)
 
 
                                     #Switch back to website
@@ -2619,12 +2622,12 @@ def run():
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
                                 #image_url = "https://samples.clarifai.com/metro-north.jpg"
                                 image_url = user_input
-                                Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
+                                clarifai_Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
 
                                 #Prediction through Filepath:
                                 #model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
 
-                                model_prediction = Model(url=model_url, pat=Personal_Access_Token).predict_by_url(
+                                model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
                                     image_url, input_type="image"
                                 )
                                 #st.write(model_prediction)
