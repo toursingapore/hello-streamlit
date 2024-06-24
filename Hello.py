@@ -2606,7 +2606,7 @@ def run():
                                     'Content-Type': 'application/json'
                                 }
                                 data = {
-                                    'sourceUrl': 'https://example.com/your-image.jpg',  # Replace with the URL of your input image
+                                    'sourceUrl': 'https://imgs3.hcaptcha.com/tip/9ebf7f854b5b239ec1ba22428284f1ce93d4d3fd20ffb8761c5f145aa1e0a34f/6b126e9d94b2077bb9526a9fc6a635fc052ea47e93f3c3276efc0f3cc4533388.jpeg',  # Replace with the URL of your input image
                                     'fileName': 'YourInputFileName',  # Replace with the actual input file name as a string
                                 }                                
                                 response = requests.post(url, headers=headers, json=data)
