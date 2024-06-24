@@ -1336,22 +1336,6 @@ def run():
                                             st.write('Extracted URL Image not found')                               
 
                                         st.image(extracted_url_image)
-                                        
-                                        #What computer see
-                                        #im = Image.open(requests.get(extracted_url_image, stream=True).raw)
-                                        #pixel_value = list(img.getdata())
-                                        #st.write(pixel_value) 
-
-                                        # https://imagga.com/
-                                        response = requests.get(
-                                            #'https://api.imagga.com/v2/tags?image_url=https://imagga.com/static/images/tagging/wind-farm-538576_640.jpg',
-                                            f'https://api.imagga.com/v2/tags?image_url={extracted_url_image}',                                            
-                                            auth=('acc_7d299f9ab6c74e7', '49c701be528fdb4b59efa0bf61556fa9'),
-                                        )
-                                        if response.status_code == 200:
-                                            json_data = response.json()
-                                            st.write(json_data)                                            
-
 
                                         #B4; Run inference on an image and Deploy pretrained model Yolov8 remote via Ultralytics HUB and detect objects
                                         url = "https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868"
@@ -2610,7 +2594,29 @@ def run():
                                 else:
                                     st.write(json_data) 
 
-                                time.sleep(5)                            
+                                time.sleep(5)  
+
+
+
+
+                                
+                                url = 'https://prodapi.phot.ai/external/api/v2/user_activity/create-enhancer-2k'
+                                headers = {
+                                    'x-api-key': '6678eccd894378ae9ab10a2b_94398eb499684c73e163_apyhitools',
+                                    'Content-Type': 'application/json'
+                                }
+                                data = {
+                                    'sourceUrl': 'https://example.com/your-image.jpg'  # Replace with the URL of your input image
+                                    'fileName': 'YourInputFileName',  # Replace with the actual input file name as a string
+                                }                                
+                                response = requests.post(url, headers=headers, json=data)
+                                
+                                if response.status_code == 200:
+                                    st.write(response.json())
+                                else:
+                                    st.write(f"Error: {response.status_code} - {response.text}")
+                                 
+
 
                         except Exception as e:
                             exc_type, exc_obj, exc_tb = sys.exc_info()
