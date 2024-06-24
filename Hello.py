@@ -2596,9 +2596,6 @@ def run():
 
                                 time.sleep(5)  
 
-
-
-
                                 
                                 from clarifai.client.model import Model
 
@@ -2613,12 +2610,12 @@ def run():
                                 model_prediction = Model(url=model_url, pat=Personal_Access_Token).predict_by_url(
                                     image_url, input_type="image"
                                 )
-                                #st.write(model_prediction)
+                                st.write(model_prediction)
 
                                 # Get the output
                                 for concept in model_prediction.outputs[0].data.concepts:
                                     st.write(f"concept: {concept.name:<20} - confidence: {round(concept.value, 3)}")
-                                    break #Get cái đầu tiên chính xác nhất , rồi exit
+                                    #break #Get cái đầu tiên chính xác nhất , rồi exit
     
 
 
