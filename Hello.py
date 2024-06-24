@@ -2606,7 +2606,7 @@ def run():
                                     'Content-Type': 'application/json'
                                 }
                                 data = {
-                                    'sourceUrl': 'https://example.com/your-image.jpg'  # Replace with the URL of your input image
+                                    'sourceUrl': 'https://example.com/your-image.jpg',  # Replace with the URL of your input image
                                     'fileName': 'YourInputFileName',  # Replace with the actual input file name as a string
                                 }                                
                                 response = requests.post(url, headers=headers, json=data)
