@@ -2607,8 +2607,8 @@ def run():
                                 image_url = user_input
                                 Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
 
-                                # Example for prediction through Filepath:
-                                # model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
+                                #Prediction through Filepath:
+                                #model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
 
                                 model_prediction = Model(url=model_url, pat=Personal_Access_Token).predict_by_url(
                                     image_url, input_type="image"
