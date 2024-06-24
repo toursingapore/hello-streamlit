@@ -1351,6 +1351,7 @@ def run():
 
                                         model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
                                             image_url, input_type="image", output_config={"min_value": 0.99} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
+                                            #image_url, input_type="image"
                                         )
                                         #st.write(model_prediction)
 
