@@ -2600,36 +2600,22 @@ def run():
 
 
                                 
-                                url = 'https://prodapi.phot.ai/external/api/v2/user_activity/create-upscaler-2k'
-                                headers = {
-                                    'x-api-key': '6678eccd894378ae9ab10a2b_94398eb499684c73e163_apyhitools',
-                                    'Content-Type': 'application/json'
-                                }
-                                data = {
-                                    'sourceUrl': 'https://imgs3.hcaptcha.com/tip/9ebf7f854b5b239ec1ba22428284f1ce93d4d3fd20ffb8761c5f145aa1e0a34f/6b126e9d94b2077bb9526a9fc6a635fc052ea47e93f3c3276efc0f3cc4533388.jpeg',  # Replace with the URL of your input image
-                                    'fileName': 'YourInputFileName',  # Replace with the actual input file name as a string
-                                }                                
-                                response = requests.post(url, headers=headers, json=data)
-                                
-                                if response.status_code == 200:
-                                    st.write(response.json())
-                                    extracted_url_image = response.json()['data']['2k']['url']
-                                    st.write(extracted_url_image)
-                                    
-                                else:
-                                    st.write(f"Error: {response.status_code} - {response.text}")
+                                from clarifai.client.model import Model
 
-                                # https://imagga.com/
-                                response = requests.get(
-                                    #'https://api.imagga.com/v2/tags?image_url=https://imagga.com/static/images/tagging/wind-farm-538576_640.jpg',
-                                    f'https://api.imagga.com/v2/tags?image_url={extracted_url_image}',                                            
-                                    auth=('acc_7d299f9ab6c74e7', '49c701be528fdb4b59efa0bf61556fa9'),
+                                model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
+                                image_url = "https://samples.clarifai.com/metro-north.jpg"
+                                Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
+
+                                # Example for prediction through Filepath:
+                                # model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
+
+                                model_prediction = Model(url=model_url, pat=Personal_Access_Token).predict_by_url(
+                                    image_url, input_type="image"
                                 )
-                                if response.status_code == 200:
-                                    json_data = response.json()
-                                    st.write(json_data)
-                                else:
-                                    st.write('Error')
+
+                                # Get the output
+                                for concept in model_prediction.outputs[0].data.concepts:
+                                    st.write(f"concept: {concept.name:<20} confidence: {round(concept.value, 3)}")
     
 
 

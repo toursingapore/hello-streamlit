@@ -48,3 +48,4 @@ websocket-client
 torrequest
 selenium-stealth==1.0.6
 assemblyai
+clarifai==10.5.2
