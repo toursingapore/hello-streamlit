@@ -2613,12 +2613,7 @@ def run():
                                 
                                 if response.status_code == 200:
                                     st.write(response.json())
-                                    url_image_webp = response.json()['data']['2k']['url']
-                                    st.write(url_image_webp)
-
-                                    from webptools import dwebp
-                                    # pass input_image(.webp image) path ,output_image(.jpeg,.pnp .....)
-                                    extracted_url_image = dwebp(input_image=url_image_webp, output_image="myimage.jpg", option="-o", logging="-v")
+                                    extracted_url_image = response.json()['data']['2k']['url']
                                     st.write(extracted_url_image)
                                     
                                 else:
