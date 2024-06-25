@@ -1341,6 +1341,7 @@ def run():
                                                 st.write('Extracted URL Image not found')     
 
                                             st.image(extracted_url_image_main)
+
                                             object_recognized = image_recognition_clarifai_func(extracted_url_image_main)
                                             st.write(f'Image need to select: {object_recognized}')
 
@@ -1373,7 +1374,7 @@ def run():
                                         st.image(extracted_url_image)
 
                                         object_recognized = image_recognition_clarifai_func(extracted_url_image)
-                                        st.write(f'recognized: {object_recognized}')
+                                        st.write(f'recognized: {object_recognized}')                                     
 
 
                                     #Switch back to website
