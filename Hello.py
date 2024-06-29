@@ -1379,11 +1379,13 @@ def run():
 
                                         st.image(extracted_url_image)
 
+                                        #C1; Recognized image class by clarifai
                                         object_recognized = image_recognition_clarifai_func(extracted_url_image)
                                         st.write(f'recognized: {object_recognized}')
 
 
-
+                                        _ = """
+                                        #C2; Recognized image class by pretrained model from roboflow
                                         image = extracted_url_image
                                         #image = 'https://source.roboflow.com/LmvZcsnDTLWXC2nmD6t2x9Iim5J3/JrFzCrtLi6oEImP2WfcM/original.jpg'
                                         response = requests.post(
@@ -1393,6 +1395,7 @@ def run():
                                             st.write(response.json())
                                         else:
                                             st.write(f'Error status code - {response.status_code}')
+                                        """
 
 
                                     #Switch back to website
