@@ -1379,7 +1379,7 @@ def run():
 
 
                                         image = extracted_url_image
-                                        image = 'https://source.roboflow.com/LmvZcsnDTLWXC2nmD6t2x9Iim5J3/JrFzCrtLi6oEImP2WfcM/original.jpg'
+                                        #image = 'https://source.roboflow.com/LmvZcsnDTLWXC2nmD6t2x9Iim5J3/JrFzCrtLi6oEImP2WfcM/original.jpg'
                                         response = requests.post(
                                             f'https://detect.roboflow.com/hcaptcha-challenger/3?api_key={ROBOFLOW_API_KEY}&image={image}',
                                         )
