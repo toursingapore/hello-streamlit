@@ -1374,7 +1374,19 @@ def run():
                                         st.image(extracted_url_image)
 
                                         object_recognized = image_recognition_clarifai_func(extracted_url_image)
-                                        st.write(f'recognized: {object_recognized}')                                     
+                                        st.write(f'recognized: {object_recognized}')
+
+
+
+                                        image = extracted_url_image
+                                        image = 'https://source.roboflow.com/LmvZcsnDTLWXC2nmD6t2x9Iim5J3/JrFzCrtLi6oEImP2WfcM/original.jpg'
+                                        response = requests.post(
+                                            f'https://detect.roboflow.com/hcaptcha-challenger/3?api_key={ROBOFLOW_API_KEY}&image={image}',
+                                        )
+                                        if response.status_code == 200:
+                                            st.write(response.json())
+                                        else:
+                                            st.write(f'Error status code - {response.status_code}')
 
 
                                     #Switch back to website
