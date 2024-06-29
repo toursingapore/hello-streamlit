@@ -1379,9 +1379,19 @@ def run():
 
                                         st.image(extracted_url_image)
 
+
+                                        #Preprocessing image includes following steps; Resizing, Grayscaling, Noise reduction, Normalization, Binarization, Contrast enhancement
+                                        #url = extracted_url_image
+                                        #image = Image.open(requests.get(url, stream=True).raw)
+                                        #st.write(image)  
+                                        #st.image(image)    
+
+
+
+
                                         #C1; Recognized image class by clarifai
-                                        object_recognized = image_recognition_clarifai_func(extracted_url_image)
-                                        st.write(f'recognized: {object_recognized}')
+                                        #object_recognized = image_recognition_clarifai_func(extracted_url_image)
+                                        #st.write(f'recognized: {object_recognized}')
 
 
                                         _ = """
