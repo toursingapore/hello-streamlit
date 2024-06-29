@@ -1295,7 +1295,13 @@ def run():
                                     st.image(temp_jpg_path)
 
                                     #B2; Wait iframe ready and Switch to it
-                                    WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and (@data-hcaptcha-widget-id)]')))
+                                    try:
+                                        WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and (@data-hcaptcha-widget-id)]')))
+                                    except TimeoutException:
+                                        st.write('Error hcaptcha loading')
+                                        driver.refresh()
+                                        WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and (@data-hcaptcha-widget-id)]')))
+
                                     st.write('Accessed iframe 1')
 
                                     random_delay(2, 5)
