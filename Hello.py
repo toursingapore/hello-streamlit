@@ -913,7 +913,7 @@ def run():
         return concept.name
 
 
-    def preprocess_image(input_image_path, output_image_path):
+    def preprocess_image_func(input_image_path, output_image_path):
         # Step 1: Read the Image
         image = cv2.imread(input_image_path)   
         # Check if image is loaded
@@ -1414,7 +1414,7 @@ def run():
                                                 f.write(response.content)
 
                                             # Denoise and display the image
-                                            preprocess_image(input_img, output_img)
+                                            preprocess_image_func(input_img, output_img)
                                             st.image(output_img)
 
 
