@@ -1436,9 +1436,11 @@ def run():
                                             else:
                                                 st.write(f"Request failed with status code {response.status_code}: {response.text}")                                      
 
+
                                         #C2; Recognized image class by clarifai - chính xác thứ 2
                                         #object_recognized = image_recognition_clarifai_func(extracted_url_image)
                                         #st.write(f'recognized: {object_recognized}')
+
 
                                         _ = """
                                         #C3; Recognized image class by pretrained model from roboflow
