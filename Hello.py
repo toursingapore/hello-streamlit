@@ -922,7 +922,7 @@ def run():
             return
 
         # Step 2: Resize the Image
-        resized_image = cv2.resize(image, (512, 512))  # Resize to 640x640 or any size suitable for YOLOv8
+        resized_image = cv2.resize(image, (128, 128))  # Resize to 640x640 or 512, 512 or any size suitable for YOLOv8
         # Step 3: Apply Gaussian Blur to reduce noise
         gaussian_blur = cv2.GaussianBlur(resized_image, (5, 5), 0)   
         # Step 4: Apply Bilateral Filter for edge-preserving smoothing
