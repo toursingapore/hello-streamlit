@@ -929,7 +929,7 @@ def run():
         bilateral_filter = cv2.bilateralFilter(gaussian_blur, 9, 75, 75)   
         # Step 5: Save the Processed Image
         cv2.imwrite(output_image_path, bilateral_filter)   
-        print(f"Processed image saved as {output_image_path}")        
+        st.write(f"Processed image saved as {output_image_path}")        
 
     with st.container(border=True): 
         st.write(
@@ -1399,14 +1399,12 @@ def run():
                                         st.image(extracted_url_image)
 
 
-                                        #Preprocessing image includes following steps; Resizing, Grayscaling, Noise reduction, Normalization, Binarization, Contrast enhancement
-                                        #url = extracted_url_image
-                                        #image = Image.open(requests.get(url, stream=True).raw)
-                                        #st.write(image)  
-                                        #st.image(image) 
+                                        #C1; Recognized image class by clarifai
+                                        #object_recognized = image_recognition_clarifai_func(extracted_url_image)
+                                        #st.write(f'recognized: {object_recognized}')
 
 
-                                        # Download the image
+                                        #C2; Preprocessing image
                                         url = extracted_url_image
                                         input_img = "/tmp/image.jpg"
                                         output_img = "/tmp/output.jpg"
@@ -1417,16 +1415,37 @@ def run():
 
                                             # Denoise and display the image
                                             preprocess_image(input_img, output_img)
-                                            st.imag(output_img)
-
-                                      
+                                            st.image(output_img)
 
 
+                                            #Inference via ULTRALYTICS API remotely
+                                            headers = {"x-api-key": HUB_ULTRALYTICS_API_KEY}
+                                            data = {"size": 640, "confidence": 0.25, "iou": 0.45}
+                                            files = {
+                                                #"image": open("output.png", "rb")
+                                                "image": open(output_img, "rb")
+                                            }
+
+                                            # ModelID: qVwusF28GI44Jvh5E868 in yoloV8 Ultralytics API
+                                            response = requests.post("https://api.ultralytics.com/v1/predict/qVwusF28GI44Jvh5E868", headers=headers, files=files, data=data)
+                                            if response.status_code == 200:
+                                                # Parse JSON response
+                                                json_data = response.json()
+                                                # Print the entire JSON response for debugging purposes
+                                                #st.write(json.dumps(json_data, indent=2))
+
+                                                # Extract and print the name value
+                                                if 'data' in json_data and len(json_data['data']) > 0:
+                                                    st.write(json_data['data'][0]['name'])
+                                                else:
+                                                    st.write("No data found in the response.")
+                                            else:
+                                                st.write(f"Request failed with status code {response.status_code}: {response.text}")                                      
 
 
-                                        #C1; Recognized image class by clarifai
-                                        #object_recognized = image_recognition_clarifai_func(extracted_url_image)
-                                        #st.write(f'recognized: {object_recognized}')
+
+
+
 
 
                                         _ = """
