@@ -912,6 +912,25 @@ def run():
             break #Get cái đầu tiên chính xác nhất , rồi exit
         return concept.name
 
+
+    def preprocess_image(input_image_path, output_image_path):
+        # Step 1: Read the Image
+        image = cv2.imread(input_image_path)   
+        # Check if image is loaded
+        if image is None:
+            print(f"Error: Unable to open image file {input_image_path}")
+            return
+
+        # Step 2: Resize the Image
+        resized_image = cv2.resize(image, (640, 640))  # Resize to 640x640 or any size suitable for YOLOv8
+        # Step 3: Apply Gaussian Blur to reduce noise
+        gaussian_blur = cv2.GaussianBlur(resized_image, (5, 5), 0)   
+        # Step 4: Apply Bilateral Filter for edge-preserving smoothing
+        bilateral_filter = cv2.bilateralFilter(gaussian_blur, 9, 75, 75)   
+        # Step 5: Save the Processed Image
+        cv2.imwrite(output_image_path, bilateral_filter)   
+        print(f"Processed image saved as {output_image_path}")        
+
     with st.container(border=True): 
         st.write(
         """ 
@@ -1384,7 +1403,23 @@ def run():
                                         #url = extracted_url_image
                                         #image = Image.open(requests.get(url, stream=True).raw)
                                         #st.write(image)  
-                                        #st.image(image)    
+                                        #st.image(image) 
+
+
+                                        # Download the image
+                                        url = extracted_url_image
+                                        input_img = "/tmp/image.jpg"
+                                        output_img = "/tmp/output.jpg"
+                                        response = requests.get(url)
+                                        if response.status_code == 200:
+                                            with open(input_img, 'wb') as f:
+                                                f.write(response.content)
+
+                                            # Denoise and display the image
+                                            preprocess_image(input_img, output_img)
+                                            st.imag(output_img)
+
+                                      
 
 
 
