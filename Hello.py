@@ -1398,13 +1398,7 @@ def run():
 
                                         st.image(extracted_url_image)
 
-
-                                        #C1; Recognized image class by clarifai
-                                        #object_recognized = image_recognition_clarifai_func(extracted_url_image)
-                                        #st.write(f'recognized: {object_recognized}')
-
-
-                                        #C2; Preprocessing image
+                                        #C1; Preprocessing image and recognize image class by Yolov8 - chính xác thứ 1
                                         url = extracted_url_image
                                         input_img = "/tmp/image.jpg"
                                         output_img = "/tmp/output.jpg"
@@ -1442,14 +1436,12 @@ def run():
                                             else:
                                                 st.write(f"Request failed with status code {response.status_code}: {response.text}")                                      
 
-
-
-
-
-
+                                        #C2; Recognized image class by clarifai - chính xác thứ 2
+                                        #object_recognized = image_recognition_clarifai_func(extracted_url_image)
+                                        #st.write(f'recognized: {object_recognized}')
 
                                         _ = """
-                                        #C2; Recognized image class by pretrained model from roboflow
+                                        #C3; Recognized image class by pretrained model from roboflow
                                         image = extracted_url_image
                                         #image = 'https://source.roboflow.com/LmvZcsnDTLWXC2nmD6t2x9Iim5J3/JrFzCrtLi6oEImP2WfcM/original.jpg'
                                         response = requests.post(
@@ -1460,7 +1452,6 @@ def run():
                                         else:
                                             st.write(f'Error status code - {response.status_code}')
                                         """
-
 
                                     #Switch back to website
                                     driver.switch_to.default_content()
