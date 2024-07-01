@@ -2712,18 +2712,31 @@ def run():
                                 
 
                                 from rembg import remove
-
-                                headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
+                                # Set up headers
+                                headers = {
+                                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'
+                                }
+                                # Fetch the image from the URL
                                 response = requests.get(user_input, headers=headers)
-                                with open('/tmp/image.jpg', 'wb') as f:
-                                    f.write(response.content)
+                                if response.status_code == 200:
+                                    with open('/tmp/image.jpg', 'wb') as f:
+                                        f.write(response.content)
+                                else:
+                                    print(f"Error: Unable to fetch the image. Status code: {response.status_code}")
 
                                 input_path = '/tmp/image.jpg'
                                 output_path = '/tmp/image_output.jpg'
 
-                                input = cv2.imread(input_path)
-                                output = remove(input)
-                                cv2.imwrite(output_path, output)
+                                # Read the input image
+                                input_img = cv2.imread(input_path)
+                                if input_img is None:
+                                    print("Error: Unable to read the input image.")
+                                else:
+                                    # Remove the background
+                                    output_img = remove(input_img)
+
+                                    # Save the output image
+                                    cv2.imwrite(output_path, output_img)
 
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
