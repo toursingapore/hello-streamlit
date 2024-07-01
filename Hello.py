@@ -2722,7 +2722,7 @@ def run():
                                     with open('/tmp/image.jpg', 'wb') as f:
                                         f.write(response.content)
                                 else:
-                                    print(f"Error: Unable to fetch the image. Status code: {response.status_code}")
+                                    st.write(f"Error: Unable to fetch the image. Status code: {response.status_code}")
 
                                 input_path = '/tmp/image.jpg'
                                 output_path = '/tmp/image_output.jpg'
@@ -2730,13 +2730,19 @@ def run():
                                 # Read the input image
                                 input_img = cv2.imread(input_path)
                                 if input_img is None:
-                                    print("Error: Unable to read the input image.")
+                                    st.write("Error: Unable to read the input image.")
                                 else:
-                                    # Remove the background
-                                    output_img = remove(input_img)
+                                    try:
+                                        # Convert the image to a format compatible with rembg
+                                        input_rgb = cv2.cvtColor(input_img, cv2.COLOR_BGR2RGB)
+                                        output_rgb = remove(input_rgb)
+                                        output_img = cv2.cvtColor(output_rgb, cv2.COLOR_RGB2BGR)
 
-                                    # Save the output image
-                                    cv2.imwrite(output_path, output_img)
+                                        # Save the output image
+                                        cv2.imwrite(output_path, output_img)
+                                        st.write(f"Output image saved to {output_path}")
+                                    except Exception as e:
+                                        st.write(f"Error occurred during background removal: {e}")
 
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
