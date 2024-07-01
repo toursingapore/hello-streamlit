@@ -920,9 +920,8 @@ def run():
         if image is None:
             print(f"Error: Unable to open image file {input_image_path}")
             return
-
         # Step 2: Resize the Image
-        resized_image = cv2.resize(image, (128, 128))  # Resize to 640x640 or 512, 512 or any size suitable for YOLOv8
+        resized_image = cv2.resize(image, (244, 128))  # Resize to 640x640, 512x512, 320x320, 244x244, 128x128 or any size suitable for YOLOv8
         # Step 3: Apply Gaussian Blur to reduce noise
         gaussian_blur = cv2.GaussianBlur(resized_image, (5, 5), 0)   
         # Step 4: Apply Bilateral Filter for edge-preserving smoothing
@@ -1317,7 +1316,7 @@ def run():
                                     try:
                                         WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and (@data-hcaptcha-widget-id)]')))
                                     except TimeoutException:
-                                        st.write('Error hcaptcha loading') 
+                                        st.write('Error hcaptcha not loading, so refresh') 
                                         driver.refresh()
                                         WebDriverWait(driver, 30).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,'//iframe[(contains(@src, "newassets.hcaptcha.com")) and (@data-hcaptcha-widget-id)]')))
 
