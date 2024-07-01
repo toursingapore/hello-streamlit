@@ -2731,6 +2731,7 @@ def run():
 
                                 # Apply the mask to the original image
                                 result = cv2.bitwise_and(img_np, img_np, mask=thresh)
+                                st.image(result)
 
                                 # Convert the result back to PIL image
                                 result_img = Image.fromarray(cv2.cvtColor(result, cv2.COLOR_BGR2RGB))
