@@ -2727,36 +2727,40 @@ def run():
                                 input_path = '/tmp/image.jpg'
                                 output_path = '/tmp/image_output.jpg'
 
-                                # Read the input image
-                                src = cv2.imread(input_path)
-                                if src is None:
-                                    st.write("Error: Unable to read the input image.")
-                                else:
-                                    try:
-                                        # Convert image to image gray 
-                                        tmp = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY) 
 
-                                        # Applying thresholding technique 
-                                        _, alpha = cv2.threshold(tmp, 0, 255, cv2.THRESH_BINARY) 
+                                # load image
+                                img = cv2.imread(input_path)
 
-                                        # Using cv2.split() to split channels 
-                                        # of coloured image 
-                                        b, g, r = cv2.split(src) 
+                                # convert to graky
+                                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-                                        # Making list of Red, Green, Blue 
-                                        # Channels and alpha 
-                                        rgba = [b, g, r, alpha] 
+                                # threshold input image as mask
+                                mask = cv2.threshold(gray, 250, 255, cv2.THRESH_BINARY)[1]
 
-                                        # Using cv2.merge() to merge rgba 
-                                        # into a coloured/multi-channeled image 
-                                        dst = cv2.merge(rgba, 4) 
+                                # negate mask
+                                mask = 255 - mask
 
-                                        # Writing and saving to a new image 
-                                        cv2.imwrite(output_path, dst)
-                                        st.image(output_path) 
+                                # apply morphology to remove isolated extraneous noise
+                                # use borderconstant of black since foreground touches the edges
+                                kernel = np.ones((3,3), np.uint8)
+                                mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+                                mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
 
-                                    except Exception as e:
-                                        st.write(f"Error occurred during background removal: {e}")
+                                # anti-alias the mask -- blur then stretch
+                                # blur alpha channel
+                                mask = cv2.GaussianBlur(mask, (0,0), sigmaX=2, sigmaY=2, borderType = cv2.BORDER_DEFAULT)
+
+                                # linear stretch so that 127.5 goes to 0, but 255 stays 255
+                                mask = (2*(mask.astype(np.float32))-255.0).clip(0,255).astype(np.uint8)
+
+                                # put mask into alpha channel
+                                result = img.copy()
+                                result = cv2.cvtColor(result, cv2.COLOR_BGR2BGRA)
+                                result[:, :, 3] = mask
+
+                                # save resulting masked image
+                                cv2.imwrite(output_path, result)
+                                st.image(output_path)
 
 
 
