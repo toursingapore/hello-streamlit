@@ -2712,15 +2712,15 @@ def run():
                                 
 
                                 from rembg import remove
-                                img = Image.open(requests.get(user_input, stream = True).raw)
-                                img.save('/tmp/image.jpg')
+                                with open('/tmp/image.jpg', 'wb') as f:
+                                    f.write(requests.get(url).content)
 
                                 input_path = '/tmp/image.jpg'
-                                output_path = '/tmp/image_output.jpg' 
-                                image_input = Image.open(input_path)
-                                output = remove(image_input)    
-                                output.save(output_path)                          
+                                output_path = '/tmp/image_output.jpg'
 
+                                input = cv2.imread(input_path)
+                                output = remove(input)
+                                cv2.imwrite(output_path, output)
 
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
