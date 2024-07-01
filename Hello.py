@@ -2728,7 +2728,7 @@ def run():
                                 output_path = '/tmp/image_output.jpg'
 
                                 # Read the input image
-                                src = cv2.imread(input_path, 1)
+                                src = cv2.imread(input_path)
                                 if src is None:
                                     st.write("Error: Unable to read the input image.")
                                 else:
