@@ -2710,50 +2710,23 @@ def run():
                                 st.write(user_input)
                                 st.image(user_input) 
 
-
-                                output_path = '/tmp/image_output.jpg'
-                                
-
-                                from io import BytesIO
-
-                                url = user_input
-                                response = requests.get(url)
-                                img = Image.open(BytesIO(response.content))
-
-                                # Convert the image to a numpy array
-                                img_np = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
-
-                                # Perform background removal using techniques like image segmentation or background subtraction
-                                # You may need to experiment with different methods based on the specific image and requirements
-                                # Here is a simple example using thresholding
-                                gray = cv2.cvtColor(img_np, cv2.COLOR_BGR2GRAY)
-                                _, thresh = cv2.threshold(gray, 240, 255, cv2.THRESH_BINARY)
-
-                                # Apply the mask to the original image
-                                result = cv2.bitwise_and(img_np, img_np, mask=thresh)
-                                st.image(result)
-
-                                # Convert the result back to PIL image
-                                result_img = Image.fromarray(cv2.cvtColor(result, cv2.COLOR_BGR2RGB))
-                                result_img.save(output_path)
-                                st.image(output_path)
-
-
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
-                                #image_url = "https://samples.clarifai.com/metro-north.jpg"
                                 clarifai_Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
 
                                 #Prediction through Filepath:
-                                filepath = output_path
-                                model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_filepath(
-                                    filepath, input_type="image"
-                                )
+                                #filepath = 'image.jpg'
+                                #model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_filepath(
+                                #    filepath, input_type="image"
+                                #)
                                 #st.write(model_prediction)
 
-                                #model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
-                                #    image_url, input_type="image", output_config={"min_value": 0.99} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
+                                #Prediction through image url:        
+                                #image_url = "https://samples.clarifai.com/metro-north.jpg"
+                                image_url = user_input
+                                model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
+                                    image_url, input_type="image", output_config={"min_value": 0.99} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
                                     #image_url, input_type="image"
-                                #)
+                                )
                                 #st.write(model_prediction)
 
                                 # Get the output
