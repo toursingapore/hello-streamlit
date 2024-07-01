@@ -2739,7 +2739,8 @@ def run():
                                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
                                 st.write('image GRAY')
                                 plt.imshow(gray)
-                                plt.show()                                
+                                plt.show()  
+                                st.image(gray)                            
 
                                 # threshold input image as mask
                                 mask = cv2.threshold(gray, 250, 255, cv2.THRESH_BINARY)[1]
