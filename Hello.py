@@ -2731,11 +2731,13 @@ def run():
                                 # load image
                                 img = cv2.imread('/tmp/image.jpg')
                                 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                                st.write('image RGB')
                                 plt.imshow(img)
                                 plt.show()
 
                                 # convert to graky
                                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                                st.write('image GRAY')
                                 plt.imshow(gray)
                                 plt.show()                                
 
