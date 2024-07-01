@@ -2725,7 +2725,7 @@ def run():
                                 )
                                 st.write(model_prediction)
 
-                                if model_prediction.outputs[0].data:
+                                if model_prediction.outputs[0]:
                                     # Get the output
                                     for concept in model_prediction.outputs[0].data.concepts:
                                         st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
