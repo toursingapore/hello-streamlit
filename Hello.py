@@ -2723,7 +2723,7 @@ def run():
                                     image_url, input_type="image", output_config={"min_value": 0.99} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
                                     #image_url, input_type="image"
                                 )
-                                st.write(model_prediction)
+                                #st.write(model_prediction)
 
                                 # Get the output
                                 for concept in model_prediction.outputs[0].data.concepts:
