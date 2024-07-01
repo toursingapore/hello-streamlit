@@ -2725,11 +2725,13 @@ def run():
                                 )
                                 st.write(model_prediction)
 
-                                # Get the output
-                                for concept in model_prediction.outputs[0].data.concepts:
-                                    st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
-                                    #break #thêm break sẽ lấy cái đầu tiên chính xác nhất rồi exit or có thể chọn tổng comcepts cần lấy qua concept.name:<5
-
+                                if model_prediction.outputs[0].data:
+                                    # Get the output
+                                    for concept in model_prediction.outputs[0].data.concepts:
+                                        st.write(f"recognized: {concept.name:<20} - confidence: {round(concept.value, 3)}")
+                                        #break #thêm break sẽ lấy cái đầu tiên chính xác nhất rồi exit or có thể chọn tổng comcepts cần lấy qua concept.name:<5
+                                else:
+                                    st.write('Not recognize image')
 
 
                         except Exception as e:
