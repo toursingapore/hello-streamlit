@@ -2730,15 +2730,14 @@ def run():
 
                                 # load image
                                 img = cv2.imread('/tmp/image.jpg')
+                                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                                plt.imshow(img)
+                                plt.show()
 
                                 # convert to graky
                                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                                if gray:
-                                    st.write('ok')
-                                else:
-                                    st.write('not ok')
                                 plt.imshow(gray)
-                                plt.show()
+                                plt.show()                                
 
                                 # threshold input image as mask
                                 mask = cv2.threshold(gray, 250, 255, cv2.THRESH_BINARY)[1]
