@@ -2709,60 +2709,37 @@ def run():
                             for user_input in user_input_arr:
                                 st.write(user_input)
                                 st.image(user_input) 
+
+
+                                output_path = '/tmp/image_output.jpg'
                                 
 
-                                from rembg import remove
-                                # Set up headers
-                                headers = {
-                                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'
-                                }
-                                # Fetch the image from the URL
-                                response = requests.get(user_input, headers=headers)
-                                if response.status_code == 200:
-                                    with open('/tmp/image.jpg', 'wb') as f:
-                                        f.write(response.content)
-                                else:
-                                    st.write(f"Error: Unable to fetch the image. Status code: {response.status_code}")
+                                from io import BytesIO
 
-                                input_path = '/tmp/image.jpg'
-                                output_path = '/tmp/image_output.jpg'
+                                # Send a GET request to the image URL
+                                response = requests.get(user_input)
 
+                                # Open the image using PIL
+                                img = Image.open(BytesIO(response.content))
 
-                                # load image
-                                img = cv2.imread(input_path)
-                              
-                                # convert to graky
-                                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                                st.image(gray)                            
+                                # Convert the image to a numpy array
+                                img_array = np.array(img)
 
-                                # threshold input image as mask
-                                mask = cv2.threshold(gray, 250, 255, cv2.THRESH_BINARY)[1]
+                                # Split the image into its RGB channels
+                                r, g, b = img_array[:,:,0], img_array[:,:,1], img_array[:,:,2]
 
-                                # negate mask
-                                mask = 255 - mask
+                                # Calculate the alpha channel (background) using the following formula:
+                                # alpha = (r + g + b) / 3
+                                alpha = (r + g + b) / 3
 
-                                # apply morphology to remove isolated extraneous noise
-                                # use borderconstant of black since foreground touches the edges
-                                kernel = np.ones((3,3), np.uint8)
-                                mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
-                                mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+                                # Create a new image with the alpha channel
+                                new_img_array = np.dstack((r, g, b, alpha))
 
-                                # anti-alias the mask -- blur then stretch
-                                # blur alpha channel
-                                mask = cv2.GaussianBlur(mask, (0,0), sigmaX=2, sigmaY=2, borderType = cv2.BORDER_DEFAULT)
+                                # Convert the numpy array back to a PIL image
+                                new_img = Image.fromarray(new_img_array.astype(np.uint8))
 
-                                # linear stretch so that 127.5 goes to 0, but 255 stays 255
-                                mask = (2*(mask.astype(np.float32))-255.0).clip(0,255).astype(np.uint8)
-
-                                # put mask into alpha channel
-                                result = img.copy()
-                                result = cv2.cvtColor(result, cv2.COLOR_BGR2BGRA)
-                                result[:, :, 3] = mask
-
-                                # save resulting masked image
-                                cv2.imwrite(output_path, result)
-                                st.write(output_path)
-                                st.image(output_path)
+                                # Save the new image with a transparent background
+                                new_img.save(output_path, 'JPG')
 
 
 
