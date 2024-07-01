@@ -51,7 +51,6 @@ from PIL import Image, ImageDraw
 from collections import defaultdict
 from ultralytics import YOLO
 import cv2
-from io import BytesIO
 from pathlib import Path
 
 from huggingface_hub import InferenceClient
@@ -2715,33 +2714,39 @@ def run():
                                 # Read image from URL
                                 url = user_input
                                 response = requests.get(url)
-                                img = Image.open(BytesIO(response.content))
-                                img = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
-                                hh, ww = img.shape[:2]                                
+                                if response.status_code == 200:
+                                    img_array = np.array(bytearray(response.content), dtype=np.uint8)
+                                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                    if img is not None:
+                                        hh, ww = img.shape[:2]
 
-                                # threshold on white
-                                # Define lower and uppper limits
-                                lower = np.array([200, 200, 200])
-                                upper = np.array([255, 255, 255])
+                                        # Threshold on white
+                                        # Define lower and upper limits
+                                        lower = np.array([200, 200, 200])
+                                        upper = np.array([255, 255, 255])
 
-                                # Create mask to only select black
-                                thresh = cv2.inRange(img, lower, upper)
+                                        # Create mask to only select white
+                                        thresh = cv2.inRange(img, lower, upper)
 
-                                # apply morphology
-                                kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (20,20))
-                                morph = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+                                        # Apply morphology
+                                        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (20, 20))
+                                        morph = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
 
-                                # invert morp image
-                                mask = 255 - morph
+                                        # Invert morphed image
+                                        mask = 255 - morph
 
-                                # apply mask to image
-                                result = cv2.bitwise_and(img, img, mask=mask)
+                                        # Apply mask to image
+                                        result = cv2.bitwise_and(img, img, mask=mask)
 
-                                # save results
-                                #cv2.imwrite('/tmp/pills_thresh.jpg', thresh)
-                                #cv2.imwrite('/tmp/pills_morph.jpg', morph)
-                                #cv2.imwrite('/tmp/pills_mask.jpg', mask)
-                                cv2.imwrite('/tmp/image.jpg', result)
+                                        # save results
+                                        #cv2.imwrite('/tmp/pills_thresh.jpg', thresh)
+                                        #cv2.imwrite('/tmp/pills_morph.jpg', morph)
+                                        #cv2.imwrite('/tmp/pills_mask.jpg', mask)
+                                        cv2.imwrite('/tmp/image.jpg', result)
+                                    else:
+                                        st.write("Error: Unable to decode the image.")
+                                else:
+                                    st.write(f"Error: Unable to fetch the image. Status code: {response.status_code}")
 
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
