@@ -2752,7 +2752,8 @@ def run():
                                         dst = cv2.merge(rgba, 4) 
 
                                         # Writing and saving to a new image 
-                                        cv2.imwrite(output_path, dst) 
+                                        cv2.imwrite(output_path, dst)
+                                        st.image(output_path) 
 
                                     except Exception as e:
                                         st.write(f"Error occurred during background removal: {e}")
