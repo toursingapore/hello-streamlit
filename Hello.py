@@ -2711,48 +2711,21 @@ def run():
                                 st.image(user_input) 
                                 
 
-                                # Read image from URL
-                                url = user_input
-                                response = requests.get(url)
-                                if response.status_code == 200:
-                                    img_array = np.array(bytearray(response.content), dtype=np.uint8)
-                                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                                    if img is not None:
-                                        hh, ww = img.shape[:2]
+                                from rembg import remove
+                                img = Image.open(requests.get(user_input, stream = True).raw)
+                                img.save('/tmp/image.jpg')
 
-                                        # Threshold on white
-                                        # Define lower and upper limits
-                                        lower = np.array([200, 200, 200])
-                                        upper = np.array([255, 255, 255])
+                                input_path = '/tmp/image.jpg'
+                                output_path = '/tmp/image_output.jpg' 
+                                image_input = Image.open(input_path)
+                                output = remove(image_input)    
+                                output.save(output_path)                          
 
-                                        # Create mask to only select white
-                                        thresh = cv2.inRange(img, lower, upper)
-
-                                        # Apply morphology
-                                        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (20, 20))
-                                        morph = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
-
-                                        # Invert morphed image
-                                        mask = 255 - morph
-
-                                        # Apply mask to image
-                                        result = cv2.bitwise_and(img, img, mask=mask)
-                                        st.image(result) 
-
-                                        # save results
-                                        #cv2.imwrite('/tmp/pills_thresh.jpg', thresh)
-                                        #cv2.imwrite('/tmp/pills_morph.jpg', morph)
-                                        #cv2.imwrite('/tmp/pills_mask.jpg', mask)
-                                        cv2.imwrite('/tmp/image.jpg', result)
-                                    else:
-                                        st.write("Error: Unable to decode the image.")
-                                else:
-                                    st.write(f"Error: Unable to fetch the image. Status code: {response.status_code}")
 
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
                                 #image_url = "https://samples.clarifai.com/metro-north.jpg"
-                                image_url = '/tmp/image.jpg'
+                                image_url = output_path
                                 clarifai_Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
 
                                 #Prediction through Filepath:
