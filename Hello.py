@@ -2729,10 +2729,8 @@ def run():
 
 
                                 # load image
-                                img = cv2.imread('/tmp/image.jpg')
-                                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-                                st.image(img)                                
-
+                                img = cv2.imread(input_path)
+                              
                                 # convert to graky
                                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
                                 st.image(gray)                            
