@@ -2712,8 +2712,11 @@ def run():
                                 
 
                                 from rembg import remove
+
+                                headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
+                                response = requests.get(user_input, headers=headers)
                                 with open('/tmp/image.jpg', 'wb') as f:
-                                    f.write(requests.get(url).content)
+                                    f.write(response.content)
 
                                 input_path = '/tmp/image.jpg'
                                 output_path = '/tmp/image_output.jpg'
