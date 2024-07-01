@@ -2739,7 +2739,7 @@ def run():
                                 new_img = Image.fromarray(new_img_array.astype(np.uint8))
 
                                 # Save the new image with a transparent background
-                                new_img.save(output_path, 'JPG')
+                                new_img.save(output_path)
                                 st.image(output_path)
 
 
