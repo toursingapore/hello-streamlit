@@ -2733,6 +2733,10 @@ def run():
 
                                 # convert to graky
                                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                                if gray:
+                                    st.write('ok')
+                                else:
+                                    st.write('not ok')
                                 plt.imshow(gray)
                                 plt.show()
 
