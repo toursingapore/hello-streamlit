@@ -2716,33 +2716,26 @@ def run():
 
                                 from io import BytesIO
 
-                                # Send a GET request to the image URL
-                                response = requests.get(user_input)
-
-                                # Open the image using PIL
+                                url = user_input
+                                response = requests.get(url)
                                 img = Image.open(BytesIO(response.content))
 
                                 # Convert the image to a numpy array
-                                img_array = np.array(img)
+                                img_np = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
 
-                                # Split the image into its RGB channels
-                                r, g, b = img_array[:,:,0], img_array[:,:,1], img_array[:,:,2]
+                                # Perform background removal using techniques like image segmentation or background subtraction
+                                # You may need to experiment with different methods based on the specific image and requirements
+                                # Here is a simple example using thresholding
+                                gray = cv2.cvtColor(img_np, cv2.COLOR_BGR2GRAY)
+                                _, thresh = cv2.threshold(gray, 240, 255, cv2.THRESH_BINARY)
 
-                                # Calculate the alpha channel (background) using the following formula:
-                                # alpha = (r + g + b) / 3
-                                alpha = (r + g + b) / 3
+                                # Apply the mask to the original image
+                                result = cv2.bitwise_and(img_np, img_np, mask=thresh)
 
-                                # Create a new image with the alpha channel
-                                new_img_array = np.dstack((r, g, b, alpha))
-
-                                # Convert the numpy array back to a PIL image
-                                new_img = Image.fromarray(new_img_array.astype(np.uint8), 'RGB')
-
-                                # Save the new image with a transparent background
-                                new_img.save(output_path)
+                                # Convert the result back to PIL image
+                                result_img = Image.fromarray(cv2.cvtColor(result, cv2.COLOR_BGR2RGB))
+                                result_img.save(output_path)
                                 st.image(output_path)
-
-
 
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
