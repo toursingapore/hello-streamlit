@@ -2711,18 +2711,54 @@ def run():
                                 st.image(user_input) 
                                 
 
+
+                                # Read image
+                                img = cv2.imread('pills.jpg')
+                                hh, ww = img.shape[:2]
+
+                                # threshold on white
+                                # Define lower and uppper limits
+                                lower = np.array([200, 200, 200])
+                                upper = np.array([255, 255, 255])
+
+                                # Create mask to only select black
+                                thresh = cv2.inRange(img, lower, upper)
+
+                                # apply morphology
+                                kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (20,20))
+                                morph = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+
+                                # invert morp image
+                                mask = 255 - morph
+
+                                # apply mask to image
+                                result = cv2.bitwise_and(img, img, mask=mask)
+
+                                # save results
+                                #cv2.imwrite('pills_thresh.jpg', thresh)
+                                #cv2.imwrite('pills_morph.jpg', morph)
+                                #cv2.imwrite('pills_mask.jpg', mask)
+                                cv2.imwrite('image.jpg', result)
+
+
+
+
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
                                 #image_url = "https://samples.clarifai.com/metro-north.jpg"
                                 image_url = user_input
                                 clarifai_Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
 
                                 #Prediction through Filepath:
-                                #model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
-
-                                model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
-                                    image_url, input_type="image", output_config={"min_value": 0.99} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
-                                    #image_url, input_type="image"
+                                filepath = 'image.jpg'
+                                model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_filepath(
+                                    filepath, input_type="image"
                                 )
+                                st.write(model_prediction)
+
+                                #model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
+                                #    image_url, input_type="image", output_config={"min_value": 0.99} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
+                                    #image_url, input_type="image"
+                                #)
                                 #st.write(model_prediction)
 
                                 # Get the output
