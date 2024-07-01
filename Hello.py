@@ -2728,21 +2728,37 @@ def run():
                                 output_path = '/tmp/image_output.jpg'
 
                                 # Read the input image
-                                input_img = cv2.imread(input_path)
-                                if input_img is None:
+                                src = cv2.imread(input_path, 1)
+                                if src is None:
                                     st.write("Error: Unable to read the input image.")
                                 else:
                                     try:
-                                        # Convert the image to a format compatible with rembg
-                                        input_rgb = cv2.cvtColor(input_img, cv2.COLOR_BGR2RGB)
-                                        output_rgb = remove(input_rgb)
-                                        output_img = cv2.cvtColor(output_rgb, cv2.COLOR_RGB2BGR)
+                                        # Convert image to image gray 
+                                        tmp = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY) 
 
-                                        # Save the output image
-                                        cv2.imwrite(output_path, output_img)
-                                        st.write(f"Output image saved to {output_path}")
+                                        # Applying thresholding technique 
+                                        _, alpha = cv2.threshold(tmp, 0, 255, cv2.THRESH_BINARY) 
+
+                                        # Using cv2.split() to split channels 
+                                        # of coloured image 
+                                        b, g, r = cv2.split(src) 
+
+                                        # Making list of Red, Green, Blue 
+                                        # Channels and alpha 
+                                        rgba = [b, g, r, alpha] 
+
+                                        # Using cv2.merge() to merge rgba 
+                                        # into a coloured/multi-channeled image 
+                                        dst = cv2.merge(rgba, 4) 
+
+                                        # Writing and saving to a new image 
+                                        cv2.imwrite(output_path, dst) 
+
                                     except Exception as e:
                                         st.write(f"Error occurred during background removal: {e}")
+
+
+
 
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
