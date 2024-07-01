@@ -2796,6 +2796,13 @@ def run():
                             #st.write(exc_type, fname, exc_tb.tb_lineno)
                             st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")                                                                          
 
+                        finally:
+                            #Get list of files im temp folder, then Delete all temp files
+                            import glob
+                            st.write(glob.glob('/tmp/*.*'))                    
+                            for f in glob.glob('/tmp/*.jpg'):
+                                os.remove(f)     
+
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
                             with st.spinner('Wait for it...'): #Show thanh progress khi xử lý code 
