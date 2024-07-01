@@ -2740,7 +2740,7 @@ def run():
 
                                 # Save the new image with a transparent background
                                 new_img.save(output_path, 'JPG')
-
+                                st.image(output_path)
 
 
 
