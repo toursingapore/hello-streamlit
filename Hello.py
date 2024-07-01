@@ -51,6 +51,7 @@ from PIL import Image, ImageDraw
 from collections import defaultdict
 from ultralytics import YOLO
 import cv2
+from skimage import io
 from pathlib import Path
 
 from huggingface_hub import InferenceClient
@@ -2710,10 +2711,10 @@ def run():
                                 st.write(user_input)
                                 st.image(user_input) 
                                 
-
-
-                                # Read image
-                                img = cv2.imread('pills.jpg')
+                                #Read image url
+                                img = io.imread(user_input)
+                                img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+                                st.image(img)
                                 hh, ww = img.shape[:2]
 
                                 # threshold on white
