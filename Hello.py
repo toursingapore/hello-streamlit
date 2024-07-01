@@ -2737,6 +2737,7 @@ def run():
 
                                         # Apply mask to image
                                         result = cv2.bitwise_and(img, img, mask=mask)
+                                        st.image(result) 
 
                                         # save results
                                         #cv2.imwrite('/tmp/pills_thresh.jpg', thresh)
