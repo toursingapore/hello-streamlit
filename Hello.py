@@ -2760,6 +2760,7 @@ def run():
 
                                 # save resulting masked image
                                 cv2.imwrite(output_path, result)
+                                st.write(output_path)
                                 st.image(output_path)
 
 
