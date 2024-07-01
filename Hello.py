@@ -2729,7 +2729,7 @@ def run():
 
 
                                 # load image
-                                img = cv2.imread(input_path)
+                                img = cv2.imread('/tmp/image.jpg')
                                 cv2.imshow('image window', img)
 
                                 # convert to graky
