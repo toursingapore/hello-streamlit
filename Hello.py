@@ -2730,6 +2730,7 @@ def run():
 
                                 # load image
                                 img = cv2.imread(input_path)
+                                cv2.imshow('image',img)
 
                                 # convert to graky
                                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
