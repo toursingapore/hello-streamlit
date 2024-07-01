@@ -2763,11 +2763,10 @@ def run():
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
                                 #image_url = "https://samples.clarifai.com/metro-north.jpg"
-                                image_url = output_path
                                 clarifai_Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
 
                                 #Prediction through Filepath:
-                                filepath = 'image.jpg'
+                                filepath = output_path
                                 model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_filepath(
                                     filepath, input_type="image"
                                 )
