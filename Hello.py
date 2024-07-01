@@ -1351,7 +1351,7 @@ def run():
                                         st.write(text_request)
 
                                         random_delay(2, 5)
-                                        matches = ["select the images", "click on each image"]
+                                        matches = ["select the images", "click on the images"]
                                         if any(x in text_request.lower() for x in matches):                                        
                                             image_urls_style = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[1]/div[3]/div/div/div[1]/div[2]"))).get_attribute("style")
                                             #st.write(image_urls_style)
