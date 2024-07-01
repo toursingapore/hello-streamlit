@@ -2709,20 +2709,16 @@ def run():
                             for user_input in user_input_arr:
                                 st.write(user_input)
                                 st.image(user_input) 
+                                
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
+                                #image_url = "https://samples.clarifai.com/metro-north.jpg"
+                                image_url = user_input
                                 clarifai_Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
 
                                 #Prediction through Filepath:
-                                #filepath = 'image.jpg'
-                                #model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_filepath(
-                                #    filepath, input_type="image"
-                                #)
-                                #st.write(model_prediction)
+                                #model_prediction = Model(model_url).predict_by_filepath(filepath, input_type="image")
 
-                                #Prediction through image url:        
-                                #image_url = "https://samples.clarifai.com/metro-north.jpg"
-                                image_url = user_input
                                 model_prediction = Model(url=model_url, pat=clarifai_Personal_Access_Token).predict_by_url(
                                     image_url, input_type="image", output_config={"min_value": 0.99} #bỏ min_value nó sẽ lấy hết concept có value từ 0-1.0
                                     #image_url, input_type="image"
@@ -2742,12 +2738,6 @@ def run():
                             #st.write(exc_type, fname, exc_tb.tb_lineno)
                             st.write(f"An error occurred: {e} - Error at line: {exc_tb.tb_lineno}")                                                                          
 
-                        finally:
-                            #Get list of files im temp folder, then Delete all temp files
-                            import glob
-                            st.write(glob.glob('/tmp/*.*'))                    
-                            for f in glob.glob('/tmp/*.jpg'):
-                                os.remove(f)     
 
                     case "Extract masks from uploaded image": #trường hợp này extract masks dùng pretrained model YOLOv8 segmentation
                         for uploaded_file in user_input:
