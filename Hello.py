@@ -51,7 +51,7 @@ from PIL import Image, ImageDraw
 from collections import defaultdict
 from ultralytics import YOLO
 import cv2
-from skimage import io
+from io import BytesIO
 from pathlib import Path
 
 from huggingface_hub import InferenceClient
@@ -2711,11 +2711,13 @@ def run():
                                 st.write(user_input)
                                 st.image(user_input) 
                                 
-                                #Read image url
-                                img = io.imread(user_input)
-                                img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-                                st.image(img)
-                                hh, ww = img.shape[:2]
+
+                                # Read image from URL
+                                url = user_input
+                                response = requests.get(url)
+                                img = Image.open(BytesIO(response.content))
+                                img = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+                                hh, ww = img.shape[:2]                                
 
                                 # threshold on white
                                 # Define lower and uppper limits
@@ -2744,7 +2746,7 @@ def run():
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
                                 #image_url = "https://samples.clarifai.com/metro-north.jpg"
-                                image_url = user_input
+                                image_url = '/tmp/image.jpg'
                                 clarifai_Personal_Access_Token = "bc927f42a634412cb44858fa04a96711"
 
                                 #Prediction through Filepath:
