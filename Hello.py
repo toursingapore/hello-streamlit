@@ -2736,7 +2736,7 @@ def run():
                                 new_img_array = np.dstack((r, g, b, alpha))
 
                                 # Convert the numpy array back to a PIL image
-                                new_img = Image.fromarray(new_img_array.astype(np.uint8))
+                                new_img = Image.fromarray(new_img_array.astype(np.uint8), 'RGB')
 
                                 # Save the new image with a transparent background
                                 new_img.save(output_path)
