@@ -2735,12 +2735,10 @@ def run():
                                 result = cv2.bitwise_and(img, img, mask=mask)
 
                                 # save results
-                                #cv2.imwrite('pills_thresh.jpg', thresh)
-                                #cv2.imwrite('pills_morph.jpg', morph)
-                                #cv2.imwrite('pills_mask.jpg', mask)
-                                cv2.imwrite('image.jpg', result)
-
-
+                                #cv2.imwrite('/tmp/pills_thresh.jpg', thresh)
+                                #cv2.imwrite('/tmp/pills_morph.jpg', morph)
+                                #cv2.imwrite('/tmp/pills_mask.jpg', mask)
+                                cv2.imwrite('/tmp/image.jpg', result)
 
 
                                 model_url = "https://clarifai.com/clarifai/main/models/general-image-recognition"
